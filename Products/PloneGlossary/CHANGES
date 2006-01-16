@@ -1,0 +1,32 @@
+1.3 RC2 - 2006-01-06
+  
+  * Fix highlight script. The position of word to highlight was erroneous.
+  
+1.3 RC1 - 2006-01-05
+
+  * Object words with accents are highlighted even if the glossary term is a little bit different
+
+  * Improve find_word function
+
+  * Changed Title and Description indexes to be ZCTextIndex based. 
+
+  * Added a special latin lexicon class. The lexicon is initialized when adding the GlossaryCatalog and used by the ZCTextIndex indexes.
+  
+  * Use the same normalizer of lexicon to parse SearchableText
+  
+  * Add method rebuildCatalog on PloneGlossary to rebuild all glossary catalog
+  
+  * Update javascript highlighting words to work on Firefox and IE
+
+  * Fixed access problem to glossary's catalogs for anonymous users - zegor
+
+
+1.2 - 
+
+  * Use AddPortalContent permission to add Glossary and definitions
+
+1.1 - 2005-09-05
+
+  * Remove highlight for input or textarea tags
+
+  * Check permissions in plone glossary portlet

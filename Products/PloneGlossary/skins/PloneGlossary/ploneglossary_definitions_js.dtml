@@ -1,0 +1,26 @@
+<!--
+<dtml-in definitions prefix="definition">
+var terms = new Array();
+<dtml-in expr="definition_item['terms']" prefix="term">
+terms.push("<dtml-var "escape(term_item)">");
+</dtml-in>
+add_related_glossary_definition("<dtml-var "escape(definition_item['title'])">", "<dtml-var "escape(truncateDescription(definition_item['description']))">", "<dtml-var "definition_item['url']">", terms);
+</dtml-in>
+
+function highlight_related_glossary_terms() {
+    var target_node = document.getElementById("region-content");
+    var unauthorized_tags = new Array();
+    <dtml-in unauthorized_tags>
+    unauthorized_tags.push('<dtml-var sequence-item>');
+    </dtml-in>
+    
+    highlight_related_glossary_terms_in_node(target_node, unauthorized_tags);
+}
+
+var list_node = document.getElementById("portlet-glossary-content");
+build_related_glossary_terms_list(list_node);
+
+if (<dtml-var highlight>) {
+  registerPloneFunction(highlight_related_glossary_terms);
+}
+-->
