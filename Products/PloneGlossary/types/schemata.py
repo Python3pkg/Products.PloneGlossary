@@ -24,10 +24,23 @@ PloneGlossaryDefinitionSchema = BaseSchema.copy() + Schema((
         default='',
         accessor='Title',
         widget=StringWidget(
-            label = "Entry",
-            label_msgid="label_glossary_title",
-            description = "Enter the title's entry.",
-            description_msgid = "help_glossary_title",
+            label = "Term",
+            label_msgid="label_glossary_term",
+            description = "Enter the term to be defined.",
+            description_msgid = "help_glossary_term",
+            visible={'view' : 'invisible'},
+            i18n_domain="ploneglossary"),
+        ),
+    LinesField(
+        'variants',
+        required=False,
+        searchable=True,
+        default=(),
+        widget=LinesWidget(
+            label = "Variants",
+            label_msgid="label_glossary_variants",
+            description = "Enter the variants of the term, one per line.",
+            description_msgid = "help_glossary_variants",
             visible={'view' : 'invisible'},
             i18n_domain="ploneglossary"),
         ),
@@ -46,6 +59,7 @@ PloneGlossaryDefinitionSchema = BaseSchema.copy() + Schema((
             rows = 25,
             i18n_domain = "ploneglossary"),
         ),
+
     ))
 
 # Hide description. It is generated dynamically
