@@ -90,6 +90,7 @@ class PloneGlossary(OrderedBaseFolder):
             item = {
                 'id' : brain.id, 
                 'title' : brain.Title, 
+                'variants' : brain.getVariants,
                 'description' : brain.Description,
                 'url' : brain.getURL()}
             definitions.append(item)
@@ -122,13 +123,12 @@ class PloneGlossary(OrderedBaseFolder):
         # Build items
         items = []
         for brain in brains:
-            item = {
-                'path': brain.getPath(),
-                'id': brain.id,
-                'title': brain.Title,
-                'description': brain.Description,
-                'url': brain.getURL(),}
-            items.append(item)
+            items.append({'path': brain.getPath(),
+                          'id': brain.id,
+                          'title': brain.Title,
+                          'variants': brain.getVariants,
+                          'description': brain.Description,
+                          'url': brain.getURL(),})
         return items
     
     security.declarePublic('getGlossaryTermItems')
