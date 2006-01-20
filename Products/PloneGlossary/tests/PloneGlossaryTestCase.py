@@ -99,20 +99,21 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         
         return self.encodeInSiteCharset(u"""Term definition.""")
     
-    def addGlossaryDefinition(self, glossary, term_title, term_definition=None):
+    def addGlossaryDefinition(self, glossary, title, definition=None, variants=()):
         """Add new glossary definition in a glossary"""
         
-        if term_definition is None:
-            term_definition = self.encodeInSiteCharset(u'Definition of term')
-            
-        term_id = self.buildPrettyId(term_title)
+        if definition is None:
+            definition = self.encodeInSiteCharset(u'Definition of term')
+
+        id = self.buildPrettyId(title)
         glossary.invokeFactory(
             type_name='PloneGlossaryDefinition',
-            id=term_id,
-            title=term_title,
-            definition=term_definition)
+            id=id,
+            title=title,
+            definition=definition,
+            variants=variants)
     
-        term = getattr(glossary, term_id)
+        term = getattr(glossary, id)
         return term
     
     def addGlossary(self, container, glossary_title, term_titles):
