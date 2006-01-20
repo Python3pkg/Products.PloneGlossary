@@ -191,10 +191,16 @@ msgid "legend_ploneglossary_management"
 msgstr ""
 
 
-msgid "label_glossary_title"
+msgid "label_glossary_term"
 msgstr ""
 
-msgid "help_glossary_title"
+msgid "help_glossary_term"
+msgstr ""
+
+msgid "label_glossary_variants"
+msgstr ""
+
+msgid "help_glossary_variants"
 msgstr ""
 
 msgid "label_glossary_definition_text"

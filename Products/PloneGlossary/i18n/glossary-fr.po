@@ -186,11 +186,17 @@ msgstr "Rechercher"
 msgid "legend_ploneglossary_management"
 msgstr "Configuration du Glossaire"
 
-msgid "label_glossary_title"
-msgstr "Titre"
+msgid "label_glossary_term"
+msgstr "Terme"
 
-msgid "help_glossary_title"
-msgstr "Entrez le nom du terme à définir."
+msgid "help_glossary_term"
+msgstr "Entrez le terme à définir."
+
+msgid "label_glossary_variants"
+msgstr "Variantes"
+
+msgid "help_glossary_variants"
+msgstr "Entrez les variantes du terme, une par ligne."
 
 msgid "label_glossary_definition_text"
 msgstr "Définition"
