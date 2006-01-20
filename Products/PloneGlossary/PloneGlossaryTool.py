@@ -156,12 +156,13 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     
     # Make it private because this method doesn't check term security
     def _getGlossaryTermItems(self, glossary_uids):
-        """Returns glossary terms in a specific structure
+        """Returns glossary terms as a list of dictionaries
         
         Item:
         - path -> term path
         - id -> term id
         - title -> term title
+        - variants -> term variants
         - description -> term description
         - url -> term url
             
@@ -223,11 +224,16 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         - path -> term path
         - id -> term id
         - title -> term title
+        - variants -> term variants
         - description -> term description
         - url -> term url
         
         @param obj: object to analyse
-        @param glossary_term_items: Glossary term items to check in the object text"""
+        @param glossary_term_items: Glossary term items to check in the object text
+        
+        Variables starting with a are supposed to be in ASCII
+        Variables starting with u are supposed to be in Unicode
+        """
         
         charset = self._getSiteCharset()
         
@@ -244,7 +250,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         usplitted_text_terms = self._split(utext)
         atext = encode_ascii(utext)
         
-        # Words to remove from terms
+        # Words to remove from terms to avoid recursion
+        # For example, on a glossary definition itself, it makes no sense to
+        # underline the defined word.
         aremoved_words = () 
         if ptype in ('PloneGlossaryDefinition',):
             aremoved_words = (atitle,)
@@ -252,46 +260,48 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # Search glossary terms in text
         analyzed_terms = []
         for item in glossary_term_items:
-            term = item['title']
-            if term in analyzed_terms:
-                continue
-            
-            # Analyze term
-            analyzed_terms.append(term)
-            uterm = term.decode(charset, "replace")
-            aterm = encode_ascii(uterm)
-            if aterm in aremoved_words:
-                continue
-            
-            # Search the word in the text
-            found_pos = find_word(aterm, atext)
-            if not found_pos:
-                continue
-
-            # Extract terms from obj text
-            term_length = len(aterm)
-            text_terms = []
-            for pos in found_pos:
-                utext_term = utext[pos:(pos + term_length)]
-                
-                # FIX ME: Workaround for composed words. Works in 99%
-                # Check the word is not a subword but a real word composing the text
-                if not [x for x in self._split(utext_term) if x in usplitted_text_terms]:
+            # Take into account the word and its variants
+            terms = (item['title'],) + item['variants']
+            for term in terms:
+                if term in analyzed_terms:
                     continue
                 
-                # Encode the term and make sure there are no doublons
-                text_term = utext_term.encode(charset, "replace")
-                if text_term in text_terms:
+                # Analyze term
+                analyzed_terms.append(term)
+                uterm = term.decode(charset, "replace")
+                aterm = encode_ascii(uterm)
+                if aterm in aremoved_words:
                     continue
-                text_terms.append(text_term)
-            
-            if not text_terms:
-                continue
-            
-            # Append object term item
-            new_item = item.copy()
-            new_item['terms'] = text_terms
-            obj_term_items.append(new_item)
+                
+                # Search the word in the text
+                found_pos = find_word(aterm, atext)
+                if not found_pos:
+                    continue
+    
+                # Extract terms from obj text
+                term_length = len(aterm)
+                text_terms = []
+                for pos in found_pos:
+                    utext_term = utext[pos:(pos + term_length)]
+                    
+                    # FIX ME: Workaround for composed words. Works in 99%
+                    # Check the word is not a subword but a real word composing the text
+                    if not [x for x in self._split(utext_term) if x in usplitted_text_terms]:
+                        continue
+                    
+                    # Encode the term and make sure there are no doublons
+                    text_term = utext_term.encode(charset, "replace")
+                    if text_term in text_terms:
+                        continue
+                    text_terms.append(text_term)
+                
+                if not text_terms:
+                    continue
+                
+                # Append object term item
+                new_item = item.copy()
+                new_item['terms'] = text_terms
+                obj_term_items.append(new_item)
             
         return obj_term_items
     
@@ -343,6 +353,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         - id -> term id
         - path -> term path
         - title -> term title
+        - variants -> term variants
         - description -> term definitions
         - url -> term url
         
@@ -350,12 +361,24 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         @param glossary_uids: if None tool will search all glossaries
         """
 
-        # Get glossary term items
+        # Get glossary term items from the glossary
+        # All terms are loaded in the memory as a list of dictionaries
         glossary_term_items = self._getGlossaryTermItems(glossary_uids)
 
-        # Get object term items
-        return self.getObjectRelatedTermItems(obj, glossary_term_items)
-    
+        marked_definitions = []
+        urls = {}
+        # Search related definitions in glossary definitions
+        for definition in self.getObjectRelatedTermItems(obj, glossary_term_items):
+            if urls.has_key(definition['url']):
+                # The glossary item is already going to be shown
+                definition['show']=0
+            else:
+                # The glossary item is going to be shown
+                urls[definition['url']]=1
+                definition['show']=1
+            marked_definitions.append(definition)
+        return marked_definitions
+
     security.declarePublic('searchResults')
     def searchResults(self, glossary_uids, **search_args):
         """Returns brains from glossaries.
@@ -366,7 +389,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         glossaries = self.getGlossaries(glossary_uids)
         paths = ['/'.join(x.getPhysicalPath()) for x in glossaries]
         ctool = getToolByName(self, 'portal_catalog')
-        return ctool.searchResults(path=paths, portal_type='PloneGlossaryDefinition', **search_args)
+        return ctool.searchResults(path=paths,
+                                   portal_type='PloneGlossaryDefinition',
+                                   **search_args)
     
     security.declarePublic('getAbcedaire')
     def getAsciiLetters(self):
