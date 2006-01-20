@@ -9,7 +9,7 @@
     <div metal:define-macro="portlet">
       <div class="portlet"
            id="portlet-glossary"
-           tal:define="gtool here/portal_glossary;
+           tal:define="gtool nocall:portal/portal_glossary;
                        show_portlet gtool/showPortlet;
                        unauthorized_tags gtool/not_highlighted_tags;
                        highlight python:test(gtool.highlightContent(here), 1, 0);
