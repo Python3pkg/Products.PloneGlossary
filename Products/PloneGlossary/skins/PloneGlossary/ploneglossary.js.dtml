@@ -46,12 +46,13 @@ function CBrowser()
 var browser_info = new CBrowser();
 var related_glossary_definitions = new Array();
 
-function add_related_glossary_definition(title, description, url, terms) {
+function add_related_glossary_definition(title, description, url, terms, show) {
     var definition = new Array();
     definition["title"] = title;
     definition["description"] = description;
     definition["url"] = url;
     definition["terms"] = terms;
+    definition["show"] = show;
     related_glossary_definitions.push(definition);
 }
 
@@ -169,17 +170,19 @@ function build_related_glossary_terms_list(target_node) {
     
         // create li node
         for (i=0; i<related_glossary_definitions.length; i++) {
-            li_node = document.createElement("li");
-            
-            // Add link tag
-            a_node = document.createElement("a");
-            url = related_glossary_definitions[i]["url"];
-            a_node.setAttribute("href", url);
-            title_text = related_glossary_definitions[i]["title"];
-            a_node.appendChild(document.createTextNode(title_text));
-            
-            li_node.appendChild(a_node);
-            ul_node.appendChild(li_node);
+            if (related_glossary_definitions[i]["show"]=='1') {
+                li_node = document.createElement("li");
+                
+                // Add link tag
+                a_node = document.createElement("a");
+                url = related_glossary_definitions[i]["url"];
+                a_node.setAttribute("href", url);
+                title_text = related_glossary_definitions[i]["title"];
+                a_node.appendChild(document.createTextNode(title_text));
+                
+                li_node.appendChild(a_node);
+                ul_node.appendChild(li_node);
+            }
         }
         
         target_node.appendChild(ul_node);
