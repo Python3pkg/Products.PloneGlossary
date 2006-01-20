@@ -29,9 +29,11 @@ Overview
 
   Once a glossary is created, you can add your definitions to it. 
   Definitions are a simple content type. Enter the word you want to define as the 
-  title and the definition of the word in the text body.
-  Definitions will be highlighted (like an acronym) when they appear elsewhere in your 
-  site. (see the ploneglossary configlet)
+  title and the definition of the word in the text body. You can also specify variants
+  of the word. For example if you define the word yoghurt, you also want the
+  variant yogurt or yoghourt to be valid. Definitions will be highlighted (like
+  an acronym) when they appear elsewhere in your site. (see the ploneglossary
+  configlet)
   
   Once you have a large number of definitions in your glossary, you can browse the
   glossary by the means of an alphabetic index, or perform a search with the 
