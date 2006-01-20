@@ -4,7 +4,7 @@ var terms = new Array();
 <dtml-in expr="definition_item['terms']" prefix="term">
 terms.push("<dtml-var "escape(term_item)">");
 </dtml-in>
-add_related_glossary_definition("<dtml-var "escape(definition_item['title'])">", "<dtml-var "escape(truncateDescription(definition_item['description']))">", "<dtml-var "definition_item['url']">", terms);
+add_related_glossary_definition("<dtml-var "escape(definition_item['title'])">", "<dtml-var "escape(truncateDescription(definition_item['description']))">", "<dtml-var "definition_item['url']">", terms, "<dtml-var "definition_item['show']">");
 </dtml-in>
 
 function highlight_related_glossary_terms() {
