@@ -8,7 +8,9 @@ from common import *
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def afterSetUp(self):
         self.loginAsPortalOwner()
-        self.glossary = self.addGlossary(self.portal, u'General', (u'Sport', u'Tennis', u'Open source'))
+        self.glossary = self.addGlossary(self.portal, 
+                                         u'General',
+                                         (u'Sport', u'Tennis', u'Open source'))
         self.logout()
 
     def testGetGlossaries(self):
@@ -69,6 +71,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         definition = definitions[0]
         self.assertEquals(definition['url'], 'http://nohost/plone/general/sport')
         self.assertEquals(definition['description'], u'Definition of term')
+        self.assertEquals(definition['variants'], ())
         self.assertEquals(definition['id'], 'sport')
         self.assertEquals(definition['title'], u'Sport')
         self.logout()
@@ -114,6 +117,44 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         expected_result = (2, 9,)
         self.assertEquals(result, expected_result)
 
+    def testVariants1(self):
+        """Test variants"""
+        self.loginAsPortalOwner()
+        # Add glossary
+        self.glossary = self.addGlossary(self.portal, 
+                                         u'Produits laitiers',
+                                         (u'Lait',
+                                          u'Beurre',
+                                          u'Fromage',
+                                          u'Crème',
+                                          u'Desserts lactés'))
+        # Variants of yaourt are yoghourt and yogourt
+        self.addGlossaryDefinition(self.glossary,
+                                  title=u'Yaourt',
+                                  definition=u'Lait caillé ayant subi une fermentation acide.',
+                                  variants=(u'Yaourts',
+                                            u'Yoghourt',
+                                            u'Yoghourts',
+                                            u'yogourt',
+                                            u'yogourts'))
+
+        doc = self.addDocument(self.portal,
+                               "Dessert",
+                               "Notre chef vous propose des fraises au yaourt et des yoghourts à la vanille.")
+
+        brains = self.glossary_tool.searchResults([self.glossary.UID()],
+                                                  SearchableText='Yoghourt')
+        self.assertEquals(brains[0].Title, 'Yaourt')
+        
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=None)
+        definition= definitions[0]
+        self.assertEquals(definition['terms'],['yaourt'])
+        self.assertEquals(definition['show'],1)
+        definition= definitions[1]
+        self.assertEquals(definition['terms'],['yoghourts'])
+        self.assertEquals(definition['show'],0)
+
+        
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
