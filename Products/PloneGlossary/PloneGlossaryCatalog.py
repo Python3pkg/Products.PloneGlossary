@@ -90,6 +90,7 @@ class PloneGlossaryCatalog(ZCatalog):
                 ('UID', 'FieldIndex'),
                 ('id', 'FieldIndex'),
                 ('Title', 'ZCTextIndex'),
+                ('getVariants', 'KeywordIndex'),
                 ('Description', 'ZCTextIndex'),
                 )
     
