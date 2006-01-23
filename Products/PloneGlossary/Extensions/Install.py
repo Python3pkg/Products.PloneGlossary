@@ -98,21 +98,6 @@ def install(self):
     cp_tool = getToolByName(self, 'portal_controlpanel')
     cp_tool.registerConfiglet(**ploneglossary_prefs_configlet)
     
-    # Update Glossary Catalogs if the getVariants index and schema is not present
-    ctool = getToolByName(self, 'portal_catalog')
-    for glossary in ctool(meta_type="PloneGlossary"):
-        g=glossary.getObject()
-        c=g.getCatalog()
-        if "getVariants" in c.indexes():
-            pass
-        else:
-            c.addIndex("getVariants", "KeywordIndex")
-            c.manage_reindexIndex(ids=["getVariants",])
-        if "getVariants" in c.schema():
-            pass
-        else:
-            c.addColumn("getVariants")
-
     out.write('Installation completed.\n')
     return out.getvalue()
 
