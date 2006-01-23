@@ -112,7 +112,6 @@ def install(self):
             pass
         else:
             c.addColumn("getVariants")
-            c.updateBrains()
 
     out.write('Installation completed.\n')
     return out.getvalue()
