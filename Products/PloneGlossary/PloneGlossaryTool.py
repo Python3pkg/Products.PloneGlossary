@@ -7,6 +7,8 @@ __docformat__ = 'restructuredtext'
 
 # Python imports
 import Globals
+import StringIO
+import os
 
 # Zope imports
 from Globals import package_home
@@ -20,10 +22,14 @@ from Acquisition import aq_base
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore import CMFCorePermissions
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
-# Products imports
+# PloneGlossary imports
 from Products.PloneGlossary.config import GLOBALS, PROJECTNAME, PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import text2words, find_word, escape_special_chars, encode_ascii
+from Products.PloneGlossary.migration.Migrator import Migrator
+
+_www = os.path.join(os.path.dirname(__file__), 'www')
 
 class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     """Tool for PloneGlossary"""
@@ -39,9 +45,44 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         
     _actions = ()
             
-    manage_options = (PropertyManager.manage_options + SimpleItem.manage_options)
+    manage_options=(PropertyManager.manage_options +\
+                    SimpleItem.manage_options +\
+                    ({ 'label' : 'Migrate',
+                      'action' : 'manage_migration'},
+                    )
+                   )
 
     security = ClassSecurityInfo()
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_migration')
+    manage_migration = PageTemplateFile('manage_migration', _www)
+
+    #                                                                                   #
+    #                                Migrations management                              #
+    #                                                                                   #
+
+    
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_migrate')
+    def manage_migrate(self, REQUEST=None):
+        """Migration script"""
+        
+        request = self.REQUEST
+        options = {}
+        options['dry_run'] = 0
+        options['meta_type'] = 0
+        stdout = StringIO.StringIO()
+        
+        if request is not None:
+            options['dry_run'] = request.get('dry_run', 0)
+            options['meta_type'] = request.get('meta_type', 'PloneGlossary')
+        
+        Migrator().migrate(self, stdout, options)
+        
+        if request is not None:
+            message = "Migration completed."
+            logs = stdout.getvalue()
+            logs = '<br />'.join(logs.split('\r\n'))
+            return self.manage_migration(self, manage_tabs_message = message, logs=logs)
 
     security.declarePrivate('manage_afterAdd')
     def manage_afterAdd(self, item, container):
