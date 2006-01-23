@@ -20,6 +20,26 @@ Installing PloneGlossary
 * Now you can add a Plone Glossary through the Plone Interface. (Adding a Plone Glossary through the ZMI won't work).
   
 
+Migration
+---------
+
+We provide a migration script for PloneGlossary 1.2 to 1.3. All the migration
+does is add an index and a metadata to the catalogs inside the PloneGlossaries.
+
+  * In the ZMI, go to the portal_glossary tool
+
+  * Follow the instructions in the Migration Tab 
+
+When migrating you have 2 choices :
+
+1- Specifying the meta_type of your glossaries. This is normally "PloneGlossary",
+   and if you are in doubt, leave this field unchanged.
+   People who inherited from PloneGlossary should enter the meta_types of their
+   content type and run migrations individually. 
+
+2- In dry run mode, migration is done, it is only a simulation of a migration, 
+   allowing you to the log to see if everything is ok.
+
 Overview
 ========
   
