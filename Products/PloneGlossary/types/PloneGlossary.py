@@ -161,7 +161,7 @@ class PloneGlossary(OrderedBaseFolder):
         else : 
             catalog = getattr(self, PLONEGLOSSARY_CATALOG)
 
-	return catalog
+        return catalog
   
     def _initCatalog(self):
         """Add Glossary catalog"""

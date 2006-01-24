@@ -302,7 +302,16 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         analyzed_terms = []
         for item in glossary_term_items:
             # Take into account the word and its variants
-            terms = (item['title'],) + item['variants']
+            terms = []
+            item_title = item['title'] 
+            item_variants = item['variants']
+            
+            if type(item_title) == type(''):
+                terms.append(item_title)
+            if type(item_variants) in (type([]), type(()), ):
+                terms.extend(item_variants)
+            
+            # Loop on glossary terms and intersect with object terms 
             for term in terms:
                 if term in analyzed_terms:
                     continue
