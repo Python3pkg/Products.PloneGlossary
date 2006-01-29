@@ -117,7 +117,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         expected_result = (2, 9,)
         self.assertEquals(result, expected_result)
 
-    def testVariants1(self):
+    def testVariants(self):
         """Test variants"""
         self.loginAsPortalOwner()
         # Add glossary
@@ -154,6 +154,70 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(definition['terms'],['yoghourts'])
         self.assertEquals(definition['show'],0)
 
+    def testEncoding(self):
+        """Test variants"""
+        self.loginAsPortalOwner()
+        # Add glossary
+        self.glossary = self.addGlossary(self.portal, 
+                                         u'Produits laitiers',
+                                         (u'Lait',
+                                          u'Beurre',
+                                          u'Fromage',
+                                          u'Crème',
+                                          u'Desserts lactés'))
+        # Variants of yaourt are yoghourt and yogourt
+        self.addGlossaryDefinition(self.glossary,
+                                  title=u'Yaourt',
+                                  definition=u'Lait caillé ayant subi une fermentation acide.',
+                                  variants=(u'Yaourts',
+                                            u'Yoghourt',
+                                            u'Yoghourts',
+                                            u'yogourt',
+                                            u'yogourts'))
+
+        doc = self.addDocument(self.portal,
+                               "Dessert",
+                               "Notre chef vous propose des fraises au ° yaourt et des yoghourts à la vanille.")
+
+        brains = self.glossary_tool.searchResults([self.glossary.UID()],
+                                                  SearchableText='Yoghourt')
+        self.assertEquals(brains[0].Title, 'Yaourt')
+        
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=None)
+        definition= definitions[0]
+        self.assertEquals(definition['terms'],['yaourt'])
+        self.assertEquals(definition['show'],1)
+        definition= definitions[1]
+        self.assertEquals(definition['terms'],['yoghourts'])
+        self.assertEquals(definition['show'],0)
+
+    def testEncoding(self):
+        """Test encoding"""
+        self.loginAsPortalOwner()
+        # Add glossary
+        self.glossary = self.addGlossary(self.portal, 
+                                         u'Parfums Femme Chanel',
+                                         (u'Lancôme : Ô Oui',
+                                          u"Dior : J´Adore",
+                                          u'Cerruti 1881 pour Femme',
+                                         ))
+        # Variants of yaourt are yoghourt and yogourt
+        self.addGlossaryDefinition(self.glossary,
+                                  title=u'Chanel N° 5',
+                                  definition=u"Un bouquet de fleurs abstraites d'une indéfinissable féminité.",
+                                  variants=(u'N° 5',),)
+        doc = self.addDocument(self.portal,
+                               "Le parfum de ma mère!",
+                               "Alors pour vous dire, une très grande histoire d'amour!! et ce n'est pas par hasard que ça fait maintenant plus de 80ans que Chanel N° 5 se vend!")
+
+        brains = self.glossary_tool.searchResults([self.glossary.UID()],
+                                                  SearchableText='N° 5')
+        self.assertEquals(brains[0].Title, 'Chanel N° 5')
+        
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=None)
+        definition= definitions[0]
+        self.assertEquals(definition['terms'],['Chanel N° 5'])
+        self.assertEquals(definition['show'],1)
         
 def test_suite():
     from unittest import TestSuite, makeSuite
