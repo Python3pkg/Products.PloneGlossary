@@ -41,10 +41,8 @@
               <a href="#"
                  tal:omit-tag="python:letter not in letters"
                  tal:attributes="href string:${here_url}?search_letter=${letter};
-                                 class python:test(letter==search_letter, 'selected', None)">
-                <span tal:content="python: letter.upper()" />
-              </a>
-            </li>
+                                 class python:test(letter==search_letter, 'selected', None)"
+                 tal:content="python: letter.upper()" /></li>
           </ul>
           
           <form name="glossary_search"
@@ -69,7 +67,7 @@
             <input class="searchButton"
                    type="submit"
                    value="Search"
-		   i18n:attributes="value"
+                   i18n:attributes="value"
                    tal:attributes="tabindex tabindex/next" />
           </form>
 
