@@ -7,7 +7,8 @@
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="main"
                       tal:define="text here/getDefinition;
-                                  len_text python:len(text);">
+                                  len_text python:len(text);
+                                  variants here/getVariants">
         <div id="glossary-definition">
           <h1 tal:content="here/title_or_id" 
               class="documentFirstHeading">
@@ -19,10 +20,18 @@
           </div>
       
           <div tal:content="structure text" />
+    
+          <tal:variants tal:condition="variants">
+            <h3 i18n:translate="">Variants</h3>
+            <ul>
+                <li tal:repeat="variant variants" tal:content="variant" />
+            </ul>
+          </tal:variants>
       
           <div metal:use-macro="here/document_byline/macros/byline">
             Get the byline - contains details about author and modification date.
           </div>
+          
         </div>
       </tal:main-macro>
     </metal:main>
