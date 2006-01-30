@@ -310,7 +310,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         utitle = title.decode(charset, "replace")
         atitle = encode_ascii(utitle)
         text = self._getObjectText(obj)
-        print text
         utext = text.decode(charset, "replace")
         usplitted_text_terms = self._split(utext)
         atext = encode_ascii(utext)
