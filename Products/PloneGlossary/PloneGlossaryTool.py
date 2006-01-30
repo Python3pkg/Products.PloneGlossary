@@ -94,6 +94,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         
         self.safeEditProperty(self, 'show_portlet', 1, data_type='boolean')
         self.safeEditProperty(self, 'highlight_content', 1, data_type='boolean')
+        self.safeEditProperty(self, 'use_general_glossaries', 1, data_type='boolean')
         self.safeEditProperty(self, 'general_glossary_uids', 'getGlossaryUIDs', data_type='multiple selection', new_value=[])
         self.safeEditProperty(self, 'allowed_portal_types', 'getAvailablePortalTypes', data_type='multiple selection', new_value=['PloneGlossaryDefinition'])
         self.safeEditProperty(self, 'description_length', 0, data_type='int')
@@ -131,6 +132,14 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     
         return self.allowed_portal_types
     
+    security.declarePublic('getAllowedPortalTypes')
+    def getUseGeneralGlossaries(self):
+        """Returns use_general_glossaries
+        """
+        if not hasattr(self, 'use_general_glossaries'):
+            self.safeEditProperty(self, 'use_general_glossaries', 1, data_type='boolean')
+        return self.use_general_glossaries
+    
     security.declarePublic('showPortlet')
     def showPortlet(self):
         """Returns true if you want to show glosssary portlet"""
@@ -148,6 +157,52 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             return False
         
         return self.highlight_content
+
+    security.declarePublic('getUsedGlossaryUIDs')
+    def getUsedGlossaryUIDs(self, obj):
+        """Helper method for the portlet Page Template. Fetches the general
+           or local glossary uids depending on the settings in the glossary
+           tool.
+        """
+        if self.getUseGeneralGlossaries():
+            return self.getGeneralGlossaryUIDs()
+        else:
+            return self.getLocalGlossaryUIDs(obj)
+
+    security.declarePublic('getLocalGlossaryUIDs')
+    def getLocalGlossaryUIDs(self, context):
+        """Returns glossary UIDs used to highlight content
+        in the context of the current object. This method traverses upwards
+        in the navigational tree in search for the neares glossary. 
+        This neares glossary is then returned
+        """
+        
+        portalObject = getToolByName(self, 'portal_url').getPortalObject()
+        if context is portalObject:
+            parent = context
+        else:
+            parent = context.aq_parent
+            
+        glossaries=[]
+        proceed = True
+        while proceed:
+            # check for a glossary in this parent
+            glossaries=[]
+            for o in parent.contentValues():
+                if o.portal_type=="PloneGlossary":
+                    glossaries.append(o.UID())
+            if glossaries:
+                # we found one or more glossaries
+                break
+            # move upwards
+            
+            if parent is portalObject:
+                proceed=False
+                
+            parent = parent.aq_parent
+        
+        return glossaries
+    
     
     security.declarePublic('getGeneralGlossaryUIDs')
     def getGeneralGlossaryUIDs(self):
@@ -436,6 +491,10 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         # Get glossary term items from the glossary
         # All terms are loaded in the memory as a list of dictionaries
+        
+        if not glossary_uids:
+            return
+        
         glossary_term_items = self._getGlossaryTermItems(glossary_uids)
 
         marked_definitions = []

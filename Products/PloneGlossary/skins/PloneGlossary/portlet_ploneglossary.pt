@@ -13,7 +13,7 @@
                        show_portlet gtool/showPortlet;
                        unauthorized_tags gtool/not_highlighted_tags;
                        highlight python:test(gtool.highlightContent(here), 1, 0);
-                       glossary_uids gtool/getGeneralGlossaryUIDs;
+                       glossary_uids python:gtool.getUsedGlossaryUIDs(here);
                        glossary_uids python:test(len(glossary_uids) == 0, None, glossary_uids);
                        definitions python:gtool.getObjectRelatedDefinitions(here, glossary_uids);"
            tal:attributes="style python:test(not show_portlet, 'display: none', None);"

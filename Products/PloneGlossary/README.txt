@@ -84,6 +84,11 @@ Overview
       Allowed portal types: Select the portal types for which defined words are
       highlighted.
       
+       Use glossaries globally for all content?: When checked, all glossaries 
+       will be used to highlight terms globally for all of the site's content.
+       By unchecking this option, only the first glossary found while traversing
+       upwards from the content is used. 
+      
       General glossaries: Select glossaries used to check related terms of 
       content.
   

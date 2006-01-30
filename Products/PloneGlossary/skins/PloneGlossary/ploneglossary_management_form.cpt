@@ -57,7 +57,14 @@
                 
                 <div class="field"
                      tal:define="show_portlet request/show_portlet | gtool/showPortlet;">
-                  
+
+                  <input type="checkbox"
+                         class="noborder"
+                         id="show_portlet"
+                         name="show_portlet"
+                         tabindex=""
+                         tal:attributes="checked python:test(show_portlet, 'checked', None);
+                                         tabindex tabindex/next;" />
                   <label for="show_portlet" 
                          i18n:translate="label_show_portlet">
                     Show glossary porlet ?
@@ -67,20 +74,18 @@
                        i18n:translate="help_show_portlet">
                     Check it to display related terms in a portlet.
                   </div>
-
-        
-                  <input type="checkbox"
-                         class="noborder"
-                         id="show_portlet"
-                         name="show_portlet"
-                         tabindex=""
-                         tal:attributes="checked python:test(show_portlet, 'checked', None);
-                                         tabindex tabindex/next;" />
                 </div>
         
                 <div class="field"
                      tal:define="highlight_content request/highlight_content | gtool/highlight_content;">
                   
+                  <input type="checkbox"
+                         class="noborder"
+                         id="highlight_content"
+                         name="highlight_content"
+                         tabindex=""
+                         tal:attributes="checked python:test(highlight_content, 'checked', None);
+                                         tabindex tabindex/next;" />
                   <label for="highlight_content" 
                          i18n:translate="label_highlight_content">
                     Highlight content ?
@@ -92,13 +97,7 @@
                   </div>
 
         
-                  <input type="checkbox"
-                         class="noborder"
-                         id="highlight_content"
-                         name="highlight_content"
-                         tabindex=""
-                         tal:attributes="checked python:test(highlight_content, 'checked', None);
-                                         tabindex tabindex/next;" />
+
                 </div>
                 
                 <div class="field"
@@ -194,6 +193,33 @@
                     </tal:block>
                   </select>
                 </div>
+
+
+                <div class="field"
+                     tal:define="use_general_glossaries request/use_general_glossaries | gtool/getUseGeneralGlossaries;">
+                  
+
+                <input type="checkbox"
+                         class="noborder"
+                         id="use_general_glossaries"
+                         name="use_general_glossaries"
+                         tabindex=""
+                         tal:attributes="checked python:test(use_general_glossaries, 'checked', None);
+                                         tabindex tabindex/next;" />        
+                  <label for="use_general_glossaries" 
+                         i18n:translate="label_use_general_glossaries">
+                    Use glossaries globally for all content?
+                  </label>
+                  <div class="formHelp" 
+                       i18n:translate="help_use_general_glossaries">
+                    When checked, all glossaries will be used to highlight terms 
+                    globally for all of the site's content.<br />
+                    By unchecking this option, only the first glossary found while
+                    traversing upwards from the content is used.
+                    </div>
+                
+                  
+                </div>
                 
                 <div class="field"
                      tal:define="general_glossary_uids request/general_glossary_uids | gtool/general_glossary_uids;">
@@ -233,7 +259,7 @@
                          type="submit"
                          value="Save"
                          name="form.button.Save"
-			 i18n:domain="plone"
+                         i18n:domain="plone"
                          i18n:attributes="value"
                          tal:attributes="tabindex tabindex/next;" />
                 </div>

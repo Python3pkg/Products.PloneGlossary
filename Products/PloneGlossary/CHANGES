@@ -1,4 +1,10 @@
-CVS - 
+CVS -  
+
+  * Added functionality to allow true local glossaries. It includes a config
+    setting in the configlet. [ender] 2006-01-30
+
+  * Changed the definition view so that it also shows the variants.
+    [ender] 2006-01-30
 
 1.3.1 2006-01-30
 

@@ -203,3 +203,9 @@ msgstr "Définition"
 
 msgid "help_glossary_definition_text"
 msgstr "Entrez la définition du terme."
+
+msgid "label_use_general_glossaries"
+msgstr "Utiliser les Glossaires globalement?"
+
+msgid "help_use_general_glossaries"
+msgstr "Cochez la case pour utiliser les glossaires globalement pour tous le contenu du site.<br />Si vous décochez la case, le glossaire le plus proche du contenu, en montant l'arborescence, sera utilisé."
