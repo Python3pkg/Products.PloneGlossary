@@ -209,7 +209,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         doc = self.addDocument(self.portal,
                                "Le parfum de ma mère!",
                                "Alors pour vous dire, une très grande histoire d'amour!! et ce n'est pas par hasard que ça fait maintenant plus de 80ans que Chanel N° 5 se vend!")
-
+        
         brains = self.glossary_tool.searchResults([self.glossary.UID()],
                                                   SearchableText='N° 5')
         self.assertEquals(brains[0].Title, 'Chanel N° 5')

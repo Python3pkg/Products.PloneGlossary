@@ -256,6 +256,31 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # Returns titles
         return [x['title'] for x in term_items]
     
+    def _getObjectText(self, obj):
+        """Returns all text of an object.
+        
+        If object is an AT content, get schema and returns all text fields.
+        Otherwise returns SearchableText.
+        
+        @param obj: Content to analyse"""
+        
+        text = ''
+        if hasattr(aq_base(obj), 'Schema'):
+            schema = obj.Schema()
+            
+            # Loop on fields
+            for field in schema.fields():
+                if field.type in ('string', 'text',):
+                    value = field.getRaw(obj)
+                    
+                    # Make sure value is a string
+                    if type(value) == type(''):
+                        text += value
+        elif hasattr(aq_base(obj), 'SearchableText'):
+            text = obj.SearchableText()
+
+        return text
+    
     # Make it private because this method doesn't check term security
     def _getObjectRelatedTermItems(self, obj, glossary_term_items):
         """Returns object terms in a specific structure
@@ -284,9 +309,8 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         title = obj.title_or_id()
         utitle = title.decode(charset, "replace")
         atitle = encode_ascii(utitle)
-        text = ''
-        if hasattr(aq_base(obj), 'SearchableText'):
-            text = obj.SearchableText()
+        text = self._getObjectText(obj)
+        print text
         utext = text.decode(charset, "replace")
         usplitted_text_terms = self._split(utext)
         atext = encode_ascii(utext)

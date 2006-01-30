@@ -1,5 +1,11 @@
 CVS - 
 
+1.3.1 2006-01-30
+
+  * Fix bug in encode ascii method
+  
+  * For AT content, analyse only string and text fields
+
 1.3 2006-01-24
 
   * Variants of a word can now be defined.

@@ -131,7 +131,12 @@ def encode_ascii(utext):
     @param utext: Unicode text to normalize"""
     
     ntext = unicodedata.normalize('NFKD', utext)
-    atext = ntext.encode('ascii', 'ignore')
+    # Encode in iso-8859-15 to remove all special chars created by normalization
+    # Encode in ascii and replace unencoded chars 
+    atext = ntext.encode('iso-8859-15', 'ignore').decode('iso-8859-15').encode('ascii', 'replace')
+    
+    # Replace ? char by space and put it in lower case
+    atext = atext.replace('?', ' ')
     atext = atext.lower()
     return atext
 
