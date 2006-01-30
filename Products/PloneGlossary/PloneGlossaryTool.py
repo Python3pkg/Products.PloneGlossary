@@ -322,15 +322,33 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         text = ''
         if hasattr(aq_base(obj), 'Schema'):
             schema = obj.Schema()
+            data = []
             
             # Loop on fields
             for field in schema.fields():
                 if field.type in ('string', 'text',):
-                    value = field.getRaw(obj)
+                    method = field.getAccessor(obj)
+                    
+                    if method is None:
+                        continue
+                    
+                    # Get text/plain content
+                    try:
+                        datum =  method(mimetype="text/plain")
+                    except TypeError:
+                        # retry in case typeerror was raised because accessor doesn't
+                        # handle the mimetype argument
+                        try:
+                            datum =  method()
+                        except ConflictError:
+                            raise
+                        except:
+                            continue
                     
                     # Make sure value is a string
-                    if type(value) == type(''):
-                        text += value
+                    if type(datum) == type(''):
+                        data.append(datum)
+            text = ' '.join(data)
         elif hasattr(aq_base(obj), 'SearchableText'):
             text = obj.SearchableText()
 

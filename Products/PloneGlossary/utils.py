@@ -135,6 +135,10 @@ def encode_ascii(utext):
     # Encode in ascii and replace unencoded chars 
     atext = ntext.encode('iso-8859-15', 'ignore').decode('iso-8859-15').encode('ascii', 'replace')
     
+    if len(atext) != len(utext):
+        # Maybe some chars are encoded in cp1252 (windows)
+        atext = ntext.encode('cp1252', 'ignore').decode('cp1252').encode('ascii', 'replace')
+        
     # Replace ? char by space and put it in lower case
     atext = atext.replace('?', ' ')
     atext = atext.lower()
