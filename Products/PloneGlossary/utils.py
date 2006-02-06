@@ -130,18 +130,16 @@ def encode_ascii(utext):
     
     @param utext: Unicode text to normalize"""
     
-    ntext = unicodedata.normalize('NFKD', utext)
-    # Encode in iso-8859-15 to remove all special chars created by normalization
-    # Encode in ascii and replace unencoded chars 
-    atext = ntext.encode('iso-8859-15', 'ignore').decode('iso-8859-15').encode('ascii', 'replace')
+    # Ascii text of utext
+    atext = ''
     
-    if len(atext) != len(utext):
-        # Maybe some chars are encoded in cp1252 (windows)
-        atext = ntext.encode('cp1252', 'ignore').decode('cp1252').encode('ascii', 'replace')
+    for uchar in utext:
+        # Normalize char
+        nchar = unicodedata.normalize('NFKD', uchar)
+        atext += nchar[0].encode('ascii', 'replace')
         
-    # Replace ? char by space and put it in lower case
-    atext = atext.replace('?', ' ')
     atext = atext.lower()
+    atext = atext.replace('?', ' ')
     return atext
 
 def find_word(word, text):

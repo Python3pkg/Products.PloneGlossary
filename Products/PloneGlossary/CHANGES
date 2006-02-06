@@ -1,4 +1,7 @@
-CVS -  
+1.3.2 - 2006-01-06
+
+  * In encode ascii function, normalize char by char, to make sure unicode 
+    string has the same length as ascii string
 
   * Added functionality to allow true local glossaries. It includes a config
     setting in the configlet. [ender] 2006-01-30

@@ -146,7 +146,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
                                                   SearchableText='Yoghourt')
         self.assertEquals(brains[0].Title, 'Yaourt')
         
-        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=None)
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=[self.glossary.UID()])
         definition= definitions[0]
         self.assertEquals(definition['terms'],['yaourt'])
         self.assertEquals(definition['show'],1)
@@ -177,10 +177,18 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
                                                   SearchableText='N° 5')
         self.assertEquals(brains[0].Title, 'Chanel N° 5')
         
-        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=None)
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=[self.glossary.UID()])
         definition= definitions[0]
         self.assertEquals(definition['terms'],['Chanel N° 5'])
         self.assertEquals(definition['show'],1)
+
+    def testEncodeAscii(self):
+        """Test encode_ascii function from utils modules"""
+        
+        utext = u'Ellipsis\u2026'
+        atext = encode_ascii(utext)
+        self.assertEquals(len(utext), len(atext))
+        self.assertEquals(atext, "ellipsis.")
         
 def test_suite():
     from unittest import TestSuite, makeSuite
