@@ -453,11 +453,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     
     
     security.declarePublic('getObjectRelatedTermItems')
-    def getObjectRelatedTermItems(self, obj, glossary_term_items):
+    def getObjectRelatedTermItems(self, obj, glossary_term_items, alpha_sort=False):
         """Returns the same list as _getObjectRelatedTermItems but check security.
         
         @param obj: object to analyse
-        @param glossary_term_items: Glossary term items to check in the object text"""
+        @param glossary_term_items: Glossary term items to check in the object text
+        @param alpha_sort: if True, returned items are sorted by title, asc"""
         
         # Get glossaries term items
         not_secured_term_items = self._getObjectRelatedTermItems(obj, glossary_term_items)
@@ -473,25 +474,31 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             except:
                 continue
             term_items.append(item)
+
+        if alpha_sort:
+            def glossary_cmp(o1, o2):
+                return cmp(o1.get('title', ''), o2.get('title', ''))
+            term_items.sort(glossary_cmp)
+            
         return term_items
     
     security.declarePublic('getObjectRelatedTerms')
-    def getObjectRelatedTerms(self, obj, glossary_uids):
+    def getObjectRelatedTerms(self, obj, glossary_uids, alpha_sort=False):
         """Returns glossary term titles found in object
         
         @param obj: Content to analyse and extract related glossary terms
         @param glossary_uids: if None tool will search all glossaries
+        @param alpha_sort: if True, returned items are sorted by title, asc
         """
         
         # Get term definitions found in obj
-        definitions = self.getObjectRelatedDefinitions(obj, glossary_uids)        
+        definitions = self.getObjectRelatedDefinitions(obj, glossary_uids, alpha_sort=False)        
         
         # Returns titles
         return [x['title'] for x in definitions]
-    
-    
+        
     security.declarePublic('getObjectRelatedDefinitions')
-    def getObjectRelatedDefinitions(self, obj, glossary_uids):
+    def getObjectRelatedDefinitions(self, obj, glossary_uids, alpha_sort=False):
         """Returns object term definitions get from glossaries.
         
         definition :
@@ -505,6 +512,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         
         @param obj: Content to analyse and extract related glossary terms
         @param glossary_uids: if None tool will search all glossaries
+        @param alpha_sort: if True, returned items are sorted by title, asc
         """
 
         # Get glossary term items from the glossary
@@ -518,7 +526,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         marked_definitions = []
         urls = {}
         # Search related definitions in glossary definitions
-        for definition in self.getObjectRelatedTermItems(obj, glossary_term_items):
+        for definition in self.getObjectRelatedTermItems(obj, glossary_term_items, alpha_sort):
             if urls.has_key(definition['url']):
                 # The glossary item is already going to be shown
                 definition['show']=0
