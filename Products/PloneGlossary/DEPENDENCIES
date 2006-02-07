@@ -1,1 +1,13 @@
+1.3.2 - 2006-02-07
+==================
+
+This version has been tested successfuly with the following products.
+It may not depend on all those products but if you experience problems you may track this down.
+
+  * FileSystemStorage 2.5RC1 CVS/SVN (UNRELEASED)
+  * PloneBooking 2.0.4 CVS/SVN (UNRELEASED)
+  * PloneGlossary 1.3.2
+
+
+
 Not set yet
