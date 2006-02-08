@@ -551,7 +551,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                                    portal_type='PloneGlossaryDefinition',
                                    **search_args)
     
-    security.declarePublic('getAbcedaire')
+    security.declarePublic('getAsciiLetters')
     def getAsciiLetters(self):
         """Returns list of ascii letters in lower case"""
         
