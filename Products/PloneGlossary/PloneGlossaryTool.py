@@ -519,7 +519,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # All terms are loaded in the memory as a list of dictionaries
         
         if not glossary_uids:
-            return
+            return []
         
         glossary_term_items = self._getGlossaryTermItems(glossary_uids)
 

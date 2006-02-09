@@ -65,6 +65,12 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add french document
         doc = self.addFrenchDocument(self.portal, \
             self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+
+        # no glossary_uid
+        result = self.glossary_tool.getObjectRelatedDefinitions(doc, ())
+        self.assertEquals(result, [])
+
+        # test normal
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         definitions = list(self.glossary_tool.getObjectRelatedDefinitions(doc, glossary_uids))
         self.assertEquals(len(definitions), 1)
