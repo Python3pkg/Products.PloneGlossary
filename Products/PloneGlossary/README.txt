@@ -51,7 +51,7 @@ Overview
   glossaries, propose definitions and search in one or more glossaries. Any word 
   defined is instantly highlighted in the content of your site.
 
-  Once a glossary is created, you can add your definitions to it. Definitions
+  After adding a glossary, you can add your definitions to it. Definitions
   are a simple content type. Enter the word you want to define as the title, and
   the definition of the word in the text body. You can also specify variants
   of the word. For example if you define the word yoghurt, you may also want to
