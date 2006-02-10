@@ -1,5 +1,7 @@
 CVS 
 
+  * Added polish translation thanks to Piotr Furman
+
   * Fixed a problem in htm2text. Carriage returns were not interpreted
     as white space. This resulted in combined words to be merged.
     For example: "<div>plone\r\nglossary</div>" -> "ploneglossary"
