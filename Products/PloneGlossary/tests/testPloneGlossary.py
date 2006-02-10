@@ -4,6 +4,7 @@ $Id$
 """
 
 from common import *
+from Products.PloneGlossary.utils import html2text
 
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def afterSetUp(self):
@@ -195,7 +196,12 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         atext = encode_ascii(utext)
         self.assertEquals(len(utext), len(atext))
         self.assertEquals(atext, "ellipsis.")
-        
+
+    def testHTML2Text(self):
+        """Test correct splitting of HTML"""
+        text = html2text("<div>line1\r\nline2</div>")
+        self.assertEquals(text, "line1 line2")
+
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
