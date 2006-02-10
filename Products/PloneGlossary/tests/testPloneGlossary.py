@@ -201,6 +201,12 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         """Test correct splitting of HTML"""
         text = html2text("<div>line1\r\nline2</div>")
         self.assertEquals(text, "line1 line2")
+        text = html2text("<div>line1\r\n line2</div>")
+        self.assertEquals(text, "line1 line2")
+        text = html2text("<div>line1 \r\n line2</div>")
+        self.assertEquals(text, "line1 line2")
+        text = html2text("<div>line1 \r \n line2</div>")
+        self.assertEquals(text, "line1 line2")
 
 def test_suite():
     from unittest import TestSuite, makeSuite
