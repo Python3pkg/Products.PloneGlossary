@@ -1,5 +1,7 @@
 CVS 
 
+  * Added a screenshot in the docs folder
+
   * Added polish translation thanks to Piotr Furman
 
   * Fixed a problem in htm2text. Carriage returns were not interpreted
