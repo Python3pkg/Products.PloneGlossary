@@ -54,7 +54,8 @@ def html2text(html):
     """Transform html to text"""
     
     output = html
-    
+    output = output.replace('\r',' ')
+    output = output.replace('\n',' ')
     if len(output) > 0:
         parser = HTML2TextParser()
         parser.feed(output)
