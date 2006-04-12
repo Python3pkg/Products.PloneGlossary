@@ -14,6 +14,7 @@ from Products.Archetypes.public import *
 
 # PloneGlossary schema
 PloneGlossarySchema = BaseSchema.copy()
+PloneGlossarySchema['description'].schemata = 'default'
 
 # PloneGlossaryDefinition schema
 PloneGlossaryDefinitionSchema = BaseSchema.copy() + Schema((
@@ -63,4 +64,5 @@ PloneGlossaryDefinitionSchema = BaseSchema.copy() + Schema((
     ))
 
 # Hide description. It is generated dynamically
-PloneGlossaryDefinitionSchema['description'].widget.visible = {'view' : 'visible', 'edit' : 'invisible'}
+#PloneGlossaryDefinitionSchema['description'].widget.visible = {'view' : '
+#visible', 'edit' : 'invisible'}
