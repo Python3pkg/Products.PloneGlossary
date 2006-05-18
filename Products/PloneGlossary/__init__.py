@@ -39,5 +39,4 @@ def initialize(context):
     ToolInit(
         '%s Tool' % PROJECTNAME,
         tools=(PloneGlossaryTool,),
-        product_name=PROJECTNAME,
         icon='tool.gif').initialize(context)
