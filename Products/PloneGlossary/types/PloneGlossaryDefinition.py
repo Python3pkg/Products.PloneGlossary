@@ -44,7 +44,15 @@ class PloneGlossaryDefinition(BaseContent):
         'permissions'   : (CMFCorePermissions.View, ),
         'category'      : 'object',
         'visible'       : 1,
-        },)
+        },
+        {
+        'id'          : 'local_roles',
+        'name'        : 'Sharing',
+        'action'      : 'string:${object_url}/folder_localrole_form',
+        'permissions' : (CMFCorePermissions.ManageProperties,),
+        'category'      : 'object',
+         },
+        )
 
     security.declareProtected(CMFCorePermissions.View, 'Description')
     def Description(self, from_catalog=False):
