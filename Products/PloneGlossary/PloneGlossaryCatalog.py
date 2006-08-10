@@ -21,7 +21,6 @@ from Products.CMFCore import CMFCorePermissions
 
 # Archetypes imports
 from Products.Archetypes.public import *
-from Products.Archetypes.ReferenceEngine import ReferenceResolver
 
 # Products imports
 from Products.ZCTextIndex.Lexicon import Splitter
