@@ -148,6 +148,7 @@ function highlight_related_glossary_term_in_node(node, word, definition_index, u
             highlight_related_glossary_term_in_text(node, word, definition_index);
         }
     }
+    return true;
 }
 
 function highlight_related_glossary_terms_in_node(target_node, unauthorized_tags) {
@@ -166,18 +167,18 @@ function build_related_glossary_terms_list(target_node) {
     // Build list of related terms
     if (related_glossary_definitions.length > 0) {
         var i=0;
-        ul_node = document.createElement("ul");
+        var ul_node = document.createElement("ul");
     
         // create li node
         for (i=0; i<related_glossary_definitions.length; i++) {
             if (related_glossary_definitions[i]["show"]=='1') {
-                li_node = document.createElement("li");
+                var li_node = document.createElement("li");
                 
                 // Add link tag
-                a_node = document.createElement("a");
-                url = related_glossary_definitions[i]["url"];
+                var a_node = document.createElement("a");
+                var url = related_glossary_definitions[i]["url"];
                 a_node.setAttribute("href", url);
-                title_text = related_glossary_definitions[i]["title"];
+                var title_text = related_glossary_definitions[i]["title"];
                 a_node.appendChild(document.createTextNode(title_text));
                 
                 li_node.appendChild(a_node);
