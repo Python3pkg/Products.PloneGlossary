@@ -40,6 +40,8 @@ class PloneGlossary(OrderedBaseFolder):
     allowed_content_types = ('PloneGlossaryDefinition',)
     schema =  schema
     content_icon = 'ploneglossary_icon.gif'
+    _at_rename_after_creation = True
+    
     security = ClassSecurityInfo()
 
     actions = (

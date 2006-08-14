@@ -34,6 +34,8 @@ class PloneGlossaryDefinition(BaseContent):
     global_allow = False
     schema =  schema
     content_icon = 'ploneglossarydefinition_icon.gif'
+    _at_rename_after_creation = True
+    
     security = ClassSecurityInfo()
 
     actions = (

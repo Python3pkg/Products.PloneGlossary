@@ -1,5 +1,8 @@
 SVN - 
 
+  * Added support for rename after creation for glossary and definition contents
+    [bmathieu]
+
   * Added german translation thanks to Richard M. Kues
 
   * Added spanish translation thanks to Héctor Velarde
