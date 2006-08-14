@@ -1,5 +1,8 @@
 SVN - 
 
+  * Configure Glossary and Definitions to be managed by portal_factory
+    [bmathieu]
+
   * Added support for rename after creation for glossary and definition contents
     [bmathieu]
 

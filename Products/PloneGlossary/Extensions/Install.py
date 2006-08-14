@@ -75,15 +75,27 @@ def uninstall_portlet(self, out):
     
     print >>out, 'PloneGlossary portlet installed.\n'
 
+def install_types(self, out):
+    """Install types and configure portal_factory"""
+    # Install types and "switch" external methods
+    typeInfo = listTypes(PROJECTNAME)
+    installTypes(self, out, typeInfo, PROJECTNAME)
+
+    ftool = getToolByName(self, 'portal_factory')
+    types_to_add = (
+        'PloneGlossary', 
+        'PloneGlossaryDefinition',)
+    ftypes = ftool.getFactoryTypes()
+    ftypes.update(dict([(x, 1) for x in types_to_add]))
+    ftool.manage_setPortalFactoryTypes(listOfTypeIds=ftypes.keys())
+    out.write("Types configured to use portal_factory\n")
+    
+
 def install(self):
     """Install PloneGlossary product"""
     out = StringIO()
 
-    # Install types and "switch" external methods
-    typeInfo = listTypes(PROJECTNAME)
-    installTypes(self, out,
-                 typeInfo,
-                 PROJECTNAME)
+    install_types(self, out)
 
     # Install tools
     install_tool(self, out)
