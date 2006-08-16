@@ -1,5 +1,10 @@
 SVN - 
 
+  * Dropped plone 2.0 compatibility: use css and javascript registries. Portlet
+    structure complies with plone 2.1/2.5 standard structures.
+    Improved: highlight definitions whether portlet is displayed or
+    not. [bmathieu]
+
   * Configure Glossary and Definitions to be managed by portal_factory
     [bmathieu]
 

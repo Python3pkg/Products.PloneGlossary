@@ -4,7 +4,7 @@ Dependencies
 Required Products
 ------------------
 
-* Plone 2.0.4 or 2.0.5 and Plone 2.1 and higher
+* Plone 2.1 and higher
 
 * Archetypes >= 1.3.1
 
@@ -91,24 +91,6 @@ Overview
       
       General glossaries: Select glossaries used to check related terms of 
       content.
-  
-Known Problems
-----------------
-
-  Glossary Portlet needs to be present
-
-    If you don't want to show the portlet with the glossary words, you can 
-    select the option "Show glossary porlet ?", and the portlet will be hidden
-    using CSS.
-
-    Attention: It is still necessary to keep the portlet in the slot in any
-    case, as it contains the JavaScript code necessary for highlighting words.
-
-    So, if you really have to remove the portlet, you'll have to include the
-    JavaScript somewhere else in a global template. The best place may be the 
-    CMFPlone file header.pt.
-
-    We'll probably use the JavaScript Registry of Plone 2.1 in the future.
 
 Additional tools
 ----------------

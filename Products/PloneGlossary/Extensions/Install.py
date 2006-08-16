@@ -91,6 +91,22 @@ def install_types(self, out):
     out.write("Types configured to use portal_factory\n")
     
 
+def install_scripts(self, out):
+    """Install javascripts and CSS in their respective registry"""
+    expr = "python:portal.portal_glossary.showPortlet() "\
+           "or portal.portal_glossary.highlightContent(here)"
+    jscript_reg = getToolByName(self, 'portal_javascripts')
+    
+    jscript_reg.registerScript(id="ploneglossary.js", expression=expr)
+    jscript_reg.registerScript(id="ploneglossary_definitions.js",
+                               expression=expr,
+                               inline=True,)
+
+    css_reg = getToolByName(self, 'portal_css')
+    css_reg.registerStylesheet('ploneglossary_popup.css',
+                               title='Plone Glossary')
+    print >> out, "registered CSS and Javascript into their respective registry"
+
 def install(self):
     """Install PloneGlossary product"""
     out = StringIO()
@@ -102,6 +118,9 @@ def install(self):
     
     # Install skin
     install_subskin(self, out, GLOBALS)
+
+    # register scripts
+    install_scripts(self, out)
     
     # Install portlet in right slots
     install_portlet(self, out)

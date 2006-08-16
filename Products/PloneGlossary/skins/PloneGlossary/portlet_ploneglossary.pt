@@ -6,45 +6,25 @@
 
     <!-- The PloneGlossary in box -->
   
-    <div metal:define-macro="portlet">
-      <div class="portlet"
-           id="portlet-glossary"
+      <dl metal:define-macro="portlet"
+          id="portlet-glossary" class="portlet"
            tal:define="gtool nocall:portal/portal_glossary;
                        show_portlet gtool/showPortlet;
-                       unauthorized_tags gtool/not_highlighted_tags;
-                       highlight python:test(gtool.highlightContent(here), 1, 0);
-                       glossary_uids python:gtool.getUsedGlossaryUIDs(here);
-                       glossary_uids python:test(len(glossary_uids) == 0, None, glossary_uids);
-                       definitions python:gtool.getObjectRelatedDefinitions(here, glossary_uids);"
-           tal:attributes="style python:test(not show_portlet, 'display: none', None);"
-           tal:condition="python: len(definitions) > 0"
-           tal:on-error="nothing">
-        <h5 i18n:translate="heading_related_terms">Related terms</h5>
+                       definitions request/ploneglossary_definitions|nothing"
+           tal:condition="python:show_portlet and definitions">
+        <dt class="portletHeader">
+          <span class="portletTopLeft"/>
+          <span i18n:translate="heading_related_terms">Related terms</span>
+          <span class="portletTopRight"/>
+        </dt>
         
-        <div class="portletBody">
-          <div class="portletContent"
-               id="portlet-glossary-content">
-            
-            <script type="text/javascript"
-                    tal:attributes="src string:$portal_url/ploneglossary.js">
-            </script>
-    
-            <style type="text/css" 
-                   media="all" 
-                   tal:condition="exists: portal/ploneglossary_popup.css"
-                   tal:content="structure string:@import url($portal_url/ploneglossary_popup.css);">
-            </style>
-            
-            <tal:block tal:define="escape python:gtool.escape;
-                                   truncateDescription python:gtool.truncateDescription">
-              <script type="text/javascript"
-                      tal:content="structure here/ploneglossary_definitions_js">
-              </script>
-            </tal:block>
-          </div>
-        </div>
-      </div>
-    </div>
+        <dd class="portletItem lastItem">
+          <div  id="portlet-glossary-content"></div>
+          <span class="portletBottomLeft"/>
+          <span class="portletBottomRight"/>
+        </dd>
+      </dl>
+
   </body>
 
 </html>

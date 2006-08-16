@@ -1,4 +1,48 @@
 //
+// Utilities functions used on highlighted terms
+//
+
+function goto_glossary_definition(definition_index) {
+    url = related_glossary_definitions[definition_index]["url"];
+    document.location = url;
+}
+
+function show_glossary_definition_popup(node, definition_index) {
+    popup_node = document.createElement("div");
+    popup_node.setAttribute('id', "glossary-definition-popup");
+    
+    // Add title
+    title_text = related_glossary_definitions[definition_index]["title"];
+    title_node = document.createElement("h6");
+    title_node.appendChild(document.createTextNode(title_text));
+    popup_node.appendChild(title_node);
+    
+    // Add description
+    description_text = related_glossary_definitions[definition_index]["description"];
+    description_node = document.createElement("p");
+    
+    // Replace \n by <br /> tags
+    texts = description_text.split('\n')
+    
+    for (i=0; i<texts.length; i++) {
+        text = texts[i];
+        description_node.appendChild(document.createTextNode(text));
+        description_node.appendChild(document.createElement("br"));
+    }
+
+    popup_node.appendChild(description_node);
+    
+    node.className = node.className + " glossaryPopupPosition";
+    node.appendChild(popup_node);
+}
+
+function hide_glossary_definition_popup(node, definition_index) {
+    popup_node = document.getElementById("glossary-definition-popup");
+    node.removeChild(popup_node);
+    node.className = "highlightedGlossaryTerm";
+}
+
+//
 // Dig into all glossary definition
 //
 
@@ -189,47 +233,3 @@ function build_related_glossary_terms_list(target_node) {
         target_node.appendChild(ul_node);
     }
 } 
-
-//
-// Utilities functions used on highlighted terms
-//
-
-function goto_glossary_definition(definition_index) {
-    url = related_glossary_definitions[definition_index]["url"];
-    document.location = url;
-}
-
-function show_glossary_definition_popup(node, definition_index) {
-    popup_node = document.createElement("div");
-    popup_node.setAttribute('id', "glossary-definition-popup");
-    
-    // Add title
-    title_text = related_glossary_definitions[definition_index]["title"];
-    title_node = document.createElement("h6");
-    title_node.appendChild(document.createTextNode(title_text));
-    popup_node.appendChild(title_node);
-    
-    // Add description
-    description_text = related_glossary_definitions[definition_index]["description"];
-    description_node = document.createElement("p");
-    
-    // Replace \n by <br /> tags
-    texts = description_text.split('\n')
-    
-    for (i=0; i<texts.length; i++) {
-        text = texts[i];
-        description_node.appendChild(document.createTextNode(text));
-        description_node.appendChild(document.createElement("br"));
-    }
-
-    popup_node.appendChild(description_node);
-    
-    node.className = node.className + " glossaryPopupPosition";
-    node.appendChild(popup_node);
-}
-
-function hide_glossary_definition_popup(node, definition_index) {
-    popup_node = document.getElementById("glossary-definition-popup");
-    node.removeChild(popup_node);
-    node.className = "highlightedGlossaryTerm";
-}
