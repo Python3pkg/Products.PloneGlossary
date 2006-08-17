@@ -2,187 +2,179 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
 "POT-Creation-Date: 2005-08-16 12:28+0000\n"
-"PO-Revision-Date: 2005-08-09 18:08+0200\n"
+"PO-Revision-Date: 2006-08-17 14:44+0200\n"
 "Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
 "Language-Team: EDFGDF\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-code: fr\n"
-"Language-name: FranÁais\n"
-"Preferred-encodings: latin1 utf-8\n"
+"Language-name: Fran√ßais\n"
+"Preferred-encodings: utf-8 latin1\n"
 "Domain: ploneglossary\n"
-"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr"
-msgid ""
+"X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-
-#: skins/PloneGlossary/ploneglossary_view.pt
-#. <input alt="Search" i18n:attributes="alt title" id="search_text" name="search_text" size="20" tal:attributes="value search_text;                                    tabindex tabindex/next" title="Search" type="text" value=""/>
-## 1 more: skins/PloneGlossary/ploneglossary_view.pt
+# # 1 more: skins/PloneGlossary/ploneglossary_view.pt
 # Original: "Search"
+#. <input alt="Search" i18n:attributes="alt title" id="search_text" name="search_text" size="20" tal:attributes="value search_text;                                    tabindex tabindex/next" title="Search" type="text" value=""/>
+#: skins/PloneGlossary/ploneglossary_view.pt
 msgid "Search"
 msgstr "Rechercher"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "PloneGlossary Management"
 #. <h3 i18n:translate="heading_ploneglossary_management">
 #.  PloneGlossary Management
 #. </h3>
-# Original: "PloneGlossary Management"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "heading_ploneglossary_management"
 msgstr "Configuration du glossaire"
 
-
-#: skins/PloneGlossary/portlet_ploneglossary.pt
+# Original: "Related terms"
 #. <h5 i18n:translate="heading_related_terms">
 #.  Related terms
 #. </h5>
-# Original: "Related terms"
+#: skins/PloneGlossary/portlet_ploneglossary.pt
 msgid "heading_related_terms"
 msgstr "Termes relatifs"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "Select portal types allowed to be highlighted, if highlight feature is enabled. No selection results in the same thing of selecting all portal types."
 #. <div class="formHelp" i18n:translate="help_allowed_portal_types">
 #.                     Select portal types allowed to be highlighted, if highlight feature is enabled.
 #.                     No selection results in the same thing of selecting all portal types.
 #. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
 #. <div class="formHelp" i18n:translate="help_allowed_portal_types">
 #.                     Select glossaries used to check related terms of content.
 #.                     No selection results in the same thing of selecting all glossaries.
 #. </div>
-# Original: "Select portal types allowed to be highlighted, if highlight feature is enabled. No selection results in the same thing of selecting all portal types."
-msgid "help_allowed_portal_types"
-msgstr "SÈlectionnez les types de contenus devant Ítre surlignÈs, si la fonctionnalitÈ de surlignage est activÈe. Ne rien sÈlectionner Èquivaut ‡ tout sÈlectionner."
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "help_allowed_portal_types"
+msgstr ""
+"S√©lectionnez les types de contenus devant √™tre surlign√©s, si la "
+"fonctionnalit√© de surlignage est activ√©e. Ne rien s√©lectionner √©quivaut √† "
+"tout s√©lectionner."
+
+# Original: "Enter ellipsis. It is used in popup when definition of term is too long."
 #. <div class="formHelp" i18n:translate="help_description_ellipsis">
 #.                     Enter ellipsis. It is used in popup when definition of term is too long.
 #. </div>
-# Original: "Enter ellipsis. It is used in popup when definition of term is too long."
-msgid "help_description_ellipsis"
-msgstr "Entrez l'ellipse qui sera utilisÈe lorsque la dÈfinition d'un terme est trop longue."
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "help_description_ellipsis"
+msgstr ""
+"Entrez l'ellipse qui sera utilis√©e lorsque la d√©finition d'un terme est trop "
+"longue."
+
+# Original: "Enter maximum description length of term."
 #. <div class="formHelp" i18n:translate="help_description_length">
 #.                     Enter maximum description length of term.
 #. </div>
-# Original: "Enter maximum description length of term."
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "help_description_length"
 msgstr "Entrez la longueur maximale des descriptions."
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "Check it to highlight related terms in content. You can choose which types to highlight."
 #. <div class="formHelp" i18n:translate="help_highlight_content">
 #.                     Check it to highlight related terms in content. You can choose which types to highlight.
 #. </div>
-# Original: "Check it to highlight related terms in content. You can choose which types to highlight."
-msgid "help_highlight_content"
-msgstr "Cochez la case pour activer le surlignage des termes dans les contenus. Vous pouvez choisir quels types de contenus surligner."
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "help_highlight_content"
+msgstr ""
+"Cochez la case pour activer le surlignage des termes dans les contenus. Vous "
+"pouvez choisir quels types de contenus surligner."
+
+# Original: "Enter one tag name per line. Tags specified below will not be highlighted."
 #. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
 #.                     Enter one tag name per line. Tags specified below will not be highlighted.
 #. </div>
-# Original: "Enter one tag name per line. Tags specified below will not be highlighted."
-msgid "help_not_highlighted_tags"
-msgstr "Les balises HTML spÈcifiÈes ici ne seront pas surlignÈes. Entrez une balise par ligne."
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "help_not_highlighted_tags"
+msgstr ""
+"Les balises HTML sp√©cifi√©es ici ne seront pas surlign√©es. Entrez une balise "
+"par ligne."
+
+# Original: "Check it to display related terms in a portlet."
 #. <div class="formHelp" i18n:translate="help_show_portlet">
 #.                     Check it to display related terms in a portlet.
 #. </div>
-# Original: "Check it to display related terms in a portlet."
-msgid "help_show_portlet"
-msgstr "Cochez la case pour afficher les termes relatifs au contenu dans une boÓte."
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "help_show_portlet"
+msgstr ""
+"Cochez la case pour afficher les termes relatifs au contenu dans une bo√Æte."
+
+# Original: "Allowed portal types"
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">
 #.                     Allowed portal types
 #. </label>
-# Original: "Allowed portal types"
-msgid "label_allowed_portal_types"
-msgstr "Types de contenus ‡ surligner"
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "label_allowed_portal_types"
+msgstr "Types de contenus √† surligner"
+
+# Original: "Description ellipsis"
 #. <label for="description_ellipsis" i18n:translate="label_description_ellipsis">
 #.                     Description ellipsis
 #. </label>
-# Original: "Description ellipsis"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "label_description_ellipsis"
 msgstr "Ellipse de description"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "Description length"
 #. <label for="description_length" i18n:translate="label_description_length">
 #.                     Description length
 #. </label>
-# Original: "Description length"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "label_description_length"
 msgstr "Longueur de la description"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "General glossaries"
 #. <label for="general_glossary_uids" i18n:translate="label_general_glossary_uids">
 #.                     General glossaries
 #. </label>
-# Original: "General glossaries"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "label_general_glossary_uids"
-msgstr "Glossaires gÈnÈraux"
+msgstr "Glossaires g√©n√©raux"
 
 msgid "help_general_glossary_uids"
-msgstr "SÈlectionnez les glossaires utilisÈs pour la recherche des termes relatifs. Ne rien sÈlectionner Èquivaut ‡ tout sÈlectionner."
+msgstr ""
+"S√©lectionnez les glossaires utilis√©s pour la recherche des termes relatifs. "
+"Ne rien s√©lectionner √©quivaut √† tout s√©lectionner."
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "Highlight content ?"
 #. <label for="highlight_content" i18n:translate="label_highlight_content">
 #.                     Highlight content ?
 #. </label>
-# Original: "Highlight content ?"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "label_highlight_content"
 msgstr "Surlignage des contenus ?"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "Not highlighted tags"
 #. <label for="not_highlighted_tags" i18n:translate="label_not_highlighted_tags">
 #.                     Not highlighted tags
 #. </label>
-# Original: "Not highlighted tags"
-msgid "label_not_highlighted_tags"
-msgstr "Balises non surlignÈes"
-
-
 #: skins/PloneGlossary/ploneglossary_management_form.cpt
+msgid "label_not_highlighted_tags"
+msgstr "Balises non surlign√©es"
+
+# Original: "Show glossary porlet ?"
 #. <label for="show_portlet" i18n:translate="label_show_portlet">
 #.                     Show glossary porlet ?
 #. </label>
-# Original: "Show glossary porlet ?"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "label_show_portlet"
-msgstr "Afficher la boÓte glossaire ?"
+msgstr "Afficher la bo√Æte glossaire ?"
 
-
-#: skins/PloneGlossary/ploneglossary_view.pt
+# Original: "Search"
 #. <label class="hiddenStructure" for="search_text" i18n:translate="label_text_search">
 #.               Search
 #. </label>
-# Original: "Search"
+#: skins/PloneGlossary/ploneglossary_view.pt
 msgid "label_text_search"
 msgstr "Rechercher"
 
-
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+# Original: "PloneGlossary Management"
 #. <legend i18n:translate="legend_ploneglossary_management">
 #.                 PloneGlossary Management
 #. </legend>
-# Original: "PloneGlossary Management"
+#: skins/PloneGlossary/ploneglossary_management_form.cpt
 msgid "legend_ploneglossary_management"
 msgstr "Configuration du Glossaire"
 
@@ -190,7 +182,7 @@ msgid "label_glossary_term"
 msgstr "Terme"
 
 msgid "help_glossary_term"
-msgstr "Entrez le terme ‡ dÈfinir."
+msgstr "Entrez le terme √† d√©finir."
 
 msgid "label_glossary_variants"
 msgstr "Variantes"
@@ -199,13 +191,19 @@ msgid "help_glossary_variants"
 msgstr "Entrez les variantes du terme, une par ligne."
 
 msgid "label_glossary_definition_text"
-msgstr "DÈfinition"
+msgstr "D√©finition"
 
 msgid "help_glossary_definition_text"
-msgstr "Entrez la dÈfinition du terme."
+msgstr "Entrez la d√©finition du terme."
 
 msgid "label_use_general_glossaries"
 msgstr "Utiliser les Glossaires globalement?"
 
 msgid "help_use_general_glossaries"
-msgstr "Cochez la case pour utiliser les glossaires globalement pour tous le contenu du site.<br />Si vous dÈcochez la case, le glossaire le plus proche du contenu, en montant l'arborescence, sera utilisÈ."
+msgstr ""
+"Cochez la case pour utiliser les glossaires globalement pour tous le contenu "
+"du site.<br />Si vous d√©cochez la case, le glossaire le plus proche du "
+"contenu, en montant l'arborescence, sera utilis√©."
+
+#~ msgid "tool_properties_saved"
+#~ msgstr "Les param√®tres ont √©t√© sauvegard√©s"
