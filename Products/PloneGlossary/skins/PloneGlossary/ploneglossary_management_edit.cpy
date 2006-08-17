@@ -13,6 +13,8 @@ from Products.CMFCore.utils import getToolByName
 
 request = context.REQUEST
 gtool = getToolByName(context, 'portal_glossary')
+utool = getToolByName(context, 'plone_utils')
+
 properties = {}
 properties['show_portlet'] = request.get('show_portlet', 0)
 properties['highlight_content'] = request.get('highlight_content', 0)
@@ -25,7 +27,6 @@ properties['not_highlighted_tags'] = request.get('not_highlighted_tags', [])
 
 gtool.manage_changeProperties(**properties)
 
-message = 'message_properties_saved'
+message = 'tool_properties_saved'
 
 return state.set(status='success', portal_status_message=message)
-
