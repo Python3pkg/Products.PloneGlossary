@@ -37,6 +37,7 @@ if (<tal:bool replace="highlight" />) {
   registerPloneFunction(highlight_related_glossary_terms);
 }
 
+/* we fill portlet by template now
 function fill_glossary_portlet() {
     var list_node = document.getElementById("portlet-glossary-content");
     build_related_glossary_terms_list(list_node);
@@ -45,5 +46,5 @@ function fill_glossary_portlet() {
 if (<tal:bool replace="show_portlet" />) {
     registerPloneFunction(fill_glossary_portlet);
 }
-   
+*/   
 </tal:defs>
