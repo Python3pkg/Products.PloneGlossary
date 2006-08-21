@@ -354,45 +354,22 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         return text
     
-    # Make it private because this method doesn't check term security
-    def _getObjectRelatedTermItems(self, obj, glossary_term_items):
-        """Returns object terms in a specific structure
-        
-        Item:
-        - terms -> object terms
-        - path -> term path
-        - id -> term id
-        - title -> term title
-        - variants -> term variants
-        - description -> term description
-        - url -> term url
-        
-        @param obj: object to analyse
-        @param glossary_term_items: Glossary term items to check in the object text
-        
-        Variables starting with a are supposed to be in ASCII
-        Variables starting with u are supposed to be in Unicode
+    def _getTextRelatedTermItems(self, text, glossary_term_items,
+                                 excluded_terms=()):
         """
-        
+        @param text: charset encoded text
+        @param excluded_terms: charset encoded terms to exclude from search
+        """
         charset = self._getSiteCharset()
         
-        # Get obj properties
-        obj_term_items = []
-        ptype = obj.portal_type
-        title = obj.title_or_id()
-        utitle = title.decode(charset, "replace")
-        atitle = encode_ascii(utitle)
-        text = self._getObjectText(obj)
         utext = text.decode(charset, "replace")
         usplitted_text_terms = self._split(utext)
         atext = encode_ascii(utext)
-        
-        # Words to remove from terms to avoid recursion
-        # For example, on a glossary definition itself, it makes no sense to
-        # underline the defined word.
-        aremoved_words = () 
-        if ptype in ('PloneGlossaryDefinition',):
-            aremoved_words = (atitle,)
+
+        aexcluded_terms = [encode_ascii(t.decode(charset, "replace"))
+                          for t in excluded_terms]
+
+        result = []
         
         # Search glossary terms in text
         analyzed_terms = []
@@ -416,7 +393,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                 analyzed_terms.append(term)
                 uterm = term.decode(charset, "replace")
                 aterm = encode_ascii(uterm)
-                if aterm in aremoved_words:
+                if aterm in aexcluded_terms:
                     continue
                 
                 # Search the word in the text
@@ -447,10 +424,46 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                 # Append object term item
                 new_item = item.copy()
                 new_item['terms'] = text_terms
-                obj_term_items.append(new_item)
+                result.append(new_item)
             
-        return obj_term_items
-    
+        return result
+
+    # Make it private because this method doesn't check term security
+    def _getObjectRelatedTermItems(self, obj, glossary_term_items):
+        """Returns object terms in a specific structure
+        
+        Item:
+        - terms -> object terms
+        - path -> term path
+        - id -> term id
+        - title -> term title
+        - variants -> term variants
+        - description -> term description
+        - url -> term url
+        
+        @param obj: object to analyse
+        @param glossary_term_items: Glossary term items to check in the object text
+        
+        Variables starting with a are supposed to be in ASCII
+        Variables starting with u are supposed to be in Unicode
+        """
+        
+        charset = self._getSiteCharset()
+        
+        # Get obj properties
+        ptype = obj.portal_type
+        title = obj.title_or_id()
+        text = self._getObjectText(obj)
+        
+        # Words to remove from terms to avoid recursion
+        # For example, on a glossary definition itself, it makes no sense to
+        # underline the defined word.
+        removed_words = () 
+        if ptype in ('PloneGlossaryDefinition',):
+            removed_words = (title,)
+
+        return self._getTextRelatedTermItems(text, glossary_term_items,
+                                             removed_words,)    
     
     security.declarePublic('getObjectRelatedTermItems')
     def getObjectRelatedTermItems(self, obj, glossary_term_items, alpha_sort=False):

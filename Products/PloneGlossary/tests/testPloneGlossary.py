@@ -39,6 +39,26 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(glossary_uids, uids)
         self.logout()
 
+    def testTextRelatedTerms(self):
+        self.loginAsPortalOwner()
+        gtool = self.glossary_tool
+        glossary_uids = gtool.getGlossaryUIDs()
+        glossary_term_items = gtool._getGlossaryTermItems(glossary_uids)
+
+        terms = list(self.glossary_tool._getTextRelatedTermItems(
+                        "Le tennis est un sport", glossary_term_items))
+        terms.sort()
+        terms = [t['title'] for t in terms]
+        self.assertEquals(terms, ['Sport', 'Tennis'])
+
+        terms = list(self.glossary_tool._getTextRelatedTermItems(
+            "Le tennis est un sport", glossary_term_items,
+            excluded_terms=('Tennis',)))
+
+        terms.sort()
+        terms = [t['title'] for t in terms]
+        self.assertEquals(terms, ['Sport',])
+
     def testObjectRelatedTerms(self):
         self.loginAsPortalOwner()
         # Add french document
