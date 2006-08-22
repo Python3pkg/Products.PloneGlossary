@@ -1,5 +1,9 @@
 SVN - 
 
+  * Added a patch for ZCTextIndex index method: add synonyms from global
+    glossaries in indexed text, only for 'SearchableText' by default. This patch
+    is disabled by default. [bmathieu]
+
   * fill portlet by template construct instead of javascript [bmathieu]
 
   * Dropped plone 2.0 compatibility: use css and javascript registries. Portlet

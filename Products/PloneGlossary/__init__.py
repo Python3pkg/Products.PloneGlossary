@@ -21,6 +21,8 @@ from Products.PloneGlossary.config import SKINS_DIR, GLOBALS, PROJECTNAME
 from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
 from Products.PloneGlossary.types import *
 
+import patches
+
 registerDirectory(SKINS_DIR, GLOBALS)
 
 def initialize(context):

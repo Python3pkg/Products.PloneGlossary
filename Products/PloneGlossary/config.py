@@ -5,6 +5,15 @@ $Id$
 __author__  = ''
 __docformat__ = 'restructuredtext'
 
+# ZCTextIndex patch setup
+
+# don't patch by default
+PATCH_ZCTextIndex = False
+
+# condition for adding glossaries items in indexed text
+INDEX_SEARCH_GLOSSARY = ('SearchableText',)
+PORTAL_TYPES_TO_SKIP = ('PloneGlossaryDefinition',)
+
 # CMF imports
 from Products.CMFCore import CMFCorePermissions
 
