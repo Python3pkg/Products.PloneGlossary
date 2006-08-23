@@ -189,7 +189,7 @@
                     <tal:block tal:repeat="portal_type gtool/getAvailablePortalTypes">
                       <option tal:attributes="value portal_type;
                                               selected python:test(allowed_portal_types and portal_type in allowed_portal_types, 'selected', None);"
-                              tal:content="portal_type" />
+                              tal:content="portal_type" i18n:translate="" i18n:domain="plone" />
                     </tal:block>
                   </select>
                 </div>

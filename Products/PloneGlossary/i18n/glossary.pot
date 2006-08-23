@@ -214,3 +214,6 @@ msgstr ""
 
 msgid "help_use_general_glossaries"
 msgstr ""
+
+msgid "heading_variants"
+msgstr ""
