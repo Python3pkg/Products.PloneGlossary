@@ -17,74 +17,164 @@
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+from zLOG import LOG, INFO
+
 from Products.CMFCore.utils import getToolByName
 
-from config import PATCH_ZCTextIndex, INDEX_SEARCH_GLOSSARY, \
-     PORTAL_TYPES_TO_SKIP
+from config import PATCH_ZCTextIndex, INDEX_SEARCH_GLOSSARY
 from config import PLONEGLOSSARY_TOOL
 
-# Patch ZCTextIndex.index_object: we add synonyms of glossary items/variants
-# found in the text. A search query on a variant (not present in original text)
-# will also return the document.
 from Products.PluginIndexes.common import safe_callable
 from Products.ZCTextIndex.ZCTextIndex import ZCTextIndex
 
-def indexObjectsWidthSynonyms(self, documentId, obj, threshold=None):
-    """Wrapper for  index_doc()  handling indexing of multiple attributes.
 
-    Enter the document with the specified documentId in the index
-    under the terms extracted from the indexed text attributes,
-    each of which should yield either a string or a list of
-    strings (Unicode or otherwise) to be passed to index_doc().
+from Products.PluginIndexes.common.util import parseIndexRequest
+from Products.ZCTextIndex.QueryParser import QueryParser
+from Products.ZCTextIndex.ParseTree import \
+     OrNode, AndNode, AtomNode, PhraseNode
 
-    Monkey Patch from PloneGlossary: add synonyms to indexed text
+def __getNOTWords(tree):
     """
-    # XXX We currently ignore subtransaction threshold
-    # needed for backward compatibility
-    try: fields = self._indexed_attrs
-    except: fields  = [ self._fieldname ]
-
-    res = 0
-    all_texts = []
-    for attr in fields:
-        text = getattr(obj, attr, None)
-        if text is None:
+    Return a list of words to exclude from search
+    """
+    exclude_words = []
+    for subnode in tree.getValue():
+        if isinstance(subnode, basestring):
             continue
-        if safe_callable(text):
-            text = text()
-        if text is None:
+        if subnode.nodeType() in ('OR', 'AND'):
+            exclude_words.extend(__getNOTWords(subnode))
+
+        if subnode.nodeType() == 'NOT':
+             exclude_words.extend(subnode.getValue().terms())
+
+    return exclude_words
+
+def flatten(seq):
+    """
+    >>> flatten([0, [1, 2, 3], [4, 5, [6, 7]]])
+    [0, 1, 2, 3, 4, 5, 6, 7]
+    """
+    flat = True
+    ans = []
+    for i in seq:
+        if (i.__class__ is list):
+            ans.extend(flatten(i))
+        else:
+            ans.append(i)
+    return ans
+
+def replaceWordsQuery(tree, parseQuery, gtool, gloss_items, excluded):
+    """
+    Change the tree query: all Atom or Phrase found in the glossary (term or
+    variant) are replaced by an"OR" query between all this terms, i.e if
+    glossary contains the term 'lorem' with variant 'ipsum', then
+    replaceWordsQuery(AtomNode('lorem')) returns
+    OrNode([AtomNode('lorem'), AtomNode('ipsum')])
+
+    @param tree: the current node to process
+    @param gtool: a PloneGlossaryTool instance
+    @param gloss_items: the list of glossary item to search within query
+    @param excluded: dict of words (as keys) to skip
+    """
+    if isinstance(tree, AtomNode):
+        nodes = [tree]
+    else:
+        nodes = tree.getValue()
+        
+    for node_idx in range(len(nodes)):
+        
+        subnode = nodes[node_idx]
+        
+        nodetype = subnode.nodeType()
+        if nodetype in ('OR', 'AND'):
+            nodes[node_idx] = replaceWordsQuery(subnode, parseQuery, gtool, gloss_items, excluded)
             continue
-        if text:
-            if isinstance(text, (list, tuple, )):
-                all_texts.extend(text)
-            else:
-                all_texts.append(text)
+        elif nodetype == 'NOT':
+            continue
+        elif nodetype == 'GLOB':
+            continue
 
-    # Check that we're sending only strings
-    all_texts = filter(lambda text: isinstance(text, basestring), \
-                       all_texts) 
-    
-    if all_texts:
+        # flatten is needed because PhraseNode.terms => [['term1', 'term2']]
+        text = ' '.join(flatten(subnode.terms()))
+        terms = gtool._getTextRelatedTermItems(text, gloss_items)
+        final_terms = []
+        for t in terms:
+            t_list = (t['title'],) + t['variants']
+            exclude_term = False
+            for item in t_list:
+                exclude_term |= excluded.has_key(item)
+            if exclude_term:
+                continue
 
-        # lookup glossary terms
-        if (self.getId() in INDEX_SEARCH_GLOSSARY
-            and obj.portal_type not in PORTAL_TYPES_TO_SKIP):
-            
-            supp_items = []
+            # parseQuery will choose for us AtomNode or PhraseNode
+            final_terms.append([parseQuery('"%s"' % i) for i in t_list])
+        
+        final_gloss_query = [(len(i) > 1 and OrNode(i)) or i[0]
+                             for i in final_terms if len(i)]
+        term_count = len(final_gloss_query)
+        if term_count == 0:
+            final_gloss_query = None
+        elif term_count > 1:
+            final_gloss_query = AndNode(final_gloss_query)            
+        else:
+            final_gloss_query = final_gloss_query[0]
+
+        if final_gloss_query is not None:
+            nodes[node_idx] = final_gloss_query
+
+    if len(nodes) == 1:
+        return nodes[0]
+    elif len(nodes) > 1:
+        if isinstance(tree, AtomNode):
+            return AndNode(nodes)
+        else:
+            tree._value = nodes
+            return tree
+        
+def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
+        """Apply query specified by request, a mapping containing the query.
+
+        Returns two object on success, the resultSet containing the
+        matching record numbers and a tuple containing the names of
+        the fields used
+
+        Returns None if request is not valid for this index.
+
+        If this index id is listed in
+        PloneGlossary.config.INDEX_SEARCH_GLOSSARY, the query tree is changed to
+        look for terms and their variants found in general glossaries.
+        """
+        record = parseIndexRequest(request, self.id, self.query_options)
+        if record.keys is None:
+            return None
+        query_str = ' '.join(record.keys)
+        if not query_str:
+            return None
+        
+        parseQuery = QueryParser(self.getLexicon()).parseQuery
+        tree = parseQuery(query_str)
+        
+        if self.getId() in INDEX_SEARCH_GLOSSARY:
+
             gtool = getToolByName(self, PLONEGLOSSARY_TOOL)
             glossary_uids = gtool.getGeneralGlossaryUIDs()
             all_term_items = gtool._getGlossaryTermItems(glossary_uids)
-            for text in all_texts:
-                terms = gtool._getTextRelatedTermItems(text, all_term_items)
-                flat_list = []
-                for t in terms:
-                    flat_list.extend((t['title'],) + t['variants'])
-                    
-                supp_items.extend(flat_list)
-            all_texts.extend(supp_items)
 
-        return self.index.index_doc(documentId, all_texts)
-    return res
+            #get atoms from query and build related term query
+            text = ' '.join(flatten(tree.terms()))
+            excluded = dict.fromkeys(__getNOTWords(tree), True)
+
+            tree = replaceWordsQuery(tree, parseQuery, gtool, all_term_items,
+                                     excluded)
+            
+            #print "AFTER: ***************"
+            #print tree
+            #print "**********************"
+        
+        results = tree.executeQuery(self.index)
+        return  results, (self.id,)
+    
 
 if PATCH_ZCTextIndex:
-    ZCTextIndex.index_object = indexObjectsWidthSynonyms
+    ZCTextIndex._apply_index = zctidx_ApplyIndexWithSynonymous
+    LOG('PloneGlossary', INFO, 'Applied patch: ZCTextIndex._apply_index method')

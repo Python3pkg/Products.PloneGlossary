@@ -1,8 +1,9 @@
 SVN - 
 
-  * Added a patch for ZCTextIndex index method: add synonyms from global
-    glossaries in indexed text, only for 'SearchableText' by default. This patch
-    is disabled by default. [bmathieu]
+  * Added a patch for ZCTextIndex _apply_index method: search terms with
+    synonymous found in global glossaries are replaced by an equivalent "OR". By
+    default this is done only for 'SearchableText' . This patch is disabled by
+    default (see config.py). [bmathieu]
 
   * fill portlet by template construct instead of javascript [bmathieu]
 
