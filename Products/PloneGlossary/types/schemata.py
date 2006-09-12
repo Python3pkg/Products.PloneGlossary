@@ -12,6 +12,8 @@ from Products.CMFCore import CMFCorePermissions
 # Archetypes import
 from Products.Archetypes.public import *
 
+from Products.ATContentTypes.configuration import zconf
+
 # PloneGlossary schema
 PloneGlossarySchema = BaseSchema.copy()
 PloneGlossarySchema['description'].schemata = 'default'
@@ -49,9 +51,9 @@ PloneGlossaryDefinitionSchema = BaseSchema.copy() + Schema((
         'definition',
         required=True,
         searchable=True,
-        default_content_type = 'text/html',
-        default_output_type = 'text/html',
-        allowable_content_types = ('text/html',),
+        default_content_type = zconf.ATDocument.default_content_type,
+        default_output_type = 'text/x-html-safe',
+        allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
             label = "Body text",
             label_msgid = "label_glossary_definition_text",
