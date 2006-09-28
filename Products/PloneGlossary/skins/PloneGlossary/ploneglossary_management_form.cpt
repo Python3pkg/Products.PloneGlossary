@@ -29,12 +29,11 @@
     
         <div class="configlet">
     
-          <div class="documentContent" 
-               metal:define-slot="ploneglossary_prefs"
+          <div metal:define-slot="ploneglossary_prefs"
                tal:define="gtool here/portal_glossary;
                            errors python:request.get('errors', {});">
       
-            <h3 i18n:translate="heading_ploneglossary_management">PloneGlossary Management</h3>
+            <h1 i18n:translate="heading_ploneglossary_management">PloneGlossary Management</h1>
             
             <a href=""
                class="link-parent"
