@@ -14,7 +14,10 @@ PATCH_ZCTextIndex = False
 INDEX_SEARCH_GLOSSARY = ('SearchableText',)
 
 # CMF imports
-from Products.CMFCore import CMFCorePermissions
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
 
 PROJECTNAME = 'PloneGlossary'
 GLOBALS = globals()
