@@ -9,7 +9,11 @@ __docformat__ = 'restructuredtext'
 from AccessControl import ClassSecurityInfo
 
 # CMF imports
-from Products.CMFCore  import CMFCorePermissions
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
+    
 from Products.CMFCore.utils import getToolByName
 
 # Archetypes imports
