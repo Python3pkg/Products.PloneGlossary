@@ -7,8 +7,11 @@ __author__  = ''
 __docformat__ = 'restructuredtext'
 
 # CMF imports
-from Products.CMFCore import CMFCorePermissions
-
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
+    
 # Archetypes import
 from Products.Archetypes.public import *
 
