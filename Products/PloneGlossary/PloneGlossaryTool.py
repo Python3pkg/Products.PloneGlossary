@@ -21,7 +21,10 @@ from Acquisition import aq_base
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
-from Products.CMFCore import CMFCorePermissions
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 # PloneGlossary imports
