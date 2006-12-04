@@ -13,7 +13,10 @@ from Globals import InitializeClass
 from Acquisition import aq_base
 
 # CMF imports
-from Products.CMFCore import CMFCorePermissions
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
 from Products.CMFCore.utils  import getToolByName
 
 # Archetypes imports
