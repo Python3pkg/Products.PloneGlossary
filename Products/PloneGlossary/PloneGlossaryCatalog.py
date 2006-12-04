@@ -17,8 +17,11 @@ import zLOG
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
-from Products.CMFCore import CMFCorePermissions
-
+try:
+    from Products.CMFCore import permissions as CMFCorePermissions
+except ImportError:
+    from Products.CMFCore import CMFCorePermissions
+    
 # Archetypes imports
 from Products.Archetypes.public import *
 
