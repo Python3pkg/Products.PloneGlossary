@@ -14,8 +14,12 @@ from Acquisition import aq_base
 
 # CMF imports
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.CMFCorePermissions import ManagePortal
 
+try:
+    from Products.CMFCore.permissions import ManagePortal
+except:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
+    
 # Archetypes
 from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 from Products.Archetypes.public import listTypes
