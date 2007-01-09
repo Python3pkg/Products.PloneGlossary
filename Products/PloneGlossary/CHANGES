@@ -1,4 +1,5 @@
 SVN - 
+  * Added czech translation (Lukas Zdych)
 
   * Added a patch for ZCTextIndex _apply_index method: search terms with
     synonymous found in global glossaries are replaced by an equivalent "OR". By
