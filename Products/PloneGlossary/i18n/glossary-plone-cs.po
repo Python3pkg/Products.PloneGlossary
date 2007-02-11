@@ -27,4 +27,4 @@ msgid "PloneGlossaryDefinition has been created."
 msgstr "Termín Plone rejstříku byl vytvořen."
 
 msgid "tool_properties_saved"
-msgstr "Vlastnosti nástroje byli uloženy."
+msgstr "Nastavení bylo uloženo."
