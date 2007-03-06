@@ -240,7 +240,8 @@
                           tabindex=""
                           multiple="multiple"
                           size="5"
-                          tal:attributes="tabindex tabindex/next;">
+                          tal:attributes="tabindex tabindex/next;"
+                          >
                     <tal:block tal:repeat="glossary gtool/getGlossaries">
                       <option tal:define="glossary_uid glossary/UID;
                                           glossary_title glossary/Title;

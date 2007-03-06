@@ -210,13 +210,15 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     security.declarePublic('getGeneralGlossaryUIDs')
     def getGeneralGlossaryUIDs(self):
         """Returns glossary UIDs used to highlight content"""
-        
-        return self.general_glossary_uids
+        if self.general_glossary_uids:
+            return self.general_glossary_uids
+        else:
+            return self.getGlossaryUIDs()
     
     security.declarePublic('getGeneralGlossaries')
     def getGeneralGlossaries(self):
         """Returns glossaries used to highlight content"""
-        
+        general_glossary_uids = self.getGeneralGlossaryUIDs()
         return self.getGlossaries(general_glossary_uids)
     
     security.declarePublic('getGlossaryUIDs')

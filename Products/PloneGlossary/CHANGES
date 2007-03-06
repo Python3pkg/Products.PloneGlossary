@@ -1,4 +1,8 @@
 SVN - 
+  
+  * Fixed highlighting : all glossaries are used 
+    if no glossary explicitly selected 
+
   * Added czech translation (Lukas Zdych)
 
   * Added a patch for ZCTextIndex _apply_index method: search terms with
@@ -21,7 +25,7 @@ SVN -
 
   * Added german translation thanks to Richard M. Kues
 
-  * Added spanish translation thanks to Héctor Velarde
+  * Added spanish translation thanks to Hï¿½ctor Velarde
 
   * Added share tabs [zegor]
 

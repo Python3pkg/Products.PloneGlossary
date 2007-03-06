@@ -13,7 +13,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
                                          u'General',
                                          (u'Sport', u'Tennis', u'Open source'))
         self.logout()
-
+    
+    
     def testGetGlossaries(self):
         self.loginAsPortalOwner()
         medical_glossary = self.addGlossary(self.portal, u'Medical', (u'ADN', u'Bone', u'Heart'))
@@ -39,6 +40,23 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(glossary_uids, uids)
         self.logout()
 
+    def testGetGeneralGlossaryUIDs(self):
+        self.loginAsPortalOwner()
+        medical_glossary = self.addGlossary(self.portal, u'Medical',
+                                            (u'ADN', u'Bone', u'Heart'))
+        all_uids = []
+        all_uids.append(self.glossary.UID())
+        all_uids.append(medical_glossary.UID())
+        all_uids.sort()
+        general_glossaries_uids = list(self.glossary_tool.getGeneralGlossaryUIDs())
+        general_glossaries_uids.sort()
+        self.assertEquals(general_glossaries_uids, all_uids)
+        
+        self.glossary_tool.general_glossary_uids = (medical_glossary.UID(),)
+        general_glossaries_uids = self.glossary_tool.getGeneralGlossaryUIDs()
+        self.assertEquals(list(general_glossaries_uids),
+                          [medical_glossary.UID()])
+        
     def testTextRelatedTerms(self):
         self.loginAsPortalOwner()
         gtool = self.glossary_tool
