@@ -23,8 +23,12 @@ from Products.Archetypes.public import process_types, listTypes
 from Products.PloneGlossary.config import SKINS_DIR, GLOBALS, PROJECTNAME
 from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
 from Products.PloneGlossary.types import *
+from Products.PloneGlossary import config
 
 import patches
+
+if config.DEBUG:
+    import examples
 
 registerDirectory(SKINS_DIR, GLOBALS)
 

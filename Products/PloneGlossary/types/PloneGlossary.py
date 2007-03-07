@@ -5,11 +5,13 @@ $Id$
 __author__  = ''
 __docformat__ = 'restructuredtext'
 
+
 # Python imports
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass
 
 # Zope imports
+from zope.interface import implements
 from Acquisition import aq_base
 
 # CMF imports
@@ -31,16 +33,21 @@ from Products.PloneGlossary.config import PROJECTNAME, PLONEGLOSSARY_CATALOG
 from Products.PloneGlossary.PloneGlossaryCatalog import PloneGlossaryCatalog, manage_addPloneGlossaryCatalog
 from Products.PloneGlossary.types.schemata import PloneGlossarySchema as schema
 from Products.PloneGlossary.utils import encode
+from Products.PloneGlossary.interfaces import IPloneGlossary
 
 class PloneGlossary(OrderedBaseFolder):
     """PloneGlossary container"""
+    
+    implements(IPloneGlossary)
+    
+    definition_types = ('PloneGlossaryDefinition',)
     
     portal_type = meta_type = 'PloneGlossary'
     archetype_name = 'Glossary'
     immediate_view = 'ploneglossary_view'
     default_view   = 'ploneglossary_view'
     global_allow = True
-    allowed_content_types = ('PloneGlossaryDefinition',)
+    allowed_content_types = definition_types
     schema =  schema
     content_icon = 'ploneglossary_icon.gif'
     _at_rename_after_creation = True
@@ -214,7 +221,7 @@ class PloneGlossary(OrderedBaseFolder):
         
         # Reindex glossary definitions
         for obj in self.objectValues():
-            if obj.portal_type in ('PloneGlossaryDefinition',):
+            if obj.portal_type in self.definition_types:
                 cat.catalog_object(obj)
     
 registerType(PloneGlossary, PROJECTNAME)

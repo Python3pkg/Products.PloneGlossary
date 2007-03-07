@@ -8,6 +8,7 @@ __docformat__ = 'restructuredtext'
 # Python imports
 from StringIO import StringIO
 import string
+import os
 
 # Zope imports
 from Acquisition import aq_base
@@ -30,7 +31,12 @@ from Products.PloneGlossary.config import \
     PROJECTNAME, \
     GLOBALS, \
     PLONEGLOSSARY_TOOL, \
-    ploneglossary_prefs_configlet
+    ploneglossary_prefs_configlet, \
+    INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE, \
+    DEBUG
+from Products.PloneGlossary.Extensions.glossaryRegistration \
+    import registerGlossary
+from Products.PloneGlossary.types.PloneGlossary import PloneGlossary
 
 def install_tool(self, out):
     """Install PloneGlossary tool"""
@@ -133,6 +139,12 @@ def install(self):
     cp_tool = getToolByName(self, 'portal_controlpanel')
     cp_tool.registerConfiglet(**ploneglossary_prefs_configlet)
     
+    registerGlossary(self, PloneGlossary, out)
+    if DEBUG or os.environ.get(INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE):
+        from Products.PloneGlossary.examples.exampleglossary \
+                import ExampleGlossary
+        registerGlossary(self, ExampleGlossary, out)
+        
     out.write('Installation completed.\n')
     return out.getvalue()
 

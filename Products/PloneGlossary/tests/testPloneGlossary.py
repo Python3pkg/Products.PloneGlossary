@@ -6,6 +6,9 @@ $Id$
 from common import *
 from Products.PloneGlossary.utils import html2text
 
+from Products.PloneGlossary import config
+config.INSTALL_EXAMPLES = True
+
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def afterSetUp(self):
         self.loginAsPortalOwner()

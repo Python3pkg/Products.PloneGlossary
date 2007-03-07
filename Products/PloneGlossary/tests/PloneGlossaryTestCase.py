@@ -20,6 +20,9 @@ from Products.CMFCore.utils import getToolByName
 # Plone imports
 from Products.PloneTestCase import PloneTestCase
 
+from Products.PloneGlossary.config \
+    import INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE
+    
 # Globals
 portal_name = 'portal'
 portal_owner = 'portal_owner'
@@ -133,8 +136,44 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
             self.addGlossaryDefinition(glossary, term_title)
         
         return glossary
+    
+    def addExampleGlossary(self, container, glossary_title, term_titles):
+        """Add example type glossary in container with definitions"""
+        
+        # Add glossary
+        glossary_id = self.buildPrettyId(glossary_title)
+        container.invokeFactory(
+            type_name='ExampleGlossary',
+            id=glossary_id,
+            title=glossary_title)
             
+        glossary = getattr(container, glossary_id)
+        
+        # Add terms
+        for term_title in term_titles:
+            self.addExampleGlossaryDefinition(glossary, term_title)
+        
+        return glossary
 
+    def addExampleGlossaryDefinition(self, glossary, title, 
+                                     definition=None, variants=()):
+        """Add new example glossary definition in a glossary"""
+        
+        if definition is None:
+            definition = self.encodeInSiteCharset(u'Definition of term')
+
+        id = self.buildPrettyId(title)
+        glossary.invokeFactory(
+            type_name='ExampleGlossaryDefinition',
+            id=id,
+            title=title,
+            definition=definition,
+            variants=variants)
+    
+        term = getattr(glossary, id)
+        return term
+
+os.environ[INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE] = 'True'
 # Install PloneGlossary
 ZopeTestCase.installProduct('MimetypesRegistry')
 ZopeTestCase.installProduct('PortalTransforms')

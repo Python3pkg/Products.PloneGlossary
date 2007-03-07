@@ -26,7 +26,8 @@ CONFIGLET_ICON = "ploneglossary_tool.gif"
 PLONEGLOSSARY_TOOL = 'portal_glossary'
 PLONEGLOSSARY_CATALOG = 'glossary_catalog'
 PLONEGLOSSARY_CHARSET = 'UTF-8'
-
+DEBUG = True
+INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE = 'PLONEGLOSSARY_INSTALL_EXAMPLES'
 
 # Configlets
 ploneglossary_prefs_configlet = {

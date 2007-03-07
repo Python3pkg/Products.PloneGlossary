@@ -29,7 +29,7 @@ from Products.PloneGlossary.types.schemata import PloneGlossaryDefinitionSchema 
 from Products.PloneGlossary.utils import html2text, text2words
 
 class PloneGlossaryDefinition(BaseContent):
-    """PloneGlossary """
+    """PloneGlossary definition """
     
     portal_type = meta_type = 'PloneGlossaryDefinition'
     archetype_name = 'Glossary definition'

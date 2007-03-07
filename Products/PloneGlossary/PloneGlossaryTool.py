@@ -29,7 +29,8 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 # PloneGlossary imports
 from Products.PloneGlossary.config import GLOBALS, PROJECTNAME, PLONEGLOSSARY_TOOL
-from Products.PloneGlossary.utils import text2words, find_word, escape_special_chars, encode_ascii
+from Products.PloneGlossary.utils \
+    import text2words, find_word, escape_special_chars, encode_ascii
 from Products.PloneGlossary.migration.Migrator import Migrator
 
 _www = os.path.join(os.path.dirname(__file__), 'www')
@@ -103,6 +104,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         self.safeEditProperty(self, 'description_length', 0, data_type='int')
         self.safeEditProperty(self, 'description_ellipsis', '...', data_type='string')
         self.safeEditProperty(self, 'not_highlighted_tags', ['a', 'h1', 'input','textarea'], data_type='lines')
+        self.safeEditProperty(self, 'available_glossary_metatypes', (), data_type='lines')
+        self.safeEditProperty(self, 'glossary_metatypes', 
+                                    'getAvailableGlossaryMetaTypes', 
+                                    data_type='multiple selection', 
+                                    new_value=['PloneGlossary'])
     
     security.declarePrivate('safeEditProperty')
     def safeEditProperty(self, obj, key, value, data_type='string', new_value=None):
@@ -127,6 +133,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         
         portal_types = getToolByName(self, 'portal_types')
         return portal_types.listContentTypes()
+    
+    def getAvailableGlossaryMetaTypes(self):
+        """
+        Returns available glossary portal types
+        """
+        return self.available_glossary_metatypes
     
     security.declarePublic('getAllowedPortalTypes')
     def getAllowedPortalTypes(self):
@@ -192,7 +204,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             # check for a glossary in this parent
             glossaries=[]
             for o in parent.contentValues():
-                if o.portal_type=="PloneGlossary":
+                if o.portal_type in self.glossary_metatypes:
                     glossaries.append(o.UID())
             if glossaries:
                 # we found one or more glossaries
@@ -226,7 +238,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """Returns glossary UIDs defined on portal"""
         
         uid_cat = getToolByName(self, 'uid_catalog')
-        brains = uid_cat(portal_type='PloneGlossary')
+        brains = uid_cat(portal_type=self.glossary_metatypes)
         return tuple([x.UID for x in brains])
     
     security.declarePublic('getGlossaries')
@@ -240,7 +252,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         if glossary_uids is not None:
             kwargs['UID'] = glossary_uids
         
-        brains = uid_cat(portal_type='PloneGlossary', **kwargs)
+        brains = uid_cat(portal_type=self.glossary_metatypes, **kwargs)
         
         for brain in brains:
             obj = brain.getObject()
@@ -554,20 +566,37 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                 definition['show']=1
             marked_definitions.append(definition)
         return marked_definitions
-
+    
+    
     security.declarePublic('searchResults')
     def searchResults(self, glossary_uids, **search_args):
         """Returns brains from glossaries.
         glossary_uids: UIDs of glossaries where to search.
         search_args: Use index of portal_catalog."""
         
+        
+        
         # Get path of glossaries
         glossaries = self.getGlossaries(glossary_uids)
         paths = ['/'.join(x.getPhysicalPath()) for x in glossaries]
         ctool = getToolByName(self, 'portal_catalog')
+        definitions_metatypes = self._getDefinitionsMetaTypes(glossaries)
         return ctool.searchResults(path=paths,
-                                   portal_type='PloneGlossaryDefinition',
+                                   portal_type=definitions_metatypes,
                                    **search_args)
+    
+    def _getDefinitionsMetaTypes(self, glossaries):
+        """
+        get glossary definitions metatypes using glossaries list
+        """
+        metatypes = []
+        for glossary in glossaries:
+            glossary_def_mts = [deftype \
+                                for deftype in glossary.definition_types\
+                                if deftype not in metatypes]
+            metatypes.extend(glossary_def_mts)
+        
+        return metatypes
     
     security.declarePublic('getAsciiLetters')
     def getAsciiLetters(self):
@@ -656,3 +685,4 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return tuple([x for x in text2words(text) if len(x) > 1 and x not in removed_words])
 
 InitializeClass(PloneGlossaryTool)
+
