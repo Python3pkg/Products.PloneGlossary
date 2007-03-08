@@ -42,6 +42,40 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary_uids.sort()
         self.assertEquals(glossary_uids, uids)
         self.logout()
+    
+    def testGetAvailableGlossaryMetaTypes(self):
+        self.loginAsPortalOwner()
+        tool = self.glossary_tool
+        available_metatypes = tool.getAvailableGlossaryMetatypes()
+        glossary_metatypes = tool.glossary_metatypes
+        
+        # test available metatypes, base glossary selected by default
+        self.assertEquals(available_metatypes,
+                          ('PloneGlossary', 'ExampleGlossary'))
+        self.assertEquals(glossary_metatypes, ('PloneGlossary'))
+        
+        # test : only selected metatypes are returned by getGlossaryUIDs
+        glossary = self.addGlossary(self.portal, 
+                                         u'General',
+                                         (u'Sport', u'Tennis', u'Open source'))
+        glossaryuid = glossary.UID()
+        exampleglossary = self.addExampleGlossary(self.portal, 
+                                         'Example',
+                                         (u'Sport', u'Tennis', u'Open source'))
+        exampleuid = exampleglossary.UID()
+        
+        # test : 
+        glossary_uids = list(self.glossary_tool.getGlossaryUIDs())
+        glossary_uids.sort()
+        self.assertEquals(glossary_uids, [glossaryuid])
+        
+        # test : add a glossary type 
+        glossary_metatypes = ('PloneGlossary', 'ExampleGlossary')
+        glossary_uids = list(self.glossary_tool.getGlossaryUIDs())
+        glossary_uids.sort()
+        self.assertEquals(glossary_uids, [glossaryuid, ])
+        
+        self.logout()
 
     def testGetGeneralGlossaryUIDs(self):
         self.loginAsPortalOwner()
