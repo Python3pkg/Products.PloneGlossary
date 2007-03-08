@@ -134,6 +134,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         portal_types = getToolByName(self, 'portal_types')
         return portal_types.listContentTypes()
     
+    security.declarePublic('getAvailableGlossaryMetaTypes')
     def getAvailableGlossaryMetaTypes(self):
         """
         Returns available glossary portal types

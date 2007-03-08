@@ -6,6 +6,7 @@ __docformat__ = 'restructuredtext'
 
 # Python imports
 import sys
+import logging
 from Globals import package_home
 
 # CMF imports
@@ -26,6 +27,8 @@ from Products.PloneGlossary.types import *
 from Products.PloneGlossary import config
 
 import patches
+
+LOG = logging.getLogger('PloneGlossary')
 
 if config.DEBUG:
     import examples

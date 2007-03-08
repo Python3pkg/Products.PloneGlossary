@@ -6,7 +6,7 @@ $Id$
 from common import *
 from Products.PloneGlossary.utils import html2text
 
-from Products.PloneGlossary import config
+from Products.PloneGlossary import config, LOG
 config.INSTALL_EXAMPLES = True
 
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
@@ -37,7 +37,6 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary = glossaries[0]
         self.assertEquals(glossary.UID(), glossary_uid)
         
-        
         glossary_uids = [x.UID() for x in self.glossary_tool.getGlossaries()]
         glossary_uids.sort()
         self.assertEquals(glossary_uids, uids)
@@ -46,18 +45,16 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testGetAvailableGlossaryMetaTypes(self):
         self.loginAsPortalOwner()
         tool = self.glossary_tool
-        available_metatypes = tool.getAvailableGlossaryMetatypes()
+        available_metatypes = tool.getAvailableGlossaryMetaTypes()
         glossary_metatypes = tool.glossary_metatypes
         
         # test available metatypes, base glossary selected by default
         self.assertEquals(available_metatypes,
                           ('PloneGlossary', 'ExampleGlossary'))
-        self.assertEquals(glossary_metatypes, ('PloneGlossary'))
+        self.assertEquals(glossary_metatypes, ('PloneGlossary',))
         
         # test : only selected metatypes are returned by getGlossaryUIDs
-        glossary = self.addGlossary(self.portal, 
-                                         u'General',
-                                         (u'Sport', u'Tennis', u'Open source'))
+        glossary = self.glossary
         glossaryuid = glossary.UID()
         exampleglossary = self.addExampleGlossary(self.portal, 
                                          'Example',
@@ -70,11 +67,13 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(glossary_uids, [glossaryuid])
         
         # test : add a glossary type 
-        glossary_metatypes = ('PloneGlossary', 'ExampleGlossary')
+        tool.glossary_metatypes = ('PloneGlossary', 'ExampleGlossary')
         glossary_uids = list(self.glossary_tool.getGlossaryUIDs())
         glossary_uids.sort()
-        self.assertEquals(glossary_uids, [glossaryuid, ])
-        
+        uids = [glossaryuid, exampleuid]
+        uids.sort()
+        self.assertEquals(glossary_uids, uids)
+        LOG.info("testGetAvailableGlossaryMetaTypes passed")
         self.logout()
 
     def testGetGeneralGlossaryUIDs(self):
