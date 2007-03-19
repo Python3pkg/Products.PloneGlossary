@@ -5,6 +5,9 @@ manages many types of glossaries
 added interfaces
 added test environment
 
+  * Don't set to debug in config.py by default. [roeder]
+    Otherwise there would be a bogus content type cluttering up portal_types.
+
   * batch navigation in glossary view added [roeder]
   
   * Fixed highlighting : all glossaries are used 
