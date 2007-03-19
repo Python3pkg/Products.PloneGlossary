@@ -13,7 +13,6 @@ from Products.CMFCore.utils import getToolByName
 
 request = context.REQUEST
 gtool = getToolByName(context, 'portal_glossary')
-utool = getToolByName(context, 'plone_utils')
 
 properties = {}
 properties['show_portlet'] = request.get('show_portlet', 0)
