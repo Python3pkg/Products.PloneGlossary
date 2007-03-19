@@ -4,6 +4,8 @@ refactored as it can be overloaded
 manages many types of glossaries
 added interfaces
 added test environment
+
+  * batch navigation in glossary view added [roeder]
   
   * Fixed highlighting : all glossaries are used 
     if no glossary explicitly selected 

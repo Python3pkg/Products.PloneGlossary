@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+﻿<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="ploneglossary">
@@ -77,11 +77,14 @@
             
               <metal:macro define-macro="display_results">
                 <tal:block tal:condition="results">
-                  <dl tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                  <tal:block tal:define="Batch python:modules['Products.CMFPlone'].Batch;
                                   b_size python:30;
                                   b_start request/b_start | python:0;
                                   batch python:Batch(results, b_size, int(b_start), orphan=1);">
-                    <tal:results repeat="result batch">
+                    <!-- Navigation -->
+                    <div metal:use-macro="here/batch_macros/macros/navigation" />
+                    <dl>
+                     <tal:results repeat="result batch">
                       <tal:entry define="result_url result/getURL;
                                          url string:$result_url">
                         <dt>
@@ -102,8 +105,11 @@
                             tal:content="structure description" />
               
                       </tal:entry>
-                    </tal:results>
-                  </dl>
+                     </tal:results>
+                    </dl>
+                    <!-- Navigation -->
+                    <div metal:use-macro="here/batch_macros/macros/navigation" />
+                 </tal:block>
                 </tal:block>
               </metal:macro>
             </tal:block>
