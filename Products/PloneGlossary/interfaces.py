@@ -20,6 +20,10 @@
 
 from zope.interface import Interface, Attribute
 
+class IGlossaryTool(Interface):
+    """Marker interface for tool
+    """
+
 class IPloneGlossary(Interface):
     """
     PloneGlossary container

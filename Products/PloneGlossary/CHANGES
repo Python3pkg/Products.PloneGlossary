@@ -1,5 +1,7 @@
 SVN - 
 
+  * added support for Generic setup for the main tool
+
   * refactored as it can be overloaded
 
   * manages many types of glossaries

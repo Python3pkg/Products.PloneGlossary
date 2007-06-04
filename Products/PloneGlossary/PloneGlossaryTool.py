@@ -11,6 +11,7 @@ import StringIO
 import os
 
 # Zope imports
+from zope.interface import implements
 from Globals import package_home
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
@@ -32,11 +33,13 @@ from Products.PloneGlossary.config import GLOBALS, PROJECTNAME, PLONEGLOSSARY_TO
 from Products.PloneGlossary.utils \
     import text2words, find_word, escape_special_chars, encode_ascii
 from Products.PloneGlossary.migration.Migrator import Migrator
+from interfaces import IGlossaryTool
 
 _www = os.path.join(os.path.dirname(__file__), 'www')
 
 class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     """Tool for PloneGlossary"""
+    implements(IGlossaryTool)
 
     plone_tool = 1
     id = PLONEGLOSSARY_TOOL
