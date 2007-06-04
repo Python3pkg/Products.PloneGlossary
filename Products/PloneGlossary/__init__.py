@@ -28,9 +28,6 @@ from Products.PloneGlossary import config
 
 LOG = logging.getLogger('PloneGlossary')
 
-if config.DEBUG:
-    import examples
-
 registerDirectory(SKINS_DIR, GLOBALS)
 
 def initialize(context):
@@ -39,6 +36,10 @@ def initialize(context):
     # config before deciding to patch
     import patches
 
+    # used by test framework
+    if config.DEBUG:
+        import examples
+        
     # Import types
     listOfTypes = listTypes(PROJECTNAME)
     content_types, constructors, ftis = process_types(listOfTypes,

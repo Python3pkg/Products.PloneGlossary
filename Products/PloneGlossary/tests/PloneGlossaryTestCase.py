@@ -174,6 +174,9 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         return term
 
 os.environ[INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE] = 'True'
+from Products.PloneGlossary import config
+config.DEBUG = True
+
 # Install PloneGlossary
 ZopeTestCase.installProduct('MimetypesRegistry')
 ZopeTestCase.installProduct('PortalTransforms')

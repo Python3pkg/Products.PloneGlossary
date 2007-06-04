@@ -1,3 +1,4 @@
+import os
 from copy import deepcopy
 
 from zope.interface import implements
@@ -19,7 +20,10 @@ from Products.PloneGlossary.types.PloneGlossaryDefinition \
 from Products.PloneGlossary.interfaces import (IPloneGlossary,
                                                IPloneGlossaryDefinition)
 
-from Products.PloneGlossary.config import PROJECTNAME, DEBUG
+from Products.PloneGlossary.config import \
+     PROJECTNAME, \
+     DEBUG, \
+     INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE
 
 ExampleGlossaryActions = deepcopy(PloneGlossary.actions)
 ExampleGlossarySchema = PloneGlossary.schema.copy()
