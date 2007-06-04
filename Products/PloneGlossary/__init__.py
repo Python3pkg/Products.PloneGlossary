@@ -26,8 +26,6 @@ from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
 from Products.PloneGlossary.types import *
 from Products.PloneGlossary import config
 
-import patches
-
 LOG = logging.getLogger('PloneGlossary')
 
 if config.DEBUG:
@@ -36,6 +34,11 @@ if config.DEBUG:
 registerDirectory(SKINS_DIR, GLOBALS)
 
 def initialize(context):
+
+    # import at initialize: this let a chance to 3rd party products to change
+    # config before deciding to patch
+    import patches
+
     # Import types
     listOfTypes = listTypes(PROJECTNAME)
     content_types, constructors, ftis = process_types(listOfTypes,
