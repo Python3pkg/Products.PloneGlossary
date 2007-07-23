@@ -1,5 +1,7 @@
 SVN - 
 
+  * Install: check for scripts/CSS before registering them
+
   * added support for Generic setup for the main tool
 
   * refactored as it can be overloaded
