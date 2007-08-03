@@ -1,5 +1,8 @@
 SVN - 
 
+  * fix bug causing html entities in definition title/description to appear
+    as entity code instead of char ( ie. &amp; instead of & )
+  
   * Install: check for scripts/CSS before registering them
 
   * added support for Generic setup for the main tool
@@ -42,7 +45,7 @@ SVN -
 
   * Added german translation thanks to Richard M. Kues
 
-  * Added spanish translation thanks to H�ctor Velarde
+  * Added spanish translation thanks to Hector Velarde
 
   * Added share tabs [zegor]
 

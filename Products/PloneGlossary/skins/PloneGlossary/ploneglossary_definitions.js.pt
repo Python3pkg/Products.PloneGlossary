@@ -16,8 +16,9 @@ var terms = new Array();
 terms.push("<tal:content replace="term" />");
 </tal:term_loop>
 add_related_glossary_definition(
-        "<tal:title replace="def/title"/>", 
-        '<tal:descr define="desc def/description; desc python:escape(truncateDescription(desc));" replace="desc" />',
+        "<tal:title replace="structure def/title"/>", 
+        '<tal:descr define="desc def/description; desc python:escape(truncateDescription(desc));"
+					replace="structure desc" />',
         "<tal:url replace="def/url" />",
         terms,
         "<tal:show replace="def/show" />");
