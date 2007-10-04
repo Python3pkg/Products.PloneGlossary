@@ -38,7 +38,9 @@ function show_glossary_definition_popup(node, definition_index) {
 
 function hide_glossary_definition_popup(node, definition_index) {
     popup_node = document.getElementById("glossary-definition-popup");
-    node.removeChild(popup_node);
+    if (popup_node) {
+        node.removeChild(popup_node);
+    }
     node.className = "highlightedGlossaryTerm";
 }
 
