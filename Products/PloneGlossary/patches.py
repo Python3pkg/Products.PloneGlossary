@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
-## PloneGlossary monkeypatches
-## 
-## Copyright (C) 2006 Ingeniweb
+## -*- coding: utf-8 -*-
+## Copyright (C) 2007 Ingeniweb
 
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -16,6 +14,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file COPYING. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
 
 from zLOG import LOG, INFO
 
