@@ -1,4 +1,4 @@
-SVN - 
+1.3.4 - 2007/11/07
 
   * fix bug causing html entities in definition title/description to appear
     as entity code instead of char ( ie. &amp; instead of & )
