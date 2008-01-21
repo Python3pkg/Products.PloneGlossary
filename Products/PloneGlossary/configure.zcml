@@ -1,0 +1,65 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:five="http://namespaces.zope.org/five"
+   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+   xmlns:wicked="http://namespaces.openplans.org/wicked"
+   i18n_domain="ploneglossary"
+   >
+  
+  <!-- $Id$ -->
+  
+  <include package=".exportimport" />
+
+  <include package=".browser" />
+
+  <genericsetup:registerProfile
+     name="ploneglossary"
+     title="Plone Glossary settings"
+     description="Adds local settings necessary for PloneGlossary."
+     directory="profiles/default"
+     provides="Products.GenericSetup.interfaces.EXTENSION"
+     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+     />
+
+  <genericsetup:registerProfile
+     name="ploneglossary_examples"
+     title="Plone Glossary examples settings"
+     description="Adds local settings necessary for PloneGlossary examples."
+     directory="profiles/examples"
+     provides="Products.GenericSetup.interfaces.EXTENSION"
+     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+     />
+  
+  
+  <!-- Events handlers -->
+  
+  <subscriber for=".interfaces.IPloneGlossary
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler=".content.PloneGlossary.glossaryAdded" />
+
+  <subscriber for=".interfaces.IPloneGlossary
+                   zope.app.container.interfaces.IObjectMovedEvent"
+              handler=".content.PloneGlossary.glossaryMoved" />
+
+  <subscriber for=".interfaces.IGlossaryTool
+                   zope.app.container.interfaces.IObjectAddedEvent"
+              handler=".PloneGlossaryTool.glossaryToolAdded" />
+
+  <!-- Wicked aware -->
+
+  <!-- wicked:decorate-at-field
+     fieldclass="Products.Archetypes.Field.TextField"
+     / -->
+
+  <five:implements
+     class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
+     interface="wicked.interfaces.IAmWicked" />
+
+
+  <wicked:atschema-fields-implement 
+     atclass=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
+     fields="definition"
+     implements="wicked.at.interfaces.IAmATWickedField"
+     />
+  
+</configure>
