@@ -25,8 +25,8 @@ TODO
 * Wire rebuildCatalog when a PloneGlossary is renamed or moved using
   events framework.
 
-1.4 CVS/SVN (plone3compat unreleased branch)
-############################################
+1.4.0 RC1
+#########
 
 * Using Zope 3 "page" technology to speed up complex templates
   [glenfant]
