@@ -67,6 +67,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     _properties=(
         {'id': 'title',                 'type': 'string',              'mode': 'w'},
         {'id': 'highlight_content',     'type': 'boolean',             'mode': 'w'},
+        {'id': 'use_general_glossaries','type': 'boolean',             'mode': 'w'},
         {'id': 'general_glossary_uids', 'type': 'multiple_selection',  'mode': 'w',
                                             'select_variable': 'getGlossaryUIDs' },
         {'id': 'allowed_portal_types',  'type' : 'multiple_selection', 'mode' : 'w',
@@ -80,6 +81,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         )
 
     highlight_content = True
+    use_general_glossaries = True
     general_glossary_uids = []
     allowed_portal_types = ['PloneGlossaryDefinition']
     description_length = 0
