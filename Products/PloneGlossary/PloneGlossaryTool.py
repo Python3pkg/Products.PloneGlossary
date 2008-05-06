@@ -157,7 +157,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     def getUseGeneralGlossaries(self):
         """Returns use_general_glossaries
         """
-        self._setProperty('use_general_glossaries', True, 'boolean')
         return self.use_general_glossaries
 
     security.declarePublic('showPortlet')

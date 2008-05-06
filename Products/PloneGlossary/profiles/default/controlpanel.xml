@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel">
- <configlet title="PloneGlossary preferences" action_id="ploneglossary_prefs"
+ <configlet title="Glossary" action_id="ploneglossary_prefs"
     appId="PloneGlossary" category="Products" condition_expr=""
     url_expr="string:$portal_url/ploneglossary_management_form"
     visible="True">

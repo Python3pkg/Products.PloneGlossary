@@ -7,6 +7,15 @@ SVN trunk
 
 https://svn.plone.org/svn/collective/PloneGlossary/trunk
 
+* use the standard PropertyManager API to handle properties on the tool
+  [wichert]
+
+* clean up imports and remove some unneeded bbb code to make pyflakes happy
+  [wichert]
+
+* improve the English wording in a few places
+  [wichert]
+
 1.4.0 RC1
 #########
 
