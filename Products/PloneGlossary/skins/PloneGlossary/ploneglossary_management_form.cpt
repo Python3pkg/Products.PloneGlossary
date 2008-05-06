@@ -178,13 +178,11 @@
               </label>
               <div class="formHelp"
                    i18n:translate="help_use_general_glossaries">
-                When checked, all glossaries will be used to highlight terms
-                globally for all of the site's content.<br />
-                By unchecking this option, only the first glossary found while
-                traversing upwards from the content is used.
+                <p>When checked, all glossaries will be used to highlight terms
+                globally for all of the site's content.</p>
+                <p>By unchecking this option, only the first glossary found while
+                traversing upwards from the current location will be used.</p>
               </div>
-
-
             </div>
 
             <div class="field"
@@ -197,8 +195,8 @@
 
               <div class="formHelp"
                    i18n:translate="help_general_glossary_uids">
-                Select glossaries used to check related terms of content.
-                No selection results in the same thing of selecting all glossaries.
+                 Select glossaries used to check related terms of content. By default
+                 all glossaries will be used.
               </div>
 
 
@@ -235,10 +233,7 @@
 
           </fieldset>
         </form>
-
       </div>
-
     </div>
-
   </body>
 </html>
