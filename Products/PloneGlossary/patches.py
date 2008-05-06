@@ -27,12 +27,11 @@ from Products.CMFCore.utils import getToolByName
 from config import PATCH_ZCTextIndex, INDEX_SEARCH_GLOSSARY
 from config import PLONEGLOSSARY_TOOL
 
-from Products.PluginIndexes.common import safe_callable
 from Products.ZCTextIndex.ZCTextIndex import ZCTextIndex
 
 from Products.PluginIndexes.common.util import parseIndexRequest
 from Products.ZCTextIndex.QueryParser import QueryParser
-from Products.ZCTextIndex.ParseTree import OrNode, AndNode, AtomNode, PhraseNode
+from Products.ZCTextIndex.ParseTree import OrNode, AndNode, AtomNode
 
 from Products.PloneGlossary.utils import LOG
 

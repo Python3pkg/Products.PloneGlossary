@@ -24,13 +24,10 @@ Base test case for PloneGlossary
 # Python imports
 import re
 import os
-import time
-import Globals
 
 # Zope imports
 from Testing import ZopeTestCase
 from AccessControl.SecurityManagement import newSecurityManager
-from AccessControl.SecurityManagement import noSecurityManager
 
 # CMF imports
 from Products.CMFCore.utils import getToolByName

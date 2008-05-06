@@ -41,10 +41,6 @@
                    zope.app.container.interfaces.IObjectMovedEvent"
               handler=".content.PloneGlossary.glossaryMoved" />
 
-  <subscriber for=".interfaces.IGlossaryTool
-                   zope.app.container.interfaces.IObjectAddedEvent"
-              handler=".PloneGlossaryTool.glossaryToolAdded" />
-
   <!-- Wicked aware -->
 
   <!-- wicked:decorate-at-field

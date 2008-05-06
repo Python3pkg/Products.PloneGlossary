@@ -27,26 +27,23 @@ __docformat__ = 'restructuredtext'
 from AccessControl import ClassSecurityInfo
 
 # CMF imports
-try:
-    from Products.CMFCore import permissions as CMFCorePermissions
-except ImportError:
-    from Products.CMFCore import CMFCorePermissions
-
-from Products.CMFCore.utils import getToolByName
+from Products.CMFCore import permissions
 
 # Archetypes imports
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import BaseContent
+    from Products.LinguaPlone.public import registerType
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
+    from Products.Archetypes.atapi import registerType
+    from Products.Archetypes.atapi import BaseContent
 
 from Products.ATContentTypes.content.base import ATCTContent
 
 # Products imports
-from Products.PloneGlossary.config import PROJECTNAME, PLONEGLOSSARY_CATALOG, SITE_CHARSET
+from Products.PloneGlossary.config import PROJECTNAME
 from Products.PloneGlossary.content.schemata import PloneGlossaryDefinitionSchema as schema
-from Products.PloneGlossary.utils import html2text, text2words
+from Products.PloneGlossary.utils import html2text
 
 class PloneGlossaryDefinition(ATCTContent):
     """PloneGlossary definition """
@@ -57,7 +54,7 @@ class PloneGlossaryDefinition(ATCTContent):
 
     security = ClassSecurityInfo()
 
-    security.declareProtected(CMFCorePermissions.View, 'Description')
+    security.declareProtected(permissions.View, 'Description')
     def Description(self, from_catalog=False):
         """Returns cleaned text"""
 
@@ -74,21 +71,21 @@ class PloneGlossaryDefinition(ATCTContent):
             html = self.getDefinition()
             return html2text(html)
 
-    security.declareProtected(CMFCorePermissions.ModifyPortalContent, 'indexObject')
+    security.declareProtected(permissions.ModifyPortalContent, 'indexObject')
     def indexObject(self):
         """Index object in portal catalog and glossary catalog"""
         BaseContent.indexObject(self)
         cat = self.getCatalog()
         cat.indexObject(self)
 
-    security.declareProtected(CMFCorePermissions.ModifyPortalContent, 'unindexObject')
+    security.declareProtected(permissions.ModifyPortalContent, 'unindexObject')
     def unindexObject(self):
         """Unindex object in portal catalog and glossary catalog"""
         BaseContent.unindexObject(self)
         cat = self.getCatalog()
         cat.unindexObject(self)
 
-    security.declareProtected(CMFCorePermissions.ModifyPortalContent, 'reindexObject')
+    security.declareProtected(permissions.ModifyPortalContent, 'reindexObject')
     def reindexObject(self, idxs=[]):
         """Reindex object in portal catalog and glossary catalog"""
         BaseContent.reindexObject(self, idxs)

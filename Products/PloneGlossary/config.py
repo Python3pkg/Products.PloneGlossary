@@ -23,7 +23,7 @@ Global configuration data
 __author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
-from customconfig import *
+import Products.PloneGlossary.customconfig
 
 # ZCTextIndex patch setup
 
@@ -32,9 +32,6 @@ PATCH_ZCTextIndex = False
 
 # condition for adding glossaries items in indexed text
 INDEX_SEARCH_GLOSSARY = ('SearchableText',)
-
-# CMF imports
-from Products.CMFCore import permissions as CMFCorePermissions
 
 from Products.CMFPlone.utils import getFSVersionTuple
 PLONE_VERSION = getFSVersionTuple()[:2] # as (2, 1)

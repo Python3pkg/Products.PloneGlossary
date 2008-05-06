@@ -28,32 +28,26 @@ __docformat__ = 'restructuredtext'
 
 # Zope imports
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass
-from Acquisition import aq_base
 from zope.interface import implements
 from zope.component import getMultiAdapter
 
 # CMF imports
-try:
-    from Products.CMFCore import permissions as CMFCorePermissions
-except ImportError:
-    from Products.CMFCore import CMFCorePermissions
-from Products.CMFCore.utils  import getToolByName
+from Products.CMFCore import permissions
 
 # Archetypes imports
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import registerType
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
+    from Products.Archetypes.atapi import registerType
 
 from Products.ATContentTypes.content.base import ATCTFolder
 
 # Products imports
 from Products.PloneGlossary.config import PROJECTNAME, PLONEGLOSSARY_CATALOG
-from Products.PloneGlossary.PloneGlossaryCatalog import PloneGlossaryCatalog, manage_addPloneGlossaryCatalog
+from Products.PloneGlossary.PloneGlossaryCatalog import manage_addPloneGlossaryCatalog
 from Products.PloneGlossary.content.schemata import PloneGlossarySchema as schema
-from Products.PloneGlossary.utils import encode, LOG
+from Products.PloneGlossary.utils import LOG
 from Products.PloneGlossary.interfaces import IPloneGlossary
 
 class PloneGlossary(ATCTFolder):
@@ -68,7 +62,7 @@ class PloneGlossary(ATCTFolder):
 
     security = ClassSecurityInfo()
 
-    security.declareProtected(CMFCorePermissions.View, 'getGlossaryDefinitions')
+    security.declareProtected(permissions.View, 'getGlossaryDefinitions')
     def getGlossaryDefinitions(self, terms):
         """Returns glossary definitions.
         Returns tuple of dictionnary title, text.
@@ -94,7 +88,7 @@ class PloneGlossary(ATCTFolder):
             # Check view permission
             # FIXME: Maybe add allowed roles and user index in glossary catalog
             obj = brain.getObject()
-            has_view_permission = mtool.checkPermission(CMFCorePermissions.View, obj) and mtool.checkPermission(CMFCorePermissions.AccessContentsInformation, obj)
+            has_view_permission = mtool.checkPermission(permissions.View, obj) and mtool.checkPermission(permissions.AccessContentsInformation, obj)
             if not has_view_permission:
                 continue
 
@@ -114,7 +108,7 @@ class PloneGlossary(ATCTFolder):
 
         return tuple(definitions)
 
-    security.declareProtected(CMFCorePermissions.View, 'getGlossaryTerms')
+    security.declareProtected(permissions.View, 'getGlossaryTerms')
     def getGlossaryTerms(self):
         """Returns glossary terms title."""
 
@@ -194,7 +188,7 @@ class PloneGlossary(ATCTFolder):
         return catalog
 
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'rebuildCatalog')
+    security.declareProtected(permissions.ManagePortal, 'rebuildCatalog')
     def rebuildCatalog(self):
         """Delete old catalog of glossary and build a new one"""
 

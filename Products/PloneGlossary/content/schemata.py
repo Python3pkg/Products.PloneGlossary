@@ -24,14 +24,14 @@ AT schemas for PloneGlossary content types
 __author__  = ''
 __docformat__ = 'restructuredtext'
 
-# CMF imports
-try:
-    from Products.CMFCore import permissions as CMFCorePermissions
-except ImportError:
-    from Products.CMFCore import CMFCorePermissions
-
 # Archetypes import
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
+from Products.Archetypes.atapi import LinesField
+from Products.Archetypes.atapi import LinesWidget
+from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import RichWidget
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 
 from Products.ATContentTypes.configuration import zconf

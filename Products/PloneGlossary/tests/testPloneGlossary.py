@@ -21,8 +21,10 @@
 Unit test main script
 """
 
-from common import *
+from Products.PloneGlossary.tests import PloneGlossaryTestCase
 from Products.PloneGlossary.utils import html2text
+from Products.PloneGlossary.utils import find_word
+from Products.PloneGlossary.utils import encode_ascii
 
 from Products.PloneGlossary import config
 from Products.PloneGlossary.utils import LOG

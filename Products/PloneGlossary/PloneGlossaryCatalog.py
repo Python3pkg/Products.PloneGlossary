@@ -32,9 +32,6 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.ZCatalog.ZCatalog import ZCatalog
 
-# Archetypes imports
-from Products.Archetypes.public import *
-
 # Products imports
 from Products.ZCTextIndex.PipelineFactory import element_factory
 from Products.PloneGlossary.config import PLONEGLOSSARY_CATALOG, SITE_CHARSET

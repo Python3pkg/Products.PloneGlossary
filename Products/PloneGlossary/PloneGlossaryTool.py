@@ -40,7 +40,7 @@ from ZODB.POSException import ConflictError
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
-from Products.CMFCore import permissions as CMFCorePermissions
+from Products.CMFCore import permissions
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 # Plone imports
@@ -52,7 +52,6 @@ from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
 from Products.PloneGlossary.migration.Migrator import Migrator
 from interfaces import IGlossaryTool
-from Products.PloneGlossary.utils import LOG
 
 _zmi = os.path.join(os.path.dirname(__file__), 'zmi')
 
@@ -66,8 +65,28 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     meta_type = 'PloneGlossaryTool'
 
     _properties=(
-        {'id':'title', 'type': 'string', 'mode':'w'},
+        {'id': 'title',                 'type': 'string',              'mode': 'w'},
+        {'id': 'highlight_content',     'type': 'boolean',             'mode': 'w'},
+        {'id': 'general_glossary_uids', 'type': 'multiple_selection',  'mode': 'w',
+                                            'select_variable': 'getGlossaryUIDs' },
+        {'id': 'allowed_portal_types',  'type' : 'multiple_selection', 'mode' : 'w',
+                                            'select_variable': 'getAvailablePortalTypes' },
+        {'id': 'description_length',     'type': 'int',                'mode': 'w'},
+        {'id': 'description_ellipsis',   'type': 'string',             'mode': 'w'},
+        {'id': 'not_highlighted_tags',   'type': 'lines',              'mode': 'w'},
+        {'id': 'available_glossary_metatypes', 'type': 'lines',        'mode': 'w'},
+        {'id': 'glossary_metatypes',     'type': 'multiple_selection', 'mode': 'w',
+                                            'select_variable': 'getAvailableGlossaryMetaTypes' },
         )
+
+    highlight_content = True
+    general_glossary_uids = []
+    allowed_portal_types = ['PloneGlossaryDefinition']
+    description_length = 0
+    description_ellipsis = '..'
+    not_highlighted_tags = ['a', 'h1', 'input', 'textarea']
+    available_glossary_metatypes = ()
+    glossary_metatypes = ['PloneGlossary']
 
     _actions = ()
 
@@ -80,7 +99,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
     security = ClassSecurityInfo()
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_migration')
+    security.declareProtected(permissions.ManagePortal, 'manage_migration')
     manage_migration = PageTemplateFile('manage_migration', _zmi)
 
     #                                                                                   #
@@ -88,7 +107,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     #                                                                                   #
 
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_migrate')
+    security.declareProtected(permissions.ManagePortal, 'manage_migrate')
     def manage_migrate(self, REQUEST=None):
         """Migration script"""
 
@@ -109,41 +128,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             logs = stdout.getvalue()
             logs = '<br />'.join(logs.split('\r\n'))
             return self.manage_migration(self, manage_tabs_message = message, logs=logs)
-
-
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'initProperties')
-    def initProperties(self):
-        """Init properties"""
-
-        self.safeEditProperty(self, 'highlight_content', 1, data_type='boolean')
-        self.safeEditProperty(self, 'use_general_glossaries', 1, data_type='boolean')
-        self.safeEditProperty(self, 'general_glossary_uids', 'getGlossaryUIDs', data_type='multiple selection', new_value=[])
-        self.safeEditProperty(self, 'allowed_portal_types', 'getAvailablePortalTypes', data_type='multiple selection', new_value=['PloneGlossaryDefinition'])
-        self.safeEditProperty(self, 'description_length', 0, data_type='int')
-        self.safeEditProperty(self, 'description_ellipsis', '...', data_type='string')
-        self.safeEditProperty(self, 'not_highlighted_tags', ['a', 'h1', 'input','textarea'], data_type='lines')
-        self.safeEditProperty(self, 'available_glossary_metatypes', (), data_type='lines')
-        self.safeEditProperty(self, 'glossary_metatypes',
-                                    'getAvailableGlossaryMetaTypes',
-                                    data_type='multiple selection',
-                                    new_value=['PloneGlossary'])
-
-    security.declarePrivate('safeEditProperty')
-    def safeEditProperty(self, obj, key, value, data_type='string', new_value=None):
-        """ An add or edit function, surprisingly useful :) """
-
-        if obj.hasProperty(key):
-            for property in self._properties:
-                if property['id'] == key:
-                    property['data_type'] = data_type
-                    if data_type in ('selection', 'multiple selection'):
-                        property['select_variable'] = value
-                    break
-        else:
-            obj._setProperty(key, value, data_type)
-
-            if new_value is not None:
-                obj._updateProperty(key, new_value)
 
     security.declarePublic('getAvailablePortalTypes')
     def getAvailablePortalTypes(self):
@@ -171,8 +155,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     def getUseGeneralGlossaries(self):
         """Returns use_general_glossaries
         """
-        if not hasattr(self, 'use_general_glossaries'):
-            self.safeEditProperty(self, 'use_general_glossaries', 1, data_type='boolean')
+        self._setProperty('use_general_glossaries', True, 'boolean')
         return self.use_general_glossaries
 
     security.declarePublic('showPortlet')
@@ -285,7 +268,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                 continue
 
             # Check view permission
-            has_view_permission = mbtool.checkPermission(CMFCorePermissions.View, obj) and mbtool.checkPermission(CMFCorePermissions.AccessContentsInformation, obj)
+            has_view_permission = mbtool.checkPermission(permissions.View, obj) and mbtool.checkPermission(permissions.AccessContentsInformation, obj)
             if has_view_permission:
                 glossaries.append(obj)
 
@@ -712,12 +695,3 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return tuple([x for x in text2words(text) if len(x) > 1 and x not in removed_words])
 
 InitializeClass(PloneGlossaryTool)
-
-###
-## Events handlers
-###
-
-def glossaryToolAdded(tool, event):
-    """A glossary tool has been added"""
-    tool.initProperties()
-    return

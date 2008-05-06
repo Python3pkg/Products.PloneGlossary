@@ -20,7 +20,8 @@
 """
 Testing patch to ZCTextIndex
 """
-from common import *
+
+from Products.PloneGlossary.tests import PloneGlossaryTestCase
 
 class TestZCTextIndexPatch(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
