@@ -7,6 +7,10 @@ SVN trunk
 
 https://svn.plone.org/svn/collective/PloneGlossary/trunk
 
+* Using unicode normalization to get first letter of the term. This allows
+  to find terms starting with non-ascii charcters.
+  [naro]
+
 * use the standard PropertyManager API to handle properties on the tool
   [wichert]
 

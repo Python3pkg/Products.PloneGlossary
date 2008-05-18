@@ -45,6 +45,7 @@ from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 # Plone imports
 from plone.memoize.request import memoize_diy_request
+from plone.i18n.normalizer.base import baseNormalize
 
 # PloneGlossary imports
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
@@ -622,6 +623,21 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         return tuple([chr(x) for x in range(97,123)])
 
+    security.declarePublic('getFirstLetter')
+    def getFirstLetter(self, term):
+        """ returns first letter """
+        if isinstance(term, unicode): 
+            letter = term[0:1]
+            return baseNormalize(letter)
+        else:
+            try:
+                uterm = term.decode(SITE_CHARSET)
+                letter = baseNormalize(uterm[0:1]).encode(SITE_CHARSET)
+                return letter
+            except UnicodeDecodeError:
+                letter = term[0:1].decode()  # use python default encoding
+                return baseNormalize(letter)
+        
     security.declarePublic('getAbcedaire')
     def getAbcedaire(self, glossary_uids):
         """Returns abcedaire.
@@ -631,7 +647,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         letters = []
 
         for term in terms:
-            letter = term[0:1].lower()
+            letter = self.getFirstLetter(term).lower()
             if letter not in letters:
                 letters.append(letter)
 
@@ -650,7 +666,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         brains = self.searchResults(glossary_uids)
 
         for brain in brains:
-            letter = brain.Title[0:1].lower()
+            letter = self.getFirstLetter(brain.Title).lower()
             if letter in letters:
                 abcedaire_brains.append(brain)
 
