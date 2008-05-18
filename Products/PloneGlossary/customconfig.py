@@ -22,7 +22,7 @@ Global customizable configuration data
 To customize the values add this to your zope.conf:
 
 <product-config ploneglossary>
-  charset iso-8859-15 # Or any valid charser
+  charset iso-8859-15 # Or any valid charset
   batch-size 50       # Any positive integer
 </product-config>
 """

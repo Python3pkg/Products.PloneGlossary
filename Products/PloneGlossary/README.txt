@@ -238,7 +238,7 @@ Translations
 ============
 
 * French (fr): Ingeniweb_
-* Czeck (cs): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
+* Czech (cs): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
 * Danish (da): `Anton Stonor <mailto:anton@headnet.dk>`_
 * German (de): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
 * Polish (pl): `Piotr Furman <mailto:piotr.furman@webservice.pl>`_
