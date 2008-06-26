@@ -50,6 +50,7 @@ def initialize(context):
     # import at initialize: this let a chance to 3rd party products to change
     # config before deciding to patch
     import Products.PloneGlossary.patches
+    from Products.PloneGlossary.permissions import add_permissions
 
     # used by test framework
     if config.INSTALL_EXAMPLES:
@@ -59,12 +60,16 @@ def initialize(context):
     listOfTypes = listTypes(PROJECTNAME)
     content_types, constructors, ftis = process_types(listOfTypes,
                                                       PROJECTNAME)
-    ContentInit('%s Content' % PROJECTNAME,
-                content_types = content_types,
-                permission = permissions.AddPortalContent,
-                extra_constructors = constructors,
-                fti = ftis,
-                ).initialize(context)
+
+    for content_type, constructor in zip(content_types, constructors):
+        kind = "%s: %s" % (PROJECTNAME, content_type.archetype_name)
+        ContentInit(
+            kind,
+            content_types = (content_type, ),
+            permission = add_permissions[content_type.portal_type],
+            extra_constructors = (constructor, ),
+            fti = ftis,
+        ).initialize(context)
 
     # Import tool
     ToolInit(

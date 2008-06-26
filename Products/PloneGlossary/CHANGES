@@ -7,6 +7,10 @@ SVN trunk
 
 https://svn.plone.org/svn/collective/PloneGlossary/trunk
 
+* Added "add permissions" for content types instead of generic "Add portal
+  content"
+  [bmathieu]
+
 * Using unicode normalization to get first letter of the term. This allows
   to find terms starting with non-ascii charcters.
   [naro]
