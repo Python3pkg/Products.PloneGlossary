@@ -62,11 +62,11 @@ def initialize(context):
                                                       PROJECTNAME)
 
     for content_type, constructor in zip(content_types, constructors):
-        kind = "%s: %s" % (PROJECTNAME, content_type.archetype_name)
+        kind = "%s: %s" % (PROJECTNAME, content_type.__name__)
         ContentInit(
             kind,
             content_types = (content_type, ),
-            permission = add_permissions[content_type.portal_type],
+            permission = add_permissions[content_type.__name__],
             extra_constructors = (constructor, ),
             fti = ftis,
         ).initialize(context)

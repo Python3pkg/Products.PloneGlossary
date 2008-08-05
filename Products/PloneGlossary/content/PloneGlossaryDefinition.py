@@ -48,7 +48,6 @@ from Products.PloneGlossary.utils import html2text
 class PloneGlossaryDefinition(ATCTContent):
     """PloneGlossary definition """
 
-    meta_type = 'PloneGlossaryDefinition'
     schema =  schema
     _at_rename_after_creation = True
 

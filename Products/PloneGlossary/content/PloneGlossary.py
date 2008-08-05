@@ -55,7 +55,6 @@ class PloneGlossary(ATCTFolder):
 
     implements(IPloneGlossary)
 
-    meta_type = 'PloneGlossary'
     definition_types = ('PloneGlossaryDefinition',)
     schema =  schema
     _at_rename_after_creation = True
