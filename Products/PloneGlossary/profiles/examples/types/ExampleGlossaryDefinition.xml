@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="ExampleGlossaryDefinition"
-   meta_type="Factory-based Type Information"
+   meta_type="Factory-based Type Information with dynamic views"
    i18n:domain="ploneglossary"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title">Example Glossary definition</property>

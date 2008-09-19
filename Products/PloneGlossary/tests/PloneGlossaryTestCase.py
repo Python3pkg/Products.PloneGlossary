@@ -156,6 +156,7 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
 
         # Add glossary
         glossary_id = self.buildPrettyId(glossary_title)
+
         container.invokeFactory(
             type_name='ExampleGlossary',
             id=glossary_id,
@@ -198,4 +199,4 @@ ZopeTestCase.installProduct('Archetypes')
 ZopeTestCase.installProduct('PloneGlossary')
 
 # Setup Plone site
-PloneTestCase.setupPloneSite(products=['Archetypes', 'PloneGlossary'])
+PloneTestCase.setupPloneSite(products=['Products.PloneGlossary'], extension_profiles=('Products.PloneGlossary:examples',))

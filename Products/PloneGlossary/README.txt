@@ -195,7 +195,7 @@ Subversion repository
 Stay in tune with the freshest (maybe unstable) versions or participate to
 the FileSystemStorage evolutions:
 
-https://svn.plone.org/svn/collective/PloneGlossary
+https://svn.plone.org/svn/collective/Products.PloneGlossary
 
 Support and feedback
 ####################

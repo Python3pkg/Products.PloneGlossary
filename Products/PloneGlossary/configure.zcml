@@ -13,7 +13,7 @@
   <include package=".browser" />
 
   <genericsetup:registerProfile
-     name="ploneglossary"
+     name="default"
      title="Plone Glossary"
      description="Adds support for glossaries in a Plone site."
      directory="profiles/default"
@@ -22,12 +22,12 @@
      />
 
   <genericsetup:registerProfile
-     name="ploneglossary_examples"
+     name="examples"
      title="Plone Glossary examples types"
      description="Adds local settings necessary for PloneGlossary examples."
      directory="profiles/examples"
      provides="Products.GenericSetup.interfaces.EXTENSION"
-     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+     for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
      />
   
   

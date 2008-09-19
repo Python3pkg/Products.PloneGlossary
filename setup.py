@@ -1,19 +1,23 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.4.0RC2'
+_home = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Products', 'PloneGlossary')
+
+version = open(os.path.join(_home, 'version.txt')).read().strip()
 
 setup(name='Products.PloneGlossary',
       version=version,
-      description="Hilite content terms with definition mouseover tooltip.",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      description="Hilite Plone content terms, mouserover shows the term definition as tooltip.",
+      long_description=(open(os.path.join(_home, "README.txt")).read() +
+                       "\n------------\n" +
+                       open(os.path.join(_home, "CHANGES")).read()),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Programming Language :: Python",
+        "Framework :: Plone",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='',
+      keywords='plone glossary',
       author='Ingeniweb',
       author_email='support@ingeniweb.com',
       url='http://plone.org/products/ploneglossary',
@@ -25,7 +29,7 @@ setup(name='Products.PloneGlossary',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-      ],
+          ],
       entry_points="""
       # -*- Entry points: -*-
       """,

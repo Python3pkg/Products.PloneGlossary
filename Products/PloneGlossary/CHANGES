@@ -2,17 +2,18 @@
 CHANGES
 #######
 
-SVN trunk
+1.4.0 RC2
 #########
 
-https://svn.plone.org/svn/collective/PloneGlossary/trunk
+* Eggification.
+  [glenfant]
 
 * Added "add permissions" for content types instead of generic "Add portal
   content"
   [bmathieu]
 
 * Using unicode normalization to get first letter of the term. This allows
-  to find terms starting with non-ascii charcters.
+  to find terms starting with non-ascii characters.
   [naro]
 
 * use the standard PropertyManager API to handle properties on the tool
@@ -163,9 +164,6 @@ https://svn.plone.org/svn/collective/PloneGlossary/trunk
 * Fixed access problem to glossary's catalogs for anonymous users -
   [zegor]
 
-1.2 -
-#####
-
 * Use AddPortalContent permission to add Glossary and definitions
 
 1.1 - 2005-09-05
@@ -174,7 +172,5 @@ https://svn.plone.org/svn/collective/PloneGlossary/trunk
 * Remove highlight for input or textarea tags
 
 * Check permissions in plone glossary portlet
-
-------------------------
 
 .. $Id$
