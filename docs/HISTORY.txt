@@ -1,8 +1,4 @@
 Changelog
 =========
 
-1.4.0RC2 - Unreleased
-----------------
-
-* Initial release
-
+See Products/PloneGlossary/CHANGES

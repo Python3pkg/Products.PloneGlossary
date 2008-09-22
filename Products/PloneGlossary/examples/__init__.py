@@ -15,10 +15,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; see the file LICENSE. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 # $Id$
 """
 Used to import as module
 """
-
-import exampleglossary
+import os
+if os.environ.has_key('ZOPETESTCASE'):
+    import exampleglossary

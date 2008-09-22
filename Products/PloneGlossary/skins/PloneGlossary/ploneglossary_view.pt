@@ -39,7 +39,7 @@
           
           <ul class="glossaryAbcedaire">
             <li tal:repeat="letter view/first_letters">
-              <a href="#" class="#"
+              <a href="#" style="font-weight: bold"
                  tal:omit-tag="letter/has_no_term"
                  tal:attributes="href letter/zoom_link;
                                  class letter/css_class"

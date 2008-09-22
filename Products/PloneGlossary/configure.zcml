@@ -12,6 +12,8 @@
 
   <include package=".browser" />
 
+  <include package=".upgrades" />
+
   <genericsetup:registerProfile
      name="default"
      title="Plone Glossary"
@@ -43,9 +45,7 @@
 
   <!-- Wicked aware -->
 
-  <!-- wicked:decorate-at-field
-     fieldclass="Products.Archetypes.Field.TextField"
-     / -->
+  <include package="wicked.at" />
 
   <five:implements
      class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"

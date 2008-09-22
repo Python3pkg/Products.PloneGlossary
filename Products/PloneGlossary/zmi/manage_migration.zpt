@@ -11,6 +11,10 @@
   Please backup you data.fs.  Use at your own risk.
   </p>
 
+  <p>Note that as of version 1.4 for Plone 3 (and later) you should
+  check for available upgrades for "Products.PloneGlossary:default" in
+  the <a href="../portal_setup/manage_upgrades">setup tool</a>.</p>
+
   <form method="PUT" action="manage_migrate">
 
     <div>

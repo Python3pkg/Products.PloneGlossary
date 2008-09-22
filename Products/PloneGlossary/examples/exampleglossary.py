@@ -40,7 +40,7 @@ from Products.PloneGlossary.content.PloneGlossaryDefinition import PloneGlossary
 from Products.PloneGlossary.interfaces import (IPloneGlossary,
                                                IPloneGlossaryDefinition)
 
-from Products.PloneGlossary.config import PROJECTNAME, INSTALL_EXAMPLES
+from Products.PloneGlossary.config import PROJECTNAME
 
 ExampleGlossarySchema = PloneGlossary.schema.copy()
 
@@ -67,7 +67,6 @@ class ExampleGlossaryDefinition(PloneGlossaryDefinition):
     meta_type = 'ExampleGlossaryDefinition'
     schema =  ExampleGlossaryDefinitionSchema
 
-if INSTALL_EXAMPLES:
-    registerType(ExampleGlossary, PROJECTNAME)
-    registerType(ExampleGlossaryDefinition, PROJECTNAME)
+registerType(ExampleGlossary, PROJECTNAME)
+registerType(ExampleGlossaryDefinition, PROJECTNAME)
 

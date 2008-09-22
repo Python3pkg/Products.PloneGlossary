@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-##
-## Copyright (C) 2007 Ingeniweb
+## -*- coding: utf-8 -*-
+## Copyright (C) 2008 Ingeniweb
 
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -13,10 +12,13 @@
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
+## along with this program; see the file LICENSE.txt. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
-Used to import as module
+Upgrades for PloneGlossary
 """
+__author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
+__docformat__ = 'restructuredtext'
+

@@ -37,6 +37,8 @@ from Products.ATContentTypes.content.schemata import ATContentTypeSchema
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
+from Products.PloneGlossary.utils import PloneGlossaryMessageFactory as _
+
 
 # PloneGlossary schema
 PloneGlossarySchema = ATContentTypeSchema.copy()
@@ -53,12 +55,9 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         default='',
         accessor='Title',
         widget=StringWidget(
-            label = "Term",
-            label_msgid="label_glossary_term",
-            description = "Enter the term to be defined.",
-            description_msgid = "help_glossary_term",
-            visible={'view' : 'invisible'},
-            i18n_domain="ploneglossary"),
+            label=_(u'label_glossary_term', default=u"Term"),
+            description=_(u'help_glossary_term', default=u"Enter the term to be defined."),
+            visible={'view' : 'invisible'}),
         ),
     LinesField(
         'variants',
@@ -66,12 +65,9 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         searchable=True,
         default=(),
         widget=LinesWidget(
-            label = "Variants",
-            label_msgid="label_glossary_variants",
-            description = "Enter the variants of the term, one per line.",
-            description_msgid = "help_glossary_variants",
-            visible={'view' : 'invisible'},
-            i18n_domain="ploneglossary"),
+            label=_(u'label_glossary_variants', default=u"Variants"),
+            description=_(u'help_glossary_variants', default=u"Enter the variants of the term, one per line."),
+            visible={'view' : 'invisible'}),
         ),
     TextField(
         'definition',
@@ -80,13 +76,10 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = "Body text",
-            label_msgid = "label_glossary_definition_text",
-            description = "Enter the body text.",
-            description_msgid = "help_glossary_definition_text",
-            rows = 25,
-            i18n_domain = "ploneglossary"),
+        widget=RichWidget(
+            label=_(u'label_glossary_definition_text', default=u"Body text"),
+            description=_(u'help_glossary_definition_text', default=u"Enter the body text."),
+            rows = 25),
         ),
 
     ))

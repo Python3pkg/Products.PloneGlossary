@@ -24,10 +24,6 @@ Tool
 __author__  = ''
 __docformat__ = 'restructuredtext'
 
-# Python imports
-import StringIO
-import os
-
 # Zope imports
 from zope.interface import implements
 from zope.component import getMultiAdapter
@@ -41,7 +37,6 @@ from ZODB.POSException import ConflictError
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
 from Products.CMFCore import permissions
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 # Plone imports
 from plone.memoize.request import memoize_diy_request
@@ -51,10 +46,7 @@ from plone.i18n.normalizer.base import baseNormalize
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
 from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
-from Products.PloneGlossary.migration.Migrator import Migrator
 from interfaces import IGlossaryTool
-
-_zmi = os.path.join(os.path.dirname(__file__), 'zmi')
 
 class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     """Tool for PloneGlossary"""
@@ -66,19 +58,38 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     meta_type = 'PloneGlossaryTool'
 
     _properties=(
-        {'id': 'title',                 'type': 'string',              'mode': 'w'},
-        {'id': 'highlight_content',     'type': 'boolean',             'mode': 'w'},
-        {'id': 'use_general_glossaries','type': 'boolean',             'mode': 'w'},
-        {'id': 'general_glossary_uids', 'type': 'multiple_selection',  'mode': 'w',
-                                            'select_variable': 'getGlossaryUIDs' },
-        {'id': 'allowed_portal_types',  'type' : 'multiple_selection', 'mode' : 'w',
-                                            'select_variable': 'getAvailablePortalTypes' },
-        {'id': 'description_length',     'type': 'int',                'mode': 'w'},
-        {'id': 'description_ellipsis',   'type': 'string',             'mode': 'w'},
-        {'id': 'not_highlighted_tags',   'type': 'lines',              'mode': 'w'},
-        {'id': 'available_glossary_metatypes', 'type': 'lines',        'mode': 'w'},
-        {'id': 'glossary_metatypes',     'type': 'multiple_selection', 'mode': 'w',
-                                            'select_variable': 'getAvailableGlossaryMetaTypes' },
+        {'id': 'title',
+         'type': 'string',
+         'mode': 'w'},
+        {'id': 'highlight_content',
+         'type': 'boolean',
+         'mode': 'w'},
+        {'id': 'use_general_glossaries',
+         'type': 'boolean',
+         'mode': 'w'},
+        {'id': 'general_glossary_uids',
+         'type': 'multiple selection',
+         'mode': 'w',
+         'select_variable': 'getGlossaryUIDs' },
+        {'id': 'allowed_portal_types',
+         'type' : 'multiple selection',
+         'mode' : 'w',
+         'select_variable': 'getAvailablePortalTypes' },
+        {'id': 'description_length',
+         'type': 'int',
+         'mode': 'w'},
+        {'id': 'description_ellipsis',
+         'type': 'string',
+         'mode': 'w'},
+        {'id': 'not_highlighted_tags',
+         'type': 'lines',
+         'mode': 'w'},
+        {'id': 'available_glossary_metatypes',
+         'type': 'lines',
+         'mode': 'w'},
+        {'id': 'glossary_metatypes',
+         'type': 'multiple_selection', 'mode': 'w',
+         'select_variable': 'getAvailableGlossaryMetaTypes' },
         )
 
     highlight_content = True
@@ -93,44 +104,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
     _actions = ()
 
-    manage_options=(PropertyManager.manage_options +
-                    SimpleItem.manage_options +
-                    ({ 'label' : 'Migrate',
-                      'action' : 'manage_migration'},
-                    )
-                   )
+    manage_options = PropertyManager.manage_options + SimpleItem.manage_options
 
     security = ClassSecurityInfo()
-
-    security.declareProtected(permissions.ManagePortal, 'manage_migration')
-    manage_migration = PageTemplateFile('manage_migration', _zmi)
-
-    #                                                                                   #
-    #                                Migrations management                              #
-    #                                                                                   #
-
-
-    security.declareProtected(permissions.ManagePortal, 'manage_migrate')
-    def manage_migrate(self, REQUEST=None):
-        """Migration script"""
-
-        request = self.REQUEST
-        options = {}
-        options['dry_run'] = 0
-        options['meta_type'] = 0
-        stdout = StringIO.StringIO()
-
-        if request is not None:
-            options['dry_run'] = request.get('dry_run', 0)
-            options['meta_type'] = request.get('meta_type', 'PloneGlossary')
-
-        Migrator().migrate(self, stdout, options)
-
-        if request is not None:
-            message = "Migration completed."
-            logs = stdout.getvalue()
-            logs = '<br />'.join(logs.split('\r\n'))
-            return self.manage_migration(self, manage_tabs_message = message, logs=logs)
 
     security.declarePublic('getAvailablePortalTypes')
     def getAvailablePortalTypes(self):
@@ -626,7 +602,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     security.declarePublic('getFirstLetter')
     def getFirstLetter(self, term):
         """ returns first letter """
-        if isinstance(term, unicode): 
+        if isinstance(term, unicode):
             letter = term[0:1]
             return baseNormalize(letter)
         else:
@@ -637,7 +613,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             except UnicodeDecodeError:
                 letter = term[0:1].decode()  # use python default encoding
                 return baseNormalize(letter)
-        
+
     security.declarePublic('getAbcedaire')
     def getAbcedaire(self, glossary_uids):
         """Returns abcedaire.

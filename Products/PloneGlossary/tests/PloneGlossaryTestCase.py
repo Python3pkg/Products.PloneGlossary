@@ -34,8 +34,20 @@ from Products.CMFCore.utils import getToolByName
 
 # Plone imports
 from Products.PloneTestCase import PloneTestCase
+from Products.PloneTestCase.layer import onsetup
 
-from Products.PloneGlossary.config import INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE
+@onsetup
+def setupPloneGlossary():
+    ZopeTestCase.installProduct('PloneGlossary')
+    return
+
+setupPloneGlossary()
+
+# Setup Plone site
+PloneTestCase.setupPloneSite(
+    products=['Products.PloneGlossary'],
+    extension_profiles=('Products.PloneGlossary:default', 'Products.PloneGlossary:examples'))
+
 
 # Globals
 portal_name = 'portal'
@@ -188,15 +200,4 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         term = getattr(glossary, id)
         return term
 
-os.environ[INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE] = 'True'
-from Products.PloneGlossary import config
-config.UNITTESTS = True
 
-# Install PloneGlossary
-ZopeTestCase.installProduct('MimetypesRegistry')
-ZopeTestCase.installProduct('PortalTransforms')
-ZopeTestCase.installProduct('Archetypes')
-ZopeTestCase.installProduct('PloneGlossary')
-
-# Setup Plone site
-PloneTestCase.setupPloneSite(products=['Products.PloneGlossary'], extension_profiles=('Products.PloneGlossary:examples',))

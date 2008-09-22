@@ -24,6 +24,7 @@ __author__  = ''
 __docformat__ = 'restructuredtext'
 
 # Python imports
+import os
 import sys
 
 # CMF imports
@@ -40,10 +41,11 @@ from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
 from Products.PloneGlossary import content as content_module
 from Products.PloneGlossary import config
 
-registerDirectory(SKINS_DIR, GLOBALS)
-
 # BBB: Make migrations easier.
 sys.modules['Products.PloneGlossary.types'] = content_module
+
+registerDirectory(SKINS_DIR, GLOBALS)
+
 
 def initialize(context):
 
@@ -53,7 +55,7 @@ def initialize(context):
     from Products.PloneGlossary.permissions import add_permissions
 
     # used by test framework
-    if config.INSTALL_EXAMPLES:
+    if os.environ.has_key('ZOPETESTCASE'):
         import examples
 
     # Import types

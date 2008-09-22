@@ -5,6 +5,22 @@ CHANGES
 1.4.0 RC2
 #########
 
+* Upgrades moved to the GenericSetup way, and removed (useless)
+  "Migration" tab.
+  [glenfant]
+
+* i18n of schemas using message factory.
+  [glenfant]
+
+* Fixed test fixtures and associated GS profile.
+  [glenfant]
+
+* Added metadata.xml to profiles, provision for future upgrades.
+  [glenfant]
+
+* Fixed sorting of terms in glosary view using unicode normalization.
+  [glenfant]
+
 * Eggification.
   [glenfant]
 

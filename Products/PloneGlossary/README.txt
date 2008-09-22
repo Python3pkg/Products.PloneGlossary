@@ -58,22 +58,55 @@ Installation
 Installing PloneGlossary
 ========================
 
-* Unpack it into your Zope Products Folder
+Installing the latest release
+-----------------------------
 
-* Restart Zope
+Of course use zc.buildout. Just add this line to your buildout.cfg::
 
-* Use portal_quickinstaller to install the PloneGlossary in ZMI
-  (or use plone_setup in pmi)
+  [instance]
+  recipe = plone.recipe.zope2instance
+  ...
+  eggs =
+      ...
+      Products.PloneGlossary
 
-* Now you can add a Plone Glossary through the Plone Interface. (Adding a Plone
-  Glossary through the ZMI won't work).
+
+Installing a subversion checkout
+--------------------------------
+
+We assume that your instance has been built with the `plone3_buildout`
+template for the paste script (otherwise you should change
+instructions accordingly)::
+
+  $ cd $BUILDOUT_HOME/src
+  $ svn co \
+  https://svn.plone.org/svn/collective/Products.PloneGlossary/trunk \
+  Products.PloneGlossary
+  $ cd Products.PloneGlossary
+  $ python setup.py develop
+
+Then edit your `buildout.cfg`::
+
+  [buildout]
+  ...
+  develop =
+      ...
+      src/Products.PloneGlossary
+
+And change the `[instance]` section as described in `Installing the
+latest release`_ above.
+
 
 Plone Unicode issue
 ===================
 
+Have a look at `this issue
+<http://dev.plone.org/plone/ticket/7522>`_. If it has been fiwed for
+your Plone version, skip this. Otherwise...
+
 Due to an open issue in the Javascript registry tool, using non ASCII
 characters in your glossary requires to change the default encoding of
-your Zope. To do this, add a sitecustomize.py file to your
+your Zope. To do this, add a `sitecustomize.py` file to your
 $SOFTWARE_HOME with these two lines::
 
   import sys
@@ -82,28 +115,15 @@ $SOFTWARE_HOME with these two lines::
 Replace "utf-8" above with the value of the "default_charset" property
 in your "portal_properties/site_properties".
 
-More information `here <http://dev.plone.org/plone/ticket/7522>`_
 
-Migration
-=========
+Upgrades
+========
 
-We provide a migration script for PloneGlossary 1.2 to 1.3. All the migration
-does is add an index and a metadata to the catalogs inside the PloneGlossaries.
+Visit in ZMI the `portal_setup` object of your site, click `Upgrades`
+and select `Products.PloneGlossary:default`.
 
-* In the ZMI, go to the portal_glossary tool
-
-* Follow the instructions in the Migration Tab
-
-When migrating you have 2 choices :
-
-1- Specifying the meta_type of your glossaries. This is normally "PloneGlossary",
-   and if you are in doubt, leave this field unchanged.
-   People who inherited from PloneGlossary should enter the meta_types of their
-   content type and run migrations individually.
-
-2- In dry run mode, migration is done, it is only a simulation of a migration,
-   allowing you to the log to see if everything is ok.
-
+If you're upgrading from PloneGlossary 1.2 or older you may force
+upgrades using "Show old upgrades".
 
 Configuring
 ###########

@@ -47,9 +47,3 @@ SKINS_DIR = 'skins'
 CONFIGLET_ICON = "ploneglossary_tool.gif"
 PLONEGLOSSARY_TOOL = 'portal_glossary'
 PLONEGLOSSARY_CATALOG = 'glossary_catalog'
-UNITTESTS = False # Forced to True in unit tests framework
-INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE = 'PLONEGLOSSARY_INSTALL_EXAMPLES'
-import os
-INSTALL_EXAMPLES = bool(UNITTESTS or
-                        os.environ.get(INSTALL_EXAMPLE_TYPES_ENVIRONMENT_VARIABLE))
-del os

@@ -20,6 +20,7 @@
 """
 Handlers for GS
 """
+import os
 from content.PloneGlossary import PloneGlossary
 from utils import registerGlossary, LOG
 import config
@@ -32,7 +33,7 @@ def registerGlossaries(context):
 
     site = context.getSite()
     registerGlossary(site, PloneGlossary, LOG)
-    if config.INSTALL_EXAMPLES:
+    if os.environ.has_key('ZOPETESTCASE'):
         from Products.PloneGlossary.examples.exampleglossary import ExampleGlossary
         registerGlossary(site, ExampleGlossary, LOG)
     return "Glossary(ies) registered"

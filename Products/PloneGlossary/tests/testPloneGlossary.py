@@ -29,7 +29,6 @@ from Products.PloneGlossary.utils import encode_ascii
 from Products.PloneGlossary import config
 from Products.PloneGlossary.utils import LOG
 
-config.INSTALL_EXAMPLES = True
 
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def afterSetUp(self):

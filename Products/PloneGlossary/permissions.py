@@ -34,6 +34,7 @@ permissions.setDefaultRoles(AddDefinition, ('Manager', 'Owner'))
 add_permissions = {
     'PloneGlossary': AddGlossary,
     'PloneGlossaryDefinition': AddDefinition,
+    # Useful for unit tests only
     'ExampleGlossary': AddGlossary,
     'ExampleGlossaryDefinition': AddDefinition
     }

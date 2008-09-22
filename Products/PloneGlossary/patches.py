@@ -178,3 +178,4 @@ def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
 if PATCH_ZCTextIndex:
     ZCTextIndex._apply_index = zctidx_ApplyIndexWithSynonymous
     LOG.info('Applied patch: ZCTextIndex._apply_index method')
+
