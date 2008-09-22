@@ -1,9 +1,8 @@
-#######
-CHANGES
+Changes
 #######
 
-1.4.0 RC2
-#########
+1.4.0 RC2 - 2008-09-22
+======================
 
 * Upgrades moved to the GenericSetup way, and removed (useless)
   "Migration" tab.
@@ -42,7 +41,7 @@ CHANGES
   [wichert]
 
 1.4.0 RC1
-#########
+=========
 
 * Using Zope 3 "page" technology to speed up complex templates
   [glenfant]
@@ -113,7 +112,7 @@ CHANGES
 * Added share tabs [zegor]
 
 1.3.3 - 2006-03-01
-##################
+==================
 
 * Added a screenshot in the docs folder
 
@@ -125,7 +124,7 @@ CHANGES
   of "plone glossary".
 
 1.3.2 - 2006-01-06
-##################
+==================
 
 * Added 'alpha_sort' parameter on tool.getObjectRelated*, for getting
   terms sorted by title [b_mathieu] 2006-02-06
@@ -140,25 +139,25 @@ CHANGES
   [ender] 2006-01-30
 
 1.3.1 2006-01-30
-################
+================
 
 * Fix bug in encode ascii method
 
 * For AT content, analyse only string and text fields
 
 1.3 2006-01-24
-##############
+==============
 
 * Variants of a word can now be defined.
 
 1.3 RC2 - 2006-01-06
-####################
+====================
 
 * Fix highlight script. The position of word to highlight was
   erroneous.
 
 1.3 RC1 - 2006-01-05
-####################
+====================
 
 * Object words with accents are highlighted even if the glossary term
   is a little bit different
@@ -183,7 +182,7 @@ CHANGES
 * Use AddPortalContent permission to add Glossary and definitions
 
 1.1 - 2005-09-05
-################
+================
 
 * Remove highlight for input or textarea tags
 
