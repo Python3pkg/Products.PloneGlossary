@@ -269,4 +269,3 @@ Translations
 .. sectnum::
 .. _Ingeniweb: http://www.ingeniweb.com/
 .. _PloneGlossary: http://plone.org/products/ploneglossary
-.. $Id$
