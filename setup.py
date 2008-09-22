@@ -9,7 +9,7 @@ setup(name='Products.PloneGlossary',
       version=version,
       description="Hilite Plone content terms, mouserover shows the term definition as tooltip.",
       long_description=(open(os.path.join(_home, "README.txt")).read() +
-                       "\n------------\n" +
+                       "\n\n" +
                        open(os.path.join(_home, "CHANGES")).read()),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
