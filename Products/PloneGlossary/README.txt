@@ -100,19 +100,17 @@ latest release`_ above.
 Plone Unicode issue
 ===================
 
-Have a look at `this issue
-<http://dev.plone.org/plone/ticket/7522>`_. If it has been fiwed for
-your Plone version, skip this. Otherwise...
+If you use an old version of Plone (< 3.2), you'll encounter `this issue
+<http://dev.plone.org/plone/ticket/7522>`_: using non ASCII characters in
+your glossary requires to change the default encoding of your Zope.
 
-Due to an open issue in the Javascript registry tool, using non ASCII
-characters in your glossary requires to change the default encoding of
-your Zope. To do this, add a `sitecustomize.py` file to your
-$SOFTWARE_HOME with these two lines::
+To do this, add a `sitecustomize.py` file to your $SOFTWARE_HOME with
+these two lines::
 
   import sys
   sys.setdefaultencoding('utf-8')
 
-Replace "utf-8" above with the value of the "default_charset" property
+Then replace "utf-8" above with the value of the "default_charset" property
 in your "portal_properties/site_properties".
 
 
