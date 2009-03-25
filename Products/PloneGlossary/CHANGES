@@ -1,6 +1,8 @@
 Changes
 #######
 
+* refactor to avoid errors in tests tearDown [tdesvenain]
+
 1.4.0 RC2 - 2008-09-22
 ======================
 
