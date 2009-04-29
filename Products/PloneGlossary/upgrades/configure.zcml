@@ -6,7 +6,7 @@
 
   <genericsetup:upgradeSteps
      source="*"
-     destination="1.4RC2"
+     destination="1.4.0RC2"
      profile="Products.PloneGlossary:default">
 
      <genericsetup:upgradeStep

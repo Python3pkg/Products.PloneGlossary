@@ -1,7 +1,14 @@
 Changes
 #######
 
-* refactor to avoid errors in tests tearDown [tdesvenain]
+SVN unreleased
+==============
+
+* Fix upgrade step version.
+  [kdeldycke] 2009-04-29
+
+* Refactor to avoid errors in tests tearDown
+  [tdesvenain]
 
 1.4.0 RC2 - 2008-09-22
 ======================
