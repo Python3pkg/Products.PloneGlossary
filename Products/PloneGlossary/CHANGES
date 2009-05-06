@@ -10,6 +10,11 @@ SVN unreleased
 * Refactor to avoid errors in tests tearDown
   [tdesvenain]
 
+* Fix portlet's <span> HTML tags to please IE6
+  (see http://dev.plone.org/plone/ticket/9027 for details).
+  [kdeldycke] 2009-05-06
+
+
 1.4.0 RC2 - 2008-09-22
 ======================
 

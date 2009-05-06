@@ -9,9 +9,9 @@
   </tal:comment>
 
   <dt class="portletHeader">
-    <span class="portletTopLeft"/>
+    <span class="portletTopLeft"></span>
     <span i18n:translate="heading_related_terms">Related terms</span>
-    <span class="portletTopRight"/>
+    <span class="portletTopRight"></span>
   </dt>
 
   <dd class="portletItem lastItem">
@@ -27,7 +27,7 @@
         </div>
       </tal:loop>
     </div>
-    <span class="portletBottomLeft"/>
-    <span class="portletBottomRight"/>
+    <span class="portletBottomLeft"></span>
+    <span class="portletBottomRight"></span>
   </dd>
 </dl>
