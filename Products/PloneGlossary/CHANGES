@@ -1,8 +1,8 @@
 Changes
 #######
 
-SVN unreleased
-==============
+1.4.0.dev - unreleased
+======================
 
 * Fix upgrade step version.
   [kdeldycke] 2009-04-29
