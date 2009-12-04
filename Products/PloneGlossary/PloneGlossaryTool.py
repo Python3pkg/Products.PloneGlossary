@@ -452,7 +452,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         # Get obj properties
         ptype = obj.portal_type
-        title = obj.title_or_id()
+        if callable(obj.title_or_id):
+            title = obj.title_or_id()
+        else:
+            title = obj.title_or_id
+
         text = self._getObjectText(obj)
 
         # Words to remove from terms to avoid recursion
