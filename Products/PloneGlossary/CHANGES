@@ -1,8 +1,5 @@
-Changes
-#######
-
-1.4.0.dev - unreleased
-======================
+1.4.0 - 2009-12-04
+==================
 
 * Fix upgrade step version.
   [kdeldycke] 2009-04-29
