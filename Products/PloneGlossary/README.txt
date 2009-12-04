@@ -258,7 +258,7 @@ Translations
 * French (fr): Ingeniweb_
 * Czech (cs): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
 * Danish (da): `Anton Stonor <mailto:anton@headnet.dk>`_
-* German (de): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
+* German (de): Lukas Zdych
 * Polish (pl): `Piotr Furman <mailto:piotr.furman@webservice.pl>`_
 * Spanish (es): `Héctor Velarde <mailto:hvelarde@jornada.com.mx>`_
 
