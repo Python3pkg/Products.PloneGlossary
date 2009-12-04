@@ -199,14 +199,6 @@ Other documentation
 See `./doc`.
 
 
-Downloads
-#########
-
-You may find newer stable versions of FSS and pointers to related
-informations (tracker, doc, ...) from
-http://plone.org/products/ploneglossary
-
-
 Subversion repository
 #####################
 
