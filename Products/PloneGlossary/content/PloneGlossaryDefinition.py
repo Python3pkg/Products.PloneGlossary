@@ -29,6 +29,9 @@ from AccessControl import ClassSecurityInfo
 # CMF imports
 from Products.CMFCore import permissions
 
+# Plone imports
+from Products.CMFPlone.utils import getToolByName
+
 # Archetypes imports
 try:
     from Products.LinguaPlone.public import BaseContent
@@ -73,21 +76,24 @@ class PloneGlossaryDefinition(ATCTContent):
     security.declareProtected(permissions.ModifyPortalContent, 'indexObject')
     def indexObject(self):
         """Index object in portal catalog and glossary catalog"""
-        BaseContent.indexObject(self)
+        cat = getToolByName(self, 'portal_catalog')
+        cat.indexObject(self)
         cat = self.getCatalog()
         cat.indexObject(self)
 
     security.declareProtected(permissions.ModifyPortalContent, 'unindexObject')
     def unindexObject(self):
         """Unindex object in portal catalog and glossary catalog"""
-        BaseContent.unindexObject(self)
+        cat = getToolByName(self, 'portal_catalog')
+        cat.unindexObject(self)
         cat = self.getCatalog()
         cat.unindexObject(self)
 
     security.declareProtected(permissions.ModifyPortalContent, 'reindexObject')
     def reindexObject(self, idxs=[]):
         """Reindex object in portal catalog and glossary catalog"""
-        BaseContent.reindexObject(self, idxs)
+        cat = getToolByName(self, 'portal_catalog')
+        cat.reindexObject(self, idxs)
         cat = self.getCatalog()
         cat.reindexObject(self, idxs)
 
