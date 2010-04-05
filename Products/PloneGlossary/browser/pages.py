@@ -58,7 +58,7 @@ class GlossaryMainPage(BrowserView):
                 'glyph': letter,
                 'has_no_term': letter.lower() not in existing,
                 'zoom_link': glossary_url + '?search_letter=' + letter.lower(),
-                'css_class': letter == self.search_letter and 'selected' or None
+                'css_class': letter.lower() == self.search_letter.lower() and 'selected' or None
                 }
             out.append(letter_map)
         return out
