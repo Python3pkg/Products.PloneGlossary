@@ -245,11 +245,15 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             if obj is None:
                 continue
 
+            # XXX: DELIVERANCE FIX: We do not check the view permission for now, 
+            # otherwise Deliverance will not work.
+            #
             # Check view permission
-            has_view_permission = mbtool.checkPermission(permissions.View, obj) and mbtool.checkPermission(permissions.AccessContentsInformation, obj)
-            if has_view_permission:
-                glossaries.append(obj)
-
+            #has_view_permission = mbtool.checkPermission(permissions.View, obj) and mbtool.checkPermission(permissions.AccessContentsInformation, obj)
+            #if has_view_permission:
+            #    glossaries.append(obj)
+            glossaries.append(obj)
+            
         return tuple(glossaries)
 
     # Make it private because this method doesn't check term security
@@ -488,7 +492,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         for item in not_secured_term_items:
             path = item['path']
             try:
-                obj = portal_object.restrictedTraverse(path)
+                # XXX: DELIVERANCE FIX: Use unrestrictedTraverse for now, 
+                # otherwise Deliverance will fail to highlight the glossary 
+                # terms.
+                #obj = portal_object.restrictedTraverse(path)
+                obj = portal_object.unrestrictedTraverse(path)
             except:
                 continue
             term_items.append(item)
