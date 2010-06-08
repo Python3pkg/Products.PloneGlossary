@@ -34,7 +34,7 @@ class GlossaryMainPage(BrowserView):
 
     def __init__(self, context, request):
         super(GlossaryMainPage, self).__init__(context, request)
-        self.search_letter = request.get('search_letter')
+        self.search_letter = request.get('search_letter', '')
         self.search_text = request.get('search_text')
         self.batch_start = request.get('b_start', 0)
         self.uid = context.UID()
