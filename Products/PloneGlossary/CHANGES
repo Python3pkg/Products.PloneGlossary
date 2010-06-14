@@ -2,8 +2,12 @@
 Change log
 ==========
 
-Next release
-============
+1.4.1 - 2010-06-14
+==================
+
+* Return empty string when reading search_letter from request as default to
+  avoid .lower() crash in GlossaryMainPage.__init__.
+  [rnix]
 
 * IE8 compatibility fix - thanks to Francesco Manna
   [glenfant]
@@ -12,6 +16,10 @@ Next release
   http://plone.org/products/ploneglossary/issues/2
   Thanks to Martin Stadler
   [glenfant]
+
+* Call portal_catalog.*indexObject instead of BaseObject.*indexObject. Latter
+  one causes collective.indexing crash due to recursion error.
+  [rnix]
 
 1.4.0 - 2009-12-04
 ==================
