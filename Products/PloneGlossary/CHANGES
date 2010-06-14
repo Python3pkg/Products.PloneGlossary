@@ -17,7 +17,7 @@ Change log
   Thanks to Martin Stadler
   [glenfant]
 
-* Call portal_catalog.*indexObject instead of BaseObject.*indexObject. Latter
+* Call portal_catalog.n_indexObject instead of BaseObject.n_indexObject. Latter
   one causes collective.indexing crash due to recursion error.
   [rnix]
 
