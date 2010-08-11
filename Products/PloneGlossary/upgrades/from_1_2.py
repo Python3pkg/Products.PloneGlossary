@@ -25,7 +25,9 @@ __docformat__ = 'restructuredtext'
 from Products.CMFCore.utils import getToolByName
 from Products.PloneGlossary.utils import getSite, IfInstalled
 
-@IfInstalled()
+safety_belt = IfInstalled()
+
+@safety_belt
 def synonymsSupportHandler(setuptool):
     """Adding support for synonyms"""
 
