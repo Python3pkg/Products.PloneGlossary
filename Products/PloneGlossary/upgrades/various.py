@@ -60,3 +60,23 @@ def findGlossaryBrains():
     glossary_metatypes = glossary_tool.getProperty('glossary_metatypes')
     catalog = getToolByName(portal, 'portal_catalog')
     return catalog.searchResults(meta_type=glossary_metatypes)
+
+
+##
+# -> 1.4.2
+##
+
+def changeJSRegistryConditions(setuptool):
+    """Change / simplify condition for JS registry.
+    """
+    runImportStep(setuptool, 'jsregistry')
+    return
+
+###
+# Misc
+###
+
+def runImportStep(setuptool, step_id):
+    setuptool.runImportStepFromProfile('profile-Products.PloneGlossary:default',
+                                       step_id, run_dependencies=False)
+    return

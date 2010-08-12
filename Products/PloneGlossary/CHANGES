@@ -2,6 +2,18 @@
 Change log
 ==========
 
+1.4.2 (trunk)
+=============
+
+* Fixed the tool ZMI access (properties tab)
+  [glenfant]
+
+* Fixed conflicts with Kupu stuffs http://plone.org/products/ploneglossary/issues/5
+  [glenfant]
+
+* GS schema version 2 and upgrade steps
+  [glenfant]
+
 1.4.1 - 2010-06-14
 ==================
 

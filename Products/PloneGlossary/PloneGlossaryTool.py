@@ -88,7 +88,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
          'type': 'lines',
          'mode': 'w'},
         {'id': 'glossary_metatypes',
-         'type': 'multiple_selection', 'mode': 'w',
+         'type': 'multiple selection', 'mode': 'w',
          'select_variable': 'getAvailableGlossaryMetaTypes' },
         )
 
@@ -681,6 +681,16 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """Returns escaped text."""
 
         return escape_special_chars(text)
+
+    security.declarePublic('includePloneGlossaryJS')
+    def includePloneGlossaryJS(self, context, request):
+        """Helper for portal_javascripts
+        Should we include PloneGlossary javascripts
+        """
+        context_state = getMultiAdapter((context, request), name=u'plone_context_state')
+        if not context_state.is_view_template():
+            return False
+        return self.showPortlet() or self.highlightContent(context)
 
 
     def _split(self, text, removed_words=()):

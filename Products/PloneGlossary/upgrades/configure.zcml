@@ -5,17 +5,31 @@
    >
 
   <genericsetup:upgradeSteps
-     source="*"
+     source="0"
      destination="1.4.0RC2"
      profile="Products.PloneGlossary:default">
 
      <genericsetup:upgradeStep
         title="Add support for synonyms"
         description="Catalogs of glossaries require synonyms support."
-        handler=".from_1_2.synonymsSupportHandler"
-        checker=".from_1_2.synonymsSupportChecker"
+        handler=".various.synonymsSupportHandler"
+        checker=".various.synonymsSupportChecker"
         />
 
   </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+     source="1.4.0RC2"
+     destination="2"
+     profile="Products.PloneGlossary:default">
+
+     <genericsetup:upgradeStep
+        title="Change / simplify condition for JS registry."
+        description="Change / simplify condition for JS registry."
+        handler=".various.changeJSRegistryConditions"
+        />
+
+  </genericsetup:upgradeSteps>
+
 
 </configure>
