@@ -98,7 +98,10 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     allowed_portal_types = ['PloneGlossaryDefinition']
     description_length = 0
     description_ellipsis = '..'
-    not_highlighted_tags = ['a', 'h1', 'input', 'textarea']
+    not_highlighted_tags = [
+        'a', 'h1', 'input', 'textarea', 'div#kupu-editor-text-config-escaped',
+        'div#kupu-editor-text-config'
+        ]
     available_glossary_metatypes = ()
     glossary_metatypes = ['PloneGlossary']
 

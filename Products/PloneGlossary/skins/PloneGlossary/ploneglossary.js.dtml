@@ -167,9 +167,14 @@ function highlight_related_glossary_term_in_node(node, word, definition_index, u
     // Don't dig into unauthorized keys
     tag_name = node.nodeName.toLowerCase();
 
+    tag_id = node.id;
+    tag_class = node.className;
+
     for (i=0;i<unauthorized_tags.length;i++) {
         unauthorized_tag_name = unauthorized_tags[i].toLowerCase();
-        if (tag_name == unauthorized_tag_name) {
+        if ((tag_name == unauthorized_tag_name)
+            || (tag_name + '#' + tag_id == unauthorized_tag_name)
+            || (tag_name + '.' + tag_class == unauthorized_tag_name)) {
             return false;
         }
     }

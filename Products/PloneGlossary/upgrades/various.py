@@ -23,6 +23,7 @@ __author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
 from Products.CMFCore.utils import getToolByName
+from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import getSite, IfInstalled
 
 safety_belt = IfInstalled()
@@ -66,11 +67,27 @@ def findGlossaryBrains():
 # -> 1.4.2
 ##
 
+@safety_belt
 def changeJSRegistryConditions(setuptool):
     """Change / simplify condition for JS registry.
     """
     runImportStep(setuptool, 'jsregistry')
     return
+
+@safety_belt
+def fixKupuSupport(setuptool):
+    """Don't decorate Kupu specific areas
+    """
+    new_tags = set(['div#kupu-editor-text-config-escaped', 'div#kupu-editor-text-config'])
+    pgtool = getSite()[PLONEGLOSSARY_TOOL]
+    not_highlighted_tags = set(pgtool.getProperty('not_highlighted_tags'))
+    if not new_tags <= not_highlighted_tags:
+        not_highlighted_tags |= new_tags
+        not_highlighted_tags = tuple(not_highlighted_tags)
+        pgtool.manage_changeProperties(not_highlighted_tags=not_highlighted_tags)
+    return
+
+
 
 ###
 # Misc
