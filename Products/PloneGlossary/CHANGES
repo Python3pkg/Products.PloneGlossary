@@ -2,8 +2,8 @@
 Change log
 ==========
 
-1.4.2 (trunk)
-=============
+1.4.2 - 2010-08-16
+==================
 
 * Fixed the tool ZMI access (properties tab)
   [glenfant]
