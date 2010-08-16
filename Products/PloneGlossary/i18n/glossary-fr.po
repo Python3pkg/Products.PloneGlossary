@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
 "POT-Creation-Date: 2005-08-16 12:28+0000\n"
 "PO-Revision-Date: 2006-08-17 14:44+0200\n"
-"Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
-"Language-Team: EDFGDF\n"
+"Last-Translator: Gilles Lenfant <gilles.lenfant@alterway.fr>\n"
+"Language-Team: Alterway Solutions\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -82,7 +82,10 @@ msgstr ""
 "Cochez la case pour activer le surlignage des termes dans les contenus. Vous "
 "pouvez choisir quels types de contenus surligner."
 
-# Original: "Enter one tag name per line. Tags specified below will not be highlighted."
+# Original:"Enter one tag name per line. Tags specified below will not be
+# highlighted. A tags may be in the form 'tag' to match any tag,
+# 'tag#selec' to match tag with id 'select', or 'tag.someclass' to
+# match all tags with CSS class 'someclass'."
 #. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
 #.                     Enter one tag name per line. Tags specified below will not be highlighted.
 #. </div>
@@ -90,7 +93,10 @@ msgstr ""
 msgid "help_not_highlighted_tags"
 msgstr ""
 "Les balises HTML spécifiées ici ne seront pas surlignées. Entrez une balise "
-"par ligne."
+"par ligne. Les balises peuvent être sous la forme 'tag' pour ne pas surligner les termes "
+"dans les éléments 'tag', ou 'tag#ident' pour ne pas surligner les termes dans l'élément "
+"'tag' ayant pour attribut 'id=\"ident\"', ou 'tag.uneclasse' pour ne pas surligner les "
+"termes dans les élément 'tag' ayant pour attribut 'class=\"uneclasse\"'."
 
 # Original: "Check it to display related terms in a portlet."
 #. <div class="formHelp" i18n:translate="help_show_portlet">

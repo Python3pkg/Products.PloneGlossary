@@ -14,3 +14,4 @@ TODO
 * Remove the /content/schemata.py dispatch its code in content types
   modules and utils.py.
 
+* Plone 4.0 compatibility

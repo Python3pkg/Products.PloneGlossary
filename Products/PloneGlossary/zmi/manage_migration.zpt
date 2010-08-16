@@ -15,7 +15,7 @@
   check for available upgrades for "Products.PloneGlossary:default" in
   the <a href="../portal_setup/manage_upgrades">setup tool</a>.</p>
 
-  <form method="PUT" action="manage_migrate">
+  <form method="POST" action="manage_migrate">
 
     <div>
        <strong>meta_type</strong>: <input name="meta_type"

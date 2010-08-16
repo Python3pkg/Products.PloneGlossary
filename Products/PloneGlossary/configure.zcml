@@ -45,7 +45,9 @@
                    zope.app.container.interfaces.IObjectMovedEvent"
               handler=".content.PloneGlossary.glossaryMoved" />
 
-  <!-- Wicked aware -->
+  <!-- ============
+       Wicked aware
+       ============ -->
 
   <include package="wicked.at" />
 
