@@ -15,10 +15,3 @@ TODO
   modules and utils.py.
 
 * Plone 4.0 compatibility
-
-* Fix issues:
-
-  - http://plone.org/products/ploneglossary/issues/5
-
-* Conflict with collective.indexing http://plone.org/products/ploneglossary/issues/1
-
