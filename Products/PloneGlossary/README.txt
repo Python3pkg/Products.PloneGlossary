@@ -1,6 +1,6 @@
-#############
+=============
 PloneGlossary
-#############
+=============
 
 By Ingeniweb_.
 
@@ -11,7 +11,7 @@ By Ingeniweb_.
 --------------------------
 
 Overview
-########
+========
 
 PloneGlossary is a Plone content type that allows you to manage your
 own glossaries, propose definitions and search in one or more
@@ -34,7 +34,7 @@ which is simply a ZCatalog.
 
 
 Copyright and license
-#####################
+=====================
 
 Copyright (c) 2005 - 2007 Ingeniweb_ SAS
 
@@ -48,15 +48,13 @@ FOR A PARTICULAR PURPOSE
 See the `LICENSE` file that comes with this product.
 
 Requirements
-############
+============
 
-Plone 3.0
+Plone 3.x
 
 Installation
-############
+============
 
-Installing PloneGlossary
-========================
 
 Installing the latest release
 -----------------------------
@@ -124,16 +122,16 @@ If you're upgrading from PloneGlossary 1.2 or older you may force
 upgrades using "Show old upgrades".
 
 Configuring
-###########
+===========
 
 Add a glossary portlet
-======================
+----------------------
 
 Use the portlets manager to display a portlet of all definitions found
 in the displayed content.
 
 zope.conf tweaks (optional)
-===========================
+---------------------------
 
 PloneGlossary assumes that your site charset is UTF-8. As this charset
 must be known very early in Zope startup, we cannot always use the
@@ -152,7 +150,7 @@ need another batch size, you might append this to your `zope.conf`::
 
 
 The Glossary configlet
-======================
+----------------------
 
 Highlight content: if this option is chosen, all defined words
 are hightlighted in the chosen content types (see further).
@@ -178,29 +176,26 @@ General glossaries: Select glossaries used to check related terms of
 content.
 
 Additional tools
-================
-
-PloneGlossaryTool
------------------
+----------------
 
 A tool is installed by the installer. It provides a few configuration
 options so that you can customize and manage your glossaries.
 
 
 Testing
-#######
+=======
 
 Please read `./tests/README.txt`.
 
 
 Other documentation
-###################
+===================
 
 See `./doc`.
 
 
 Subversion repository
-#####################
+=====================
 
 Stay in tune with the freshest (maybe unstable) versions or participate to
 the FileSystemStorage evolutions:
@@ -208,7 +203,7 @@ the FileSystemStorage evolutions:
 https://svn.plone.org/svn/collective/Products.PloneGlossary
 
 Support and feedback
-####################
+====================
 
 Please read all the documentation that comes with this product before
 asking for support, unless you might get a RTFM reply ;)
@@ -234,10 +229,10 @@ French to ask for specific support.
 <http://sourceforge.net/project/project_donations.php?group_id=74634>`_
 
 Credits
-#######
+=======
 
 Developers
-==========
+----------
 
 * `Cyrille Lebeaupin <mailto:cyrille.lebeaupin@ingeniweb.com>`_
 * `Bertrand Mathieu <mailto:bertrand.mathieu@ingeniweb.com>`_
@@ -245,7 +240,7 @@ Developers
 * `Gilles Lenfant <mailto:gilles.lenfant@ingeniweb.com>`_
 
 Translations
-============
+------------
 
 * French (fr): Ingeniweb_
 * Czech (cs): `Lukas Zdych <mailto:lukas.zdych@corenet.cz>`_
