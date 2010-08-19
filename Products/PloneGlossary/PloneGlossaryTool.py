@@ -33,6 +33,7 @@ from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
 from Acquisition import aq_base
 from ZODB.POSException import ConflictError
+from zope.app.component import hooks
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
@@ -176,32 +177,29 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         in the navigational tree in search for the neares glossary.
         This neares glossary is then returned
         """
+        portal_catalog = getToolByName(context, 'portal_catalog')
 
-        plone_tools = getMultiAdapter((context, context.REQUEST), name='plone_tools')
-        portal = plone_tools.url().getPortalObject()
-        portal_path = portal.getPhysicalPath()
-        if context.getPhysicalPath() == portal_path:
-            parent = context
-        else:
-            parent = context.aq_inner.aq_parent
+        context = context.aq_inner
+        siteroot = hooks.getSite()
+        glossaries = []
+        glossary_metatypes = self.glossary_metatypes
 
-        glossaries=[]
-        proceed = True
-        while proceed:
-            # check for a glossary in this parent
-            glossaries=[]
-            for o in parent.contentValues():
-                if o.portal_type in self.glossary_metatypes:
-                    glossaries.append(o.UID())
-            if glossaries:
-                # we found one or more glossaries
+        while True:
+            query = {
+                'portal_type': glossary_metatypes,
+                'path': "/".join(context.getPhysicalPath()),
+            }
+
+            brains = portal_catalog(query)
+            if brains:
+                glossaries.extend([x.UID for x in brains])
                 break
-            # move upwards
 
-            if parent.getPhysicalPath() == portal_path:
-                proceed=False
+            # quit after siteroot
+            if context == siteroot:
+                break
 
-            parent = parent.aq_inner.aq_parent
+            context = context.aq_parent
 
         return glossaries
 
