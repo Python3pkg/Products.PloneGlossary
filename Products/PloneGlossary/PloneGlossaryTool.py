@@ -27,7 +27,7 @@ __docformat__ = 'restructuredtext'
 # Zope imports
 from zope.interface import implements
 from zope.component import getMultiAdapter
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
