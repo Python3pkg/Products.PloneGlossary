@@ -45,7 +45,7 @@ def readZopeConf():
         }
     try:
         pg_config = getConfiguration().product_config['ploneglossary']
-    except KeyError, e:
+    except (KeyError, AttributeError):
         pg_config =  default_config
 
     getConfData = lambda key: pg_config.get(key, default_config[key])
