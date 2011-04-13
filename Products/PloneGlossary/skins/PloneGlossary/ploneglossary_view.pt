@@ -51,7 +51,7 @@
             <p></p>
             <form name="glossary_search"
                   action="search"
-                  tal:attributes="action here_url" >
+                  tal:attributes="action context/absolute_url" >
               <label for="search_text" 
                      class="hiddenStructure" 
                      i18n:translate="label_text_search">
@@ -66,13 +66,13 @@
                      title="Search"
                      i18n:attributes="alt title"
                      tal:attributes="value view/search_text;
-                                     tabindex tabindex/next" />
+                                     tabindex tabindex/next|nothing" />
               
               <input class="searchButton"
                      type="submit"
                      value="Search"
                      i18n:attributes="value"
-                     tal:attributes="tabindex tabindex/next" />
+                     tal:attributes="tabindex tabindex/next|nothing" />
             </form>
           </fieldset>
 

@@ -51,7 +51,7 @@
                      name="highlight_content"
                      tabindex=""
                      tal:attributes="checked python:test(highlight_content, 'checked', None);
-                                     tabindex tabindex/next;" />
+                                     tabindex tabindex/next|nothing;" />
               <label for="highlight_content"
                      i18n:translate="label_highlight_content">
                 Highlight content ?
@@ -85,7 +85,7 @@
                      name="description_length:int"
                      tabindex=""
                      tal:attributes="value description_length;
-                                     tabindex tabindex/next;" />
+                                     tabindex tabindex/next|nothing;" />
             </div>
 
             <div class="field"
@@ -107,7 +107,7 @@
                      name="description_ellipsis"
                      tabindex=""
                      tal:attributes="value description_ellipsis;
-                                     tabindex tabindex/next;" />
+                                     tabindex tabindex/next|nothing;" />
             </div>
 
             <div class="field"
@@ -130,7 +130,7 @@
               <textarea id="not_highlighted_tags"
                         name="not_highlighted_tags:lines"
                         tabindex=""
-                        tal:attributes="tabindex tabindex/next;"
+                        tal:attributes="tabindex tabindex/next|nothing;"
                         tal:content="python:'\n'.join(not_highlighted_tags)" />
             </div>
 
@@ -154,7 +154,7 @@
                       tabindex=""
                       multiple="multiple"
                       size="10"
-                      tal:attributes="tabindex tabindex/next;">
+                      tal:attributes="tabindex tabindex/next|nothing;">
                 <tal:block tal:repeat="portal_type gtool/getAvailablePortalTypes">
                   <option tal:attributes="value portal_type;
                                           selected python:test(allowed_portal_types and portal_type in allowed_portal_types, 'selected', None);"
@@ -174,7 +174,7 @@
                      name="use_general_glossaries"
                      tabindex=""
                      tal:attributes="checked python:test(use_general_glossaries, 'checked', None);
-                                     tabindex tabindex/next;" />
+                                     tabindex tabindex/next|nothing;" />
               <label for="use_general_glossaries"
                      i18n:translate="label_use_general_glossaries">
                 Use glossaries globally for all content?
@@ -208,7 +208,7 @@
                       tabindex=""
                       multiple="multiple"
                       size="5"
-                      tal:attributes="tabindex tabindex/next;"
+                      tal:attributes="tabindex tabindex/next|nothing;"
                       >
                 <tal:block tal:repeat="glossary gtool/getGlossaries">
                   <option tal:define="glossary_uid glossary/UID;
@@ -229,7 +229,7 @@
                      name="form.button.Save"
                      i18n:domain="plone"
                      i18n:attributes="value"
-                     tal:attributes="tabindex tabindex/next;" />
+                     tal:attributes="tabindex tabindex/next|nothing;" />
             </div>
 
             <input type="hidden" name="form.submitted" value="1" />

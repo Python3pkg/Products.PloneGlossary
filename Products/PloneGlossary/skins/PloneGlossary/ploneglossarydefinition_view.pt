@@ -31,7 +31,7 @@
           <div tal:replace="structure provider:plone.belowcontenttitle" />
           <div tal:replace="structure provider:plone.abovecontentbody" />
 
-          <p tal:condition="python: not text and is_editable"
+          <p tal:condition="python: False and not text and is_editable"
              i18n:domain="plone"
              i18n:translate="no_body_text"
              class="discreet">

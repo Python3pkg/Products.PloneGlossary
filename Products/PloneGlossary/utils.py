@@ -31,7 +31,7 @@ from sgmllib import SGMLParser
 import logging
 
 # Zope imports
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ModuleSecurityInfo
 from zope.i18nmessageid import MessageFactory
 

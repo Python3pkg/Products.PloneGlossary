@@ -22,7 +22,7 @@ add_related_glossary_definition(
 </tal:loop>
 
 function highlight_related_glossary_terms() {
-    var target_node = document.getElementById("region-content");
+    var target_node = document.getElementById("content");
     var unauthorized_tags = new Array();
     <tal:unauthtags repeat="tag unauthorized_tags">
     unauthorized_tags.push('<tal:tag replace="tag" />');
