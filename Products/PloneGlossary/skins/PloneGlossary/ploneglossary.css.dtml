@@ -10,7 +10,7 @@
     margin-bottom: 1em;
 }
 
-.glossaryAbcedaire li {
+#content .glossaryAbcedaire li {
     display: inline;
     margin: 0;
     margin-right: 0.5em;
