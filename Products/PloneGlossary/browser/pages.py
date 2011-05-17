@@ -28,7 +28,11 @@ from plone.memoize.instance import memoize
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import Batch
-from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, BATCH_SIZE, SITE_CHARSET
+from Products.PloneGlossary.config import (
+    PLONEGLOSSARY_TOOL, 
+    BATCH_SIZE, 
+    SITE_CHARSET
+)
 
 class GlossaryMainPage(BrowserView):
 
@@ -39,7 +43,6 @@ class GlossaryMainPage(BrowserView):
         self.batch_start = request.get('b_start', 0)
         self.uid = context.UID()
         self.gtool = getToolByName(context, PLONEGLOSSARY_TOOL)
-        return
 
     def title(self):
         """Title of our glossary"""
@@ -58,7 +61,8 @@ class GlossaryMainPage(BrowserView):
                 'glyph': letter,
                 'has_no_term': letter.lower() not in existing,
                 'zoom_link': glossary_url + '?search_letter=' + letter.lower(),
-                'css_class': letter.lower() == self.search_letter.lower() and 'selected' or None
+                'css_class': letter.lower() == self.search_letter.lower() \
+                             and 'selected' or None
                 }
             out.append(letter_map)
         return out
@@ -82,10 +86,12 @@ class GlossaryMainPage(BrowserView):
         gtool = self.gtool
         if self.search_letter:
             # User clicked a letter
-            results = gtool.getAbcedaireBrains([self.uid], letters=[self.search_letter])
+            results = gtool.getAbcedaireBrains([self.uid], 
+                                               letters=[self.search_letter])
         elif self.search_text:
             # User searches for text
-            results = gtool.searchResults([self.uid], SearchableText=self.search_text)
+            results = gtool.searchResults([self.uid], 
+                                          SearchableText=self.search_text)
             # We redirect to the result if unique
             if len(results) == 1:
                 target = results[0].getURL()
@@ -94,16 +100,18 @@ class GlossaryMainPage(BrowserView):
             # Viewing all terms
             results = gtool.searchResults([self.uid])
         results = list(results)
-        results.sort(lambda x,y: cmp(toLowerAscii(x.Title), toLowerAscii(y.Title)))
-        return results
+        results.sort(lambda x,y: cmp(toLowerAscii(x.Title), 
+                                     toLowerAscii(y.Title)))
+        return tuple(results)
 
     def result_features(self, result):
         """TAL friendly properties of each feature"""
 
+        description = self.gtool.truncateDescription(result.Description)
         return {
             'url': result.getURL(),
             'title': result.Title or result.getId,
-            'description': self.gtool.truncateDescription(result.Description).replace('\n', '<br />')
+            'description': description.replace('\n', '<br />')
             }
 
 def toLowerAscii(text):
