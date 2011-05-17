@@ -50,7 +50,7 @@ See the `LICENSE` file that comes with this product.
 Requirements
 ############
 
-Plone 3.0
+Plone >= 3
 
 Installation
 ############
