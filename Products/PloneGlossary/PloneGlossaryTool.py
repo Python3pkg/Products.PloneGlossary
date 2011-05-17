@@ -230,28 +230,15 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     def getGlossaries(self, glossary_uids=None):
         """Returns glossaries defined on portal"""
 
-        glossaries = []
-        uid_cat = getToolByName(self, 'uid_catalog')
-        plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')
-        mbtool = plone_tools.membership()
-        kwargs = {}
+        cat = getToolByName(self, 'portal_catalog')
+        query = {}
+        query['portal_type'] = self.glossary_metatypes
         if glossary_uids is not None:
-            kwargs['UID'] = glossary_uids
-
-        brains = uid_cat(portal_type=self.glossary_metatypes, **kwargs)
-
-        for brain in brains:
-            obj = brain.getObject()
-
-            if obj is None:
-                continue
-
-            # Check view permission
-            has_view_permission = mbtool.checkPermission(permissions.View, obj) and mbtool.checkPermission(permissions.AccessContentsInformation, obj)
-            if has_view_permission:
-                glossaries.append(obj)
-
-        return tuple(glossaries)
+            query['UID'] = glossary_uids
+        brains = cat(**query)
+        glossaries = [_.getObject() for _ in brains]
+        print query, glossaries
+        return tuple([_ for _ in glossaries if _])
 
     # Make it private because this method doesn't check term security
     def _getGlossaryTermItems(self, glossary_uids):
@@ -576,14 +563,14 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         search_args: Use index of portal_catalog."""
 
         # Get path of glossaries
+        query = dict(search_args)        
         glossaries = self.getGlossaries(glossary_uids)
-        paths = ['/'.join(x.getPhysicalPath()) for x in glossaries]
+        query['path'] = ['/'.join(x.getPhysicalPath()) for x in glossaries]
         plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')
         ctool = plone_tools.catalog()
-        definitions_metatypes = self._getDefinitionsMetaTypes(glossaries)
-        return ctool.searchResults(path=paths,
-                                   portal_type=definitions_metatypes,
-                                   **search_args)
+        query['portal_type'] = self._getDefinitionsMetaTypes(glossaries)
+        print query
+        return ctool(**query)
 
     def _getDefinitionsMetaTypes(self, glossaries):
         """

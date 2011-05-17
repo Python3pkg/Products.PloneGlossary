@@ -21,15 +21,26 @@ This module contains permissions used in PloneGlossary product
 
 __docformat__ = 'restructuredtext'
 
+try:
+    from plone.app.upgrade import v40
+    HAS_PLONE4 = True
+except ImportError:
+    HAS_PLONE4 = False
 # CMF imports
 from Products.CMFCore import permissions
 
 # Add permission
 AddGlossary = 'PloneGlossary: Add Glossary'
-permissions.setDefaultRoles(AddGlossary, ('Manager', 'Owner'))
+
+if HAS_PLONE4:
+    ADDROLES = ('Manager', 'Owner', 'Contributor')
+else:
+    ADDROLES = ('Manager', 'Owner')
+    
+permissions.setDefaultRoles(AddGlossary, ADDROLES)
 
 AddDefinition = 'PloneGlossary: Add Definition'
-permissions.setDefaultRoles(AddDefinition, ('Manager', 'Owner'))
+permissions.setDefaultRoles(AddDefinition, ADDROLES)
 
 add_permissions = {
     'PloneGlossary': AddGlossary,
