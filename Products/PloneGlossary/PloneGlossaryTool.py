@@ -237,7 +237,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             query['UID'] = glossary_uids
         brains = cat(**query)
         glossaries = [_.getObject() for _ in brains]
-        print query, glossaries
         return tuple([_ for _ in glossaries if _])
 
     # Make it private because this method doesn't check term security
