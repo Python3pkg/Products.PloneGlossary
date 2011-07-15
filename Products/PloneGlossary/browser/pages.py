@@ -27,7 +27,12 @@ from zExceptions import Redirect
 from plone.memoize.instance import memoize
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import Batch
+
+try:
+    from Products.CMFPlone import Batch
+except ImportError: #Plone4.1 has moved Batch
+    from Products.CMFPlone.PloneBatch import Batch
+
 from Products.PloneGlossary.config import (
     PLONEGLOSSARY_TOOL, 
     BATCH_SIZE, 
