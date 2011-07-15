@@ -4,14 +4,15 @@ import os
 _home = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Products', 'PloneGlossary')
 
 version = open(os.path.join(_home, 'version.txt')).read().strip()
+long_description = open(os.path.join(_home, "README.txt")).read() + "\n\n"
+long_description += open(os.path.join(_home, "CHANGES")).read()
+long_description = long_description.decode('utf8')
 
 setup(
     name='Products.PloneGlossary',
     version=version,
+    long_description = long_description,
     description="Hilite Plone content terms, mouserover shows the term definition as tooltip.",
-    long_description=(open(os.path.join(_home, "README.txt")).read() +
-                      "\n\n" +
-                      open(os.path.join(_home, "CHANGES")).read()),
     # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Programming Language :: Python",

@@ -33,24 +33,10 @@ search in the glossary. Each glossary has an integrated search engine,
 which is simply a ZCatalog.
 
 
-Copyright and license
-=====================
-
-Copyright (c) 2005 - 2007 Ingeniweb_ SAS
-
-This software is subject to the provisions of the GNU General Public License,
-Version 2.0 (GPL).  A copy of the GPL should accompany this distribution.
-THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
-WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
-FOR A PARTICULAR PURPOSE
-
-See the `LICENSE` file that comes with this product.
-
 Requirements
 ============
 
-Plone 3.x or 4.0.x
+Plone 3.x or 4.x
 
 Installation
 ============
@@ -247,7 +233,22 @@ Translations
 * Danish (da): `Anton Stonor <mailto:anton@headnet.dk>`_
 * German (de): Lukas Zdych
 * Polish (pl): `Piotr Furman <mailto:piotr.furman@webservice.pl>`_
-* Spanish (es): `Héctor Velarde <mailto:hvelarde@jornada.com.mx>`_
+* Spanish (es): `Hector Velarde <mailto:hvelarde@jornada.com.mx>`_
+
+Copyright and license
+=====================
+
+Copyright (c) 2005 - 2007 Ingeniweb_ SAS
+
+This software is subject to the provisions of the GNU General Public License,
+Version 2.0 (GPL).  A copy of the GPL should accompany this distribution.
+THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+FOR A PARTICULAR PURPOSE
+
+See the `LICENSE` file that comes with this product.
+
 
 --------------------------
 
