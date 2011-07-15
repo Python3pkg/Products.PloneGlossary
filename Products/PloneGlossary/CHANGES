@@ -2,8 +2,11 @@
 Change log
 ==========
 
-1.5.0-b3 (unreleased)
+1.5.0-b3 (2011-07-15)
 =====================
+
+* fix imports for Plone 4.1
+  [zworkb]  
 
 * fixed problem in PloneGlossaryTool with uid_catalog and simplified code.
   [jensens]
