@@ -22,7 +22,6 @@ Unit test main script
 """
 
 from Products.PloneGlossary.tests import PloneGlossaryTestCase
-from Products.PloneGlossary.utils import html2text
 from Products.PloneGlossary.utils import find_word
 from Products.PloneGlossary.utils import encode_ascii
 
@@ -296,17 +295,6 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         atext = encode_ascii(utext)
         self.assertEquals(len(utext), len(atext))
         self.assertEquals(atext, "ellipsis.")
-
-    def testHTML2Text(self):
-        """Test correct splitting of HTML"""
-        text = html2text("<div>line1\r\nline2</div>")
-        self.assertEquals(text, "line1 line2")
-        text = html2text("<div>line1\r\n line2</div>")
-        self.assertEquals(text, "line1 line2")
-        text = html2text("<div>line1 \r\n line2</div>")
-        self.assertEquals(text, "line1 line2")
-        text = html2text("<div>line1 \r \n line2</div>")
-        self.assertEquals(text, "line1 line2")
 
 def test_suite():
     from unittest import TestSuite, makeSuite

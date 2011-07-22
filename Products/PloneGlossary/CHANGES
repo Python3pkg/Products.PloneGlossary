@@ -2,6 +2,12 @@
 Change log
 ==========
 
+1.5.0-b4 (unreleased)
+=====================
+
+* using portal_transforms to convert html to text [ristow]
+* fixed: Removing special chars from descriptions  [ristow]
+
 1.5.0-b3 (2011-07-15)
 =====================
 

@@ -27,11 +27,9 @@ __docformat__ = 'restructuredtext'
 # Python imports
 import re
 import unicodedata
-from sgmllib import SGMLParser
 import logging
 
 # Zope imports
-from App.class_init import InitializeClass
 from AccessControl import ModuleSecurityInfo
 from zope.i18nmessageid import MessageFactory
 
@@ -39,65 +37,6 @@ from Products.CMFCore.utils import getToolByName
 
 # Product imports
 import config
-
-END_NEWLINE_TAGS = ('p',)
-START_NEWLINE_TAGS = ('br',)
-TAB_TAGS = ('li',)
-CHARS_TO_REMOVE = r'[\r\n]'
-RE_CHARS_TO_REMOVE = re.compile(CHARS_TO_REMOVE)
-
-class HTML2TextParser(SGMLParser):
-    """HTML -> text
-    """
-
-    def __init__(self):
-        SGMLParser.__init__(self)
-        self.result = ''
-
-    def handle_data(self, data):
-        if len(data) > 0:
-            data = RE_CHARS_TO_REMOVE.sub('', data)
-            self.result += data
-
-    def unknown_starttag(self, tag, attributes):
-        if tag in START_NEWLINE_TAGS:
-            self.result += '\n'
-
-        if tag in TAB_TAGS:
-            self.result += '\n - '
-
-    def unknown_endtag(self, tag):
-        if tag in END_NEWLINE_TAGS:
-            self.result += '\n'
-
-InitializeClass(HTML2TextParser)
-
-MULTIPLE_SPACES = r' +'
-RE_MULTIPLE_SPACES = re.compile(MULTIPLE_SPACES)
-MULTIPLE_NEWLINES = r'\n+'
-RE_MULTIPLE_NEWLINES = re.compile(MULTIPLE_NEWLINES)
-
-def html2text(html):
-    """Transform html to text"""
-
-    output = html
-    output = output.replace('\r',' ')
-    output = output.replace('\n',' ')
-    if len(output) > 0:
-        parser = HTML2TextParser()
-        parser.feed(output)
-        parser.close()
-        output = parser.result
-
-        # Replace multiple spaces and newline by one
-        output = RE_MULTIPLE_SPACES.sub(' ', output)
-        output = RE_MULTIPLE_NEWLINES.sub('\n', output)
-
-        # Strip chars
-        output = output.strip()
-
-    return output
-
 
 SEARCH_WORDS = r'[\s:;.,\'\{\}\(\)\|]*'
 RE_SEARCH_WORDS = re.compile(SEARCH_WORDS)

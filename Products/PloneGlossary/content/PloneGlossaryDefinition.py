@@ -28,6 +28,7 @@ from AccessControl import ClassSecurityInfo
 
 # CMF imports
 from Products.CMFCore import permissions
+from Acquisition import aq_inner
 
 # Plone imports
 from Products.CMFPlone.utils import getToolByName
@@ -46,7 +47,6 @@ from Products.ATContentTypes.content.base import ATCTContent
 # Products imports
 from Products.PloneGlossary.config import PROJECTNAME
 from Products.PloneGlossary.content.schemata import PloneGlossaryDefinitionSchema as schema
-from Products.PloneGlossary.utils import html2text
 
 class PloneGlossaryDefinition(ATCTContent):
     """PloneGlossary definition """
@@ -71,7 +71,11 @@ class PloneGlossaryDefinition(ATCTContent):
             return brain.Description
         else:
             html = self.getDefinition()
-            return html2text(html)
+            print "html:",html
+            tool = getToolByName(aq_inner(self), 'portal_transforms')
+            out = tool.convert('html_to_text', html).getData()
+            print "text:",out
+            return out
 
     security.declareProtected(permissions.ModifyPortalContent, 'indexObject')
     def indexObject(self):
