@@ -29,13 +29,16 @@ import re
 import unicodedata
 from sgmllib import SGMLParser
 import logging
+import htmlentitydefs
 
 # Zope imports
 from App.class_init import InitializeClass
 from AccessControl import ModuleSecurityInfo
 from zope.i18nmessageid import MessageFactory
+from ZODB.POSException import ConflictError
 
 from Products.CMFCore.utils import getToolByName
+from Products.PloneGlossary.config import SITE_CHARSET
 
 # Product imports
 import config
@@ -65,6 +68,28 @@ class HTML2TextParser(SGMLParser):
 
         if tag in TAB_TAGS:
             self.result += '\n - '
+
+    def _savedecode(self, code):
+        """ return the encoded string for this unicode or "empty" in
+        case of errors.
+        """
+        try:
+            ret = unichr(int(code)).encode(SITE_CHARSET, "replace")
+            return ret
+        except (ConflictError, KeyboardInterrupt):
+            raise
+        except Exception, e:
+            return ""
+
+    def handle_charref (self, ref):
+        """ handle the char reference (e.g. &257;) """
+        self.result += self._savedecode(ref)
+
+    def handle_entityref (self, ref):
+        """ handle the entity reference (e.g. &uuml;) """
+        ref = htmlentitydefs.name2codepoint.get(ref,None)
+        if ref:
+            self.result += self._savedecode(ref)
 
     def unknown_endtag(self, tag):
         if tag in END_NEWLINE_TAGS:
