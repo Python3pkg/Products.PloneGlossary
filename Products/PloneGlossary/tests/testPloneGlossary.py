@@ -309,6 +309,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(text, "line1 line2")
         text = html2text("<div><ul><li>Seleção campeã!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+        text = html2text("<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li></ul></div>")
+        self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+        text = html2text("<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")
+        self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
 
 def test_suite():
     from unittest import TestSuite, makeSuite
