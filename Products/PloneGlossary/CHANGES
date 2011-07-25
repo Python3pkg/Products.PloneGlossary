@@ -2,6 +2,11 @@
 Change log
 ==========
 
+1.5.0-b4 (unreleased)
+=====================
+
+* fixed: Removing special chars from descriptions  [ristow]
+
 1.5.0-b3 (2011-07-15)
 =====================
 
