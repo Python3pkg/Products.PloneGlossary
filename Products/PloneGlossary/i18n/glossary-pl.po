@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.4 SVN\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2007-11-30 16:32+0100\n"
 "Last-Translator: Piotr Furman <piotr.furman@webservice.pl>\n"
 "Language-Team: webservice.pl <piotr.furman@webservice.pl>\n"
@@ -219,6 +219,7 @@ msgstr "Używaj globalnych słowników"
 msgid "legend_ploneglossary_management"
 msgstr "Ustawienia PloneGlossary"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""

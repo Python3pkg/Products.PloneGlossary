@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,6 +172,7 @@ msgstr ""
 msgid "legend_ploneglossary_management"
 msgstr ""
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""

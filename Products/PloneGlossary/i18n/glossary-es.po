@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2006-05-04 19:11-0600\n"
 "Last-Translator: Héctor Velarde <hvelarde@jornada.com.mx>\n"
 "Language-Team: La Jornada\n"
@@ -221,6 +221,7 @@ msgstr ""
 msgid "legend_ploneglossary_management"
 msgstr "Configuración de PloneGlossary"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""

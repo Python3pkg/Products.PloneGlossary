@@ -28,5 +28,6 @@ properties['not_highlighted_tags'] = request.get('not_highlighted_tags', [])
 
 gtool.manage_changeProperties(**properties)
 
-putils.addPortalMessage(_(u'tool_properties_saved'))
+putils.addPortalMessage(_(u'tool_properties_saved',
+                           defaul=u"Tool properties saved"))
 return state.set(status='success')

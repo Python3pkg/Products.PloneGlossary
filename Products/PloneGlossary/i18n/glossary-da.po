@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2006-08-23 16:42+0100\n"
 "Last-Translator: Anton Stonor <anton@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,6 +222,7 @@ msgstr "Slå op i alle ordforklaringer på sitet?"
 msgid "legend_ploneglossary_management"
 msgstr "Indstillinger af ordforklaringer"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""

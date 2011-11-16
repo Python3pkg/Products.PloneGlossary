@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2011-11-16 17:06+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Plone Nederlands <plone-nl@lists.plone.org>\n"
@@ -222,7 +222,8 @@ msgstr "Begrippen gebruiken voor alle content?"
 msgid "legend_ploneglossary_management"
 msgstr "PloneGlossary configuratie"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
-msgstr ""
+msgstr "Eigenschappen van tool opgeslagen"
 

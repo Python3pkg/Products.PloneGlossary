@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2006-08-17 14:44+0200\n"
 "Last-Translator: Gilles Lenfant <gilles.lenfant@alterway.fr>\n"
 "Language-Team: Alterway Solutions\n"
@@ -224,6 +224,7 @@ msgstr "Utiliser les Glossaires globalement?"
 msgid "legend_ploneglossary_management"
 msgstr "Configuration du Glossaire"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""

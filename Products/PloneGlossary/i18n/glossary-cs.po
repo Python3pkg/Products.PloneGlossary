@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:19+0000\n"
+"POT-Creation-Date: 2011-11-16 16:20+0000\n"
 "PO-Revision-Date: 2007-01-08 21:17+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Lukas Zdych <lukas.zdych@corenet.cz>\n"
@@ -223,6 +223,7 @@ msgstr "Používat rejstříky globálně pro veškerý obsah?"
 msgid "legend_ploneglossary_management"
 msgstr "Správa Plone rejstříku"
 
+#. Default: "Tool properties saved"
 #: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
 msgid "tool_properties_saved"
 msgstr ""
