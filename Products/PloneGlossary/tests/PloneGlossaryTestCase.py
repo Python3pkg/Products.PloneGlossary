@@ -45,7 +45,6 @@ PloneTestCase.setupPloneSite(
 
 # Globals
 portal_name = 'portal'
-portal_owner = 'portal_owner'
 default_user = PloneTestCase.default_user
 default_password = PloneTestCase.default_password
 
@@ -71,12 +70,6 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         """
 
         pass
-
-    def loginAsPortalOwner(self):
-        '''Use if you need to manipulate an article as member.'''
-        uf = self.app.acl_users
-        user = uf.getUserById(portal_owner).__of__(uf)
-        newSecurityManager(None, user)
 
     def encodeInSiteCharset(self, text):
         """Text is unicode text"""
