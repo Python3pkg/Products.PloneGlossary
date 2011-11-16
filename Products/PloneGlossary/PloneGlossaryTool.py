@@ -24,6 +24,8 @@ Tool
 __author__ = ''
 __docformat__ = 'restructuredtext'
 
+import logging
+
 # Zope imports
 from zope.interface import implements
 from zope.component import getMultiAdapter
@@ -47,6 +49,8 @@ from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
 from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
 from interfaces import IGlossaryTool
+
+logger = logging.getLogger('Products.PloneGlossary')
 
 
 class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
@@ -581,7 +585,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')
         ctool = plone_tools.catalog()
         query['portal_type'] = self._getDefinitionsMetaTypes(glossaries)
-        print query
+        logger.debug(query)
         return ctool(**query)
 
     def _getDefinitionsMetaTypes(self, glossaries):
