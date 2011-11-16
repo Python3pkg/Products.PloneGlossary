@@ -65,9 +65,10 @@
 
   <include package="wicked.at" />
 
-  <five:implements
-     class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
-     interface="wicked.interfaces.IAmWicked" />
+  <!-- BBB, see sys.modules hack in init -->
+  <class class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition">
+    <implements interface="wicked.interfaces.IAmWicked" />
+  </class>
 
 
   <!-- BBB, see sys.modules hack in init -->
