@@ -45,6 +45,17 @@
                    zope.app.container.interfaces.IObjectMovedEvent"
               handler=".content.PloneGlossary.glossaryMoved" />
 
+  <!-- Avoid deprecation warnings for manage_afterAdd and friends. -->
+  <five:deprecatedManageAddDelete
+      class=".content.PloneGlossary.PloneGlossary" />
+  <five:deprecatedManageAddDelete
+      class=".content.PloneGlossaryDefinition.PloneGlossaryDefinition" />
+  <five:deprecatedManageAddDelete
+      class=".examples.exampleglossary.ExampleGlossary" />
+  <five:deprecatedManageAddDelete
+      class=".examples.exampleglossary.ExampleGlossaryDefinition" />
+
+
   <!-- ============
        Wicked aware
        ============ -->
@@ -56,6 +67,7 @@
      interface="wicked.interfaces.IAmWicked" />
 
 
+  <!-- XXX Why is there .types in here instead of .content??? -->
   <wicked:atschema-fields-implement
      atclass=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
      fields="definition"
