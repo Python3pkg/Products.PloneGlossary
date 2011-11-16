@@ -122,7 +122,7 @@
                    i18n:translate="help_not_highlighted_tags">
                 Enter one tag name per line. Tags specified below will not be
                 highlighted. A tag may be in the form 'tag' to match any tag,
-                'tag#selec' to match tag with id 'select', or 'tag.someclass' to
+                'tag#select' to match tag with id 'select', or 'tag.someclass' to
                 match all tags with CSS class 'someclass'.
               </div>
 

@@ -123,19 +123,15 @@ msgstr "Begripvarianten. Een variant per regel."
 msgid "help_highlight_content"
 msgstr "Vink aan om de geralateerde termen te markeren. Geselecteerde begrippen worden gemarkeerd."
 
-#. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
-#. Enter one tag name per line. Tags specified below will not be highlighted.
-#. </div>
-#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tag may be in the form 'tag' to match any tag, 'tag#selec' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
+#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tag may be in the form 'tag' to match any tag, 'tag#select' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:121
-#, fuzzy
 msgid "help_not_highlighted_tags"
-msgstr "Vul een html-tag per regel in. Html-tags hieronder benoemd worden niet gemarkeerd."
+msgstr "Vul een html-tag per regel in. Html-tags hieronder benoemd worden niet gemarkeerd. Een tag mag de vorm 'tag' hebben om elke van die tags te matchen, 'tag#select' om tags met id 'select' te matchen of 'tag.eenclass' om al die tags met CSS class 'eenclass' te matchen."
 
 #. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
-msgstr "Aangevinkt, worden alle begrippenlijsten gebruikt om de begrippen te markeren. Niet aangevinkt, wordt alleen de eerste bovenliggende begrippenlijst gebruikt."
+msgstr "<p>Aangevinkt, worden alle begrippenlijsten gebruikt om de begrippen te markeren.</p> <p>Niet aangevinkt, wordt alleen de eerste bovenliggende begrippenlijst gebruikt.</p>"
 
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">
 #. Allowed portal types

@@ -123,10 +123,7 @@ msgstr "Skriv alternative stavemåder af opslagsordet"
 msgid "help_highlight_content"
 msgstr "Kryds af, hvis det skal være muligt at få fremhævet begreber fra ordforklaringen i selve sitets tekster"
 
-#. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
-#. Enter one tag name per line. Tags specified below will not be highlighted.
-#. </div>
-#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tag may be in the form 'tag' to match any tag, 'tag#selec' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
+#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tag may be in the form 'tag' to match any tag, 'tag#select' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:121
 #, fuzzy
 msgid "help_not_highlighted_tags"
