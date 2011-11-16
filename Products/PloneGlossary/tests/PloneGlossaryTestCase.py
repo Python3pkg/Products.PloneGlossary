@@ -35,13 +35,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
 
-
-@onsetup
-def setupPloneGlossary():
-    ZopeTestCase.installProduct('PloneGlossary')
-    return
-
-setupPloneGlossary()
+ZopeTestCase.installProduct('PloneGlossary')
 
 # Setup Plone site
 PloneTestCase.setupPloneSite(
