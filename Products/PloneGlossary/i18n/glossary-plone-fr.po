@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2005-08-16 12:28+0000\n"
+"POT-Creation-Date: 2011-11-16 14:20+0000\n"
 "PO-Revision-Date: 2006-08-17 15:20+0200\n"
 "Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
 "Language-Team: EDFGDF\n"
