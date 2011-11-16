@@ -11,8 +11,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: fr\n"
 "Language-Name: Français\n"
-"Preferred-encodings: utf-8 latin1\n"
+"Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
+"Preferred-encodings: utf-8 latin1\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
 msgid "PloneGlossary preferences"
@@ -23,3 +24,4 @@ msgstr "Le terme a été créé."
 
 msgid "tool_properties_saved"
 msgstr "Les paramètres ont été sauvegardés"
+

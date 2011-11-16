@@ -9,10 +9,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Preferred-Encodings: utf-8 latin2\n"
-"Domain: plone\n"
 "Language-Code: pl\n"
 "Language-Name: Polish\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: plone\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid "PloneGlossary preferences"
@@ -23,3 +23,4 @@ msgstr "Hasło zostało dodane."
 
 msgid "tool_properties_saved"
 msgstr "Zapisano zmiany"
+
