@@ -46,7 +46,7 @@ setupPloneGlossary()
 # Setup Plone site
 PloneTestCase.setupPloneSite(
     products=['Products.PloneGlossary'],
-    extension_profiles=('Products.PloneGlossary:default', 'Products.PloneGlossary:examples'))
+    extension_profiles=('Products.PloneGlossary:examples', ))
 
 
 # Globals
