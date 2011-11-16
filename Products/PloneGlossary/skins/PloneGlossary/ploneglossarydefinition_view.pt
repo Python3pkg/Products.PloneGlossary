@@ -12,7 +12,7 @@
     ########################
     $Id$
   </tal:comment>
-  
+
   <body>
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="main"

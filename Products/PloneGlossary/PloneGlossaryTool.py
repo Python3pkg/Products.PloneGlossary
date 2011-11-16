@@ -562,7 +562,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         search_args: Use index of portal_catalog."""
 
         # Get path of glossaries
-        query = dict(search_args)        
+        query = dict(search_args)
         glossaries = self.getGlossaries(glossary_uids)
         query['path'] = ['/'.join(x.getPhysicalPath()) for x in glossaries]
         plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')

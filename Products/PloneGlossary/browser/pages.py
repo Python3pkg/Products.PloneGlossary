@@ -34,8 +34,8 @@ except ImportError: #Plone4.1 has moved Batch
     from Products.CMFPlone.PloneBatch import Batch
 
 from Products.PloneGlossary.config import (
-    PLONEGLOSSARY_TOOL, 
-    BATCH_SIZE, 
+    PLONEGLOSSARY_TOOL,
+    BATCH_SIZE,
     SITE_CHARSET
 )
 
@@ -91,11 +91,11 @@ class GlossaryMainPage(BrowserView):
         gtool = self.gtool
         if self.search_letter:
             # User clicked a letter
-            results = gtool.getAbcedaireBrains([self.uid], 
+            results = gtool.getAbcedaireBrains([self.uid],
                                                letters=[self.search_letter])
         elif self.search_text:
             # User searches for text
-            results = gtool.searchResults([self.uid], 
+            results = gtool.searchResults([self.uid],
                                           SearchableText=self.search_text)
             # We redirect to the result if unique
             if len(results) == 1:
@@ -105,7 +105,7 @@ class GlossaryMainPage(BrowserView):
             # Viewing all terms
             results = gtool.searchResults([self.uid])
         results = list(results)
-        results.sort(lambda x,y: cmp(toLowerAscii(x.Title), 
+        results.sort(lambda x,y: cmp(toLowerAscii(x.Title),
                                      toLowerAscii(y.Title)))
         return tuple(results)
 

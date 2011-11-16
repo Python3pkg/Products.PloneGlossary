@@ -36,7 +36,7 @@ if HAS_PLONE4:
     ADDROLES = ('Manager', 'Owner', 'Contributor')
 else:
     ADDROLES = ('Manager', 'Owner')
-    
+
 permissions.setDefaultRoles(AddGlossary, ADDROLES)
 
 AddDefinition = 'PloneGlossary: Add Definition'

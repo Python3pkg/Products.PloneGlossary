@@ -5,15 +5,15 @@
    xmlns:wicked="http://namespaces.openplans.org/wicked"
    i18n_domain="ploneglossary"
    >
-  
+
   <!-- $Id$ -->
-  
+
   <include package=".exportimport" />
 
-  <include package="plone.app.portlets" /> 
-  
+  <include package="plone.app.portlets" />
+
   <include package=".browser" />
-  
+
   <include package=".upgrades" />
 
   <genericsetup:registerProfile
@@ -33,10 +33,10 @@
      provides="Products.GenericSetup.interfaces.EXTENSION"
      for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
      />
-  
-  
+
+
   <!-- Events handlers -->
-  
+
   <subscriber for=".interfaces.IPloneGlossary
                    zope.app.container.interfaces.IObjectAddedEvent"
               handler=".content.PloneGlossary.glossaryAdded" />
@@ -56,10 +56,10 @@
      interface="wicked.interfaces.IAmWicked" />
 
 
-  <wicked:atschema-fields-implement 
+  <wicked:atschema-fields-implement
      atclass=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
      fields="definition"
      implements="wicked.at.interfaces.IAmATWickedField"
      />
-  
+
 </configure>

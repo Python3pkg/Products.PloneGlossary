@@ -13,7 +13,7 @@ var terms = new Array();
 terms.push("<tal:content replace="term" />");
 </tal:term_loop>
 add_related_glossary_definition(
-        "<tal:title replace="structure def/title"/>", 
+        "<tal:title replace="structure def/title"/>",
         '<tal:descr define="desc def/description; desc python:escape(truncateDescription(desc));"
 					replace="structure desc" />',
         "<tal:url replace="def/url" />",
@@ -27,7 +27,7 @@ function highlight_related_glossary_terms() {
     <tal:unauthtags repeat="tag unauthorized_tags">
     unauthorized_tags.push('<tal:tag replace="tag" />');
     </tal:unauthtags>
-    
+
     highlight_related_glossary_terms_in_node(target_node, unauthorized_tags);
 }
 
@@ -44,5 +44,5 @@ function fill_glossary_portlet() {
 if (<tal:bool replace="show_portlet" />) {
     registerPloneFunction(fill_glossary_portlet);
 }
-*/   
+*/
 </tal:defs>

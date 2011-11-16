@@ -192,21 +192,21 @@ class PloneGlossary(ATCTFolder):
         """don't Delete old catalog of glossary and build a new one
         but only clear it, for tests to pass
         """
-        
+
         if not hasattr(self, PLONEGLOSSARY_CATALOG):
              # Add a new catalog if not exists
              cat = self._initCatalog()
         else:
             cat = self.getCatalog()
-            
+
         # clear catalog
         cat.manage_catalogClear()
-        
+
         # Reindex glossary definitions
         for obj in self.objectValues():
             if obj.portal_type in self.definition_types:
                 cat.catalog_object(obj)
-                
+
 registerType(PloneGlossary, PROJECTNAME)
 
 ###

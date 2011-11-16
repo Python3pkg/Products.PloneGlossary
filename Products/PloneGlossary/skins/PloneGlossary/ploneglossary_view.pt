@@ -30,13 +30,13 @@
           </h1>
 
           <div tal:replace="structure provider:plone.belowcontenttitle" />
-          
+
           <p metal:use-macro="kss_generic_macros/generic_description_view">
             Description
           </p>
 
           <div tal:replace="structure provider:plone.abovecontentbody" />
-          
+
           <ul class="glossaryAbcedaire">
             <li tal:repeat="letter view/first_letters">
               <a href="#" style="font-weight: bold"
@@ -52,8 +52,8 @@
             <form name="glossary_search"
                   action="search"
                   tal:attributes="action context/absolute_url" >
-              <label for="search_text" 
-                     class="hiddenStructure" 
+              <label for="search_text"
+                     class="hiddenStructure"
                      i18n:translate="label_text_search">
                 Search
               </label>
@@ -67,7 +67,7 @@
                      i18n:attributes="alt title"
                      tal:attributes="value view/search_text;
                                      tabindex tabindex/next|nothing" />
-              
+
               <input class="searchButton"
                      type="submit"
                      value="Search"
@@ -104,14 +104,14 @@
                                           tal:attributes="href url"
                                           tal:content="result/title" />
                   </dt>
-                  
+
                   <dd tal:content="structure result/description" />
-                  
+
                 </tal:entry>
 
               </tal:loop>
             </dl>
-            
+
           </tal:if-results>
         </div>
         <div tal:replace="structure provider:plone.belowcontentbody" />
