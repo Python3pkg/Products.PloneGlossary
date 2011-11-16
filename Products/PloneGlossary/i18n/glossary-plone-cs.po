@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 14:20+0000\n"
+"POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2007-01-08 20:49+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Lukas Zdych <lukas.zdych@corenet.cz>\n"
@@ -14,12 +14,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin2\n"
 "Domain: plone\n"
 
-msgid "PloneGlossary preferences"
-msgstr "Nastavení Plone rejstříku"
+msgid "A portlet that shows the terms from the content item with a definition"
+msgstr ""
 
-msgid "PloneGlossaryDefinition has been created."
-msgstr "Termín Plone rejstříku byl vytvořen."
-
-msgid "tool_properties_saved"
-msgstr "Nastavení bylo uloženo."
+msgid "Glossary portlet"
+msgstr ""
 

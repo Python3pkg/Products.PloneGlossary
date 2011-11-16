@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.4 SVN\n"
-"POT-Creation-Date: 2011-11-16 14:20+0000\n"
+"POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2007-11-30 16:35+0100\n"
 "Last-Translator: Piotr Furman <piotr.furman@webservice.pl>\n"
 "Language-Team: webservice.pl <piotr.furman@webservice.pl>\n"
@@ -15,12 +15,9 @@ msgstr ""
 "Domain: plone\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-msgid "PloneGlossary preferences"
-msgstr "Ustawienia słownika PloneGlossary"
+msgid "A portlet that shows the terms from the content item with a definition"
+msgstr ""
 
-msgid "PloneGlossaryDefinition has been created."
-msgstr "Hasło zostało dodane."
-
-msgid "tool_properties_saved"
-msgstr "Zapisano zmiany"
+msgid "Glossary portlet"
+msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 14:20+0000\n"
+"POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2005-08-16 15:15+0200\n"
 "Last-Translator: Richard M. Kues <software@riva.at>\n"
 "Language-Team: RIVA\n"
@@ -15,12 +15,9 @@ msgstr ""
 "Domain: plone\n"
 "X-Is-Fallback-For: de-at de-de de-li de-lu de-ch\n"
 
-msgid "PloneGlossary preferences"
-msgstr "PloneGlossary Konfiguration"
+msgid "A portlet that shows the terms from the content item with a definition"
+msgstr ""
 
-msgid "PloneGlossaryDefinition has been created."
-msgstr "Begriff wurde erstellt."
-
-msgid "tool_properties_saved"
+msgid "Glossary portlet"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 14:20+0000\n"
+"POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2006-08-17 15:20+0200\n"
 "Last-Translator: Jean-Charles Rogez <jean-charles.rogez@edf.fr>\n"
 "Language-Team: EDFGDF\n"
@@ -15,12 +15,9 @@ msgstr ""
 "Domain: plone\n"
 "X-Is-Fallback-For: fr-be fr-ca fr-lu fr-mc fr-ch fr-fr\n"
 
-msgid "PloneGlossary preferences"
-msgstr "Configuration du glossaire"
+msgid "A portlet that shows the terms from the content item with a definition"
+msgstr ""
 
-msgid "PloneGlossaryDefinition has been created."
-msgstr "Le terme a été créé."
-
-msgid "tool_properties_saved"
-msgstr "Les paramètres ont été sauvegardés"
+msgid "Glossary portlet"
+msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 14:20+0000\n"
+"POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2006-08-23 16:14+0100\n"
 "Last-Translator: Anton Stonor <anton@headnet.dk>\n"
 "Language-Team: \n"
@@ -14,12 +14,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
-msgid "PloneGlossary preferences"
-msgstr "Indstillinger af ordforklaringer"
+msgid "A portlet that shows the terms from the content item with a definition"
+msgstr ""
 
-msgid "PloneGlossaryDefinition has been created."
-msgstr "Nyt opslagsord oprettet"
-
-msgid "tool_properties_saved"
-msgstr "Indstillinger gemt"
+msgid "Glossary portlet"
+msgstr ""
 
