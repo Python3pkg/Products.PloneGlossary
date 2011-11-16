@@ -13,8 +13,8 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin2\n"
 "Domain: ploneglossary\n"
-"Language-code: pl\n"
-"Language-name: Polish\n"
+"Language-Code: pl\n"
+"Language-Name: Polish\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ./browser/portlet.py:86
