@@ -13,7 +13,6 @@ msgstr ""
 "Language-Name: Danish\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
-"Preferred-encodings: utf-8 latin1\n"
 
 msgid "PloneGlossary preferences"
 msgstr "Indstillinger af ordforklaringer"

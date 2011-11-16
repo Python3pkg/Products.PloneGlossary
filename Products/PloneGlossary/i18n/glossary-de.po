@@ -13,7 +13,6 @@ msgstr ""
 "Domain: ploneglossary\n"
 "Language-Code: de\n"
 "Language-Name: Deutsch\n"
-"Preferred-encodings: latin1 utf-8\n"
 "X-Is-Fallback-For: de-at de-de de-li de-lu de-ch\n"
 
 #: ./browser/portlet.py:86

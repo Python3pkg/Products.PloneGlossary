@@ -13,7 +13,6 @@ msgstr ""
 "Language-Name: Deutsch\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
-"Preferred-encodings: latin1 utf-8\n"
 "X-Is-Fallback-For: de-at de-de de-li de-lu de-ch\n"
 
 msgid "PloneGlossary preferences"

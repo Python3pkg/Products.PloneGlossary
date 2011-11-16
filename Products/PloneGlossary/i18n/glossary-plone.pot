@@ -11,7 +11,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
-"Preferred-encodings: utf-8 latin1\n"
+"Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
 msgid "PloneGlossary preferences"
