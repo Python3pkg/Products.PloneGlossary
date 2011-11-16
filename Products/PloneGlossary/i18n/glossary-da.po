@@ -2,7 +2,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: PloneGlossary 1.0\n"
 "POT-Creation-Date: 2011-11-16 14:20+0000\n"
 "PO-Revision-Date: 2006-08-23 16:42+0100\n"
 "Last-Translator: Anton Stonor <anton@headnet.dk>\n"
