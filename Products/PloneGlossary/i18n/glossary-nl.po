@@ -14,7 +14,7 @@ msgstr ""
 "Language-Code: nl\n"
 "Language-Name: Dutch\n"
 "Preferred-encodings: latin1 utf-8\n"
-"X-Is-Fallback-For: nl-nl\n"
+"X-Is-Fallback-For: nl-be nl-nl\n"
 
 #: ./browser/portlet.py:86
 msgid "Add Glossary Portlet"

@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 "Preferred-encodings: latin1 utf-8\n"
-"X-Is-Fallback-For: nl-be\n"
+"X-Is-Fallback-For: nl-be nl-nl\n"
 
 msgid "PloneGlossary preferences"
 msgstr "PloneGlossary configuratie"
