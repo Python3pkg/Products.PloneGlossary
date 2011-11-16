@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:20+0000\n"
+"POT-Creation-Date: 2011-11-16 17:02+0000\n"
 "PO-Revision-Date: 2006-08-23 16:42+0100\n"
 "Last-Translator: Anton Stonor <anton@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,10 +129,10 @@ msgstr "Kryds af, hvis det skal være muligt at få fremhævet begreber fra ordf
 msgid "help_not_highlighted_tags"
 msgstr "Normalt ønsker man kun at fremhæve ord med forklaring i brødtekst og ikke i overskrifter, indtastningsformularer mm. Her kan du vælge, hvornår fremhævningen skal springes over. En HTML-tag pr. linie."
 
-#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#. Default: "When checked, all glossaries will be used to highlight terms globally for all of the site's content.<br /> By unchecking this option, only the first glossary found while traversing upwards from the current location will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
-msgstr "Det er muligt at oprette flere forskellige ordforklaringer på sitet. Kryds af, hvis der skal slås op i alle sammen hver gang. Alternativt slås op i den ordforklaring, der ligger \"tættest\" på den side, man står på."
+msgstr "Det er muligt at oprette flere forskellige ordforklaringer på sitet.<br />Kryds af, hvis der skal slås op i alle sammen hver gang. Alternativt slås op i den ordforklaring, der ligger \"tættest\" på den side, man står på."
 
 #. Default: "Allowed portal types"
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">

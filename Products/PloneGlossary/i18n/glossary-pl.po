@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.4 SVN\n"
-"POT-Creation-Date: 2011-11-16 16:20+0000\n"
+"POT-Creation-Date: 2011-11-16 17:02+0000\n"
 "PO-Revision-Date: 2007-11-30 16:32+0100\n"
 "Last-Translator: Piotr Furman <piotr.furman@webservice.pl>\n"
 "Language-Team: webservice.pl <piotr.furman@webservice.pl>\n"
@@ -126,7 +126,7 @@ msgstr "Zaznacz aby podświetlić hasła znalezione w treści dokumentów. Poni�
 msgid "help_not_highlighted_tags"
 msgstr "Wpisz po jednym tagu w linii. Te tagi nie będą podświetlane."
 
-#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#. Default: "When checked, all glossaries will be used to highlight terms globally for all of the site's content.<br /> By unchecking this option, only the first glossary found while traversing upwards from the current location will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
 msgstr "Zaznacz jeśli dla wszystkich stron ma być wykorzystywany słownik globalny.<br />Jeśli nie, zostanie wykorzytstany słownik najbliższy treści."

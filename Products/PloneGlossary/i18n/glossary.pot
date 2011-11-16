@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-16 16:20+0000\n"
+"POT-Creation-Date: 2011-11-16 17:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgstr ""
 msgid "help_not_highlighted_tags"
 msgstr ""
 
-#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#. Default: "When checked, all glossaries will be used to highlight terms globally for all of the site's content.<br /> By unchecking this option, only the first glossary found while traversing upwards from the current location will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
 msgstr ""

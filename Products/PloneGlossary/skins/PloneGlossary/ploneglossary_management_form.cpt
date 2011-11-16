@@ -181,10 +181,10 @@
               </label>
               <div class="formHelp"
                    i18n:translate="help_use_general_glossaries">
-                <p>When checked, all glossaries will be used to highlight terms
-                globally for all of the site's content.</p>
-                <p>By unchecking this option, only the first glossary found while
-                traversing upwards from the current location will be used.</p>
+                When checked, all glossaries will be used to highlight terms
+                globally for all of the site's content.<br />
+                By unchecking this option, only the first glossary found while
+                traversing upwards from the current location will be used.
               </div>
             </div>
 

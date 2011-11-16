@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 16:20+0000\n"
+"POT-Creation-Date: 2011-11-16 17:02+0000\n"
 "PO-Revision-Date: 2005-08-09 18:08+0200\n"
 "Last-Translator: Richard M. Kues <software@riva.at>\n"
 "Language-Team: RIVA\n"
@@ -126,10 +126,10 @@ msgstr "Sofern angewählt, werden die Begriffe im Inhalt hervorgehoben. Man kann 
 msgid "help_not_highlighted_tags"
 msgstr "Ein HTML-Tag pro Zeile. Tags die hier aufgeführt sind werden nicht hervorgehoben."
 
-#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#. Default: "When checked, all glossaries will be used to highlight terms globally for all of the site's content.<br /> By unchecking this option, only the first glossary found while traversing upwards from the current location will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
-msgstr "Sofern angewählt, werden alle Glossare verwendet um Begriffe im Inhalt hervorzuheben. Wenn nicht gewählt, wird nur das erste bei der Traversierung gefundene Glossar verwendet."
+msgstr "Sofern angewählt, werden alle Glossare verwendet um Begriffe im Inhalt hervorzuheben.<br />Wenn nicht gewählt, wird nur das erste bei der Traversierung gefundene Glossar verwendet."
 
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">
 #. Allowed portal types
