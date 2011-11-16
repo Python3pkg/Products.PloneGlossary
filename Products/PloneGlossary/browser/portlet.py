@@ -85,7 +85,7 @@ class AddForm(base.NullAddForm):
     form_fields = form.Fields(IGlossaryPortlet)
     label = _(u"Add Glossary Portlet")
     description = _(
-        u"This portlet shows the definitions of terms of actual page.")
+        u"This portlet shows the definitions of terms of the current page.")
 
     def create(self):
         return Assignment()

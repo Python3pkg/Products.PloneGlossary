@@ -1,5 +1,5 @@
 # Translators:
-# ralphjacobs <ralph@fourdigits.nl>
+# Ralph Jacobs <ralph@fourdigits.nl>
 # Maurits van Rees <m.van.rees@zestsoftware.nl>
 msgid ""
 msgstr ""
@@ -7,7 +7,7 @@ msgstr ""
 "POT-Creation-Date: 2011-11-16 16:06+0000\n"
 "PO-Revision-Date: 2011-11-16 17:06+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
-"Language-Team: \n"
+"Language-Team: Plone Nederlands <plone-nl@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"

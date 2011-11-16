@@ -64,7 +64,7 @@
                      value=""
                      alt="Search"
                      title="Search"
-                     i18n:attributes="alt title"
+                     i18n:attributes="alt; title"
                      tal:attributes="value view/search_text;
                                      tabindex tabindex/next|nothing" />
 
