@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2005-08-16 12:28+0000\n"
+"POT-Creation-Date: 2011-11-16 14:20+0000\n"
 "PO-Revision-Date: 2010-02-04 11:47+0100\n"
 "Last-Translator: ralph <ralph@fourdigits.nl>\n"
 "Language-Team: \n"
@@ -18,25 +18,49 @@ msgstr ""
 "Preferred-encodings: latin1 utf-8\n"
 "X-Is-Fallback-For: nl-nl\n"
 
+#: ./browser/portlet.py:86
+msgid "Add Glossary Portlet"
+msgstr ""
+
+#: ./profiles/examples/types/ExampleGlossary.xml
+msgid "Example Glossary"
+msgstr ""
+
+#: ./browser/portlet.py:48
+#: ./profiles/default/types/PloneGlossary.xml
 msgid "Glossary"
 msgstr "Begrippenlijst"
 
+#: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
 msgstr "Begrip"
+
+#: ./profiles/default/types/PloneGlossary.xml
+#: ./profiles/examples/types/ExampleGlossary.xml
+msgid "PloneGlossary container"
+msgstr ""
+
+#: ./profiles/default/types/PloneGlossaryDefinition.xml
+msgid "PloneGlossary definition"
+msgstr ""
 
 ## 1 more: skins/PloneGlossary/ploneglossary_view.pt
 #. <input alt="Search" i18n:attributes="alt title" id="search_text" name="search_text" size="20" tal:attributes="value search_text; tabindex tabindex/next" title="Search" type="text" value=""/>
 #. Default: "Search"
 #. <input alt="Search" i18n:attributes="alt title" id="search_text" name="search_text" size="20" tal:attributes="value search_text;                                    tabindex tabindex/next" title="Search" type="text" value=""/>
-#: skins/PloneGlossary/ploneglossary_view.pt
+#: ./skins/PloneGlossary/ploneglossary_view.pt:71
 msgid "Search"
 msgstr "Zoeken"
+
+#: ./browser/portlet.py:87
+msgid "This portlet shows the definitions of terms of actual page."
+msgstr ""
 
 #. <h3 i18n:translate="heading_ploneglossary_management">
 #. PloneGlossary Management
 #. </h3>
 #. Default: "PloneGlossary Management"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:24
 msgid "heading_ploneglossary_management"
 msgstr "PloneGlossary configuratie"
 
@@ -44,12 +68,9 @@ msgstr "PloneGlossary configuratie"
 #. Related terms
 #. </h5>
 #. Default: "Related terms"
-#: skins/PloneGlossary/portlet_ploneglossary.pt
+#: ./browser/ploneglossary_portlet.pt:13
 msgid "heading_related_terms"
 msgstr "Gerelateerde termen"
-
-msgid "heading_variants"
-msgstr "Varianten"
 
 #. <div class="formHelp" i18n:translate="help_allowed_portal_types">
 #. Select portal types allowed to be highlighted, if highlight feature is enabled.
@@ -58,7 +79,7 @@ msgstr "Varianten"
 #. Select glossaries used to check related terms of content.
 #. No selection results in the same thing of selecting all glossaries.
 #. Default: "Select portal types allowed to be highlighted, if highlight feature is enabled. No selection results in the same thing of selecting all portal types."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:145
 msgid "help_allowed_portal_types"
 msgstr "Selecteer de contenttypes, waarbij de trefwoorden actief moeten zijn. Geen selectie resulteert in weergave van trefwoorden bij alle types."
 
@@ -66,7 +87,7 @@ msgstr "Selecteer de contenttypes, waarbij de trefwoorden actief moeten zijn. Ge
 #. Enter ellipsis. It is used in popup when definition of term is too long.
 #. </div>
 #. Default: "Enter ellipsis. It is used in popup when definition of term is too long."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:99
 msgid "help_description_ellipsis"
 msgstr "Voer de doorlooppuntjes in. Deze wordt gebruikt als de definitie van de term te lang is."
 
@@ -74,19 +95,27 @@ msgstr "Voer de doorlooppuntjes in. Deze wordt gebruikt als de definitie van de 
 #. Enter maximum description length of term.
 #. </div>
 #. Default: "Enter maximum description length of term."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:77
 msgid "help_description_length"
 msgstr "Maximale lengte van de beschrijving van de term."
 
+#. Default: "Select glossaries used to check related terms of content. By default all glossaries will be used."
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:199
 msgid "help_general_glossary_uids"
 msgstr "De begrippenlijsten waarin de begrippen gevonden mogen worden. Standaard worden alle termen opgezocht."
 
+#. Default: "Enter the body text."
+#: ./content/schemata.py:84
 msgid "help_glossary_definition_text"
 msgstr "Definitie/uitleg van het begrip"
 
+#. Default: "Enter the term to be defined."
+#: ./content/schemata.py:59
 msgid "help_glossary_term"
 msgstr "Begrip invoeren"
 
+#. Default: "Enter the variants of the term, one per line."
+#: ./content/schemata.py:70
 msgid "help_glossary_variants"
 msgstr "Begripvarianten. Een variant per regel."
 
@@ -94,26 +123,21 @@ msgstr "Begripvarianten. Een variant per regel."
 #. Check it to highlight related terms in content. You can choose which types to highlight.
 #. </div>
 #. Default: "Check it to highlight related terms in content. You can choose which types to highlight."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:60
 msgid "help_highlight_content"
 msgstr "Vink aan om de geralateerde termen te markeren. Geselecteerde begrippen worden gemarkeerd."
 
 #. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
 #. Enter one tag name per line. Tags specified below will not be highlighted.
 #. </div>
-#. Default: "Enter one tag name per line. Tags specified below will not be highlighted."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tags may be in the form 'tag' to match any tag, 'tag#selec' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:121
+#, fuzzy
 msgid "help_not_highlighted_tags"
 msgstr "Vul een html-tag per regel in. Html-tags hieronder benoemd worden niet gemarkeerd."
 
-#. <div class="formHelp" i18n:translate="help_show_portlet">
-#. Check it to display related terms in a portlet.
-#. </div>
-#. Default: "Check it to display related terms in a portlet."
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
-msgid "help_show_portlet"
-msgstr "Vink aan om gerelateerde begrippen in een portlet te tonen."
-
+#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
 msgstr "Aangevinkt, worden alle begrippenlijsten gebruikt om de begrippen te markeren. Niet aangevinkt, wordt alleen de eerste bovenliggende begrippenlijst gebruikt."
 
@@ -121,7 +145,7 @@ msgstr "Aangevinkt, worden alle begrippenlijsten gebruikt om de begrippen te mar
 #. Allowed portal types
 #. </label>
 #. Default: "Allowed portal types"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:140
 msgid "label_allowed_portal_types"
 msgstr "Geactiveerde contenttypes"
 
@@ -129,7 +153,7 @@ msgstr "Geactiveerde contenttypes"
 #. Description ellipsis
 #. </label>
 #. Default: "Description ellipsis"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:94
 msgid "label_description_ellipsis"
 msgstr "Gerelateerde termen"
 
@@ -137,7 +161,7 @@ msgstr "Gerelateerde termen"
 #. Description length
 #. </label>
 #. Default: "Description length"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:72
 msgid "label_description_length"
 msgstr "Lengte van de omschrijving"
 
@@ -145,16 +169,23 @@ msgstr "Lengte van de omschrijving"
 #. General glossaries
 #. </label>
 #. Default: "General glossaries"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:194
 msgid "label_general_glossary_uids"
 msgstr "Standaard begrippenlijsten"
 
+#. Default: "Body text"
+#: ./content/schemata.py:83
 msgid "label_glossary_definition_text"
 msgstr "Definitie"
 
+#. Default: "Term"
+#: ./content/schemata.py:58
 msgid "label_glossary_term"
 msgstr "Begrip"
 
+#. Default: "Variants"
+#: ./content/schemata.py:69
+#: ./skins/PloneGlossary/ploneglossarydefinition_view.pt:45
 msgid "label_glossary_variants"
 msgstr "Varianten"
 
@@ -162,7 +193,7 @@ msgstr "Varianten"
 #. Highlight content ?
 #. </label>
 #. Default: "Highlight content ?"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:55
 msgid "label_highlight_content"
 msgstr "Markeer content?"
 
@@ -170,26 +201,20 @@ msgstr "Markeer content?"
 #. Not highlighted tags
 #. </label>
 #. Default: "Not highlighted tags"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:116
 msgid "label_not_highlighted_tags"
 msgstr "Niet gemarkeerde begrippen."
-
-#. <label for="show_portlet" i18n:translate="label_show_portlet">
-#. Show glossary porlet ?
-#. </label>
-#. Default: "Show glossary porlet ?"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
-msgid "label_show_portlet"
-msgstr "Begrippen portlet weergeven?"
 
 #. <label class="hiddenStructure" for="search_text" i18n:translate="label_text_search">
 #. Search
 #. </label>
 #. Default: "Search"
-#: skins/PloneGlossary/ploneglossary_view.pt
+#: ./skins/PloneGlossary/ploneglossary_view.pt:55
 msgid "label_text_search"
 msgstr "Zoek"
 
+#. Default: "Use glossaries globally for all content?"
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:178
 msgid "label_use_general_glossaries"
 msgstr "Begrippen gebruiken voor alle content?"
 
@@ -197,7 +222,16 @@ msgstr "Begrippen gebruiken voor alle content?"
 #. PloneGlossary Management
 #. </legend>
 #. Default: "PloneGlossary Management"
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:41
 msgid "legend_ploneglossary_management"
 msgstr "PloneGlossary configuratie"
+
+#. Default: "Search"
+#: ./skins/PloneGlossary/ploneglossary_view.pt:60
+msgid "title"
+msgstr ""
+
+#: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
+msgid "tool_properties_saved"
+msgstr ""
 

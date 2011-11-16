@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2005-08-16 12:28+0000\n"
+"POT-Creation-Date: 2011-11-16 14:20+0000\n"
 "PO-Revision-Date: 2007-01-08 21:17+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Lukas Zdych <lukas.zdych@corenet.cz>\n"
@@ -17,24 +17,48 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin2\n"
 "Domain: ploneglossary\n"
 
+#: ./browser/portlet.py:86
+msgid "Add Glossary Portlet"
+msgstr ""
+
+#: ./profiles/examples/types/ExampleGlossary.xml
+msgid "Example Glossary"
+msgstr ""
+
+#: ./browser/portlet.py:48
+#: ./profiles/default/types/PloneGlossary.xml
 msgid "Glossary"
 msgstr ""
 
+#: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
+msgstr ""
+
+#: ./profiles/default/types/PloneGlossary.xml
+#: ./profiles/examples/types/ExampleGlossary.xml
+msgid "PloneGlossary container"
+msgstr ""
+
+#: ./profiles/default/types/PloneGlossaryDefinition.xml
+msgid "PloneGlossary definition"
 msgstr ""
 
 # 1 more: skins/PloneGlossary/ploneglossary_view.pt
 #. Default: "Search"
 #. <input alt="Search" i18n:attributes="alt title" id="search_text" name="search_text" size="20" tal:attributes="value search_text;                                    tabindex tabindex/next" title="Search" type="text" value=""/>
-#: skins/PloneGlossary/ploneglossary_view.pt
+#: ./skins/PloneGlossary/ploneglossary_view.pt:71
 msgid "Search"
 msgstr "Vyhledat"
+
+#: ./browser/portlet.py:87
+msgid "This portlet shows the definitions of terms of actual page."
+msgstr ""
 
 #. Default: "PloneGlossary Management"
 #. <h3 i18n:translate="heading_ploneglossary_management">
 #. PloneGlossary Management
 #. </h3>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:24
 msgid "heading_ploneglossary_management"
 msgstr "Správa Plone rejstříku"
 
@@ -42,12 +66,9 @@ msgstr "Správa Plone rejstříku"
 #. <h5 i18n:translate="heading_related_terms">
 #. Related terms
 #. </h5>
-#: skins/PloneGlossary/portlet_ploneglossary.pt
+#: ./browser/ploneglossary_portlet.pt:13
 msgid "heading_related_terms"
 msgstr "Související termíny"
-
-msgid "heading_variants"
-msgstr "Varianty"
 
 #. Default: "Select portal types allowed to be highlighted, if highlight feature is enabled. No selection results in the same thing of selecting all portal types."
 #. <div class="formHelp" i18n:translate="help_allowed_portal_types">
@@ -56,8 +77,7 @@ msgstr "Varianty"
 #. </div>
 #. Select glossaries used to check related terms of content.
 #. No selection results in the same thing of selecting all glossaries.
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:145
 msgid "help_allowed_portal_types"
 msgstr "Vyberte druhy obsahu, pro které bude povoleno vyznačování, pokud je vyznačování aktivní. Žádný výběr odpovídá výběru všech."
 
@@ -65,7 +85,7 @@ msgstr "Vyberte druhy obsahu, pro které bude povoleno vyznačování, pokud je 
 #. <div class="formHelp" i18n:translate="help_description_ellipsis">
 #. Enter ellipsis. It is used in popup when definition of term is too long.
 #. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:99
 msgid "help_description_ellipsis"
 msgstr "Zadejte reprezentaci neúplného textu. Budou připojeny k definici termínu je-li příliš dlouhá."
 
@@ -73,21 +93,29 @@ msgstr "Zadejte reprezentaci neúplného textu. Budou připojeny k definici term
 #. <div class="formHelp" i18n:translate="help_description_length">
 #. Enter maximum description length of term.
 #. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:77
 msgid "help_description_length"
 msgstr "Zadejte maximální délku popisu termínu."
 
 # Select glossaries used to check related terms of content.
 # No selection results in the same thing of selecting all glossaries.
+#. Default: "Select glossaries used to check related terms of content. By default all glossaries will be used."
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:199
 msgid "help_general_glossary_uids"
 msgstr "Vyberte rejstříky, ve kterých budou hledány termíny související s obsahem portálu. Žádný výběr odpovídá výběru všech."
 
+#. Default: "Enter the body text."
+#: ./content/schemata.py:84
 msgid "help_glossary_definition_text"
 msgstr "Zadejte tělo textu."
 
+#. Default: "Enter the term to be defined."
+#: ./content/schemata.py:59
 msgid "help_glossary_term"
 msgstr "Zadejte termín, který bude definován."
 
+#. Default: "Enter the variants of the term, one per line."
+#: ./content/schemata.py:70
 msgid "help_glossary_variants"
 msgstr "Zadejte variace termínu, každou na samostatný řádek."
 
@@ -95,26 +123,21 @@ msgstr "Zadejte variace termínu, každou na samostatný řádek."
 #. <div class="formHelp" i18n:translate="help_highlight_content">
 #. Check it to highlight related terms in content. You can choose which types to highlight.
 #. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:60
 msgid "help_highlight_content"
 msgstr "Zaškrtněte tuto volbu pro aktivaci vyznačování souvisejících termínů v obsahu portálu. Označování můžete omezit na vybrané druhy obsahu."
 
-#. Default: "Enter one tag name per line. Tags specified below will not be highlighted."
 #. <div class="formHelp" i18n:translate="help_not_highlighted_tags">
 #. Enter one tag name per line. Tags specified below will not be highlighted.
 #. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tags may be in the form 'tag' to match any tag, 'tag#selec' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:121
+#, fuzzy
 msgid "help_not_highlighted_tags"
 msgstr "Zadejte název značky každý na samostatný řádek. Značky uvedené zde nebudou vyznačovány."
 
-#. Default: "Check it to display related terms in a portlet."
-#. <div class="formHelp" i18n:translate="help_show_portlet">
-#. Check it to display related terms in a portlet.
-#. </div>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
-msgid "help_show_portlet"
-msgstr "Zaškrtněte pro zobrazení souvisejících termínů v portletu."
-
+#. Default: "<p>When checked, all glossaries will be used to highlight terms globally for all of the site's content.</p> <p>By unchecking this option, only the first glossary found while traversing upwards from the current location will be used.</p>"
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
 msgstr "Je-li tato volba aktivní, budou použity všechny rejstříky pro vyznačování veškerého obsahu v celém portálu.<br />Je-li tato volba vypnuta, bude použit pouze jeden rejstřík, a to ten, který bude nalezen nejblíže nad kontextem obsahu."
 
@@ -122,7 +145,7 @@ msgstr "Je-li tato volba aktivní, budou použity všechny rejstříky pro vyzna
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">
 #. Allowed portal types
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:140
 msgid "label_allowed_portal_types"
 msgstr "Povolené druhy obsahu"
 
@@ -130,7 +153,7 @@ msgstr "Povolené druhy obsahu"
 #. <label for="description_ellipsis" i18n:translate="label_description_ellipsis">
 #. Description ellipsis
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:94
 msgid "label_description_ellipsis"
 msgstr "Znaky neúplného popisu"
 
@@ -138,7 +161,7 @@ msgstr "Znaky neúplného popisu"
 #. <label for="description_length" i18n:translate="label_description_length">
 #. Description length
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:72
 msgid "label_description_length"
 msgstr "Délka popisu"
 
@@ -146,16 +169,23 @@ msgstr "Délka popisu"
 #. <label for="general_glossary_uids" i18n:translate="label_general_glossary_uids">
 #. General glossaries
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:194
 msgid "label_general_glossary_uids"
 msgstr "Obecné rejstříky"
 
+#. Default: "Body text"
+#: ./content/schemata.py:83
 msgid "label_glossary_definition_text"
 msgstr "Zadejte tělo textu."
 
+#. Default: "Term"
+#: ./content/schemata.py:58
 msgid "label_glossary_term"
 msgstr "Termín rejstříku"
 
+#. Default: "Variants"
+#: ./content/schemata.py:69
+#: ./skins/PloneGlossary/ploneglossarydefinition_view.pt:45
 msgid "label_glossary_variants"
 msgstr "Variace termínu"
 
@@ -163,7 +193,7 @@ msgstr "Variace termínu"
 #. <label for="highlight_content" i18n:translate="label_highlight_content">
 #. Highlight content ?
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:55
 msgid "label_highlight_content"
 msgstr "Vyznačovat obsah portálu?"
 
@@ -171,26 +201,20 @@ msgstr "Vyznačovat obsah portálu?"
 #. <label for="not_highlighted_tags" i18n:translate="label_not_highlighted_tags">
 #. Not highlighted tags
 #. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:116
 msgid "label_not_highlighted_tags"
 msgstr "Neoznačované značky"
-
-#. Default: "Show glossary porlet ?"
-#. <label for="show_portlet" i18n:translate="label_show_portlet">
-#. Show glossary porlet ?
-#. </label>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
-msgid "label_show_portlet"
-msgstr "Zobrazovat portlet rejstříku?"
 
 #. Default: "Search"
 #. <label class="hiddenStructure" for="search_text" i18n:translate="label_text_search">
 #. Search
 #. </label>
-#: skins/PloneGlossary/ploneglossary_view.pt
+#: ./skins/PloneGlossary/ploneglossary_view.pt:55
 msgid "label_text_search"
 msgstr "Vyhledat"
 
+#. Default: "Use glossaries globally for all content?"
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:178
 msgid "label_use_general_glossaries"
 msgstr "Používat rejstříky globálně pro veškerý obsah?"
 
@@ -198,7 +222,16 @@ msgstr "Používat rejstříky globálně pro veškerý obsah?"
 #. <legend i18n:translate="legend_ploneglossary_management">
 #. PloneGlossary Management
 #. </legend>
-#: skins/PloneGlossary/ploneglossary_management_form.cpt
+#: ./skins/PloneGlossary/ploneglossary_management_form.cpt:41
 msgid "legend_ploneglossary_management"
 msgstr "Správa Plone rejstříku"
+
+#. Default: "Search"
+#: ./skins/PloneGlossary/ploneglossary_view.pt:60
+msgid "title"
+msgstr ""
+
+#: ./skins/PloneGlossary/ploneglossary_management_edit.cpy:31
+msgid "tool_properties_saved"
+msgstr ""
 
