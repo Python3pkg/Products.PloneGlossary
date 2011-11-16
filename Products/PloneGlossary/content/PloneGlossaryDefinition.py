@@ -20,7 +20,7 @@
 """
 Glossary definition content type
 """
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Python imports
@@ -34,24 +34,25 @@ from Products.CMFPlone.utils import getToolByName
 
 # Archetypes imports
 try:
-    from Products.LinguaPlone.public import BaseContent
     from Products.LinguaPlone.public import registerType
+    registerType  # pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.atapi import registerType
-    from Products.Archetypes.atapi import BaseContent
 
 from Products.ATContentTypes.content.base import ATCTContent
 
 # Products imports
 from Products.PloneGlossary.config import PROJECTNAME
-from Products.PloneGlossary.content.schemata import PloneGlossaryDefinitionSchema as schema
+from Products.PloneGlossary.content.schemata import \
+    PloneGlossaryDefinitionSchema as schema
 from Products.PloneGlossary.utils import html2text
+
 
 class PloneGlossaryDefinition(ATCTContent):
     """PloneGlossary definition """
 
-    schema =  schema
+    schema = schema
     _at_rename_after_creation = True
 
     security = ClassSecurityInfo()

@@ -21,7 +21,7 @@
 Tool
 """
 
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Zope imports
@@ -37,7 +37,6 @@ from zope.app.component import hooks
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
-from Products.CMFCore import permissions
 
 # Plone imports
 from plone.memoize.request import memoize_diy_request
@@ -49,6 +48,7 @@ from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
 from interfaces import IGlossaryTool
 
+
 class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     """Tool for PloneGlossary"""
     implements(IGlossaryTool)
@@ -58,7 +58,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     title = 'PloneGlossaryTool'
     meta_type = 'PloneGlossaryTool'
 
-    _properties=(
+    _properties = (
         {'id': 'title',
          'type': 'string',
          'mode': 'w'},
@@ -71,11 +71,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         {'id': 'general_glossary_uids',
          'type': 'multiple selection',
          'mode': 'w',
-         'select_variable': 'getGlossaryUIDs' },
+         'select_variable': 'getGlossaryUIDs'},
         {'id': 'allowed_portal_types',
-         'type' : 'multiple selection',
-         'mode' : 'w',
-         'select_variable': 'getAvailablePortalTypes' },
+         'type': 'multiple selection',
+         'mode': 'w',
+         'select_variable': 'getAvailablePortalTypes'},
         {'id': 'description_length',
          'type': 'int',
          'mode': 'w'},
@@ -90,7 +90,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
          'mode': 'w'},
         {'id': 'glossary_metatypes',
          'type': 'multiple selection', 'mode': 'w',
-         'select_variable': 'getAvailableGlossaryMetaTypes' },
+         'select_variable': 'getAvailableGlossaryMetaTypes'},
         )
 
     highlight_content = True
@@ -203,7 +203,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         return glossaries
 
-
     security.declarePublic('getGeneralGlossaryUIDs')
     def getGeneralGlossaryUIDs(self):
         """Returns glossary UIDs used to highlight content"""
@@ -283,7 +282,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         for item in not_secured_term_items:
             path = item['path']
             try:
-                obj = portal_object.restrictedTraverse(path)
+                portal_object.restrictedTraverse(path)
             except:
                 continue
             term_items.append(item)
@@ -324,12 +323,13 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
                     # Get text/plain content
                     try:
-                        datum =  method(mimetype="text/plain")
+                        datum = method(mimetype="text/plain")
                     except TypeError:
-                        # retry in case typeerror was raised because accessor doesn't
-                        # handle the mimetype argument
+                        # retry in case typeerror was raised because
+                        # accessor doesn't handle the mimetype
+                        # argument
                         try:
-                            datum =  method()
+                            datum = method()
                         except ConflictError:
                             raise
                         except:
@@ -397,8 +397,10 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                     utext_term = utext[pos:(pos + term_length)]
 
                     # FIX ME: Workaround for composed words. Works in 99%
-                    # Check the word is not a subword but a real word composing the text
-                    if not [x for x in self._split(utext_term) if x in usplitted_text_terms]:
+                    # Check the word is not a subword but a real word
+                    # composing the text.
+                    if not [x for x in self._split(utext_term)
+                            if x in usplitted_text_terms]:
                         continue
 
                     # Encode the term and make sure there are no doublons
@@ -431,9 +433,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         - url -> term url
 
         @param obj: object to analyse
-        @param glossary_term_items: Glossary term items to check in the object text
+
+        @param glossary_term_items: Glossary term items to check in
+            the object text
 
         Variables starting with a are supposed to be in ASCII
+
         Variables starting with u are supposed to be in Unicode
         """
 
@@ -457,15 +462,22 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                                              removed_words,)
 
     security.declarePublic('getObjectRelatedTermItems')
-    def getObjectRelatedTermItems(self, obj, glossary_term_items, alpha_sort=False):
-        """Returns the same list as _getObjectRelatedTermItems but check security.
+    def getObjectRelatedTermItems(self, obj, glossary_term_items,
+                                  alpha_sort=False):
+        """Returns the same list as _getObjectRelatedTermItems but
+        check security.
 
         @param obj: object to analyse
-        @param glossary_term_items: Glossary term items to check in the object text
-        @param alpha_sort: if True, returned items are sorted by title, asc"""
+
+        @param glossary_term_items: Glossary term items to check in
+        the object text
+
+        @param alpha_sort: if True, returned items are sorted by title, asc
+        """
 
         # Get glossaries term items
-        not_secured_term_items = self._getObjectRelatedTermItems(obj, glossary_term_items)
+        not_secured_term_items = self._getObjectRelatedTermItems(
+            obj, glossary_term_items)
 
         # Walk into each catalog of glossaries and get terms
         plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')
@@ -497,16 +509,18 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """
 
         # Get term definitions found in obj
-        definitions = self.getObjectRelatedDefinitions(obj, glossary_uids, alpha_sort=False)
+        definitions = self.getObjectRelatedDefinitions(obj, glossary_uids,
+                                                       alpha_sort=False)
 
         # Returns titles
         return [x['title'] for x in definitions]
 
     security.declarePublic('getObjectRelatedDefinitions')
-    def getObjectRelatedDefinitions(self, obj, glossary_uids, alpha_sort=False):
+    def getObjectRelatedDefinitions(self, obj, glossary_uids,
+                                    alpha_sort=False):
         """Returns object term definitions get from glossaries.
 
-        definition :
+        definition:
         - terms -> exact words in obj text
         - id -> term id
         - path -> term path
@@ -531,17 +545,17 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         marked_definitions = []
         urls = {}
         # Search related definitions in glossary definitions
-        for definition in self.getObjectRelatedTermItems(obj, glossary_term_items, alpha_sort):
-            if urls.has_key(definition['url']):
+        for definition in self.getObjectRelatedTermItems(
+                obj, glossary_term_items, alpha_sort):
+            if definition['url'] in urls:
                 # The glossary item is already going to be shown
-                definition['show']=0
+                definition['show'] = 0
             else:
                 # The glossary item is going to be shown
-                urls[definition['url']]=1
-                definition['show']=1
+                urls[definition['url']] = 1
+                definition['show'] = 1
             marked_definitions.append(definition)
         return marked_definitions
-
 
     security.declarePublic('getDefinitionsForUI')
     @memoize_diy_request(arg=2)
@@ -553,7 +567,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         if len(glossary_uids) == 0:
             glossary_uids = None
         return self.getObjectRelatedDefinitions(context, glossary_uids)
-
 
     security.declarePublic('searchResults')
     def searchResults(self, glossary_uids, **search_args):
@@ -588,7 +601,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     def getAsciiLetters(self):
         """Returns list of ascii letters in lower case"""
 
-        return tuple([chr(x) for x in range(97,123)])
+        return tuple([chr(x) for x in range(97, 123)])
 
     security.declarePublic('getFirstLetter')
     def getFirstLetter(self, term):
@@ -657,7 +670,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             ellipsis = self.description_ellipsis
             text = text[:max_length]
             text = text.strip()
-            text = '%s %s' %(text, ellipsis)
+            text = '%s %s' % (text, ellipsis)
 
         text = text.encode(SITE_CHARSET, "replace")
 
@@ -674,11 +687,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """Helper for portal_javascripts
         Should we include PloneGlossary javascripts
         """
-        context_state = getMultiAdapter((context, request), name=u'plone_context_state')
+        context_state = getMultiAdapter((context, request),
+                                        name=u'plone_context_state')
         if not context_state.is_view_template():
             return False
         return self.showPortlet() or self.highlightContent(context)
-
 
     def _split(self, text, removed_words=()):
         """Split unicode text into tuple of unicode terms
@@ -686,6 +699,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         @param text: unicode text to split
         @param remove_words: words to remove from the split result"""
 
-        return tuple([x for x in text2words(text) if len(x) > 1 and x not in removed_words])
+        return tuple([x for x in text2words(text)
+                       if len(x) > 1 and x not in removed_words])
 
 InitializeClass(PloneGlossaryTool)

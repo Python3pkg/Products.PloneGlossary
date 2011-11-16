@@ -23,7 +23,7 @@ Handlers for GS
 import os
 from content.PloneGlossary import PloneGlossary
 from utils import registerGlossary, LOG
-import config
+
 
 def registerGlossaries(context):
     if context.readDataFile('ploneglossary.txt') is None:
@@ -33,8 +33,8 @@ def registerGlossaries(context):
 
     site = context.getSite()
     registerGlossary(site, PloneGlossary, LOG)
-    if os.environ.has_key('ZOPETESTCASE'):
-        from Products.PloneGlossary.examples.exampleglossary import ExampleGlossary
+    if 'ZOPETESTCASE' in os.environ:
+        from Products.PloneGlossary.examples.exampleglossary import \
+            ExampleGlossary
         registerGlossary(site, ExampleGlossary, LOG)
     return "Glossary(ies) registered"
-

@@ -19,7 +19,7 @@
 """
 Migrations from 1.2 to any
 """
-__author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
+__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
 from Products.CMFCore.utils import getToolByName
@@ -27,6 +27,7 @@ from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import getSite, IfInstalled
 
 safety_belt = IfInstalled()
+
 
 @safety_belt
 def synonymsSupportHandler(setuptool):
@@ -43,6 +44,7 @@ def synonymsSupportHandler(setuptool):
             glossary_catalog.addColumn("getVariants")
     return
 
+
 def synonymsSupportChecker(setuptool):
     """Checking we have getVariant index in first glossary catalog found"""
 
@@ -54,6 +56,7 @@ def synonymsSupportChecker(setuptool):
         if 'getVariants' in glossary_catalog.indexes():
             return False
     return True
+
 
 def findGlossaryBrains():
     portal = getSite()
@@ -74,19 +77,21 @@ def changeJSRegistryConditions(setuptool):
     runImportStep(setuptool, 'jsregistry')
     return
 
+
 @safety_belt
 def fixKupuSupport(setuptool):
     """Don't decorate Kupu specific areas
     """
-    new_tags = set(['div#kupu-editor-text-config-escaped', 'div#kupu-editor-text-config'])
+    new_tags = set(['div#kupu-editor-text-config-escaped',
+                     'div#kupu-editor-text-config'])
     pgtool = getSite()[PLONEGLOSSARY_TOOL]
     not_highlighted_tags = set(pgtool.getProperty('not_highlighted_tags'))
     if not new_tags <= not_highlighted_tags:
         not_highlighted_tags |= new_tags
         not_highlighted_tags = tuple(not_highlighted_tags)
-        pgtool.manage_changeProperties(not_highlighted_tags=not_highlighted_tags)
+        pgtool.manage_changeProperties(
+            not_highlighted_tags=not_highlighted_tags)
     return
-
 
 
 ###
@@ -94,6 +99,7 @@ def fixKupuSupport(setuptool):
 ###
 
 def runImportStep(setuptool, step_id):
-    setuptool.runImportStepFromProfile('profile-Products.PloneGlossary:default',
-                                       step_id, run_dependencies=False)
+    setuptool.runImportStepFromProfile(
+        'profile-Products.PloneGlossary:default',
+        step_id, run_dependencies=False)
     return

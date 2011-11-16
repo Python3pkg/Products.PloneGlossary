@@ -19,6 +19,5 @@
 """
 Upgrades for PloneGlossary
 """
-__author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
+__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
-

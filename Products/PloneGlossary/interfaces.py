@@ -23,6 +23,7 @@ PloneGlossary public interfaces (Zope 3 style)
 
 from zope.interface import Interface, Attribute
 
+
 class IGlossaryTool(Interface):
     """Marker interface for tool
     """
@@ -43,7 +44,6 @@ class IPloneGlossary(Interface):
     def getGlossaryTerms():
         """Returns glossary terms title."""
 
-
     def getGlossaryTermItems():
         """Returns glossary terms in a specific structure
 
@@ -58,7 +58,6 @@ class IPloneGlossary(Interface):
 
     def getCatalog():
         """Returns catalog of glossary"""
-
 
     def rebuildCatalog():
         """Delete old catalog of glossary and build a new one"""

@@ -21,22 +21,20 @@
 Subclasses for unit tests or demo.
 """
 
-import os
-from copy import deepcopy
-
 from zope.interface import implements
-
 
 # Archetypes imports
 try:
-    from Products.LinguaPlone.public import *
+    from Products.LinguaPlone.public import registerType
+    registerType  # pyflakes
 except ImportError:
     # No multilingual support
-    from Products.Archetypes.public import *
+    from Products.Archetypes.public import registerType
 
 
 from Products.PloneGlossary.content.PloneGlossary import PloneGlossary
-from Products.PloneGlossary.content.PloneGlossaryDefinition import PloneGlossaryDefinition
+from Products.PloneGlossary.content.PloneGlossaryDefinition import \
+    PloneGlossaryDefinition
 from Products.PloneGlossary.interfaces import (IPloneGlossary,
                                                IPloneGlossaryDefinition)
 
@@ -65,8 +63,7 @@ class ExampleGlossaryDefinition(PloneGlossaryDefinition):
     implements(IPloneGlossaryDefinition)
 
     meta_type = 'ExampleGlossaryDefinition'
-    schema =  ExampleGlossaryDefinitionSchema
+    schema = ExampleGlossaryDefinitionSchema
 
 registerType(ExampleGlossary, PROJECTNAME)
 registerType(ExampleGlossaryDefinition, PROJECTNAME)
-

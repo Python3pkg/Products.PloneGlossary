@@ -23,6 +23,7 @@ __docformat__ = 'restructuredtext'
 
 try:
     from plone.app.upgrade import v40
+    v40  # pyflakes
     HAS_PLONE4 = True
 except ImportError:
     HAS_PLONE4 = False
@@ -49,4 +50,3 @@ add_permissions = {
     'ExampleGlossary': AddGlossary,
     'ExampleGlossaryDefinition': AddDefinition
     }
-

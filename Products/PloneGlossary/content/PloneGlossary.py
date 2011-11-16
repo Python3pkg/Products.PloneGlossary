@@ -20,7 +20,7 @@
 """
 The Glossary content type
 """
-__author__  = 'Cyrille Lebeaupin <clebeaupin@ingeniweb.com>'
+__author__ = 'Cyrille Lebeaupin <clebeaupin@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
 
@@ -37,6 +37,7 @@ from Products.CMFCore import permissions
 # Archetypes imports
 try:
     from Products.LinguaPlone.public import registerType
+    registerType  # pyflakes
 except ImportError:
     # No multilingual support
     from Products.Archetypes.atapi import registerType
@@ -45,10 +46,13 @@ from Products.ATContentTypes.content.base import ATCTFolder
 
 # Products imports
 from Products.PloneGlossary.config import PROJECTNAME, PLONEGLOSSARY_CATALOG
-from Products.PloneGlossary.PloneGlossaryCatalog import manage_addPloneGlossaryCatalog
-from Products.PloneGlossary.content.schemata import PloneGlossarySchema as schema
+from Products.PloneGlossary.PloneGlossaryCatalog import \
+    manage_addPloneGlossaryCatalog
+from Products.PloneGlossary.content.schemata import \
+    PloneGlossarySchema as schema
 from Products.PloneGlossary.utils import LOG
 from Products.PloneGlossary.interfaces import IPloneGlossary
+
 
 class PloneGlossary(ATCTFolder):
     """PloneGlossary container"""
@@ -56,7 +60,7 @@ class PloneGlossary(ATCTFolder):
     implements(IPloneGlossary)
 
     definition_types = ('PloneGlossaryDefinition',)
-    schema =  schema
+    schema = schema
     _at_rename_after_creation = True
 
     security = ClassSecurityInfo()
@@ -83,11 +87,14 @@ class PloneGlossary(ATCTFolder):
         plone_tools = getMultiAdapter((self, self.REQUEST), name='plone_tools')
         mtool = plone_tools.membership()
         # mtool = getToolByName(self, 'portal_membership')
+        check_perm = mtool.checkPermission
         for brain in brains:
             # Check view permission
             # FIXME: Maybe add allowed roles and user index in glossary catalog
             obj = brain.getObject()
-            has_view_permission = mtool.checkPermission(permissions.View, obj) and mtool.checkPermission(permissions.AccessContentsInformation, obj)
+            has_view_permission = (
+                check_perm(permissions.View, obj) and
+                check_perm(permissions.AccessContentsInformation, obj))
             if not has_view_permission:
                 continue
 
@@ -98,11 +105,11 @@ class PloneGlossary(ATCTFolder):
 
             # Build definition
             item = {
-                'id' : brain.id,
-                'title' : brain.Title,
-                'variants' : brain.getVariants,
-                'description' : brain.Description,
-                'url' : brain.getURL()}
+                'id': brain.id,
+                'title': brain.Title,
+                'variants': brain.getVariants,
+                'description': brain.Description,
+                'url': brain.getURL()}
             definitions.append(item)
 
         return tuple(definitions)
@@ -138,12 +145,13 @@ class PloneGlossary(ATCTFolder):
                           'title': brain.Title,
                           'variants': brain.getVariants,
                           'description': brain.Description,
-                          'url': brain.getURL(),})
+                          'url': brain.getURL()})
         return items
 
     security.declarePublic('getGlossaryTermItems')
     def getGlossaryTermItems(self):
-        """Returns the same list as _getGlossaryTermItems but check security."""
+        """Returns the same list as _getGlossaryTermItems but check security.
+        """
 
         # Get glossaries term items
         not_secured_term_items = self._getGlossaryTermItems()
@@ -157,7 +165,7 @@ class PloneGlossary(ATCTFolder):
         for item in not_secured_term_items:
             path = item['path']
             try:
-                obj = portal_object.restrictedTraverse(path)
+                portal_object.restrictedTraverse(path)
             except:
                 continue
             term_items.append(item)
@@ -170,7 +178,7 @@ class PloneGlossary(ATCTFolder):
         if not hasattr(self, PLONEGLOSSARY_CATALOG):
             # Build catalog if it doesn't exist
             catalog = self._initCatalog()
-        else :
+        else:
             catalog = getattr(self, PLONEGLOSSARY_CATALOG)
 
         return catalog
@@ -186,7 +194,6 @@ class PloneGlossary(ATCTFolder):
         catalog.manage_reindexIndex()
         return catalog
 
-
     security.declareProtected(permissions.ManagePortal, 'rebuildCatalog')
     def rebuildCatalog(self):
         """don't Delete old catalog of glossary and build a new one
@@ -194,8 +201,8 @@ class PloneGlossary(ATCTFolder):
         """
 
         if not hasattr(self, PLONEGLOSSARY_CATALOG):
-             # Add a new catalog if not exists
-             cat = self._initCatalog()
+            # Add a new catalog if not exists
+            cat = self._initCatalog()
         else:
             cat = self.getCatalog()
 
@@ -208,6 +215,7 @@ class PloneGlossary(ATCTFolder):
                 cat.catalog_object(obj)
 
 registerType(PloneGlossary, PROJECTNAME)
+
 
 ###
 ## Events handlers
@@ -223,10 +231,10 @@ def glossaryAdded(glossary, event):
     LOG.info("Event: A %s has been added.", glossary.meta_type)
     return
 
+
 def glossaryMoved(glossary, event):
     """A glossary has been moved or renamed"""
 
     glossary.rebuildCatalog()
     LOG.info("Event: A %s has been moved.", glossary.meta_type)
     return
-

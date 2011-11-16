@@ -19,6 +19,8 @@
 """
 Used to import as module
 """
+
 import os
-if os.environ.has_key('ZOPETESTCASE'):
+if 'ZOPETESTCASE' in os.environ:
     import exampleglossary
+    exampleglossary  # pyflakes

@@ -53,10 +53,8 @@ class Renderer(base.Renderer):
 
     render = ViewPageTemplateFile('ploneglossary_portlet.pt')
 
-
     def __init__(self, *args):
         super(Renderer, self).__init__(*args)
-
 
     @property
     def available(self):
@@ -66,14 +64,12 @@ class Renderer(base.Renderer):
         LOG.debug("Portlet available: %s", _available)
         return _available
 
-
     @memoize
     def definitions(self):
         """List of applicable definitions"""
 
         pgtool = getToolByName(self.context, PLONEGLOSSARY_TOOL)
         return pgtool.getDefinitionsForUI(self.context, self.request)
-
 
     @memoize
     def definition_icon(self):
@@ -88,7 +84,8 @@ class AddForm(base.NullAddForm):
 
     form_fields = form.Fields(IGlossaryPortlet)
     label = _(u"Add Glossary Portlet")
-    description = _(u"This portlet shows the definitions of terms of actual page.")
+    description = _(
+        u"This portlet shows the definitions of terms of actual page.")
 
     def create(self):
         return Assignment()

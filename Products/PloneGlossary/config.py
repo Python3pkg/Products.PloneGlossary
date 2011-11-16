@@ -20,7 +20,7 @@
 Global configuration data
 """
 
-__author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
+__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
 from Products.PloneGlossary.customconfig import SITE_CHARSET, BATCH_SIZE
@@ -37,7 +37,7 @@ PATCH_ZCTextIndex = False
 INDEX_SEARCH_GLOSSARY = ('SearchableText',)
 
 from Products.CMFPlone.utils import getFSVersionTuple
-PLONE_VERSION = getFSVersionTuple()[:2] # as (2, 1)
+PLONE_VERSION = getFSVersionTuple()[:2]  # as (2, 1)
 del getFSVersionTuple
 
 PROJECTNAME = 'PloneGlossary'

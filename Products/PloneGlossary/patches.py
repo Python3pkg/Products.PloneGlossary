@@ -35,6 +35,7 @@ from Products.ZCTextIndex.ParseTree import OrNode, AndNode, AtomNode
 
 from Products.PloneGlossary.utils import LOG
 
+
 def __getNOTWords(tree):
     """
     Return a list of words to exclude from search
@@ -47,16 +48,16 @@ def __getNOTWords(tree):
             exclude_words.extend(__getNOTWords(subnode))
 
         if subnode.nodeType() == 'NOT':
-             exclude_words.extend(subnode.getValue().terms())
+            exclude_words.extend(subnode.getValue().terms())
 
     return exclude_words
+
 
 def flatten(seq):
     """
     >>> flatten([0, [1, 2, 3], [4, 5, [6, 7]]])
     [0, 1, 2, 3, 4, 5, 6, 7]
     """
-    flat = True
     ans = []
     for i in seq:
         if (i.__class__ is list):
@@ -90,7 +91,8 @@ def replaceWordsQuery(tree, parseQuery, gtool, gloss_items, excluded):
 
         nodetype = subnode.nodeType()
         if nodetype in ('OR', 'AND'):
-            nodes[node_idx] = replaceWordsQuery(subnode, parseQuery, gtool, gloss_items, excluded)
+            nodes[node_idx] = replaceWordsQuery(
+                subnode, parseQuery, gtool, gloss_items, excluded)
             continue
         elif nodetype == 'NOT':
             continue
@@ -105,7 +107,7 @@ def replaceWordsQuery(tree, parseQuery, gtool, gloss_items, excluded):
             t_list = (t['title'],) + t['variants']
             exclude_term = False
             for item in t_list:
-                exclude_term |= excluded.has_key(item)
+                exclude_term |= item in excluded
             if exclude_term:
                 continue
 
@@ -145,8 +147,9 @@ def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
         Returns None if request is not valid for this index.
 
         If this index id is listed in
-        PloneGlossary.config.INDEX_SEARCH_GLOSSARY, the query tree is changed to
-        look for terms and their variants found in general glossaries.
+        PloneGlossary.config.INDEX_SEARCH_GLOSSARY, the query tree is
+        changed to look for terms and their variants found in general
+        glossaries.
         """
         record = parseIndexRequest(request, self.id, self.query_options)
         if record.keys is None:
@@ -165,7 +168,7 @@ def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
             all_term_items = gtool._getGlossaryTermItems(glossary_uids)
 
             #get atoms from query and build related term query
-            text = ' '.join(flatten(tree.terms()))
+            # text = ' '.join(flatten(tree.terms()))
             excluded = dict.fromkeys(__getNOTWords(tree), True)
 
             tree = replaceWordsQuery(tree, parseQuery, gtool, all_term_items,
@@ -178,4 +181,3 @@ def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
 if PATCH_ZCTextIndex:
     ZCTextIndex._apply_index = zctidx_ApplyIndexWithSynonymous
     LOG.info('Applied patch: ZCTextIndex._apply_index method')
-

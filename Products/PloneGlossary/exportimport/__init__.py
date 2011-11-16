@@ -19,5 +19,5 @@
 $Id$
 """
 
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'

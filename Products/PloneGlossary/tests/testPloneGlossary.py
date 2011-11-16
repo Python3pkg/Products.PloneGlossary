@@ -26,11 +26,11 @@ from Products.PloneGlossary.utils import html2text
 from Products.PloneGlossary.utils import find_word
 from Products.PloneGlossary.utils import encode_ascii
 
-from Products.PloneGlossary import config
 from Products.PloneGlossary.utils import LOG
 
 
 class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
+
     def afterSetUp(self):
         self.loginAsPortalOwner()
         self.glossary = self.addGlossary(self.portal,
@@ -38,10 +38,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
                                          (u'Sport', u'Tennis', u'Open source'))
         self.logout()
 
-
     def testGetGlossaries(self):
         self.loginAsPortalOwner()
-        medical_glossary = self.addGlossary(self.portal, u'Medical', (u'ADN', u'Bone', u'Heart'))
+        medical_glossary = self.addGlossary(
+            self.portal, u'Medical', (u'ADN', u'Bone', u'Heart'))
         uids = []
         uids.append(self.glossary.UID())
         uids.append(medical_glossary.UID())
@@ -54,7 +54,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
         # Test PloneGlossaryTool->getGlossaries
         glossary_uid = self.glossary.UID()
-        glossaries = self.glossary_tool.getGlossaries(glossary_uids=[glossary_uid])
+        glossaries = self.glossary_tool.getGlossaries(
+            glossary_uids=[glossary_uid])
         glossary = glossaries[0]
         self.assertEquals(glossary.UID(), glossary_uid)
 
@@ -105,7 +106,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         all_uids.append(self.glossary.UID())
         all_uids.append(medical_glossary.UID())
         all_uids.sort()
-        general_glossaries_uids = list(self.glossary_tool.getGeneralGlossaryUIDs())
+        general_glossaries_uids = list(
+            self.glossary_tool.getGeneralGlossaryUIDs())
         general_glossaries_uids.sort()
         self.assertEquals(general_glossaries_uids, all_uids)
 
@@ -132,7 +134,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
         terms.sort()
         terms = [t['title'] for t in terms]
-        self.assertEquals(terms, ['Sport',])
+        self.assertEquals(terms, ['Sport'])
 
     def testObjectRelatedTerms(self):
         self.loginAsPortalOwner()
@@ -140,7 +142,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         doc = self.addFrenchDocument(self.portal, \
             self.encodeInSiteCharset(u'Sport fran\xe7ais'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
-        terms = list(self.glossary_tool.getObjectRelatedTerms(doc, glossary_uids))
+        terms = list(self.glossary_tool.getObjectRelatedTerms(
+            doc, glossary_uids))
         terms.sort()
         result = ['Sport']
         self.assertEquals(terms, result)
@@ -149,7 +152,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         doc = self.addDocument(self.portal, \
             self.encodeInSiteCharset(u'English documentation'),
             self.encodeInSiteCharset(u'This is an open source'),)
-        terms = list(self.glossary_tool.getObjectRelatedTerms(doc, glossary_uids))
+        terms = list(self.glossary_tool.getObjectRelatedTerms(
+            doc, glossary_uids))
         terms.sort()
         result = ['Open source']
         self.assertEquals(terms, result)
@@ -168,10 +172,12 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
         # test normal
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
-        definitions = list(self.glossary_tool.getObjectRelatedDefinitions(doc, glossary_uids))
+        definitions = list(self.glossary_tool.getObjectRelatedDefinitions(
+            doc, glossary_uids))
         self.assertEquals(len(definitions), 1)
         definition = definitions[0]
-        self.assertEquals(definition['url'], 'http://nohost/plone/general/sport')
+        self.assertEquals(definition['url'],
+                          'http://nohost/plone/general/sport')
         self.assertEquals(definition['description'], u'Definition of term')
         self.assertEquals(definition['variants'], ())
         self.assertEquals(definition['id'], 'sport')
@@ -194,7 +200,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         result = ('o', 's', 't')
         self.assertEquals(abcedaire, result)
 
-        brains = self.glossary_tool.getAbcedaireBrains([self.glossary.UID()], letters=['s'])
+        brains = self.glossary_tool.getAbcedaireBrains([self.glossary.UID()],
+                                                       letters=['s'])
         self.assertEquals(len(brains), 1)
         brain = brains[0]
         self.assertEquals(brain.Title, 'Sport')
@@ -202,7 +209,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
     def testSearchResults(self):
         self.loginAsPortalOwner()
-        brains = self.glossary_tool.searchResults([self.glossary.UID()], Title='Sport')
+        brains = self.glossary_tool.searchResults(
+            [self.glossary.UID()], Title='Sport')
         self.assertEquals(len(brains), 1)
         brain = brains[0]
         self.assertEquals(brain.Title, 'Sport')
@@ -228,66 +236,78 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         """Test variants"""
         self.loginAsPortalOwner()
         # Add glossary
-        self.glossary = self.addGlossary(self.portal,
-                                         u'Produits laitiers',
-                                         (u'Lait',
-                                          u'Beurre',
-                                          u'Fromage',
-                                          u'Crème',
-                                          u'Desserts lactés'))
+        self.glossary = self.addGlossary(
+            self.portal,
+            u'Produits laitiers',
+            (u'Lait',
+              u'Beurre',
+              u'Fromage',
+              u'Crème',
+              u'Desserts lactés'))
         # Variants of yaourt are yoghourt and yogourt
-        self.addGlossaryDefinition(self.glossary,
-                                  title=u'Yaourt',
-                                  definition=u'Lait caillé ayant subi une fermentation acide.',
-                                  variants=(u'Yaourts',
-                                            u'Yoghourt',
-                                            u'Yoghourts',
-                                            u'yogourt',
-                                            u'yogourts'))
+        self.addGlossaryDefinition(
+            self.glossary,
+            title=u'Yaourt',
+            definition=u'Lait caillé ayant subi une fermentation acide.',
+            variants=(u'Yaourts',
+                       u'Yoghourt',
+                       u'Yoghourts',
+                       u'yogourt',
+                       u'yogourts'))
 
-        doc = self.addDocument(self.portal,
-                               "Dessert",
-                               "Notre chef vous propose des fraises au yaourt et des yoghourts à la vanille.")
+        doc = self.addDocument(
+            self.portal,
+            "Dessert",
+            ("Notre chef vous propose des fraises au yaourt et des yoghourts "
+              "à la vanille."))
 
         brains = self.glossary_tool.searchResults([self.glossary.UID()],
                                                   SearchableText='Yoghourt')
         self.assertEquals(brains[0].Title, 'Yaourt')
 
-        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=[self.glossary.UID()])
-        definition= definitions[0]
-        self.assertEquals(definition['terms'],['yaourt'])
-        self.assertEquals(definition['show'],1)
-        definition= definitions[1]
-        self.assertEquals(definition['terms'],['yoghourts'])
-        self.assertEquals(definition['show'],0)
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(
+            doc, glossary_uids=[self.glossary.UID()])
+        definition = definitions[0]
+        self.assertEquals(definition['terms'], ['yaourt'])
+        self.assertEquals(definition['show'], 1)
+        definition = definitions[1]
+        self.assertEquals(definition['terms'], ['yoghourts'])
+        self.assertEquals(definition['show'], 0)
 
     def testEncoding(self):
         """Test encoding"""
         self.loginAsPortalOwner()
         # Add glossary
-        self.glossary = self.addGlossary(self.portal,
-                                         u'Parfums Femme Chanel',
-                                         (u'Lancôme : Ô Oui',
-                                          u"Dior : J´Adore",
-                                          u'Cerruti 1881 pour Femme',
-                                         ))
+        self.glossary = self.addGlossary(
+            self.portal,
+            u'Parfums Femme Chanel',
+            (u'Lancôme : Ô Oui',
+              u"Dior : J´Adore",
+              u'Cerruti 1881 pour Femme',
+              ))
         # Variants of yaourt are yoghourt and yogourt
-        self.addGlossaryDefinition(self.glossary,
-                                  title=u'Chanel N° 5',
-                                  definition=u"Un bouquet de fleurs abstraites d'une indéfinissable féminité.",
-                                  variants=(u'N° 5',),)
-        doc = self.addDocument(self.portal,
-                               "Le parfum de ma mère!",
-                               "Alors pour vous dire, une très grande histoire d'amour!! et ce n'est pas par hasard que ça fait maintenant plus de 80ans que Chanel N° 5 se vend!")
+        self.addGlossaryDefinition(
+            self.glossary,
+            title=u'Chanel N° 5',
+            definition=(u"Un bouquet de fleurs abstraites d'une "
+                         u"indéfinissable féminité."),
+            variants=(u'N° 5', ))
+        doc = self.addDocument(
+            self.portal,
+            "Le parfum de ma mère!",
+            ("Alors pour vous dire, une très grande histoire d'amour!! et ce "
+             "n'est pas par hasard que ça fait maintenant plus de 80ans que "
+             "Chanel N° 5 se vend!"))
 
         brains = self.glossary_tool.searchResults([self.glossary.UID()],
                                                   SearchableText='N° 5')
         self.assertEquals(brains[0].Title, 'Chanel N° 5')
 
-        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(doc, glossary_uids=[self.glossary.UID()])
-        definition= definitions[0]
-        self.assertEquals(definition['terms'],['Chanel N° 5'])
-        self.assertEquals(definition['show'],1)
+        definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(
+            doc, glossary_uids=[self.glossary.UID()])
+        definition = definitions[0]
+        self.assertEquals(definition['terms'], ['Chanel N° 5'])
+        self.assertEquals(definition['show'], 1)
 
     def testEncodeAscii(self):
         """Test encode_ascii function from utils modules"""
@@ -313,6 +333,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
         text = html2text("<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

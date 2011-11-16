@@ -21,7 +21,7 @@
 Misc utilities for PloneGlossary
 """
 
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Python imports
@@ -48,6 +48,7 @@ START_NEWLINE_TAGS = ('br',)
 TAB_TAGS = ('li',)
 CHARS_TO_REMOVE = r'[\r\n]'
 RE_CHARS_TO_REMOVE = re.compile(CHARS_TO_REMOVE)
+
 
 class HTML2TextParser(SGMLParser):
     """HTML -> text
@@ -78,16 +79,16 @@ class HTML2TextParser(SGMLParser):
             return ret
         except (ConflictError, KeyboardInterrupt):
             raise
-        except Exception, e:
+        except Exception:
             return ""
 
-    def handle_charref (self, ref):
+    def handle_charref(self, ref):
         """ handle the char reference (e.g. &257;) """
         self.result += self._savedecode(ref)
 
-    def handle_entityref (self, ref):
+    def handle_entityref(self, ref):
         """ handle the entity reference (e.g. &uuml;) """
-        ref = htmlentitydefs.name2codepoint.get(ref,None)
+        ref = htmlentitydefs.name2codepoint.get(ref, None)
         if ref:
             self.result += self._savedecode(ref)
 
@@ -102,12 +103,13 @@ RE_MULTIPLE_SPACES = re.compile(MULTIPLE_SPACES)
 MULTIPLE_NEWLINES = r'\n+'
 RE_MULTIPLE_NEWLINES = re.compile(MULTIPLE_NEWLINES)
 
+
 def html2text(html):
     """Transform html to text"""
 
     output = html
-    output = output.replace('\r',' ')
-    output = output.replace('\n',' ')
+    output = output.replace('\r', ' ')
+    output = output.replace('\n', ' ')
     if len(output) > 0:
         parser = HTML2TextParser()
         parser.feed(output)
@@ -127,6 +129,7 @@ def html2text(html):
 SEARCH_WORDS = r'[\s:;.,\'\{\}\(\)\|]*'
 RE_SEARCH_WORDS = re.compile(SEARCH_WORDS)
 
+
 def text2words(text):
     """Extract all words from text"""
 
@@ -138,6 +141,7 @@ def text2words(text):
             words.append(word)
 
     return tuple(words)
+
 
 def encode(text, decoding=None, encoding=None):
     """Encode in specified encoding"""
@@ -156,6 +160,7 @@ def encode(text, decoding=None, encoding=None):
 SEARCH_SPECIAL_CHARS = r'[\t\r\n\"\']'
 RE_SEARCH_SPECIAL_CHARS = re.compile(SEARCH_SPECIAL_CHARS)
 
+
 def escape_special_chars(text):
     """Quote text"""
 
@@ -165,18 +170,18 @@ def escape_special_chars(text):
 
         char = match.group(0)
 
-        if char== '\n':
+        if char == '\n':
             return '\\n'
-        elif char== '\r':
+        elif char == '\r':
             return '\\n'
-        elif char== '\t':
+        elif char == '\t':
             return '\\t'
-
 
         return '\\%s' % char
 
     text = RE_SEARCH_SPECIAL_CHARS.sub(escape, text)
     return text
+
 
 def encode_ascii(utext):
     """Normalize text : returns an ascii text
@@ -195,6 +200,7 @@ def encode_ascii(utext):
     atext = atext.replace('?', ' ')
     return atext
 
+
 def find_word(word, text):
     """Returns all found positions of the word in text.
 
@@ -207,7 +213,7 @@ def find_word(word, text):
     found_pos = []
 
     # Search all positions
-    index = 0 # First index where you search the word
+    index = 0  # First index where you search the word
 
     while 1:
         pos = text.find(word, index)
@@ -237,7 +243,8 @@ LOG = logging.getLogger(config.PROJECTNAME)
 
 # Translations in Python
 PloneGlossaryMessageFactory = MessageFactory(config.I18N_DOMAIN)
-ModuleSecurityInfo('Products.PloneGlossary.utils').declarePublic('PloneGlossaryMessageFactory')
+ModuleSecurityInfo('Products.PloneGlossary.utils').declarePublic(
+    'PloneGlossaryMessageFactory')
 
 ###
 ## Getting the Plone site
@@ -245,6 +252,7 @@ ModuleSecurityInfo('Products.PloneGlossary.utils').declarePublic('PloneGlossaryM
 
 from zope.component import getUtility
 from Products.CMFCore.interfaces import ISiteRoot
+
 
 def getSite():
     return getUtility(ISiteRoot)
@@ -277,6 +285,7 @@ class NotInstalledComponent(LookupError):
                % self.cpt_name)
         return msg
 
+
 class IfInstalled(object):
     def __init__(self, prod_name=config.PROJECTNAME):
         """@param prod_name: as shown in quick installer"""
@@ -295,4 +304,3 @@ class IfInstalled(object):
         wrapper.__doc__ = func.__doc__
         wrapper.__module__ = func.__module__
         return wrapper
-

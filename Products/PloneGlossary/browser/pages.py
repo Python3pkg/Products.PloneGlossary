@@ -22,7 +22,6 @@ Page views for PloneGlossary
 """
 import string
 import unicodedata
-from zope.component import getMultiAdapter
 from zExceptions import Redirect
 from plone.memoize.instance import memoize
 from Products.Five.browser import BrowserView
@@ -30,7 +29,9 @@ from Products.CMFCore.utils import getToolByName
 
 try:
     from Products.CMFPlone import Batch
-except ImportError: #Plone4.1 has moved Batch
+    Batch  # pyflakes
+except ImportError:
+    # Plone4.1 has moved Batch
     from Products.CMFPlone.PloneBatch import Batch
 
 from Products.PloneGlossary.config import (
@@ -38,6 +39,7 @@ from Products.PloneGlossary.config import (
     BATCH_SIZE,
     SITE_CHARSET
 )
+
 
 class GlossaryMainPage(BrowserView):
 
@@ -105,8 +107,8 @@ class GlossaryMainPage(BrowserView):
             # Viewing all terms
             results = gtool.searchResults([self.uid])
         results = list(results)
-        results.sort(lambda x,y: cmp(toLowerAscii(x.Title),
-                                     toLowerAscii(y.Title)))
+        results.sort(lambda x, y: cmp(toLowerAscii(x.Title),
+                                      toLowerAscii(y.Title)))
         return tuple(results)
 
     def result_features(self, result):
@@ -119,10 +121,10 @@ class GlossaryMainPage(BrowserView):
             'description': description.replace('\n', '<br />')
             }
 
+
 def toLowerAscii(text):
     utext = text.decode(SITE_CHARSET, 'replace')
     ntext = unicodedata.normalize('NFKD', utext)
     atext = ntext.encode('ascii', 'ignore')
     atext = atext.lower()
     return atext
-

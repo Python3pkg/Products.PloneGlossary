@@ -23,6 +23,7 @@ Testing patch to ZCTextIndex
 
 from Products.PloneGlossary.tests import PloneGlossaryTestCase
 
+
 class TestZCTextIndexPatch(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
     def testDefaultConfig(self):
@@ -35,6 +36,7 @@ class TestZCTextIndexPatch(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
         self.assertEquals(PATCH_ZCTextIndex, False)
         self.assertEquals(INDEX_SEARCH_GLOSSARY, ('SearchableText',))
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

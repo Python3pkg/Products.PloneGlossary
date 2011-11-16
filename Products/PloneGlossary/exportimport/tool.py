@@ -62,6 +62,7 @@ class ToolXMLAdapter(XMLAdapterBase, PropertyManagerHelpers):
 
         self._logger.info('Glossary tool imported.')
 
+
 def importGlossaryTool(context):
     """Import glossary tool settings from an XML file.
     """
@@ -74,6 +75,7 @@ def importGlossaryTool(context):
     tool = getToolByName(site, PLONEGLOSSARY_TOOL)
 
     importObjects(tool, '', context)
+
 
 def exportGlossaryTool(context):
     """Export glossary tool settings as an XML file.

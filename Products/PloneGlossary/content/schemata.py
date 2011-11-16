@@ -21,7 +21,7 @@
 AT schemas for PloneGlossary content types
 """
 
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Archetypes import
@@ -56,8 +56,9 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         accessor='Title',
         widget=StringWidget(
             label=_(u'label_glossary_term', default=u"Term"),
-            description=_(u'help_glossary_term', default=u"Enter the term to be defined."),
-            visible={'view' : 'invisible'}),
+            description=_(u'help_glossary_term',
+                              default=u"Enter the term to be defined."),
+            visible={'view': 'invisible'}),
         ),
     LinesField(
         'variants',
@@ -66,20 +67,23 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         default=(),
         widget=LinesWidget(
             label=_(u'label_glossary_variants', default=u"Variants"),
-            description=_(u'help_glossary_variants', default=u"Enter the variants of the term, one per line."),
-            visible={'view' : 'invisible'}),
+            description=_(
+                u'help_glossary_variants',
+                default=u"Enter the variants of the term, one per line."),
+            visible={'view': 'invisible'}),
         ),
     TextField(
         'definition',
         required=True,
         searchable=True,
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
+        default_content_type=zconf.ATDocument.default_content_type,
+        default_output_type='text/x-html-safe',
+        allowable_content_types=zconf.ATDocument.allowed_content_types,
         widget=RichWidget(
             label=_(u'label_glossary_definition_text', default=u"Body text"),
-            description=_(u'help_glossary_definition_text', default=u"Enter the body text."),
-            rows = 25),
+            description=_(u'help_glossary_definition_text',
+                          default=u"Enter the body text."),
+            rows=25),
         ),
 
     ))

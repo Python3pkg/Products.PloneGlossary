@@ -27,11 +27,12 @@ To customize the values add this to your zope.conf:
 </product-config>
 """
 
-__author__  = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
+__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
-SITE_CHARSET = None # Default: UTF-8
-BATCH_SIZE = None # Default: 30
+SITE_CHARSET = None  # Default: UTF-8
+BATCH_SIZE = None  # Default: 30
+
 
 def readZopeConf():
     """Read custom config from zope.conf or use defaults
@@ -39,14 +40,14 @@ def readZopeConf():
     global SITE_CHARSET, BATCH_SIZE
     from App.config import getConfiguration
     import codecs
-    default_config =  {
+    default_config = {
         'charset': 'UTF-8',
         'batch-size': 30
         }
     try:
         pg_config = getConfiguration().product_config['ploneglossary']
     except (KeyError, AttributeError):
-        pg_config =  default_config
+        pg_config = default_config
 
     getConfData = lambda key: pg_config.get(key, default_config[key])
 
@@ -55,9 +56,9 @@ def readZopeConf():
 
     # Validating
     try:
-        dummy = codecs.lookup(SITE_CHARSET)
-    except LookupError, e:
-        raise ValueError, "%s is not a valid charset." % SITE_CHARSET
+        codecs.lookup(SITE_CHARSET)
+    except LookupError:
+        raise ValueError("%s is not a valid charset." % SITE_CHARSET)
     return
 
 readZopeConf()

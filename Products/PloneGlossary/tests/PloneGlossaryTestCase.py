@@ -23,7 +23,6 @@ Base test case for PloneGlossary
 
 # Python imports
 import re
-import os
 
 # Zope imports
 from Testing import ZopeTestCase
@@ -35,6 +34,7 @@ from Products.CMFCore.utils import getToolByName
 # Plone imports
 from Products.PloneTestCase import PloneTestCase
 from Products.PloneTestCase.layer import onsetup
+
 
 @onsetup
 def setupPloneGlossary():
@@ -54,6 +54,7 @@ portal_name = 'portal'
 portal_owner = 'portal_owner'
 default_user = PloneTestCase.default_user
 default_password = PloneTestCase.default_password
+
 
 class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
 
@@ -128,7 +129,8 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
 
         return self.encodeInSiteCharset(u"""Term definition.""")
 
-    def addGlossaryDefinition(self, glossary, title, definition=None, variants=()):
+    def addGlossaryDefinition(self, glossary, title, definition=None,
+                              variants=()):
         """Add new glossary definition in a glossary"""
 
         if definition is None:
@@ -199,5 +201,3 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
 
         term = getattr(glossary, id)
         return term
-
-

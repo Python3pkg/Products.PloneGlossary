@@ -21,7 +21,7 @@
 Specific catalog for PloneGlossary
 """
 
-__author__  = 'Cyrille Lebeaupin <clebeaupin@ingeniweb.com'
+__author__ = 'Cyrille Lebeaupin <clebeaupin@ingeniweb.com'
 __docformat__ = 'restructuredtext'
 
 # Python imports
@@ -37,6 +37,7 @@ from Products.ZCTextIndex.PipelineFactory import element_factory
 from Products.PloneGlossary.config import PLONEGLOSSARY_CATALOG, SITE_CHARSET
 from Products.PloneGlossary.utils import encode_ascii
 
+
 class args:
     def __init__(self, **kw):
         self.__dict__.update(kw)
@@ -45,7 +46,7 @@ class args:
 # We currently only support Latin normalizer and splitter
 class LatinNormalizerAndSplitter:
     rx = re.compile(r"(?L)\w+")
-    rxGlob = re.compile(r"(?L)\w+[\w*?]*") # See globToWordIds() ab
+    rxGlob = re.compile(r"(?L)\w+[\w*?]*")  # See globToWordIds() ab
 
     def _normalize(self, text):
         """Normalize text : returns an ascii text
@@ -53,29 +54,32 @@ class LatinNormalizerAndSplitter:
         @param text: Text to normalize"""
 
         utext = text
-        if type(text) != type(u''): # Not unicode string
+        if type(text) != type(u''):  # Not unicode string
             utext = text.decode(SITE_CHARSET, "replace")
         return encode_ascii(utext)
 
     def process(self, lst):
         result = []
         for word in lst:
-           norm_word = self._normalize(word)
-           result.extend(self.rx.findall(norm_word))
+            norm_word = self._normalize(word)
+            result.extend(self.rx.findall(norm_word))
         return result
 
     def processGlob(self, lst):
         result = []
         for word in lst:
-           norm_word = self._normalize(word)
-           result.extend(self.rxGlob.findall(norm_word))
+            norm_word = self._normalize(word)
+            result.extend(self.rxGlob.findall(norm_word))
         return result
 
 
 try:
-    element_factory.registerFactory("Glossary Latin normalizer and splitter" , "Glossary Latin normalizer and splitter", LatinNormalizerAndSplitter)
+    element_factory.registerFactory(
+        "Glossary Latin normalizer and splitter",
+        "Glossary Latin normalizer and splitter",
+        LatinNormalizerAndSplitter)
 except ValueError:
-    # in case the normalizer is already registred, ValueError is raised
+    # in case the normalizer is already registered, ValueError is raised
     pass
 
 
@@ -147,15 +151,16 @@ def manage_addPloneGlossaryCatalog(self, REQUEST=None):
 
     # Add Lexicon
     cat.manage_addProduct['ZCTextIndex'].manage_addLexicon(
-              'glossary_lexicon',
-              elements=[
-              args(group="Glossary Latin normalizer and splitter" , name= "Glossary Latin normalizer and splitter"),
-              ]
-              )
+        'glossary_lexicon',
+        elements=[
+            args(group="Glossary Latin normalizer and splitter",
+                 name="Glossary Latin normalizer and splitter"),
+                 ]
+                 )
 
     # Add indexes and metadatas
     for index_name, index_type in cat.enumerateIndexes():
-        try: #ugly try catch XXX FIXME
+        try:  # ugly try catch XXX FIXME
             if index_name not in cat.indexes():
                 if index_type == 'ZCTextIndex':
                     extra = args(doc_attr=index_name,
@@ -171,5 +176,4 @@ def manage_addPloneGlossaryCatalog(self, REQUEST=None):
             pass
 
     if REQUEST is not None:
-        return self.manage_main(self, REQUEST,update_menu=1)
-
+        return self.manage_main(self, REQUEST, update_menu=1)

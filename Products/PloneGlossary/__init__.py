@@ -20,7 +20,7 @@
 """
 The PloneGlossary package
 """
-__author__  = ''
+__author__ = ''
 __docformat__ = 'restructuredtext'
 
 # Python imports
@@ -28,7 +28,6 @@ import os
 import sys
 
 # CMF imports
-from Products.CMFCore import permissions
 from Products.CMFCore.utils import ContentInit, ToolInit
 from Products.CMFCore.DirectoryView import registerDirectory
 
@@ -39,7 +38,6 @@ from Products.Archetypes.public import process_types, listTypes
 from Products.PloneGlossary.config import SKINS_DIR, GLOBALS, PROJECTNAME
 from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
 from Products.PloneGlossary import content as content_module
-from Products.PloneGlossary import config
 
 # BBB: Make migrations easier.
 sys.modules['Products.PloneGlossary.types'] = content_module
@@ -51,12 +49,14 @@ def initialize(context):
 
     # import at initialize: this let a chance to 3rd party products to change
     # config before deciding to patch
-    import Products.PloneGlossary.patches
+    from Products.PloneGlossary import patches
+    patches  # pyflakes
     from Products.PloneGlossary.permissions import add_permissions
 
     # used by test framework
-    if os.environ.has_key('ZOPETESTCASE'):
+    if 'ZOPETESTCASE' in os.environ:
         import examples
+        examples  # pyflakes
 
     # Import types
     listOfTypes = listTypes(PROJECTNAME)
@@ -67,10 +67,10 @@ def initialize(context):
         kind = "%s: %s" % (PROJECTNAME, content_type.__name__)
         ContentInit(
             kind,
-            content_types = (content_type, ),
-            permission = add_permissions[content_type.__name__],
-            extra_constructors = (constructor, ),
-            fti = ftis,
+            content_types=(content_type, ),
+            permission=add_permissions[content_type.__name__],
+            extra_constructors=(constructor, ),
+            fti=ftis,
         ).initialize(context)
 
     # Import tool
