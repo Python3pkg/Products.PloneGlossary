@@ -54,6 +54,9 @@
       class=".examples.exampleglossary.ExampleGlossary" />
   <five:deprecatedManageAddDelete
       class=".examples.exampleglossary.ExampleGlossaryDefinition" />
+  <!-- BBB, see sys.modules hack in init -->
+  <five:deprecatedManageAddDelete
+      class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition" />
 
 
   <!-- ============
@@ -67,7 +70,7 @@
      interface="wicked.interfaces.IAmWicked" />
 
 
-  <!-- XXX Why is there .types in here instead of .content??? -->
+  <!-- BBB, see sys.modules hack in init -->
   <wicked:atschema-fields-implement
      atclass=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
      fields="definition"
