@@ -88,8 +88,3 @@ class IOptionalHighLight(Interface):
         When no preference can be found, return the default value.
         This should be optional
         """
-
-
-class IOptionalHighLightLayer(Interface):
-    """Marker interface for plone.browserlayer.
-    """
