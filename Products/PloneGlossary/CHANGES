@@ -6,7 +6,8 @@ Change log
 =====================
 
 * Added support for switching highlighting on or off per object.  You
-  need to write an adapter if you want to use this.
+  need to write an adapter if you want to use this.  See for example
+  https://github.com/zestsoftware/zest.ploneglossaryhighlight
   [maurits]
 
 * fixed: Removing special chars from descriptions  [ristow]
