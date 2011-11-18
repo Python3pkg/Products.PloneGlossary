@@ -48,7 +48,7 @@ from plone.i18n.normalizer.base import baseNormalize
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
 from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
-from interfaces import IGlossaryTool
+from interfaces import IGlossaryTool, IOptionalHighLight
 
 logger = logging.getLogger('Products.PloneGlossary')
 
@@ -160,6 +160,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         if allowed_portal_types and portal_type not in allowed_portal_types:
             return False
+
+        # Check for an adapter on the object and see if this wants
+        # highlighting.
+        optional = IOptionalHighLight(obj, None)
+        if optional is not None:
+            return optional.do_highlight(default=self.highlight_content)
 
         return self.highlight_content
 

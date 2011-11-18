@@ -5,6 +5,10 @@ Change log
 1.5.0-b4 (unreleased)
 =====================
 
+* Added support for switching highlighting on or off per object.  You
+  need to write an adapter if you want to use this.
+  [maurits]
+
 * fixed: Removing special chars from descriptions  [ristow]
 
 1.5.0-b3 (2011-07-15)
