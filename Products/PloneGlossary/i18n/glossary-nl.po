@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
 "POT-Creation-Date: 2011-11-21 14:42+0000\n"
-"PO-Revision-Date: 2011-11-16 17:06+0100\n"
+"PO-Revision-Date: 2011-11-21 15:45+0100\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: Plone Nederlands <plone-nl@lists.plone.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Voeg Begrippenlijst portlet toe"
 
 # GS Profile description
 msgid "Adds support for glossaries in a Plone site."
-msgstr ""
+msgstr "Voegt ondersteuning toe voor begrippenlijsten in een Plone site"
 
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
@@ -41,7 +41,7 @@ msgstr "Begripsdefinitie"
 
 # GS Profile title
 msgid "Plone Glossary"
-msgstr ""
+msgstr "Plone Glossary (Begrippenlijst)"
 
 #: ./profiles/default/types/PloneGlossary.xml
 #: ./profiles/examples/types/ExampleGlossary.xml
