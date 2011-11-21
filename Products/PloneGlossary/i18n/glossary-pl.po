@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.4 SVN\n"
-"POT-Creation-Date: 2011-11-16 17:02+0000\n"
+"POT-Creation-Date: 2011-11-21 14:42+0000\n"
 "PO-Revision-Date: 2007-11-30 16:32+0100\n"
 "Last-Translator: Piotr Furman <piotr.furman@webservice.pl>\n"
 "Language-Team: webservice.pl <piotr.furman@webservice.pl>\n"
@@ -19,6 +19,10 @@ msgstr ""
 msgid "Add Glossary Portlet"
 msgstr ""
 
+# GS Profile description
+msgid "Adds support for glossaries in a Plone site."
+msgstr ""
+
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
 msgstr ""
@@ -31,6 +35,10 @@ msgstr "Słownik"
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
 msgstr "Definicja"
+
+# GS Profile title
+msgid "Plone Glossary"
+msgstr ""
 
 #: ./profiles/default/types/PloneGlossary.xml
 #: ./profiles/examples/types/ExampleGlossary.xml

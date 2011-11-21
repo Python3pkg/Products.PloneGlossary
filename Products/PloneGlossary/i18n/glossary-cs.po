@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 17:02+0000\n"
+"POT-Creation-Date: 2011-11-21 14:42+0000\n"
 "PO-Revision-Date: 2007-01-08 21:17+0100\n"
 "Last-Translator: Lukas Zdych <lukas.zdych@corenet.cz>\n"
 "Language-Team: Lukas Zdych <lukas.zdych@corenet.cz>\n"
@@ -21,6 +21,10 @@ msgstr ""
 msgid "Add Glossary Portlet"
 msgstr ""
 
+# GS Profile description
+msgid "Adds support for glossaries in a Plone site."
+msgstr ""
+
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
 msgstr ""
@@ -32,6 +36,10 @@ msgstr ""
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
+msgstr ""
+
+# GS Profile title
+msgid "Plone Glossary"
 msgstr ""
 
 #: ./profiles/default/types/PloneGlossary.xml

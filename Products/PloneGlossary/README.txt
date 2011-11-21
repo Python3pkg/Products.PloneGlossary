@@ -252,5 +252,4 @@ See the `LICENSE` file that comes with this product.
 
 --------------------------
 
-.. sectnum::
 .. _Ingeniweb: http://www.ingeniweb.com/

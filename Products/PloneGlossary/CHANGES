@@ -5,6 +5,9 @@ Change log
 1.5.0-b4 (unreleased)
 =====================
 
+* PeP8, Pyflakes and i18n cleanup.
+  [maurits]
+
 * fixed: Removing special chars from descriptions  [ristow]
 
 1.5.0-b3 (2011-07-15)

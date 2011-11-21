@@ -12,7 +12,7 @@ setup(
     name='Products.PloneGlossary',
     version=version,
     long_description = long_description,
-    description="Hilite Plone content terms, mouserover shows the term definition as tooltip.",
+    description="Hilite Plone content terms, mouseover shows the term definition as tooltip.",
     # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Programming Language :: Python",

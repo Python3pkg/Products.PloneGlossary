@@ -1,10 +1,10 @@
 # --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
+# Plone Glossary
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-11-16 17:02+0000\n"
+"Project-Id-Version: Products.PloneGlossary 1.0\n"
+"POT-Creation-Date: 2011-11-21 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,10 @@ msgstr ""
 msgid "Add Glossary Portlet"
 msgstr ""
 
+# GS Profile description
+msgid "Adds support for glossaries in a Plone site."
+msgstr ""
+
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
 msgstr ""
@@ -32,6 +36,10 @@ msgstr ""
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
+msgstr ""
+
+# GS Profile title
+msgid "Plone Glossary"
 msgstr ""
 
 #: ./profiles/default/types/PloneGlossary.xml
