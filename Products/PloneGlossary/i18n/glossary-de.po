@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
-"POT-Creation-Date: 2011-11-16 17:02+0000\n"
+"POT-Creation-Date: 2011-11-21 14:42+0000\n"
 "PO-Revision-Date: 2005-08-09 18:08+0200\n"
 "Last-Translator: Richard M. Kues <software@riva.at>\n"
 "Language-Team: RIVA\n"
@@ -19,6 +19,10 @@ msgstr ""
 msgid "Add Glossary Portlet"
 msgstr ""
 
+# GS Profile description
+msgid "Adds support for glossaries in a Plone site."
+msgstr ""
+
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
 msgstr ""
@@ -30,6 +34,10 @@ msgstr ""
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
+msgstr ""
+
+# GS Profile title
+msgid "Plone Glossary"
 msgstr ""
 
 #: ./profiles/default/types/PloneGlossary.xml
