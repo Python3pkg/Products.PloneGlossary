@@ -17,15 +17,15 @@ msgstr ""
 
 #: ./browser/portlet.py:86
 msgid "Add Glossary Portlet"
-msgstr ""
+msgstr "Ajouter une portlet Glossaire"
 
 # GS Profile description
 msgid "Adds support for glossaries in a Plone site."
-msgstr ""
+msgstr "Ajouter le service de glossaires dans Plone (Products.PloneGlossary)"
 
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
-msgstr ""
+msgstr "Exemple de glossaire (Products.PloneGlossary)"
 
 #: ./browser/portlet.py:48
 #: ./profiles/default/types/PloneGlossary.xml
@@ -38,16 +38,16 @@ msgstr "Terme"
 
 # GS Profile title
 msgid "Plone Glossary"
-msgstr ""
+msgstr "Glossaires pour Plone (Products.PloneGlossary)"
 
 #: ./profiles/default/types/PloneGlossary.xml
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "PloneGlossary container"
-msgstr ""
+msgstr "Conteneur de glossaire"
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "PloneGlossary definition"
-msgstr ""
+msgstr "Définition de glossaire"
 
 #: ./skins/PloneGlossary/ploneglossary_view.pt:60
 msgid "Search"
@@ -55,7 +55,7 @@ msgstr "Rechercher"
 
 #: ./browser/portlet.py:87
 msgid "This portlet shows the definitions of terms of the current page."
-msgstr ""
+msgstr "Cette portlet affiche les définitions des termes de la page courante."
 
 #. Default: "PloneGlossary Management"
 #. <h3 i18n:translate="heading_ploneglossary_management">
