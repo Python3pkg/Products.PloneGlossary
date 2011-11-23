@@ -5,6 +5,11 @@ Change log
 1.5.0-b4 (unreleased)
 =====================
 
+* Added support for switching highlighting on or off per object.  You
+  need to write an adapter if you want to use this.  See for example
+  https://github.com/zestsoftware/zest.ploneglossaryhighlight
+  [maurits]
+
 * PeP8, Pyflakes and i18n cleanup.
   [maurits]
 
