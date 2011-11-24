@@ -2,8 +2,8 @@
 Change log
 ==========
 
-1.5.0-b4 (unreleased)
-=====================
+1.5.0 (2011-11-24)
+==================
 
 * Added support for switching highlighting on or off per object.  You
   need to write an adapter if you want to use this.  See for example
