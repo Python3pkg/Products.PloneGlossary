@@ -168,6 +168,23 @@ A tool is installed by the installer. It provides a few configuration
 options (managed in the configlet) so that you can customize and
 manage your glossaries.
 
+Switch highlighting on or off per object
+----------------------------------------
+
+Since version 1.5.0 there is support for switching the highlighting on
+of off per object.  The default behaviour is still that the tool
+simply checks if the current object is in the allowed portal types
+that are set in the configuration.  Version 1.5.0 introduces an
+interface ``IOptionalHighLight``.  The tool tries to adapt the current
+object to that interface.  If this succeeds, the decision to highlight
+terms is given to the ``do_highlight`` method of the found adapter.
+The canonical implementation is in an optional package
+`zest.ploneglossaryhighlight`_; when installed this gives an extra
+field in the settings tab of content items where you can switch
+highlighting on or off.  See that package for more info.
+
+.. _`zest.ploneglossaryhighlight`: http://pypi.python.org/pypi/zest.ploneglossaryhighlight
+
 
 Testing
 =======
