@@ -139,7 +139,7 @@ The Glossary configlet
 ----------------------
 
 Highlight content: if this option is chosen, all defined words
-are hightlighted in the chosen content types (see further).
+are highlighted in the chosen content types (see further).
 
 Description length : Choose the maximum length of the given definition
 in the highlights.
@@ -165,7 +165,8 @@ Additional tools
 ----------------
 
 A tool is installed by the installer. It provides a few configuration
-options so that you can customize and manage your glossaries.
+options (managed in the configlet) so that you can customize and
+manage your glossaries.
 
 
 Testing
@@ -183,10 +184,9 @@ See `./doc`.
 Subversion repository
 =====================
 
-Stay in tune with the freshest (maybe unstable) versions or participate to
-the FileSystemStorage evolutions:
+Stay in tune with the freshest (maybe unstable) versions:
 
-https://svn.plone.org/svn/collective/Products.PloneGlossary
+http://svn.plone.org/svn/collective/Products.PloneGlossary
 
 Support and feedback
 ====================
@@ -224,6 +224,7 @@ Developers
 * `Bertrand Mathieu <mailto:bertrand.mathieu@ingeniweb.com>`_
 * `Maik Roeder <mailto:maik.roeder@ingeniweb.com>`_
 * `Gilles Lenfant <mailto:gilles.lenfant@ingeniweb.com>`_
+* `Maurits van Rees <mailto:m.van.rees@zestsoftware.nl>`_
 
 Translations
 ------------
@@ -234,6 +235,7 @@ Translations
 * German (de): Lukas Zdych
 * Polish (pl): `Piotr Furman <mailto:piotr.furman@webservice.pl>`_
 * Spanish (es): `Hector Velarde <mailto:hvelarde@jornada.com.mx>`_
+* Dutch (nl): `Ralph Jacobs <mailto:ralph@fourdigits.nl>`_, `Maurits van Rees <mailto:m.van.rees@zestsoftware.nl>`_
 
 Copyright and license
 =====================
