@@ -253,6 +253,7 @@ Translations
 * Polish (pl): `Piotr Furman <mailto:piotr.furman@webservice.pl>`_
 * Spanish (es): `Hector Velarde <mailto:hvelarde@jornada.com.mx>`_
 * Dutch (nl): `Ralph Jacobs <mailto:ralph@fourdigits.nl>`_, `Maurits van Rees <mailto:m.van.rees@zestsoftware.nl>`_
+* Italian (it): `Giacomo Spettoli <mailto:giacomo.spettoli@gmail.com>`_
 
 Copyright and license
 =====================
