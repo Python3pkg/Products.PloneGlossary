@@ -69,6 +69,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         {'id': 'highlight_content',
          'type': 'boolean',
          'mode': 'w'},
+        {'id': 'normalized_terms',
+         'type': 'boolean',
+         'mode': 'w'},
         {'id': 'use_general_glossaries',
          'type': 'boolean',
          'mode': 'w'},
@@ -103,6 +106,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     allowed_portal_types = ['PloneGlossaryDefinition']
     description_length = 0
     description_ellipsis = '..'
+    normalized_terms = True
     not_highlighted_tags = [
         'a', 'h1', 'input', 'textarea', 'div#kupu-editor-text-config-escaped',
         'div#kupu-editor-text-config'
@@ -363,9 +367,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         utext = text.decode(SITE_CHARSET, "replace")
         usplitted_text_terms = self._split(utext)
-        atext = encode_ascii(utext)
+        atext = encode_ascii(utext, self.normalized_terms)
 
-        aexcluded_terms = [encode_ascii(t.decode(SITE_CHARSET, "replace"))
+        aexcluded_terms = [encode_ascii(t.decode(SITE_CHARSET, "replace"), self.normalized_terms)
                           for t in excluded_terms]
 
         result = []
@@ -391,7 +395,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                 # Analyze term
                 analyzed_terms.append(term)
                 uterm = term.decode(SITE_CHARSET, "replace")
-                aterm = encode_ascii(uterm)
+                aterm = encode_ascii(uterm, self.normalized_terms)
                 if aterm in aexcluded_terms:
                     continue
 

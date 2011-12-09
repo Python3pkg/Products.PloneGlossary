@@ -183,7 +183,7 @@ def escape_special_chars(text):
     return text
 
 
-def encode_ascii(utext):
+def encode_ascii(utext, normalize=True):
     """Normalize text : returns an ascii text
 
     @param utext: Unicode text to normalize"""
@@ -196,7 +196,8 @@ def encode_ascii(utext):
         nchar = unicodedata.normalize('NFKD', uchar)
         atext += nchar[0].encode('ascii', 'replace')
 
-    atext = atext.lower()
+    if normalize:
+        atext = atext.lower()
     atext = atext.replace('?', ' ')
     return atext
 
