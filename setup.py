@@ -34,7 +34,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
-        # -*- Extra requirements: -*-
+        'wicked',
         ],
     entry_points="""
     # -*- Entry points: -*-
