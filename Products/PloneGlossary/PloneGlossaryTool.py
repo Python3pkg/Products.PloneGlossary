@@ -360,8 +360,10 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         @param text: charset encoded text
         @param excluded_terms: charset encoded terms to exclude from search
         """
-
-        utext = text.decode(SITE_CHARSET, "replace")
+        if isinstance(text, unicode):
+            utext = text
+        else:
+            utext = text.decode(SITE_CHARSET, "replace")
         usplitted_text_terms = self._split(utext)
         atext = encode_ascii(utext)
 
