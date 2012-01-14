@@ -25,7 +25,7 @@ __docformat__ = 'restructuredtext'
 
 # Python imports
 from AccessControl import ClassSecurityInfo
-
+from zope.interface import implements
 # CMF imports
 from Products.CMFCore import permissions
 
@@ -47,10 +47,12 @@ from Products.PloneGlossary.config import PROJECTNAME
 from Products.PloneGlossary.content.schemata import \
     PloneGlossaryDefinitionSchema as schema
 from Products.PloneGlossary.utils import html2text
+from Products.PloneGlossary.interfaces import IPloneGlossaryDefinition
 
 
 class PloneGlossaryDefinition(ATCTContent):
     """PloneGlossary definition """
+    implements(IPloneGlossaryDefinition)
 
     schema = schema
     _at_rename_after_creation = True
