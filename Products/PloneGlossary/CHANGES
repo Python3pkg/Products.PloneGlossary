@@ -2,10 +2,12 @@
 Change log
 ==========
 
-1.5.2 (unreleased)
+1.5.2 (2012-01-22)
 ==================
 
-- Nothing changed yet.
+- ensure that terms are sorted in descending term length in order to match
+  erms with the same prefix properly (longest matches first) 
+  (ajung)
 
 
 1.5.1 (2011-12-08)
