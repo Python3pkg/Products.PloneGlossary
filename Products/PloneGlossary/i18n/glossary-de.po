@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PloneGlossary 1.0\n"
 "POT-Creation-Date: 2011-11-21 14:42+0000\n"
 "PO-Revision-Date: 2005-08-09 18:08+0200\n"
-"Last-Translator: Richard M. Kues <software@riva.at>\n"
+"Last-Translator: Andreas Jung <info@zopyx.com>\n"
 "Language-Team: RIVA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
@@ -17,37 +17,37 @@ msgstr ""
 
 #: ./browser/portlet.py:86
 msgid "Add Glossary Portlet"
-msgstr ""
+msgstr "Glossar Portlet hinzufügen"
 
 # GS Profile description
 msgid "Adds support for glossaries in a Plone site."
-msgstr ""
+msgstr "Erweiterter Plone um ein Glossar "
 
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "Example Glossary"
-msgstr ""
+msgstr "Beispiel Glossar"
 
 #: ./browser/portlet.py:48
 #: ./profiles/default/types/PloneGlossary.xml
 msgid "Glossary"
-msgstr ""
+msgstr "Glossar"
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
-msgstr ""
+msgstr "Glossar Term"
 
 # GS Profile title
 msgid "Plone Glossary"
-msgstr ""
+msgstr "Plone Glossar"
 
 #: ./profiles/default/types/PloneGlossary.xml
 #: ./profiles/examples/types/ExampleGlossary.xml
 msgid "PloneGlossary container"
-msgstr ""
+msgstr "Plone Glossar Ordner"
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "PloneGlossary definition"
-msgstr ""
+msgstr "Plone Glossar Term"
 
 #: ./skins/PloneGlossary/ploneglossary_view.pt:60
 msgid "Search"
@@ -55,7 +55,7 @@ msgstr "Suche"
 
 #: ./browser/portlet.py:87
 msgid "This portlet shows the definitions of terms of the current page."
-msgstr ""
+msgstr "Dieses Portlet zeigt die Definition von Glossar Termen auf der aktuellen Seite"
 
 #. <h3 i18n:translate="heading_ploneglossary_management">
 #. PloneGlossary Management
