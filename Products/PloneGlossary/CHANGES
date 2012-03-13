@@ -2,12 +2,17 @@
 Change log
 ==========
 
+1.5.2.1 (2013-03-13)
+===================
+- updated german translations
+  [ajung]
+
 1.5.2 (2012-01-22)
 ==================
 
 - ensure that terms are sorted in descending term length in order to match
-  erms with the same prefix properly (longest matches first) 
-  (ajung)
+  terms with the same prefix properly (longest matches first) 
+  [ajung]
 
 
 1.5.1 (2011-12-08)
