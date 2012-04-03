@@ -2,6 +2,12 @@
 Change log
 ==========
 
+1.5.2.3 (2013-04-03)
+===================
+- removed pointless blather logging messages
+  [ajung]
+
+
 1.5.2.1 (2013-03-13)
 ===================
 - updated german translations

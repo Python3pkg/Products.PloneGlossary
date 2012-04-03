@@ -228,7 +228,6 @@ def glossaryAdded(glossary, event):
     # FIXME: Fix this when AT don't need manage_afterAdd any more
     super(glossary.__class__, glossary).manage_afterAdd(glossary, container)
     glossary._initCatalog()
-    LOG.info("Event: A %s has been added.", glossary.meta_type)
     return
 
 
@@ -236,5 +235,4 @@ def glossaryMoved(glossary, event):
     """A glossary has been moved or renamed"""
 
     glossary.rebuildCatalog()
-    LOG.info("Event: A %s has been moved.", glossary.meta_type)
     return
