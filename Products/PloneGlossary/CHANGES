@@ -2,13 +2,18 @@
 Change log
 ==========
 
-1.5.2.3 (2013-04-03)
+1.5.3 (unreleased)
+==================
+- do catalog dispatching right
+  [tom_gross]
+
+1.5.2.3 (2012-04-03)
 ===================
 - removed pointless blather logging messages
   [ajung]
 
 
-1.5.2.1 (2013-03-13)
+1.5.2.1 (2012-03-13)
 ===================
 - updated german translations
   [ajung]
