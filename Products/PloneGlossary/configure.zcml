@@ -34,6 +34,13 @@
      for="Products.CMFPlone.interfaces.ITestCasePloneSiteRoot"
      />
 
+  <genericsetup:registerProfile
+     name="uninstall"
+     title="Plone Glossary uninstall"
+     description="Uninstall Plone Glossary."
+     directory="profiles/uninstall"
+     provides="Products.GenericSetup.interfaces.EXTENSION"
+     />
 
   <!-- Events handlers -->
 

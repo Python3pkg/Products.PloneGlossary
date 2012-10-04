@@ -7,6 +7,9 @@ Change log
 - do catalog dispatching right
   [tom_gross]
 
+- added uninstall profile
+   [micecchi]
+
 1.5.2.3 (2012-04-03)
 ===================
 - removed pointless blather logging messages
