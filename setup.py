@@ -1,9 +1,6 @@
 from setuptools import setup, find_packages
-import os
 
-_home = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'Products', 'PloneGlossary')
-
-version = open(os.path.join(_home, 'version.txt')).read().strip()
+version = '1.5.2.3'
 long_description = open("README.txt").read() + "\n\n"
 long_description += open("CHANGES.rst").read()
 long_description = long_description.decode('utf8')
