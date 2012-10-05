@@ -5,11 +5,15 @@ Change log
 1.5.3 (unreleased)
 ==================
 
+* Moved to https://github.com/collective/Products.PloneGlossary
+  [maurits]
+
 * do catalog dispatching right
   [tom_gross]
 
 * added uninstall profile
-   [micecchi]
+  [micecchi]
+
 
 1.5.2.3 (2012-04-03)
 ====================
@@ -23,6 +27,7 @@ Change log
 
 * updated german translations
   [ajung]
+
 
 1.5.2 (2012-01-22)
 ==================

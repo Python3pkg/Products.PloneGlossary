@@ -24,7 +24,7 @@ setup(
     keywords='plone glossary',
     author='Ingeniweb',
     author_email='support@ingeniweb.com',
-    url='http://plone.org/products/ploneglossary',
+    url='https://github.com/collective/Products.PloneGlossary',
     license='GPL',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
