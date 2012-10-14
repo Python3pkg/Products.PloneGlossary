@@ -50,7 +50,6 @@ from Products.PloneGlossary.PloneGlossaryCatalog import \
     manage_addPloneGlossaryCatalog
 from Products.PloneGlossary.content.schemata import \
     PloneGlossarySchema as schema
-from Products.PloneGlossary.utils import LOG
 from Products.PloneGlossary.interfaces import IPloneGlossary
 
 

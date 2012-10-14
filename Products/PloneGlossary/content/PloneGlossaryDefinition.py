@@ -29,9 +29,6 @@ from zope.interface import implements
 # CMF imports
 from Products.CMFCore import permissions
 
-# Plone imports
-from Products.CMFPlone.utils import getToolByName
-
 # Archetypes imports
 try:
     from Products.LinguaPlone.public import registerType

@@ -16,24 +16,15 @@
 ## along with this program; see the file LICENSE. If not, write to the
 ## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id$
 """
 Base test case for PloneGlossary
 """
 
-# Python imports
 import re
 
-# Zope imports
-from Testing import ZopeTestCase
-from AccessControl.SecurityManagement import newSecurityManager
-
-# CMF imports
 from Products.CMFCore.utils import getToolByName
-
-# Plone imports
 from Products.PloneTestCase import PloneTestCase
-from Products.PloneTestCase.layer import onsetup
+from Testing import ZopeTestCase
 
 ZopeTestCase.installProduct('PloneGlossary')
 
