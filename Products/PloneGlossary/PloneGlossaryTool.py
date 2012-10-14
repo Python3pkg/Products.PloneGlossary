@@ -35,7 +35,13 @@ from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
 from Acquisition import aq_base
 from ZODB.POSException import ConflictError
-from zope.app.component import hooks
+
+try:
+    from zope.component.hooks import getSite
+    getSite  # pyflakes
+except ImportError:
+    # BBB for Plone < 4.0
+    from zope.app.component.hooks import getSite
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
@@ -190,7 +196,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         portal_catalog = getToolByName(context, 'portal_catalog')
 
         context = context.aq_inner
-        siteroot = hooks.getSite()
+        siteroot = getSite()
         glossaries = []
         glossary_metatypes = self.glossary_metatypes
 

@@ -5,6 +5,10 @@ Change log
 1.5.3 (unreleased)
 ==================
 
+* Add Plone 4.3 compatibility by avoiding hard dependency on zope.app
+  packages.
+  [maurits]
+
 * Moved to https://github.com/collective/Products.PloneGlossary
   [maurits]
 

@@ -19,6 +19,7 @@ setup(
         "Framework :: Plone :: 4.0",
         "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
+        "Framework :: Plone :: 4.3",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
     keywords='plone glossary',
