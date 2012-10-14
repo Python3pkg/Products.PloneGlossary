@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.5.3 (unreleased)
+1.5.3 (2012-10-14)
 ==================
 
 * Add Plone 4.3 compatibility by avoiding hard dependency on zope.app
