@@ -50,6 +50,8 @@ from Products.CMFCore.utils import UniqueObject, getToolByName
 from plone.memoize.request import memoize_diy_request
 from plone.i18n.normalizer.base import baseNormalize
 
+from Products.CMFPlone.utils import safe_unicode
+
 # PloneGlossary imports
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
 from Products.PloneGlossary.utils import (
@@ -685,8 +687,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """Truncate definition using tool properties"""
 
         max_length = self.description_length
-        text = text.decode(SITE_CHARSET, "replace")
-        text = text.strip()
+        text = safe_unicode(text).strip()
 
         if max_length > 0 and len(text) > max_length:
             ellipsis = self.description_ellipsis
