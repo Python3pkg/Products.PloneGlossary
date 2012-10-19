@@ -195,12 +195,12 @@ Other documentation
 See `./doc`.
 
 
-Subversion repository
-=====================
+Code repository
+===============
 
 Stay in tune with the freshest (maybe unstable) versions:
 
-http://svn.plone.org/svn/collective/Products.PloneGlossary
+https://github.com/collective/Products.PloneGlossary
 
 Support and feedback
 ====================
@@ -219,8 +219,7 @@ bug report:
 * The full traceback if available.
 * One or more scenario that triggers the bug.
 
-Note that we do not support bug reports on Subversion trunk or
-branches checkouts.
+Note that we do not support bug reports on git master or branches checkouts.
 
 `Mail to Ingeniweb support <mailto:support@ingeniweb.com>`_ in English or
 French to ask for specific support.
@@ -239,6 +238,7 @@ Developers
 * `Maik Roeder <mailto:maik.roeder@ingeniweb.com>`_
 * `Gilles Lenfant <mailto:gilles.lenfant@ingeniweb.com>`_
 * `Maurits van Rees <mailto:m.van.rees@zestsoftware.nl>`_
+* `Tom Gross <mailto:itconsense@gmail.com>`_
 
 Translations
 ------------
