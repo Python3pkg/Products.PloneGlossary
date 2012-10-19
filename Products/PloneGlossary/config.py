@@ -23,11 +23,10 @@ Global configuration data
 __author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
 __docformat__ = 'restructuredtext'
 
-from Products.PloneGlossary.customconfig import SITE_CHARSET, BATCH_SIZE
+from Products.PloneGlossary.customconfig import BATCH_SIZE
 
 # Prevent pyflakes warnings ;o)
-dummy = (SITE_CHARSET, BATCH_SIZE)
-del dummy
+BATCH_SIZE
 
 # ZCTextIndex patch setup
 # don't patch by default

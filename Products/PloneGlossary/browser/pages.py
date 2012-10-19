@@ -26,6 +26,7 @@ from zExceptions import Redirect
 from plone.memoize.instance import memoize
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.utils import safe_unicode
 
 try:
     from Products.CMFPlone import Batch
@@ -34,11 +35,8 @@ except ImportError:
     # Plone4.1 has moved Batch
     from Products.CMFPlone.PloneBatch import Batch
 
-from Products.PloneGlossary.config import (
-    PLONEGLOSSARY_TOOL,
-    BATCH_SIZE,
-    SITE_CHARSET
-)
+from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, BATCH_SIZE
+from Products.PloneGlossary.utils import encode_ascii
 
 
 class GlossaryMainPage(BrowserView):
@@ -107,8 +105,8 @@ class GlossaryMainPage(BrowserView):
             # Viewing all terms
             results = gtool.searchResults([self.uid])
         results = list(results)
-        results.sort(lambda x, y: cmp(toLowerAscii(x.Title),
-                                      toLowerAscii(y.Title)))
+        results.sort(lambda x, y: cmp(encode_ascii(x.Title),
+                                      encode_ascii(y.Title)))
         return tuple(results)
 
     def result_features(self, result):
@@ -120,11 +118,3 @@ class GlossaryMainPage(BrowserView):
             'title': result.Title or result.getId,
             'description': description.replace('\n', '<br />')
             }
-
-
-def toLowerAscii(text):
-    utext = text.decode(SITE_CHARSET, 'replace')
-    ntext = unicodedata.normalize('NFKD', utext)
-    atext = ntext.encode('ascii', 'ignore')
-    atext = atext.lower()
-    return atext

@@ -32,9 +32,11 @@ from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.ZCatalog.ZCatalog import ZCatalog
 
+from Products.CMFPlone.utils import safe_unicode
+
 # Products imports
 from Products.ZCTextIndex.PipelineFactory import element_factory
-from Products.PloneGlossary.config import PLONEGLOSSARY_CATALOG, SITE_CHARSET
+from Products.PloneGlossary.config import PLONEGLOSSARY_CATALOG
 from Products.PloneGlossary.utils import encode_ascii
 
 
@@ -48,27 +50,17 @@ class LatinNormalizerAndSplitter:
     rx = re.compile(r"(?L)\w+")
     rxGlob = re.compile(r"(?L)\w+[\w*?]*")  # See globToWordIds() ab
 
-    def _normalize(self, text):
-        """Normalize text : returns an ascii text
-
-        @param text: Text to normalize"""
-
-        utext = text
-        if type(text) != type(u''):  # Not unicode string
-            utext = text.decode(SITE_CHARSET, "replace")
-        return encode_ascii(utext)
-
     def process(self, lst):
         result = []
         for word in lst:
-            norm_word = self._normalize(word)
+            norm_word = encode_ascii(word)
             result.extend(self.rx.findall(norm_word))
         return result
 
     def processGlob(self, lst):
         result = []
         for word in lst:
-            norm_word = self._normalize(word)
+            norm_word = encode_ascii(word)
             result.extend(self.rxGlob.findall(norm_word))
         return result
 

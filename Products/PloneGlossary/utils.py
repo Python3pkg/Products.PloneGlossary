@@ -38,7 +38,7 @@ from zope.i18nmessageid import MessageFactory
 from ZODB.POSException import ConflictError
 
 from Products.CMFCore.utils import getToolByName
-from Products.PloneGlossary.config import SITE_CHARSET
+from Products.CMFPlone.utils import safe_unicode
 
 # Product imports
 import config
@@ -75,7 +75,7 @@ class HTML2TextParser(SGMLParser):
         case of errors.
         """
         try:
-            ret = unichr(int(code)).encode(SITE_CHARSET, "replace")
+            ret = unichr(int(code)).encode('utf-8', "replace")
             return ret
         except (ConflictError, KeyboardInterrupt):
             raise
@@ -143,20 +143,6 @@ def text2words(text):
     return tuple(words)
 
 
-def encode(text, decoding=None, encoding=None):
-    """Encode in specified encoding"""
-
-    if encoding == decoding:
-        return text
-
-    if decoding is not None:
-        text = text.decode(decoding, "replace")
-
-    if encoding is not None and encoding != 'unicode':
-        text = text.encode(encoding, "replace")
-
-    return text
-
 SEARCH_SPECIAL_CHARS = r'[\t\r\n\"\']'
 RE_SEARCH_SPECIAL_CHARS = re.compile(SEARCH_SPECIAL_CHARS)
 
@@ -183,22 +169,17 @@ def escape_special_chars(text):
     return text
 
 
-def encode_ascii(utext):
+def encode_ascii(text):
     """Normalize text : returns an ascii text
 
     @param utext: Unicode text to normalize"""
 
+    utext = safe_unicode(text)
     # Ascii text of utext
-    atext = ''
-
-    for uchar in utext:
-        # Normalize char
-        nchar = unicodedata.normalize('NFKD', uchar)
-        atext += nchar[0].encode('ascii', 'replace')
-
-    atext = atext.lower()
-    atext = atext.replace('?', ' ')
-    return atext
+    atext = ''.join([unicodedata.normalize(
+                     'NFKD', uchar)[0].encode('ascii', 'replace')
+                     for uchar in utext])
+    return atext.lower().replace('?', ' ')
 
 
 def find_word(word, text):

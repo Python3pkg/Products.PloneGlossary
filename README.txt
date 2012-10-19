@@ -55,17 +55,15 @@ Of course use zc.buildout. Just add this line to your buildout.cfg::
       Products.PloneGlossary
 
 
-Installing a subversion checkout
---------------------------------
+Installing a clone from github
+------------------------------
 
 We assume that your instance has been built with the `plone3_buildout`
 template for the paste script (otherwise you should change
 instructions accordingly)::
 
   $ cd $BUILDOUT_HOME/src
-  $ svn co \
-  https://svn.plone.org/svn/collective/Products.PloneGlossary/trunk \
-  Products.PloneGlossary
+  $ git clone git@github.com:collective/Products.PloneGlossary.git
   $ cd Products.PloneGlossary
   $ python setup.py develop
 
@@ -119,18 +117,14 @@ in the displayed content.
 zope.conf tweaks (optional)
 ---------------------------
 
-PloneGlossary assumes that your site charset is UTF-8. As this charset
-must be known very early in Zope startup, we cannot always use the
-charset in the properties of your Plone site.
+PloneGlossary assumes that your site charset is UTF-8.
 
 PloneGlossary views have a batch size of 30 terms. You might prefer
 another size.
 
-If the Plone sites of your instance use another charset, or if you
-need another batch size, you might append this to your `zope.conf`::
+If you need another batch size, you might append this to your `zope.conf`::
 
   <product-config ploneglossary>
-    charset iso-8859-15 # Or any valid charset that suits your needs.
     batch-size 40 # Or any positive integer you might prefer.
   </product-config>
 

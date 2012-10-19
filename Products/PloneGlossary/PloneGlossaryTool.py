@@ -53,7 +53,7 @@ from plone.i18n.normalizer.base import baseNormalize
 from Products.CMFPlone.utils import safe_unicode
 
 # PloneGlossary imports
-from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL, SITE_CHARSET
+from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
 from interfaces import IGlossaryTool, IOptionalHighLight
@@ -368,15 +368,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         @param text: charset encoded text
         @param excluded_terms: charset encoded terms to exclude from search
         """
-        if isinstance(text, unicode):
-            utext = text
-        else:
-            utext = text.decode(SITE_CHARSET, "replace")
+        utext = safe_unicode(text)
         usplitted_text_terms = self._split(utext)
-        atext = encode_ascii(utext)
+        atext = encode_ascii(text)
 
-        aexcluded_terms = [encode_ascii(t.decode(SITE_CHARSET, "replace"))
-                          for t in excluded_terms]
+        aexcluded_terms = [encode_ascii(t) for t in excluded_terms]
 
         result = []
 
@@ -400,8 +396,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
                 # Analyze term
                 analyzed_terms.append(term)
-                uterm = term.decode(SITE_CHARSET, "replace")
-                aterm = encode_ascii(uterm)
+                aterm = encode_ascii(term)
                 if aterm in aexcluded_terms:
                     continue
 
@@ -424,7 +419,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                         continue
 
                     # Encode the term and make sure there are no doublons
-                    text_term = utext_term.encode(SITE_CHARSET, "replace")
+                    text_term = utext_term.encode('utf-8', "replace")
                     if text_term in text_terms:
                         continue
                     text_terms.append(text_term)
@@ -630,17 +625,8 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     security.declarePublic('getFirstLetter')
     def getFirstLetter(self, term):
         """ returns first letter """
-        if isinstance(term, unicode):
-            letter = term[0:1]
-            return baseNormalize(letter)
-        else:
-            try:
-                uterm = term.decode(SITE_CHARSET)
-                letter = baseNormalize(uterm[0:1]).encode(SITE_CHARSET)
-                return letter
-            except UnicodeDecodeError:
-                letter = term[0:1].decode()  # use python default encoding
-                return baseNormalize(letter)
+        uterm = safe_unicode(term)
+        return baseNormalize(uterm[0:1]).encode('utf-8')
 
     security.declarePublic('getAbcedaire')
     def getAbcedaire(self, glossary_uids):
@@ -695,7 +681,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             text = text.strip()
             text = '%s %s' % (text, ellipsis)
 
-        text = text.encode(SITE_CHARSET, "replace")
+        text = text.encode('utf-8', "replace")
 
         return text
 
