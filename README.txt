@@ -10,6 +10,9 @@ By Ingeniweb_.
 
 --------------------------
 
+
+.. image:: https://travis-ci.org/collective/Products.PloneGlossary.png
+
 Overview
 ========
 
