@@ -2,8 +2,8 @@
 Change log
 ==========
 
-1.6 (unreleased)
-================
+1.5.4 (2012-11-22)
+==================
 
 - Removed support for other encodings as UTF-8 and simplified code.
   Encodings other than UTF-8 are currently not supported by Plone
