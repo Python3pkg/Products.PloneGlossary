@@ -5,8 +5,8 @@ Change log
 1.6 (unreleased)
 ================
 
-- Nothing changed yet.
-
+- Removed relatedItems slot for Plone 4.3 compatibility
+  [tom_gross]
 
 1.5.3-FHNW1 (2012-11-22)
 ========================
