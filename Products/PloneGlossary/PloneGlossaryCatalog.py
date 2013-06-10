@@ -32,8 +32,6 @@ from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from Products.ZCatalog.ZCatalog import ZCatalog
 
-from Products.CMFPlone.utils import safe_unicode
-
 # Products imports
 from Products.ZCTextIndex.PipelineFactory import element_factory
 from Products.PloneGlossary.config import PLONEGLOSSARY_CATALOG

@@ -37,7 +37,6 @@ def readZopeConf():
     """
     global BATCH_SIZE
     from App.config import getConfiguration
-    import codecs
     default_config = {'batch-size': 30}
     try:
         pg_config = getConfiguration().product_config['ploneglossary']

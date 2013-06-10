@@ -21,12 +21,10 @@
 Page views for PloneGlossary
 """
 import string
-import unicodedata
 from zExceptions import Redirect
 from plone.memoize.instance import memoize
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.utils import safe_unicode
 
 try:
     from Products.CMFPlone import Batch
