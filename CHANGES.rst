@@ -5,6 +5,15 @@ Change log
 1.6 (unreleased)
 ================
 
+- Change the condition for ``ploneglossary.css`` so it does not give
+  an error when accessing the Dexterity control panel, which does not
+  allow access to ``meta_type``.  Note that if you have customized
+  PloneGlossary and kept the same meta_type but have given it a
+  different portal_type, you will need to change the condition
+  accordingly.  Includes upgrade step.
+  Fixes https://github.com/collective/Products.PloneGlossary/issues/3
+  [maurits
+
 - Removed use of linkOpaque.gif. It failed in Plone 4.3 and was not
   actually needed.
   Fixes https://github.com/collective/Products.PloneGlossary/issues/1

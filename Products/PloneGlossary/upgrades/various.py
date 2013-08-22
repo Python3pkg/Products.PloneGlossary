@@ -98,6 +98,13 @@ def fixKupuSupport(setuptool):
 # Misc
 ###
 
+@safety_belt
+def applyCssStep(setuptool):
+    """Apply our cssregistry.xml.
+    """
+    runImportStep(setuptool, 'cssregistry')
+
+
 def runImportStep(setuptool, step_id):
     setuptool.runImportStepFromProfile(
         'profile-Products.PloneGlossary:default',

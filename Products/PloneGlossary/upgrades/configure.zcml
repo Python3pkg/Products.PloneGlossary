@@ -37,5 +37,17 @@
 
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+     source="1.4.2"
+     destination="1.6"
+     profile="Products.PloneGlossary:default">
+
+     <genericsetup:upgradeStep
+        title="Apply CSS step."
+        description="Change the condition for ploneglossary.css."
+        handler=".various.applyCssStep"
+        />
+
+  </genericsetup:upgradeSteps>
 
 </configure>
