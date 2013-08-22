@@ -86,7 +86,6 @@
                           condition="view/has_results">
             <div metal:use-macro="here/batch_macros/macros/navigation" />
             <dl tal:define="result_features nocall:view/result_features;
-                            error_image here/linkOpaque.gif;
                             definition_icon here/ploneglossarydefinition_icon.gif">
               <tal:loop repeat="result batch">
                 <tal:entry define="result python:result_features(result);
@@ -98,7 +97,6 @@
                            height="16"
                            width="16"
                            alt=""
-                           tal:on-error="structure error_image"
                            tal:replace="structure definition_icon"
                            /></a>&nbsp;<a href="#"
                                           tal:attributes="href url"

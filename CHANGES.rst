@@ -5,8 +5,14 @@ Change log
 1.6 (unreleased)
 ================
 
+- Removed use of linkOpaque.gif. It failed in Plone 4.3 and was not
+  actually needed.
+  Fixes https://github.com/collective/Products.PloneGlossary/issues/1
+  [maurits]
+
 - Removed relatedItems slot for Plone 4.3 compatibility
   [tom_gross]
+
 
 1.5.3-FHNW1 (2012-11-22)
 ========================
