@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.6 (unreleased)
+1.6 (2013-08-26)
 ================
 
 - Change the condition for ``ploneglossary.css`` so it does not give
