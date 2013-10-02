@@ -129,3 +129,4 @@ def convertFolderish(setuptool):
         migrator.migrate(item)
         log.info('Migrated: %s' % brain.getPath())
     log.info('Migration done')
+    runImportStep(setuptool, 'types')
