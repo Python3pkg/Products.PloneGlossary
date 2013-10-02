@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ##
 ## Copyright (C) 2007 Ingeniweb
+from Products.ATContentTypes.content.folder import ATFolderSchema
 
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -38,6 +39,7 @@ from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
 from Products.PloneGlossary.utils import PloneGlossaryMessageFactory as _
+from plone.app.folder.folder import ATFolderSchema
 
 
 # PloneGlossary schema
@@ -47,7 +49,7 @@ PloneGlossarySchema['description'].schemata = 'default'
 finalizeATCTSchema(PloneGlossarySchema, folderish=True)
 
 # PloneGlossaryDefinition schema
-PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
+PloneGlossaryDefinitionSchema = ATFolderSchema.copy() + Schema((
     StringField(
         'title',
         required=True,
@@ -89,7 +91,7 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
     ))
 
 del PloneGlossaryDefinitionSchema['description']
-finalizeATCTSchema(PloneGlossaryDefinitionSchema)
+finalizeATCTSchema(PloneGlossaryDefinitionSchema, folderish=True)
 
 # Hide description. It is generated dynamically
 #PloneGlossaryDefinitionSchema['description'].widget.visible = {'view' : '

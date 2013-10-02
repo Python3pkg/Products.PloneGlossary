@@ -37,7 +37,7 @@ except ImportError:
     # No multilingual support
     from Products.Archetypes.atapi import registerType
 
-from Products.ATContentTypes.content.base import ATCTContent
+from plone.app.folder.folder import ATFolder
 
 # Products imports
 from Products.PloneGlossary.config import PROJECTNAME
@@ -47,7 +47,7 @@ from Products.PloneGlossary.utils import html2text
 from Products.PloneGlossary.interfaces import IPloneGlossaryDefinition
 
 
-class PloneGlossaryDefinition(ATCTContent):
+class PloneGlossaryDefinition(ATFolder):
     """PloneGlossary definition """
     implements(IPloneGlossaryDefinition)
 
