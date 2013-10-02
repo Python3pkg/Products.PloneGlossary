@@ -25,6 +25,8 @@ __docformat__ = 'restructuredtext'
 from Products.CMFCore.utils import getToolByName
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import getSite, IfInstalled
+from zope.globalrequest import getRequest
+from zope.component import getMultiAdapter
 
 safety_belt = IfInstalled()
 
@@ -110,3 +112,20 @@ def runImportStep(setuptool, step_id):
         'profile-Products.PloneGlossary:default',
         step_id, run_dependencies=False)
     return
+
+
+@safety_belt
+def convertFolderish(setuptool):
+    """ Convert Definitions to be folderish """
+    from logging import getLogger
+    log = getLogger('Products.PloneGlossary.migration')
+    site = getSite()
+    catalog = getToolByName(site, 'portal_catalog')
+    brains = catalog(portal_type='PloneGlossaryDefinition')
+    request = getRequest()
+    for brain in brains:
+        item = brain.getObject()
+        migrator = getMultiAdapter((item, request), name='migrate-btrees')
+        migrator.migrate(item)
+        log.info('Migrated: %s' % brain.getPath())
+    log.info('Migration done')

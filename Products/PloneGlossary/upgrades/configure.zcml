@@ -50,4 +50,16 @@
 
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+     source="1.6"
+     destination="1.6.1"
+     profile="Products.PloneGlossary:default">
+
+     <genericsetup:upgradeStep
+        title="Convert PloneGlossaryDefinitions to folderish"
+        handler=".various.convertFolderish"
+        />
+
+  </genericsetup:upgradeSteps>
+
 </configure>
