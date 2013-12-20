@@ -5,13 +5,22 @@ Change log
 1.7 (unreleased)
 ================
 
+- Use the SearchableText indexer to see which text to highlight.  Fall
+  back to SearchableText.  This supports dexterity, if an indexer is
+  defined explicitly for a content type (like is done in
+  ``plone.app.contenttypes``) or dynamically with a behavior
+  (``collective.dexteritytextindexer``).  Note that it is better to
+  not activate glossary highlighting for files, because then every
+  time you view a file, the indexer will likely call an external
+  program to convert the file to plain text.
+  [maurits]
+
 - Do not require a ``ploneglossary.txt`` in our ``ploneglossarytool``
   import step for importing settings.  The ``glossary.xml`` file
   already functions as a flag file.  The text file is only needed as
   flag file for our ``ploneglossary-reg`` import step.
   Fixes http://plone.org/products/ploneglossary/issues/8
   [maurits]
-
 
 1.6 (2013-08-26)
 ================

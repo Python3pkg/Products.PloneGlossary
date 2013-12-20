@@ -27,14 +27,15 @@ __docformat__ = 'restructuredtext'
 import logging
 
 # Zope imports
-from zope.interface import implements
 from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
+from zope.interface import implements
 from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
+from Products.PluginIndexes.common import safe_callable
 from Acquisition import aq_base
-from ZODB.POSException import ConflictError
 
 try:
     from zope.component.hooks import getSite
@@ -49,6 +50,7 @@ from Products.CMFCore.utils import UniqueObject, getToolByName
 # Plone imports
 from plone.memoize.request import memoize_diy_request
 from plone.i18n.normalizer.base import baseNormalize
+from plone.indexer.interfaces import IIndexableObject
 
 from Products.CMFPlone.utils import safe_unicode
 
@@ -318,45 +320,32 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # Returns titles
         return [x['title'] for x in term_items]
 
+    def _get_generic_searchable_text(self, obj):
+        # Get searchable text from any object.
+
+        catalog = getToolByName(self, 'portal_catalog')
+        wrapper = queryMultiAdapter((obj, catalog), IIndexableObject)
+        if wrapper is None:
+            return
+        text = getattr(wrapper, 'SearchableText', None)
+        if text is None:
+            return
+        if safe_callable(text):
+            text = text()
+        return text
+
     def _getObjectText(self, obj):
         """Returns all text of an object.
 
-        If object is an AT content, get schema and returns all text fields.
-        Otherwise returns SearchableText.
+        Returns the SearchableText, either via an indexer or directly
+        with the SearchableText method.
 
         @param obj: Content to analyse"""
 
-        text = ''
-        if hasattr(aq_base(obj), 'Schema'):
-            schema = obj.Schema()
-            data = []
-
-            # Loop on fields
-            for field in schema.fields():
-                if field.type in ('string', 'text',):
-                    method = field.getAccessor(obj)
-
-                    if method is None:
-                        continue
-
-                    # Get text/plain content
-                    try:
-                        datum = method(mimetype="text/plain")
-                    except TypeError:
-                        # retry in case typeerror was raised because
-                        # accessor doesn't handle the mimetype
-                        # argument
-                        try:
-                            datum = method()
-                        except ConflictError:
-                            raise
-                        except:
-                            continue
-
-                    # Make sure value is a string
-                    if isinstance(datum, str):
-                        data.append(datum)
-            text = ' '.join(data)
+        text = self._get_generic_searchable_text(obj) or ''
+        if text:
+            print "Found: %r" % text
+            return text
         elif hasattr(aq_base(obj), 'SearchableText'):
             text = obj.SearchableText()
 
