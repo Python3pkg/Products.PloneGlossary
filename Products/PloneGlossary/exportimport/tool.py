@@ -66,11 +66,6 @@ class ToolXMLAdapter(XMLAdapterBase, PropertyManagerHelpers):
 def importGlossaryTool(context):
     """Import glossary tool settings from an XML file.
     """
-    if context.readDataFile('ploneglossary.txt') is None:
-        # GS sometimes sucks. Without this, GS will always try to run this
-        # whatever product is imported
-        return
-
     site = context.getSite()
     tool = getToolByName(site, PLONEGLOSSARY_TOOL)
 

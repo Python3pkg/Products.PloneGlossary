@@ -5,6 +5,13 @@ Change log
 1.7 (unreleased)
 ================
 
+- Do not require a ``ploneglossary.txt`` in our ``ploneglossarytool``
+  import step for importing settings.  The ``glossary.xml`` file
+  already functions as a flag file.  The text file is only needed as
+  flag file for our ``ploneglossary-reg`` import step.
+  Fixes http://plone.org/products/ploneglossary/issues/8
+  [maurits]
+
 
 1.6 (2013-08-26)
 ================
