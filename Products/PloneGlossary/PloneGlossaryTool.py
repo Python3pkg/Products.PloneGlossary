@@ -354,7 +354,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                             continue
 
                     # Make sure value is a string
-                    if type(datum) == type(''):
+                    if isinstance(datum, str):
                         data.append(datum)
             text = ' '.join(data)
         elif hasattr(aq_base(obj), 'SearchableText'):
@@ -384,7 +384,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             item_title = item['title']
             item_variants = item['variants']
 
-            if type(item_title) == type(''):
+            if isinstance(item_title, str):
                 terms.append(item_title)
             if type(item_variants) in (type([]), type(()), ):
                 terms.extend(item_variants)
@@ -584,7 +584,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # ensure that terms are sorted in descending term length in order to match
         # terms with the same prefix properly (longest matches first) (ajung)
         defs = self.getObjectRelatedDefinitions(context, glossary_uids)
-        defs.sort(lambda t1,t2: -cmp(len(t1['terms'][0]), len(t2['terms'][0])))
+        defs.sort(lambda t1, t2: -cmp(len(t1['terms'][0]), len(t2['terms'][0])))
         return defs
 
     security.declarePublic('searchResults')
@@ -609,8 +609,8 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         """
         metatypes = []
         for glossary in glossaries:
-            glossary_def_mts = [deftype \
-                                for deftype in glossary.definition_types\
+            glossary_def_mts = [deftype
+                                for deftype in glossary.definition_types
                                 if deftype not in metatypes]
             metatypes.extend(glossary_def_mts)
 
@@ -709,6 +709,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         @param remove_words: words to remove from the split result"""
 
         return tuple([x for x in text2words(text)
-                       if len(x) > 1 and x not in removed_words])
+                      if len(x) > 1 and x not in removed_words])
 
 InitializeClass(PloneGlossaryTool)
