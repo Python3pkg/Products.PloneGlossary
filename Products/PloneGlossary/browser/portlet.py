@@ -60,7 +60,10 @@ class Renderer(base.Renderer):
     def available(self):
         """Do we show the portlet?"""
 
-        _available = bool(self.definitions())
+        pgtool = getToolByName(self.context, PLONEGLOSSARY_TOOL)
+        _available = pgtool.showPortlet(self.context)
+        if _available:
+            _available = bool(self.definitions())
         LOG.debug("Portlet available: %s", _available)
         return _available
 

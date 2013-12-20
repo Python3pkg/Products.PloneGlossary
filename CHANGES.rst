@@ -5,6 +5,10 @@ Change log
 1.7 (unreleased)
 ================
 
+- If terms are not highlighted in the content area of a portal_type,
+  do not show the definitions in a portlet either.
+  [maurits]
+
 - Use the SearchableText indexer to see which text to highlight.  Fall
   back to SearchableText.  This supports dexterity, if an indexer is
   defined explicitly for a content type (like is done in

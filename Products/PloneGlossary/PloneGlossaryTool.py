@@ -155,11 +155,11 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return self.use_general_glossaries
 
     security.declarePublic('showPortlet')
-    def showPortlet(self):
+    def showPortlet(self, context=None):
         """Returns true if you want to show glosssary portlet"""
-
-        return True
-        #return self.show_portlet
+        if context is None:
+            return True
+        return self.highlightContent(context)
 
     security.declarePublic('highlightContent')
     def highlightContent(self, obj):
@@ -344,7 +344,6 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         text = self._get_generic_searchable_text(obj) or ''
         if text:
-            print "Found: %r" % text
             return text
         elif hasattr(aq_base(obj), 'SearchableText'):
             text = obj.SearchableText()
@@ -689,7 +688,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                                         name=u'plone_context_state')
         if not context_state.is_view_template():
             return False
-        return self.showPortlet() or self.highlightContent(context)
+        return self.showPortlet(context) or self.highlightContent(context)
 
     def _split(self, text, removed_words=()):
         """Split unicode text into tuple of unicode terms

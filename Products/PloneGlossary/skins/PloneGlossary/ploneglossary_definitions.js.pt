@@ -1,5 +1,5 @@
 <tal:defs define="gtool nocall:here/portal_glossary;
-                  show_portlet python:test(gtool.showPortlet(), 1, 0);
+                  show_portlet python:test(gtool.showPortlet(here), 1, 0);
                   unauthorized_tags gtool/not_highlighted_tags;
                   highlight python:test(gtool.highlightContent(here), 1, 0);
                   definitions python:gtool.getDefinitionsForUI(here, request);
