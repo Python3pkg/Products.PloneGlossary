@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.7 (unreleased)
+1.7 (2014-01-10)
 ================
 
 - If terms are not highlighted in the content area of a portal_type,
