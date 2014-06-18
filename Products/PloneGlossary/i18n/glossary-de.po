@@ -17,7 +17,7 @@ msgstr ""
 
 #: ./browser/portlet.py:86
 msgid "Add Glossary Portlet"
-msgstr "Glossar Portlet hinzufügen"
+msgstr "Glossar Portlet hinzufï¿½gen"
 
 # GS Profile description
 msgid "Adds support for glossaries in a Plone site."
@@ -34,7 +34,7 @@ msgstr "Glossar"
 
 #: ./profiles/default/types/PloneGlossaryDefinition.xml
 msgid "Glossary definition"
-msgstr "Glossar Term"
+msgstr "Glossardefinition"
 
 # GS Profile title
 msgid "Plone Glossary"
@@ -82,7 +82,7 @@ msgstr "Verwandte Begriffe"
 #. Default: "Select portal types allowed to be highlighted, if highlight feature is enabled. No selection results in the same thing of selecting all portal types."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:145
 msgid "help_allowed_portal_types"
-msgstr "Auswahl der Portaltypen in welchen Begriffe hervorgehoben werden dürfen sofern die Hervorhebung aktiv ist. Keine Auswahl bedeutet dasselbe wie wenn alles gewählt wäre."
+msgstr "Auswahl der Portaltypen in welchen Begriffe hervorgehoben werden dï¿½rfen sofern die Hervorhebung aktiv ist. Keine Auswahl bedeutet dasselbe wie wenn alles gewï¿½hlt wï¿½re."
 
 #. <div class="formHelp" i18n:translate="help_description_ellipsis">
 #. Enter ellipsis. It is used in popup when definition of term is too long.
@@ -98,12 +98,12 @@ msgstr "Auslassungszeichen. Diese Zeichen werden angezeigt wenn die Begriffsdefi
 #. Default: "Enter maximum description length of term."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:77
 msgid "help_description_length"
-msgstr "Maximale Länge der Begriffsdefinition."
+msgstr "Maximale Lï¿½nge der Begriffsdefinition."
 
 #. Default: "Select glossaries used to check related terms of content. By default all glossaries will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:199
 msgid "help_general_glossary_uids"
-msgstr "Die Glossare welche nach Begriffen durchsucht werden sollen. Keine Auswahl bedeutet dasselbe wie wenn alles gewählt wäre."
+msgstr "Die Glossare welche nach Begriffen durchsucht werden sollen. Keine Auswahl bedeutet dasselbe wie wenn alles gewï¿½hlt wï¿½re."
 
 #. Default: "Enter the body text."
 #: ./content/schemata.py:84
@@ -126,18 +126,18 @@ msgstr "Begriffsvarianten. Eine Variante pro Zeile."
 #. Default: "Check it to highlight related terms in content. You can choose which types to highlight."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:60
 msgid "help_highlight_content"
-msgstr "Sofern angewählt, werden die Begriffe im Inhalt hervorgehoben. Man kann wählen welche Typen hervorgehoben werden."
+msgstr "Sofern angewï¿½hlt, werden die Begriffe im Inhalt hervorgehoben. Man kann wï¿½hlen welche Typen hervorgehoben werden."
 
 #. Default: "Enter one tag name per line. Tags specified below will not be highlighted. A tag may be in the form 'tag' to match any tag, 'tag#select' to match tag with id 'select', or 'tag.someclass' to match all tags with CSS class 'someclass'."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:121
 #, fuzzy
 msgid "help_not_highlighted_tags"
-msgstr "Ein HTML-Tag pro Zeile. Tags die hier aufgeführt sind werden nicht hervorgehoben."
+msgstr "Ein HTML-Tag pro Zeile. Tags die hier aufgefï¿½hrt sind werden nicht hervorgehoben."
 
 #. Default: "When checked, all glossaries will be used to highlight terms globally for all of the site's content.<br /> By unchecking this option, only the first glossary found while traversing upwards from the current location will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:182
 msgid "help_use_general_glossaries"
-msgstr "Sofern angewählt, werden alle Glossare verwendet um Begriffe im Inhalt hervorzuheben.<br />Wenn nicht gewählt, wird nur das erste bei der Traversierung gefundene Glossar verwendet."
+msgstr "Sofern angewï¿½hlt, werden alle Glossare verwendet um Begriffe im Inhalt hervorzuheben.<br />Wenn nicht gewï¿½hlt, wird nur das erste bei der Traversierung gefundene Glossar verwendet."
 
 #. <label for="allowed_portal_types" i18n:translate="label_allowed_portal_types">
 #. Allowed portal types
@@ -161,7 +161,7 @@ msgstr "Auslassungszeichen"
 #. Default: "Description length"
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:72
 msgid "label_description_length"
-msgstr "Länge der Definition"
+msgstr "Lï¿½nge der Definition"
 
 #. <label for="general_glossary_uids" i18n:translate="label_general_glossary_uids">
 #. General glossaries
@@ -214,7 +214,7 @@ msgstr "Suche"
 #. Default: "Use glossaries globally for all content?"
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:178
 msgid "label_use_general_glossaries"
-msgstr "Verwende GLossare global für jeden Inhalt?"
+msgstr "Verwende GLossare global fï¿½r jeden Inhalt?"
 
 #. <legend i18n:translate="legend_ploneglossary_management">
 #. PloneGlossary Management
