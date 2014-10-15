@@ -18,6 +18,7 @@ putils = getToolByName(context, 'plone_utils')
 
 properties = {}
 properties['highlight_content'] = request.get('highlight_content', 0)
+properties['first_word_only'] = request.get('first_word_only', 0)
 properties['use_general_glossaries'] = request.get('use_general_glossaries', 0)
 properties['allowed_portal_types'] = request.get('allowed_portal_types', [])
 properties['general_glossary_uids'] = request.get('general_glossary_uids', [])

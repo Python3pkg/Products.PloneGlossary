@@ -67,6 +67,29 @@
             </div>
 
             <div class="field"
+                 tal:define="first_word_only request/first_word_only | gtool/first_word_only;">
+
+              <input type="checkbox"
+                     class="noborder"
+                     id="first_word_only"
+                     name="first_word_only"
+                     tabindex=""
+                     tal:attributes="checked python:test(first_word_only, 'checked', None);
+                                     tabindex tabindex/next|nothing;" />
+              <label for="first_word_only"
+                     i18n:translate="label_first_word_only">
+                Only highlight the first word ? 
+              </label>
+
+              <div class="formHelp"
+                   i18n:translate="help_first_word_only">
+                If a term is on the page multiple times, only highlight the first instance found.
+              </div>
+
+
+
+            </div>
+            <div class="field"
                  tal:define="description_length python:request.get('description_length', int(gtool.description_length));">
 
               <label for="description_length"

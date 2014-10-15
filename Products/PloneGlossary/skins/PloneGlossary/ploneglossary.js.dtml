@@ -141,6 +141,15 @@ function highlight_related_glossary_term_in_text(node, word, definition_index) {
     // Word is found
     var last_index = index + word.length;
 
+    // Only highlight the first instance found ?
+    if (typeof dictionary_found != "undefined") {
+        if (dictionary_found[word] === '1') {
+            return;
+        } else {
+            dictionary_found[word] = '1';
+        }
+    }
+
     if (index != -1) {
         // Create Highlighted term
         var hiword = document.createElement("span");
