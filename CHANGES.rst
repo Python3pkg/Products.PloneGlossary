@@ -5,10 +5,10 @@ Change log
 1.7.1 (unreleased)
 ==================
 
-- Add an option in the Glossary control panel to highlight on the first word
+- Add an option in the Glossary control panel to highlight only the first word
   found on a page. This is useful in for example scientific documents where the
   same terms are used a lot, which can cause excessive highlighting. Disabled
-  by default to keep default behaviour (highlight all terms found)
+  by default to keep default behaviour (highlight all terms found).
   [fredvd]
 
 1.7 (2014-01-10)
