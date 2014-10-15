@@ -106,7 +106,7 @@ msgstr "Maximale lengte van de beschrijving van de term."
 #. Default: "If a term is on the page multiple times, only highlight the first instance found."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:84
 msgid "help_first_word_only"
-msgstr "Als een woord meerdere keren op de pagina voorkomt, markeerd alleen het eerste woord in de tekst."
+msgstr "Als een woord meerdere keren op de pagina voorkomt, markeer alleen het eerste woord in de tekst."
 
 #. Default: "Select glossaries used to check related terms of content. By default all glossaries will be used."
 #: ./skins/PloneGlossary/ploneglossary_management_form.cpt:222
