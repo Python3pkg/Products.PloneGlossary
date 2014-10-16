@@ -122,10 +122,18 @@ function highlight_related_glossary_term_in_text(node, word, definition_index) {
     var content_value = node.nodeValue;
     var lcontent_value = content_value.toLowerCase();
     var word_bounds = new Array();
-    // Write 3 regexps to replace one because it doesn't work on IE: '\\b' + lword + '\\b'
+    /* Write multiple regexps to replace one because it doesn't work
+     * on IE: '\\b' + lword + '\\b'
+
+     * Please keep this in the order that finds the first match first:
+     * in a sentence with 'word word' the first word should be found
+     * first, so its regexp needs to be listed before the regexp that
+     * only finds words mid-sentence. */
     word_bounds.push('^' + lword + '$'); // word is the sentence
+    word_bounds.push('^' + lword + '\\W'); // word is beginning a sentence
+    // Note: for the next two, the found index includes the blank
+    // space, so we need to increase the index when we loop over it.
     word_bounds.push('\\W' + lword + '\\W'); // word is included in a sentence
-    word_bounds.push('^' + lword + '\\W'); // word is begining a sentence
     word_bounds.push('\\W' + lword + '$'); // word is finishing a sentence
     var index = -1;
 
@@ -133,8 +141,9 @@ function highlight_related_glossary_term_in_text(node, word, definition_index) {
     for (var i=0; i<word_bounds.length;i++) {
         index = lcontent_value.search(word_bounds[i]);
         if (index != -1) {
-            if (i == 1 || i == 3) {
-                // Position of search is one character before the real char of the word
+            if (i == 2 || i == 3) {
+                // Position of search is one character before the real
+                // start of the word.  See the note above.
                 index += 1;
             }
             break;
