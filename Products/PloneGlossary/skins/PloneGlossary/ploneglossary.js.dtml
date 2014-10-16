@@ -143,10 +143,10 @@ function highlight_related_glossary_term_in_text(node, word, definition_index) {
 
     // Only highlight the first instance found ?
     if (typeof dictionary_found != "undefined") {
-        if (dictionary_found[word] === '1') {
+        if (dictionary_found[lword] === '1') {
             return;
         } else {
-            dictionary_found[word] = '1';
+            dictionary_found[lword] = '1';
         }
     }
 
