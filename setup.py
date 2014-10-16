@@ -35,6 +35,9 @@ setup(
         'setuptools',
         'wicked',
         ],
+    extras_require={
+        'test': ['Products.PloneTestCase'],
+        },
     entry_points="""
     # -*- Entry points: -*-
     """,
