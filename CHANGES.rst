@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.7.1 (unreleased)
+1.7.1 (2014-11-07)
 ==================
 
 - Add ``Products.PloneTestCase`` to the ``test`` extra requirements.
