@@ -79,6 +79,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         {'id': 'highlight_content',
          'type': 'boolean',
          'mode': 'w'},
+        {'id': 'first_word_only',
+         'type': 'boolean',
+         'mode': 'w'},         
         {'id': 'use_general_glossaries',
          'type': 'boolean',
          'mode': 'w'},
@@ -108,6 +111,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         )
 
     highlight_content = True
+    first_word_only = False
     use_general_glossaries = True
     general_glossary_uids = []
     allowed_portal_types = ['PloneGlossaryDefinition']
@@ -178,6 +182,10 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             return optional.do_highlight(default=self.highlight_content)
 
         return self.highlight_content
+
+    security.declarePublic('firstWordOnly')
+    def firstWordOnly(self):
+        return self.first_word_only
 
     security.declarePublic('getUsedGlossaryUIDs')
     def getUsedGlossaryUIDs(self, obj):
