@@ -392,7 +392,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         for item in glossary_term_items:
             # Take into account the word and its variants
             terms = []
-            item_title = item['title']
+            item_title = item['title'].strip()
             item_variants = item['variants']
 
             if isinstance(item_title, str):

@@ -5,7 +5,10 @@ Change log
 1.7.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Strip white space from glossary term before comparing.  Otherwise we
+  would look for ``Title \t`` when you have a space and a tab in it,
+  so we would not find anything.
+  [maurits]
 
 
 1.7.1 (2014-11-07)

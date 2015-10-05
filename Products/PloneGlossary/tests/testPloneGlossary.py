@@ -36,7 +36,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.glossary = self.addGlossary(
             self.portal,
             u'General',
-            (u'Sport', u'Tennis', u'Open source'))
+            (u'Sport', u'Tennis \t\n', u'Open source'))
         self.logout()
 
     def testGetGlossaries(self):
@@ -128,7 +128,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             "Le tennis est un sport", glossary_term_items))
         terms.sort()
         terms = [t['title'] for t in terms]
-        self.assertEquals(terms, ['Sport', 'Tennis'])
+        self.assertEquals(terms, ['Sport', u'Tennis \t\n'])
 
         terms = list(self.glossary_tool._getTextRelatedTermItems(
             "Le tennis est un sport", glossary_term_items,
@@ -195,7 +195,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = list(self.glossary_tool.getGlossaryTerms(glossary_uids))
         terms.sort()
-        result = ['Open source', 'Sport', 'Tennis']
+        result = ['Open source', 'Sport', u'Tennis \t\n']
         self.assertEquals(terms, result)
         self.logout()
 
@@ -256,10 +256,20 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             title=u'Yaourt',
             definition=u'Lait caillé ayant subi une fermentation acide.',
             variants=(u'Yaourts',
-                       u'Yoghourt',
-                       u'Yoghourts',
-                       u'yogourt',
-                       u'yogourts'))
+                      u'Yoghourt',
+                      u'Yoghourts \t',
+                      u'yogourt',
+                      u'yogourts'))
+        # Variants of fruits, to test white space in variants.  But
+        # white space is stripped on save there.  So not much
+        # interesting happens.
+        self.addGlossaryDefinition(
+            self.glossary,
+            title=u'Fruits',
+            definition=u'Commes des légumes, mais un peut autre.',
+            variants=(u'Apples',
+                      u'Fraises \t',
+                      u'Framboises'))
 
         doc = self.addDocument(
             self.portal,
@@ -270,15 +280,22 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         brains = self.glossary_tool.searchResults([self.glossary.UID()],
                                                   SearchableText='Yoghourt')
         self.assertEquals(brains[0].Title, 'Yaourt')
+        brains = self.glossary_tool.searchResults([self.glossary.UID()],
+                                                  SearchableText='Fraises')
+        self.assertEquals(brains[0].Title, 'Fruits')
 
         definitions = self.portal.portal_glossary.getObjectRelatedDefinitions(
             doc, glossary_uids=[self.glossary.UID()])
+        self.assertEquals(len(definitions), 3)
         definition = definitions[0]
         self.assertEquals(definition['terms'], ['yaourt'])
         self.assertEquals(definition['show'], 1)
         definition = definitions[1]
         self.assertEquals(definition['terms'], ['yoghourts'])
         self.assertEquals(definition['show'], 0)
+        definition = definitions[2]
+        self.assertEquals(definition['terms'], ['fraises'])
+        self.assertEquals(definition['show'], 1)
 
     def testEncoding(self):
         """Test encoding"""
