@@ -33,9 +33,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
     def afterSetUp(self):
         self.loginAsPortalOwner()
-        self.glossary = self.addGlossary(self.portal,
-                                         u'General',
-                                         (u'Sport', u'Tennis', u'Open source'))
+        self.glossary = self.addGlossary(
+            self.portal,
+            u'General',
+            (u'Sport', u'Tennis', u'Open source'))
         self.logout()
 
     def testGetGlossaries(self):
@@ -78,9 +79,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # test : only selected metatypes are returned by getGlossaryUIDs
         glossary = self.glossary
         glossaryuid = glossary.UID()
-        exampleglossary = self.addExampleGlossary(self.portal,
-                                                  'Example',
-                                                  (u'Sport', u'Tennis', u'Open source'))
+        exampleglossary = self.addExampleGlossary(
+            self.portal,
+            'Example',
+            (u'Sport', u'Tennis', u'Open source'))
         exampleuid = exampleglossary.UID()
 
         # test :
@@ -139,8 +141,9 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testObjectRelatedTerms(self):
         self.loginAsPortalOwner()
         # Add french document
-        doc = self.addFrenchDocument(self.portal,
-                                     self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+        doc = self.addFrenchDocument(
+            self.portal,
+            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
@@ -149,10 +152,11 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(terms, result)
 
         # Test terms using 2 words like "open source"
-        doc = self.addDocument(self.portal,
-                               self.encodeInSiteCharset(
-                                   u'English documentation'),
-                               self.encodeInSiteCharset(u'This is an open source'),)
+        doc = self.addDocument(
+            self.portal,
+            self.encodeInSiteCharset(
+                u'English documentation'),
+            self.encodeInSiteCharset(u'This is an open source'),)
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
         terms.sort()
@@ -164,8 +168,9 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testObjectRelatedDefinitions(self):
         self.loginAsPortalOwner()
         # Add french document
-        doc = self.addFrenchDocument(self.portal,
-                                     self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+        doc = self.addFrenchDocument(
+            self.portal,
+            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
 
         # no glossary_uid
         result = self.glossary_tool.getObjectRelatedDefinitions(doc, ())
@@ -331,7 +336,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         text = html2text("<div><ul><li>Seleção campeã!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
         text = html2text(
-            "<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li></ul></div>")
+            "<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li>"
+            "</ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
         text = html2text(
             "<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")

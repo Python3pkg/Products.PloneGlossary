@@ -23,5 +23,5 @@ The PloneGlossary content types package
 __author__ = ''
 __docformat__ = 'restructuredtext'
 
-import PloneGlossary
-import PloneGlossaryDefinition
+import PloneGlossary  # noqa
+import PloneGlossaryDefinition  # noqa

@@ -165,7 +165,7 @@ def manage_addPloneGlossaryCatalog(self, REQUEST=None):
                 else:
                     cat.addIndex(index_name, index_type)
 
-            if not index_name in cat.schema():
+            if index_name not in cat.schema():
                 cat.addColumn(index_name)
         except:
             pass

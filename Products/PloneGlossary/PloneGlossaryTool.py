@@ -596,8 +596,9 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         glossary_uids = self.getUsedGlossaryUIDs(context)
         if len(glossary_uids) == 0:
             glossary_uids = None
-        # ensure that terms are sorted in descending term length in order to match
-        # terms with the same prefix properly (longest matches first) (ajung)
+        # ensure that terms are sorted in descending term length in
+        # order to match terms with the same prefix properly (longest
+        # matches first) (ajung)
         defs = self.getObjectRelatedDefinitions(context, glossary_uids)
         defs.sort(lambda t1, t2: -
                   cmp(len(t1['terms'][0]), len(t2['terms'][0])))

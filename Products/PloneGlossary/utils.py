@@ -212,7 +212,7 @@ def registerGlossary(context, glossary_class, logger=None):
     pgtool = getToolByName(context, config.PLONEGLOSSARY_TOOL)
     registered_metatypes = pgtool.available_glossary_metatypes
     new_glossary_metatype = glossary_class.meta_type
-    if not new_glossary_metatype in registered_metatypes:
+    if new_glossary_metatype not in registered_metatypes:
         pgtool.available_glossary_metatypes += (new_glossary_metatype,)
         if hasattr(logger, 'info'):
             logger.info("%s glossary registered", new_glossary_metatype)
