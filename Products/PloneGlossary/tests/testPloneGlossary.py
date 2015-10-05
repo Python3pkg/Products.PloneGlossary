@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 ##
-## Copyright (C) 2007 Ingeniweb
+# Copyright (C) 2007 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
@@ -79,8 +79,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary = self.glossary
         glossaryuid = glossary.UID()
         exampleglossary = self.addExampleGlossary(self.portal,
-                                         'Example',
-                                         (u'Sport', u'Tennis', u'Open source'))
+                                                  'Example',
+                                                  (u'Sport', u'Tennis', u'Open source'))
         exampleuid = exampleglossary.UID()
 
         # test :
@@ -123,7 +123,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary_term_items = gtool._getGlossaryTermItems(glossary_uids)
 
         terms = list(self.glossary_tool._getTextRelatedTermItems(
-                        "Le tennis est un sport", glossary_term_items))
+            "Le tennis est un sport", glossary_term_items))
         terms.sort()
         terms = [t['title'] for t in terms]
         self.assertEquals(terms, ['Sport', 'Tennis'])
@@ -139,8 +139,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testObjectRelatedTerms(self):
         self.loginAsPortalOwner()
         # Add french document
-        doc = self.addFrenchDocument(self.portal, \
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+        doc = self.addFrenchDocument(self.portal,
+                                     self.encodeInSiteCharset(u'Sport fran\xe7ais'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
@@ -149,9 +149,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(terms, result)
 
         # Test terms using 2 words like "open source"
-        doc = self.addDocument(self.portal, \
-            self.encodeInSiteCharset(u'English documentation'),
-            self.encodeInSiteCharset(u'This is an open source'),)
+        doc = self.addDocument(self.portal,
+                               self.encodeInSiteCharset(
+                                   u'English documentation'),
+                               self.encodeInSiteCharset(u'This is an open source'),)
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
         terms.sort()
@@ -163,8 +164,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testObjectRelatedDefinitions(self):
         self.loginAsPortalOwner()
         # Add french document
-        doc = self.addFrenchDocument(self.portal, \
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+        doc = self.addFrenchDocument(self.portal,
+                                     self.encodeInSiteCharset(u'Sport fran\xe7ais'))
 
         # no glossary_uid
         result = self.glossary_tool.getObjectRelatedDefinitions(doc, ())
@@ -240,10 +241,10 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             self.portal,
             u'Produits laitiers',
             (u'Lait',
-              u'Beurre',
-              u'Fromage',
-              u'Crème',
-              u'Desserts lactés'))
+             u'Beurre',
+             u'Fromage',
+             u'Crème',
+             u'Desserts lactés'))
         # Variants of yaourt are yoghourt and yogourt
         self.addGlossaryDefinition(
             self.glossary,
@@ -259,7 +260,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             self.portal,
             "Dessert",
             ("Notre chef vous propose des fraises au yaourt et des yoghourts "
-              "à la vanille."))
+             "à la vanille."))
 
         brains = self.glossary_tool.searchResults([self.glossary.UID()],
                                                   SearchableText='Yoghourt')
@@ -282,15 +283,15 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             self.portal,
             u'Parfums Femme Chanel',
             (u'Lancôme : Ô Oui',
-              u"Dior : J´Adore",
-              u'Cerruti 1881 pour Femme',
-              ))
+             u"Dior : J´Adore",
+             u'Cerruti 1881 pour Femme',
+             ))
         # Variants of yaourt are yoghourt and yogourt
         self.addGlossaryDefinition(
             self.glossary,
             title=u'Chanel N° 5',
             definition=(u"Un bouquet de fleurs abstraites d'une "
-                         u"indéfinissable féminité."),
+                        u"indéfinissable féminité."),
             variants=(u'N° 5', ))
         doc = self.addDocument(
             self.portal,
@@ -329,9 +330,11 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.assertEquals(text, "line1 line2")
         text = html2text("<div><ul><li>Seleção campeã!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
-        text = html2text("<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li></ul></div>")
+        text = html2text(
+            "<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
-        text = html2text("<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")
+        text = html2text(
+            "<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")
         self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
 
 

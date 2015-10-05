@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
-## PloneGlossary monkeypatches
+# PloneGlossary monkeypatches
 ##
-## Copyright (C) 2006 Ingeniweb
+# Copyright (C) 2006 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
@@ -138,44 +138,44 @@ def replaceWordsQuery(tree, parseQuery, gtool, gloss_items, excluded):
 
 
 def zctidx_ApplyIndexWithSynonymous(self, request, cid=''):
-        """Apply query specified by request, a mapping containing the query.
+    """Apply query specified by request, a mapping containing the query.
 
-        Returns two object on success, the resultSet containing the
-        matching record numbers and a tuple containing the names of
-        the fields used
+    Returns two object on success, the resultSet containing the
+    matching record numbers and a tuple containing the names of
+    the fields used
 
-        Returns None if request is not valid for this index.
+    Returns None if request is not valid for this index.
 
-        If this index id is listed in
-        PloneGlossary.config.INDEX_SEARCH_GLOSSARY, the query tree is
-        changed to look for terms and their variants found in general
-        glossaries.
-        """
-        record = parseIndexRequest(request, self.id, self.query_options)
-        if record.keys is None:
-            return None
-        query_str = ' '.join(record.keys)
-        if not query_str:
-            return None
+    If this index id is listed in
+    PloneGlossary.config.INDEX_SEARCH_GLOSSARY, the query tree is
+    changed to look for terms and their variants found in general
+    glossaries.
+    """
+    record = parseIndexRequest(request, self.id, self.query_options)
+    if record.keys is None:
+        return None
+    query_str = ' '.join(record.keys)
+    if not query_str:
+        return None
 
-        parseQuery = QueryParser(self.getLexicon()).parseQuery
-        tree = parseQuery(query_str)
+    parseQuery = QueryParser(self.getLexicon()).parseQuery
+    tree = parseQuery(query_str)
 
-        if self.getId() in INDEX_SEARCH_GLOSSARY:
+    if self.getId() in INDEX_SEARCH_GLOSSARY:
 
-            gtool = getToolByName(self, PLONEGLOSSARY_TOOL)
-            glossary_uids = gtool.getGeneralGlossaryUIDs()
-            all_term_items = gtool._getGlossaryTermItems(glossary_uids)
+        gtool = getToolByName(self, PLONEGLOSSARY_TOOL)
+        glossary_uids = gtool.getGeneralGlossaryUIDs()
+        all_term_items = gtool._getGlossaryTermItems(glossary_uids)
 
-            #get atoms from query and build related term query
-            # text = ' '.join(flatten(tree.terms()))
-            excluded = dict.fromkeys(__getNOTWords(tree), True)
+        # get atoms from query and build related term query
+        # text = ' '.join(flatten(tree.terms()))
+        excluded = dict.fromkeys(__getNOTWords(tree), True)
 
-            tree = replaceWordsQuery(tree, parseQuery, gtool, all_term_items,
-                                     excluded)
+        tree = replaceWordsQuery(tree, parseQuery, gtool, all_term_items,
+                                 excluded)
 
-        results = tree.executeQuery(self.index)
-        return  results, (self.id,)
+    results = tree.executeQuery(self.index)
+    return results, (self.id,)
 
 
 if PATCH_ZCTextIndex:

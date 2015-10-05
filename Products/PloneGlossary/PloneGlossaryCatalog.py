@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 ##
-## Copyright (C) 2007 Ingeniweb
+# Copyright (C) 2007 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
@@ -39,6 +39,7 @@ from Products.PloneGlossary.utils import encode_ascii
 
 
 class args:
+
     def __init__(self, **kw):
         self.__dict__.update(kw)
 
@@ -85,21 +86,23 @@ class PloneGlossaryCatalog(ZCatalog):
         ZCatalog.__init__(self, self.getId())
 
     security.declarePublic('enumerateIndexes')
+
     def enumerateIndexes(self):
         """Returns indexes used by catalog"""
         return (
-                ('UID', 'FieldIndex'),
-                ('id', 'FieldIndex'),
-                ('Title', 'ZCTextIndex'),
-                ('getVariants', 'KeywordIndex'),
-                ('Description', 'ZCTextIndex'),
-                )
+            ('UID', 'FieldIndex'),
+            ('id', 'FieldIndex'),
+            ('Title', 'ZCTextIndex'),
+            ('getVariants', 'KeywordIndex'),
+            ('Description', 'ZCTextIndex'),
+        )
 
     def __url(self, object):
         """Returns url of object"""
         return '/'.join(object.getPhysicalPath())
 
     security.declarePrivate('indexObject')
+
     def indexObject(self, object):
         '''Add to catalog.
         '''
@@ -107,6 +110,7 @@ class PloneGlossaryCatalog(ZCatalog):
         self.catalog_object(object, url)
 
     security.declarePrivate('unindexObject')
+
     def unindexObject(self, object):
         '''Remove from catalog.
         '''
@@ -114,6 +118,7 @@ class PloneGlossaryCatalog(ZCatalog):
         self.uncatalog_object(url)
 
     security.declarePrivate('reindexObject')
+
     def reindexObject(self, object, idxs=[]):
         """Update catalog after object data has changed.
         The optional idxs argument is a list of specific indexes
@@ -145,8 +150,8 @@ def manage_addPloneGlossaryCatalog(self, REQUEST=None):
         elements=[
             args(group="Glossary Latin normalizer and splitter",
                  name="Glossary Latin normalizer and splitter"),
-                 ]
-                 )
+        ]
+    )
 
     # Add indexes and metadatas
     for index_name, index_type in cat.enumerateIndexes():

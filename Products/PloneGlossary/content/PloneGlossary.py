@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 ##
-## Copyright (C) 2007 Ingeniweb
+# Copyright (C) 2007 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
@@ -65,6 +65,7 @@ class PloneGlossary(ATCTFolder):
     security = ClassSecurityInfo()
 
     security.declareProtected(permissions.View, 'getGlossaryDefinitions')
+
     def getGlossaryDefinitions(self, terms):
         """Returns glossary definitions.
         Returns tuple of dictionnary title, text.
@@ -114,6 +115,7 @@ class PloneGlossary(ATCTFolder):
         return tuple(definitions)
 
     security.declareProtected(permissions.View, 'getGlossaryTerms')
+
     def getGlossaryTerms(self):
         """Returns glossary terms title."""
 
@@ -148,6 +150,7 @@ class PloneGlossary(ATCTFolder):
         return items
 
     security.declarePublic('getGlossaryTermItems')
+
     def getGlossaryTermItems(self):
         """Returns the same list as _getGlossaryTermItems but check security.
         """
@@ -171,6 +174,7 @@ class PloneGlossary(ATCTFolder):
         return term_items
 
     security.declarePublic('getCatalog')
+
     def getCatalog(self):
         """Returns catalog of glossary"""
 
@@ -194,6 +198,7 @@ class PloneGlossary(ATCTFolder):
         return catalog
 
     security.declareProtected(permissions.ManagePortal, 'rebuildCatalog')
+
     def rebuildCatalog(self):
         """don't Delete old catalog of glossary and build a new one
         but only clear it, for tests to pass
@@ -217,7 +222,7 @@ registerType(PloneGlossary, PROJECTNAME)
 
 
 ###
-## Events handlers
+# Events handlers
 ###
 
 def glossaryAdded(glossary, event):

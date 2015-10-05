@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 ##
-## Copyright (C) 2007 Ingeniweb
+# Copyright (C) 2007 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id$
 """
@@ -108,7 +108,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         {'id': 'glossary_metatypes',
          'type': 'multiple selection', 'mode': 'w',
          'select_variable': 'getAvailableGlossaryMetaTypes'},
-        )
+    )
 
     highlight_content = True
     first_word_only = False
@@ -120,7 +120,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     not_highlighted_tags = [
         'a', 'h1', 'input', 'textarea', 'div#kupu-editor-text-config-escaped',
         'div#kupu-editor-text-config'
-        ]
+    ]
     available_glossary_metatypes = ()
     glossary_metatypes = ['PloneGlossary']
 
@@ -131,6 +131,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
     security = ClassSecurityInfo()
 
     security.declarePublic('getAvailablePortalTypes')
+
     def getAvailablePortalTypes(self):
         """Returns available portal types"""
 
@@ -139,6 +140,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return portal_types.listContentTypes()
 
     security.declarePublic('getAvailableGlossaryMetaTypes')
+
     def getAvailableGlossaryMetaTypes(self):
         """
         Returns available glossary portal types
@@ -146,6 +148,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return self.available_glossary_metatypes
 
     security.declarePublic('getAllowedPortalTypes')
+
     def getAllowedPortalTypes(self):
         """Returns allowed portal types.
         Allowed portal types can be highlighted."""
@@ -153,12 +156,14 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return self.allowed_portal_types
 
     security.declarePublic('getUseGeneralGlossaries')
+
     def getUseGeneralGlossaries(self):
         """Returns use_general_glossaries
         """
         return self.use_general_glossaries
 
     security.declarePublic('showPortlet')
+
     def showPortlet(self, context=None):
         """Returns true if you want to show glosssary portlet"""
         if context is None:
@@ -166,6 +171,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return self.highlightContent(context)
 
     security.declarePublic('highlightContent')
+
     def highlightContent(self, obj):
         """Returns true if content must be highlighted"""
 
@@ -184,10 +190,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return self.highlight_content
 
     security.declarePublic('firstWordOnly')
+
     def firstWordOnly(self):
         return self.first_word_only
 
     security.declarePublic('getUsedGlossaryUIDs')
+
     def getUsedGlossaryUIDs(self, obj):
         """Helper method for the portlet Page Template. Fetches the general
            or local glossary uids depending on the settings in the glossary
@@ -199,6 +207,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             return self.getLocalGlossaryUIDs(obj)
 
     security.declarePublic('getLocalGlossaryUIDs')
+
     def getLocalGlossaryUIDs(self, context):
         """Returns glossary UIDs used to highlight content
         in the context of the current object. This method traverses upwards
@@ -232,6 +241,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return glossaries
 
     security.declarePublic('getGeneralGlossaryUIDs')
+
     def getGeneralGlossaryUIDs(self):
         """Returns glossary UIDs used to highlight content"""
         if self.general_glossary_uids:
@@ -240,12 +250,14 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
             return self.getGlossaryUIDs()
 
     security.declarePublic('getGeneralGlossaries')
+
     def getGeneralGlossaries(self):
         """Returns glossaries used to highlight content"""
         general_glossary_uids = self.getGeneralGlossaryUIDs()
         return self.getGlossaries(general_glossary_uids)
 
     security.declarePublic('getGlossaryUIDs')
+
     def getGlossaryUIDs(self):
         """Returns glossary UIDs defined on portal"""
 
@@ -254,6 +266,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return tuple([x.UID for x in brains])
 
     security.declarePublic('getGlossaries')
+
     def getGlossaries(self, glossary_uids=None):
         """Returns glossaries defined on portal"""
 
@@ -294,6 +307,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return tuple(items)
 
     security.declarePublic('getGlossaryTermItems')
+
     def getGlossaryTermItems(self, glossary_uids):
         """Returns the same list as _getGlossaryTermItems but check security.
 
@@ -317,6 +331,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return term_items
 
     security.declarePublic('getGlossaryTerms')
+
     def getGlossaryTerms(self, glossary_uids):
         """Returns term titles stored in glossaries.
 
@@ -473,6 +488,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
                                              removed_words,)
 
     security.declarePublic('getObjectRelatedTermItems')
+
     def getObjectRelatedTermItems(self, obj, glossary_term_items,
                                   alpha_sort=False):
         """Returns the same list as _getObjectRelatedTermItems but
@@ -511,6 +527,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return term_items
 
     security.declarePublic('getObjectRelatedTerms')
+
     def getObjectRelatedTerms(self, obj, glossary_uids, alpha_sort=False):
         """Returns glossary term titles found in object
 
@@ -527,6 +544,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return [x['title'] for x in definitions]
 
     security.declarePublic('getObjectRelatedDefinitions')
+
     def getObjectRelatedDefinitions(self, obj, glossary_uids,
                                     alpha_sort=False):
         """Returns object term definitions get from glossaries.
@@ -569,6 +587,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return marked_definitions
 
     security.declarePublic('getDefinitionsForUI')
+
     @memoize_diy_request(arg=2)
     def getDefinitionsForUI(self, context, request):
         """Provides UI friendly definitions for the context item"""
@@ -580,10 +599,12 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         # ensure that terms are sorted in descending term length in order to match
         # terms with the same prefix properly (longest matches first) (ajung)
         defs = self.getObjectRelatedDefinitions(context, glossary_uids)
-        defs.sort(lambda t1, t2: -cmp(len(t1['terms'][0]), len(t2['terms'][0])))
+        defs.sort(lambda t1, t2: -
+                  cmp(len(t1['terms'][0]), len(t2['terms'][0])))
         return defs
 
     security.declarePublic('searchResults')
+
     def searchResults(self, glossary_uids, **search_args):
         """Returns brains from glossaries.
         glossary_uids: UIDs of glossaries where to search.
@@ -613,18 +634,21 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return metatypes
 
     security.declarePublic('getAsciiLetters')
+
     def getAsciiLetters(self):
         """Returns list of ascii letters in lower case"""
 
         return tuple([chr(x) for x in range(97, 123)])
 
     security.declarePublic('getFirstLetter')
+
     def getFirstLetter(self, term):
         """ returns first letter """
         uterm = safe_unicode(term)
         return baseNormalize(uterm[0:1]).encode('utf-8')
 
     security.declarePublic('getAbcedaire')
+
     def getAbcedaire(self, glossary_uids):
         """Returns abcedaire.
         glossary_uids: UIDs of glossaries used to build abcedaire"""
@@ -643,6 +667,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return tuple(letters)
 
     security.declarePublic('getAbcedaireBrains')
+
     def getAbcedaireBrains(self, glossary_uids, letters):
         """Returns brains from portal_catalog.
         glossary_uids: UIDs of glossaries used to build abcedaire.
@@ -665,6 +690,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return abcedaire_brains
 
     security.declarePublic('truncateDescription')
+
     def truncateDescription(self, text):
         """Truncate definition using tool properties"""
 
@@ -682,12 +708,14 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         return text
 
     security.declarePublic('escape')
+
     def escape(self, text):
         """Returns escaped text."""
 
         return escape_special_chars(text)
 
     security.declarePublic('includePloneGlossaryJS')
+
     def includePloneGlossaryJS(self, context, request):
         """Helper for portal_javascripts
         Should we include PloneGlossary javascripts

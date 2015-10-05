@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 ##
-## Copyright (C) 2007 Ingeniweb
+# Copyright (C) 2007 Ingeniweb
 
-## This program is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
-## (at your option) any later version.
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 
-## You should have received a copy of the GNU General Public License
-## along with this program; see the file LICENSE. If not, write to the
-## Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE. If not, write to the
+# Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # $Id: portlet.py 54227 2007-11-20 17:44:37Z glenfant $
 """
@@ -64,9 +64,9 @@ class GlossaryMainPage(BrowserView):
                 'glyph': letter,
                 'has_no_term': letter.lower() not in existing,
                 'zoom_link': glossary_url + '?search_letter=' + letter.lower(),
-                'css_class': letter.lower() == self.search_letter.lower() \
-                             and 'selected' or None
-                }
+                'css_class': letter.lower() == self.search_letter.lower()
+                and 'selected' or None
+            }
             out.append(letter_map)
         return out
 
@@ -115,4 +115,4 @@ class GlossaryMainPage(BrowserView):
             'url': result.getURL(),
             'title': result.Title or result.getId,
             'description': description.replace('\n', '<br />')
-            }
+        }
