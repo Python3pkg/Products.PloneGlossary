@@ -110,7 +110,7 @@ Change log
 ==================
 
 * ensure that terms are sorted in descending term length in order to match
-  terms with the same prefix properly (longest matches first) 
+  terms with the same prefix properly (longest matches first)
   [ajung]
 
 
@@ -138,12 +138,12 @@ Change log
 =====================
 
 * fix imports for Plone 4.1
-  [zworkb]  
+  [zworkb]
 
 * fixed problem in PloneGlossaryTool with uid_catalog and simplified code.
   [jensens]
 
-* consider ``Contributor`` role 
+* consider ``Contributor`` role
   [jensens]
 
 1.5.0-b2 (2011-04-19)

@@ -12,7 +12,7 @@
 var dictionary_found = new Array();
 </tal:firstword>
 <tal:loop repeat="def definitions">
-var terms = new Array(); 
+var terms = new Array();
 <tal:term_loop repeat="term def/terms">
 terms.push("<tal:content replace="term" />");
 </tal:term_loop>

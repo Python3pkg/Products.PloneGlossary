@@ -78,7 +78,7 @@
                                      tabindex tabindex/next|nothing;" />
               <label for="first_word_only"
                      i18n:translate="label_first_word_only">
-                Only highlight the first word ? 
+                Only highlight the first word ?
               </label>
 
               <div class="formHelp"

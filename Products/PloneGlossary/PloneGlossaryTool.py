@@ -81,7 +81,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
          'mode': 'w'},
         {'id': 'first_word_only',
          'type': 'boolean',
-         'mode': 'w'},         
+         'mode': 'w'},
         {'id': 'use_general_glossaries',
          'type': 'boolean',
          'mode': 'w'},
