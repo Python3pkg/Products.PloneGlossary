@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.7.2 (unreleased)
+1.7.2 (2015-10-05)
 ==================
 
 - Strip white space from glossary term before comparing.  Otherwise we
