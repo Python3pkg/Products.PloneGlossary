@@ -23,6 +23,12 @@ PloneGlossary public interfaces (Zope 3 style)
 from zope.interface import Interface, Attribute
 
 
+class IPloneGlossaryLayer(Interface):
+    """
+    BrowserLayer interface.
+    """
+
+
 class IGlossaryTool(Interface):
     """Marker interface for tool
     """

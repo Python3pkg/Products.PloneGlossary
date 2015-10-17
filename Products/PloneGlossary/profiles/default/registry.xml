@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<registry>
+  <records prefix="plone.resources/ploneglossary"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++plone++Products.PloneGlossary/ploneglossary.js</value>
+    <value key="css">
+      <element>++plone++Products.PloneGlossary/ploneglossary.less</element>
+      <element>++plone++Products.PloneGlossary/ploneglossary_popup.less</element>
+    </value>
+  </records>
+
+  <records prefix="plone.bundles/ploneglossary"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources">
+      <element>ploneglossary</element>
+    </value>
+    <value key="depends">plone</value>
+    <value key="enabled">True</value>
+    <value key="compile">True</value>
+  </records>
+</registry>

@@ -1,11 +1,9 @@
 <tal:defs define="gtool nocall:here/portal_glossary;
-                  show_portlet python:test(gtool.showPortlet(here), 1, 0);
+                  show_portlet python:1 if gtool.showPortlet(here) else 0;
                   unauthorized_tags gtool/not_highlighted_tags;
-                  highlight python:test(gtool.highlightContent(here), 1, 0);
+                  highlight python:1 if gtool.highlightContent(here) else 0;
                   definitions python:gtool.getDefinitionsForUI(here, request);
                   escape python:gtool.escape;
-                  standalone python: request.URL.endswith(template.id);
-                  dummy python:standalone and request.RESPONSE.setHeader('Content-Type', 'text/javascript');
                   truncateDescription python:gtool.truncateDescription;
                   firstWordOnly python:gtool.firstWordOnly"
           condition="python: len(definitions) > 0">
@@ -30,7 +28,6 @@ add_related_glossary_definition(
 function highlight_related_glossary_terms() {
     var target_node = document.getElementById("content");
     var unauthorized_tags = new Array();
-    window.alert('hi');
     <tal:unauthtags repeat="tag unauthorized_tags">
     unauthorized_tags.push('<tal:tag replace="tag" />');
     </tal:unauthtags>
@@ -39,7 +36,7 @@ function highlight_related_glossary_terms() {
 }
 
 if (<tal:bool replace="highlight" />) {
-  registerPloneFunction(highlight_related_glossary_terms);
+  jQuery(highlight_related_glossary_terms);
 }
 
 /* we fill portlet by template now
@@ -49,7 +46,7 @@ function fill_glossary_portlet() {
 }
 
 if (<tal:bool replace="show_portlet" />) {
-    registerPloneFunction(fill_glossary_portlet);
+    jQuery(fill_glossary_portlet);
 }
 */
 </tal:defs>

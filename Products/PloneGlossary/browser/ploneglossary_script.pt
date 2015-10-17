@@ -1,0 +1,3 @@
+<script type="application/javascript"
+        tal:content="structure context/@@ploneglossary_definitions.js">
+</script>

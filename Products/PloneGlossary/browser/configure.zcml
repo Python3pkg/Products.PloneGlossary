@@ -20,4 +20,25 @@
      permission="zope2.View"
      />
 
+  <plone:static
+     name="Products.PloneGlossary"
+     directory="static"
+     type="plone"
+     />
+
+  <browser:viewlet
+     for="*"
+     name="ploneglossary_definitions"
+     manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+     class=".viewlet.DefinitionViewlet"
+     permission="zope2.View"
+     />
+
+  <browser:page
+     for="*"
+     name="ploneglossary_definitions.js"
+     template="ploneglossary_definitions.pt"
+     permission="zope2.View"
+     />
+
 </configure>
