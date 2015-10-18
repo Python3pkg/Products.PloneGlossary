@@ -11,6 +11,7 @@
 <tal:firstword tal:condition="firstWordOnly">
 var dictionary_found = new Array();
 </tal:firstword>
+
 <tal:loop repeat="def definitions">
 var terms = new Array();
 <tal:term_loop repeat="term def/terms">
@@ -36,7 +37,7 @@ function highlight_related_glossary_terms() {
 }
 
 if (<tal:bool replace="highlight" />) {
-  jQuery(highlight_related_glossary_terms);
+    jQuery(highlight_related_glossary_terms);
 }
 
 /* we fill portlet by template now
