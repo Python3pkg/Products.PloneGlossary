@@ -40,7 +40,8 @@ def readZopeConf():
     except (KeyError, AttributeError):
         pg_config = default_config
 
-    getConfData = lambda key: pg_config.get(key, default_config[key])
+    def getConfData(key):
+        return pg_config.get(key, default_config[key])
 
     BATCH_SIZE = int(getConfData('batch-size'))
 

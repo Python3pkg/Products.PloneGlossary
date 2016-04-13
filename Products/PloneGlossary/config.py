@@ -20,7 +20,9 @@ Global configuration data
 """
 
 
+from Products.CMFPlone.utils import getFSVersionTuple
 from Products.PloneGlossary.customconfig import BATCH_SIZE
+
 
 # Prevent pyflakes warnings ;o)
 BATCH_SIZE
@@ -32,7 +34,6 @@ PATCH_ZCTextIndex = False
 # condition for adding glossaries items in indexed text
 INDEX_SEARCH_GLOSSARY = ('SearchableText',)
 
-from Products.CMFPlone.utils import getFSVersionTuple
 PLONE_VERSION = getFSVersionTuple()[:2]  # as (2, 1)
 del getFSVersionTuple
 

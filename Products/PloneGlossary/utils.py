@@ -21,24 +21,25 @@ Misc utilities for PloneGlossary
 """
 
 
-# Python imports
-import re
-import unicodedata
-from sgmllib import SGMLParser
-import logging
-import htmlentitydefs
-
 # Zope imports
-from App.class_init import InitializeClass
 from AccessControl import ModuleSecurityInfo
-from zope.i18nmessageid import MessageFactory
-from ZODB.POSException import ConflictError
-
+from App.class_init import InitializeClass
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
+from sgmllib import SGMLParser
+from ZODB.POSException import ConflictError
+from zope.component import getUtility
+from zope.i18nmessageid import MessageFactory
 
 # Product imports
+# Python imports
 import config
+import htmlentitydefs
+import logging
+import re
+import unicodedata
+
 
 END_NEWLINE_TAGS = ('p',)
 START_NEWLINE_TAGS = ('br',)
@@ -227,9 +228,6 @@ ModuleSecurityInfo('Products.PloneGlossary.utils').declarePublic(
 ###
 # Getting the Plone site
 ###
-
-from zope.component import getUtility
-from Products.CMFCore.interfaces import ISiteRoot
 
 
 def getSite():
