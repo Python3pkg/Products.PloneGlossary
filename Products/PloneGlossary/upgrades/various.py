@@ -23,6 +23,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import getSite, IfInstalled
 
+import logging
+
+logger = logging.getLogger('Products.PloneGlossary')
 safety_belt = IfInstalled()
 
 
@@ -107,3 +110,26 @@ def runImportStep(setuptool, step_id):
         'profile-Products.PloneGlossary:default',
         step_id, run_dependencies=False)
     return
+
+
+@safety_belt
+def recatalog_definition_descriptions(setuptool):
+    portal_catalog = getToolByName(setuptool, 'portal_catalog')
+    brains = portal_catalog.unrestrictedSearchResults(
+        portal_type='PloneGlossaryDefinition')
+    logger.info('Checking %d definitions.', len(brains))
+    fixed = 0
+    for brain in brains:
+        obj = brain.getObject()
+        # Note: there may be more than one catalog in the site, because each
+        # glossary has its own catalog.  So we need to ask each definition for
+        # its own catalog.
+        cat = obj.getCatalog()
+        obj_description = obj.Description()
+        cat_description = obj.Description(from_catalog=True)
+        if obj_description != cat_description:
+            logger.warn('Updating cataloged description of %s from %r to %r ',
+                        brain.getPath(), cat_description, obj_description)
+            cat.catalog_object(obj, idxs=['Description'])
+            fixed += 1
+    logger.info('Fixed %d out of %d definitions.', fixed, len(brains))

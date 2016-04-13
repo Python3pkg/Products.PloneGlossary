@@ -50,4 +50,17 @@
 
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="1.6"
+      destination="1000"
+      profile="Products.PloneGlossary:default">
+
+    <genericsetup:upgradeStep
+        title="Recatalog definition descriptions."
+        description="This removes possibly dangerous tags, even when escaped."
+        handler=".various.recatalog_definition_descriptions"
+        />
+
+  </genericsetup:upgradeSteps>
+
 </configure>
