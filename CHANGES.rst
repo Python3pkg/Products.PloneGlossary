@@ -5,6 +5,11 @@ Change log
 1.7.3 (unreleased)
 ==================
 
+- Do a better split on words in the document text.  Things like
+  ``T<sub>one</sub>`` were wrongly viewed as one word.  Other html
+  tags could also remain part of the word, making it less likely that
+  a match was found.  [maurits]
+
 - Set the ``Content-Type`` header of ``ploneglossary_definitions.js``
   to Javascript when loaded standalone instead of inline.  This eases
   debugging: with the standard html header Diazo would needlessly try

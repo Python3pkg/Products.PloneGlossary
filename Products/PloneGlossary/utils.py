@@ -124,12 +124,23 @@ def html2text(html):
     return output
 
 
-SEARCH_WORDS = r'[\s:;.,\'\{\}\(\)\|]*'
+# Search for words, or rather, search for anything that is not a word.  We will
+# split a text on this, which leaves the words as remainder.
+SEARCH_WORDS = r'[\W]*'
 RE_SEARCH_WORDS = re.compile(SEARCH_WORDS)
+# Search for html tags, because in '<sub>text</sub>' we do not want to find
+# 'sub' as word.
+SEARCH_TAGS = r'<.*?>'
+# We use DOTALL to let the dot also match the newline character.
+RE_SEARCH_TAGS = re.compile(SEARCH_TAGS, re.DOTALL)
 
 
 def text2words(text):
     """Extract all words from text"""
+
+    # Search for html tags and remove them, because in '<sub>text</sub>' we do
+    # not want to find 'sub' as word.
+    text = RE_SEARCH_TAGS.sub(' ', text)
 
     words = []
 
