@@ -46,6 +46,7 @@ START_NEWLINE_TAGS = ('br',)
 TAB_TAGS = ('li',)
 CHARS_TO_REMOVE = r'[\r\n]'
 RE_CHARS_TO_REMOVE = re.compile(CHARS_TO_REMOVE)
+REFS_TO_REMOVE = ['gt', 'lt']
 
 
 class HTML2TextParser(SGMLParser):
@@ -86,6 +87,8 @@ class HTML2TextParser(SGMLParser):
 
     def handle_entityref(self, ref):
         """ handle the entity reference (e.g. &uuml;) """
+        if ref in REFS_TO_REMOVE:
+            return
         ref = htmlentitydefs.name2codepoint.get(ref, None)
         if ref:
             self.result += self._savedecode(ref)

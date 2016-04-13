@@ -5,6 +5,11 @@ Change log
 1.7.3 (unreleased)
 ==================
 
+- Remove dangerous escaped characters from definitions.  ``<script>``
+  and other tags were already filtered out.  Now we also filter out
+  code like ``&lt;script&gt``.  Text like ``1 < 2`` is still fine.
+  [maurits]
+
 - Fixed bad definition display for non-ascii characters.  Fixes issue
   https://github.com/collective/Products.PloneGlossary/issues/7
   [maurits]
