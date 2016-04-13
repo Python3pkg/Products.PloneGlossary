@@ -4,6 +4,8 @@
                   highlight python:test(gtool.highlightContent(here), 1, 0);
                   definitions python:gtool.getDefinitionsForUI(here, request);
                   escape python:gtool.escape;
+                  standalone python: request.URL.endswith(template.id);
+                  dummy python:standalone and request.RESPONSE.setHeader('Content-Type', 'text/javascript');
                   truncateDescription python:gtool.truncateDescription;
                   firstWordOnly python:gtool.firstWordOnly"
           condition="python: len(definitions) > 0">

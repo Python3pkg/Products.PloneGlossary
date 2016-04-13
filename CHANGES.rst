@@ -5,7 +5,11 @@ Change log
 1.7.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Set the ``Content-Type`` header of ``ploneglossary_definitions.js``
+  to Javascript when loaded standalone instead of inline.  This eases
+  debugging: with the standard html header Diazo would needlessly try
+  to parse it and fail.  Also this showed up ugly in your browser.
+  [maurits]
 
 
 1.7.2 (2015-10-05)
