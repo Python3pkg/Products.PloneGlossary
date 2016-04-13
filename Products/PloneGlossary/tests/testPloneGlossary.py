@@ -48,8 +48,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         uids.sort()
 
         # Test PloneGlossaryTool->getGlossaryUIDs
-        glossary_uids = list(self.glossary_tool.getGlossaryUIDs())
-        glossary_uids.sort()
+        glossary_uids = sorted(self.glossary_tool.getGlossaryUIDs())
         self.assertEquals(glossary_uids, uids)
 
         # Test PloneGlossaryTool->getGlossaries
@@ -85,8 +84,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         exampleuid = exampleglossary.UID()
 
         # test :
-        glossary_uids = list(self.glossary_tool.getGlossaryUIDs())
-        glossary_uids.sort()
+        glossary_uids = sorted(self.glossary_tool.getGlossaryUIDs())
         self.assertEquals(glossary_uids, [glossaryuid])
 
         # test : add a glossary type
@@ -107,9 +105,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         all_uids.append(self.glossary.UID())
         all_uids.append(medical_glossary.UID())
         all_uids.sort()
-        general_glossaries_uids = list(
+        general_glossaries_uids = sorted(
             self.glossary_tool.getGeneralGlossaryUIDs())
-        general_glossaries_uids.sort()
         self.assertEquals(general_glossaries_uids, all_uids)
 
         self.glossary_tool.general_glossary_uids = (medical_glossary.UID(),)
@@ -123,9 +120,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         glossary_uids = gtool.getGlossaryUIDs()
         glossary_term_items = gtool._getGlossaryTermItems(glossary_uids)
 
-        terms = list(self.glossary_tool._getTextRelatedTermItems(
+        terms = sorted(self.glossary_tool._getTextRelatedTermItems(
             "Le tennis est un sport", glossary_term_items))
-        terms.sort()
         terms = [t['title'] for t in terms]
         self.assertEquals(terms, ['Sport', u'Tennis \t\n'])
 
@@ -144,9 +140,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
             self.portal,
             self.encodeInSiteCharset(u'Sport fran\xe7ais'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
-        terms = list(self.glossary_tool.getObjectRelatedTerms(
+        terms = sorted(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
-        terms.sort()
         result = ['Sport']
         self.assertEquals(terms, result)
 
@@ -192,8 +187,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testGlossaryTerms(self):
         self.loginAsPortalOwner()
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
-        terms = list(self.glossary_tool.getGlossaryTerms(glossary_uids))
-        terms.sort()
+        terms = sorted(self.glossary_tool.getGlossaryTerms(glossary_uids))
         result = ['Open source', 'Sport', u'Tennis \t\n']
         self.assertEquals(terms, result)
         self.logout()

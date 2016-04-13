@@ -193,7 +193,7 @@ def find_word(word, text):
     # Search all positions
     index = 0  # First index where you search the word
 
-    while 1:
+    while True:
         pos = text.find(word, index)
         if pos == -1:
             break
