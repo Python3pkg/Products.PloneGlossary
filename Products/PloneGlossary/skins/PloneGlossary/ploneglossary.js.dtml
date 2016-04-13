@@ -27,6 +27,15 @@ function show_glossary_definition_popup(node, definition_index) {
 
     for (i=0; i<texts.length; i++) {
         text = texts[i];
+        // If we directly load the text with
+        // document.createTextNode(text), non-ascii characters are
+        // changed into visible html characters, like '&#232;'.  So we
+        // do a step in between.  This should be safe against XSS
+        // attacks because only plain text is returned in the
+        // description of a definition, so no html or javascript.
+        tmp = document.createElement("div");
+        tmp.innerHTML = text;
+        text = tmp.textContent || tmp.innerText || text;
         description_node.appendChild(document.createTextNode(text));
         description_node.appendChild(document.createElement("br"));
     }

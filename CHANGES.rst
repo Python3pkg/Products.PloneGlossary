@@ -5,6 +5,10 @@ Change log
 1.7.3 (unreleased)
 ==================
 
+- Fixed bad definition display for non-ascii characters.  Fixes issue
+  https://github.com/collective/Products.PloneGlossary/issues/7
+  [maurits]
+
 - Do a better split on words in the document text.  Things like
   ``T<sub>one</sub>`` were wrongly viewed as one word.  Other html
   tags could also remain part of the word, making it less likely that
