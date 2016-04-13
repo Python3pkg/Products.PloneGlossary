@@ -17,7 +17,6 @@
 # along with this program; see the file LICENSE. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id$
 """
 Patch to ZCTextIndex such it searches for term and synonyms
 """

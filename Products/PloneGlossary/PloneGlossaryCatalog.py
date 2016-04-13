@@ -16,13 +16,10 @@
 # along with this program; see the file LICENSE. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id$
 """
 Specific catalog for PloneGlossary
 """
 
-__author__ = 'Cyrille Lebeaupin <clebeaupin@ingeniweb.com'
-__docformat__ = 'restructuredtext'
 
 # Python imports
 import re

@@ -19,7 +19,6 @@
 This module contains permissions used in PloneGlossary product
 """
 
-__docformat__ = 'restructuredtext'
 
 try:
     from plone.app.upgrade import v40

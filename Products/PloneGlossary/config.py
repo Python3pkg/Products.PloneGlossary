@@ -15,13 +15,10 @@
 # along with this program; see the file COPYING. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id$
 """
 Global configuration data
 """
 
-__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
-__docformat__ = 'restructuredtext'
 
 from Products.PloneGlossary.customconfig import BATCH_SIZE
 

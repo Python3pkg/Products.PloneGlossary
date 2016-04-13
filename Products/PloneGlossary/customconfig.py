@@ -15,7 +15,6 @@
 # along with this program; see the file COPYING. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id: config.py 52689 2007-10-30 14:42:22Z glenfant $
 """
 Global customizable configuration data
 
@@ -26,8 +25,6 @@ To customize the values add this to your zope.conf:
 </product-config>
 """
 
-__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
-__docformat__ = 'restructuredtext'
 
 BATCH_SIZE = None  # Default: 30
 

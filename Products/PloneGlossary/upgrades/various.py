@@ -15,12 +15,9 @@
 # along with this program; see the file LICENSE.txt. If not, write to the
 # Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# $Id$
 """
 Migrations from 1.2 to any
 """
-__author__ = 'Gilles Lenfant <gilles.lenfant@ingeniweb.com>'
-__docformat__ = 'restructuredtext'
 
 from Products.CMFCore.utils import getToolByName
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
