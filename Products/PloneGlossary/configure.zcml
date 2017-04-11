@@ -45,23 +45,11 @@
 
   <!-- Events handlers -->
 
-  <subscriber zcml:condition="not-installed zope.app.container"
-              for=".interfaces.IPloneGlossary
+  <subscriber for=".interfaces.IPloneGlossary
                    zope.container.interfaces.IObjectAddedEvent"
               handler=".content.PloneGlossary.glossaryAdded" />
-  <!-- BBB Plone 4.0 or earlier -->
-  <subscriber zcml:condition="installed zope.app.container"
-              for=".interfaces.IPloneGlossary
-                   zope.app.container.interfaces.IObjectAddedEvent"
-              handler=".content.PloneGlossary.glossaryAdded" />
 
-  <subscriber zcml:condition="installed zope.app.container"
-              for=".interfaces.IPloneGlossary
-                   zope.app.container.interfaces.IObjectMovedEvent"
-              handler=".content.PloneGlossary.glossaryMoved" />
-  <!-- BBB Plone 4.0 or earlier -->
-  <subscriber zcml:condition="not-installed zope.app.container"
-              for=".interfaces.IPloneGlossary
+  <subscriber for=".interfaces.IPloneGlossary
                    zope.container.interfaces.IObjectMovedEvent"
               handler=".content.PloneGlossary.glossaryMoved" />
 

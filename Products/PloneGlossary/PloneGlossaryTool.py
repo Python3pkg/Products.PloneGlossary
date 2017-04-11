@@ -34,12 +34,7 @@ from OFS.PropertyManager import PropertyManager
 from Products.PluginIndexes.common import safe_callable
 from Acquisition import aq_base
 
-try:
-    from zope.component.hooks import getSite
-    getSite  # pyflakes
-except ImportError:
-    # BBB for Plone < 4.0
-    from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 
 # CMF imports
 from Products.CMFCore.utils import UniqueObject, getToolByName
