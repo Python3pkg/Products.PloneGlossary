@@ -26,8 +26,6 @@ from utils import registerGlossary, LOG
 
 def registerGlossaries(context):
     if context.readDataFile('ploneglossary.txt') is None:
-        # GS sometimes sucks. Without this, GS will always try to run this
-        # whatever product is imported
         return
 
     site = context.getSite()

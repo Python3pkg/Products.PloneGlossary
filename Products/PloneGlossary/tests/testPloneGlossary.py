@@ -65,6 +65,11 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
     def testGetAvailableGlossaryMetaTypes(self):
         self.loginAsPortalOwner()
+        # Apply the examples profile again.
+        # This means registerGlossaries is called, which is useful,
+        # because our example glossary has somehow been lost.
+        self.portal.portal_setup.runAllImportStepsFromProfile(
+            'Products.PloneGlossary:examples')
         tool = self.glossary_tool
         available_metatypes = tool.getAvailableGlossaryMetaTypes()
         glossary_metatypes = tool.glossary_metatypes
