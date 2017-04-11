@@ -3,7 +3,8 @@ python:
  - 2.7
 
 install:
- - python bootstrap.py
+ - virtualenv .
+ - bin/pip install -r requirements.txt
  - bin/buildout
 
 script:

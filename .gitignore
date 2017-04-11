@@ -3,6 +3,7 @@
 *.mo
 *.pyc
 *.pyo
+.Python
 .installed.cfg
 .mr.developer.cfg
 bin
@@ -12,5 +13,9 @@ dist
 downloads
 eggs
 fake-eggs
+include/
+lib/
+local/
+pip-selfcheck.json
 parts
 var
