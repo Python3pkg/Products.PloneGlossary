@@ -54,19 +54,12 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         # Configure tool
         self.glossary_tool = getToolByName(self.portal, 'portal_glossary')
         self.mb_tool = getToolByName(self.portal, 'portal_membership')
-        prop_tool = getToolByName(self.portal, 'portal_properties')
-        self.site_charset = prop_tool.site_properties.default_charset
 
     def beforeTearDown(self):
         """Remove all the stuff again.
         """
 
         pass
-
-    def encodeInSiteCharset(self, text):
-        """Text is unicode text"""
-
-        return text.encode(self.site_charset)
 
     def buildPrettyId(self, title):
         """Returns pretty id from title"""
@@ -101,19 +94,19 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
     def getFrenchText(self):
         """Returns french text"""
 
-        return self.encodeInSiteCharset(u"""D\xe9finition d'un terme.""")
+        return u"""D\xe9finition d'un terme.""".encode('utf-8')
 
     def getEnglishText(self):
         """Returns french text"""
 
-        return self.encodeInSiteCharset(u"""Term definition.""")
+        return u"""Term definition.""".encode('utf-8')
 
     def addGlossaryDefinition(self, glossary, title, definition=None,
                               variants=()):
         """Add new glossary definition in a glossary"""
 
         if definition is None:
-            definition = self.encodeInSiteCharset(u'Definition of term')
+            definition = u'Definition of term'.encode('utf-8')
 
         id = self.buildPrettyId(title)
         glossary.invokeFactory(
@@ -168,7 +161,7 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         """Add new example glossary definition in a glossary"""
 
         if definition is None:
-            definition = self.encodeInSiteCharset(u'Definition of term')
+            definition = u'Definition of term'.encode('utf-8')
 
         id = self.buildPrettyId(title)
         glossary.invokeFactory(

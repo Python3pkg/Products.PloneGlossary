@@ -138,7 +138,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add french document
         doc = self.addFrenchDocument(
             self.portal,
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+            u'Sport fran\xe7ais'.encode('utf-8'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = sorted(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
@@ -148,9 +148,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Test terms using 2 words like "open source"
         doc = self.addDocument(
             self.portal,
-            self.encodeInSiteCharset(
-                u'English documentation'),
-            self.encodeInSiteCharset(u'This is an open source'),)
+            u'English documentation'.encode('utf-8'),
+            u'This is an open source'.encode('utf-8'),)
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
         terms.sort()
@@ -164,7 +163,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add french document
         doc = self.addFrenchDocument(
             self.portal,
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+            u'Sport fran\xe7ais'.encode('utf-8'))
 
         # no glossary_uid
         result = self.glossary_tool.getObjectRelatedDefinitions(doc, ())
