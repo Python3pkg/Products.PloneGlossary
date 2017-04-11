@@ -5,7 +5,7 @@ Change log
 1.7.4 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Plone 5 support.  [delcourt, maurits]
 
 
 1.7.3 (2017-04-11)

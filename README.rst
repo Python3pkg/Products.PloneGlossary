@@ -39,7 +39,8 @@ which is simply a ZCatalog.
 Requirements
 ============
 
-Plone 3.x or 4.x
+Plone 5.x
+
 
 Installation
 ============
