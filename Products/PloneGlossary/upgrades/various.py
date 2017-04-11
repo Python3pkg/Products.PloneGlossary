@@ -21,15 +21,13 @@ Migrations from 1.2 to any
 
 from Products.CMFCore.utils import getToolByName
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
-from Products.PloneGlossary.utils import getSite, IfInstalled
+from Products.PloneGlossary.utils import getSite
 
 import logging
 
 logger = logging.getLogger('Products.PloneGlossary')
-safety_belt = IfInstalled()
 
 
-@safety_belt
 def synonymsSupportHandler(setuptool):
     """Adding support for synonyms"""
 
@@ -70,7 +68,7 @@ def findGlossaryBrains():
 # -> 1.4.2
 ##
 
-@safety_belt
+
 def changeJSRegistryConditions(setuptool):
     """Change / simplify condition for JS registry.
     """
@@ -78,7 +76,6 @@ def changeJSRegistryConditions(setuptool):
     return
 
 
-@safety_belt
 def fixKupuSupport(setuptool):
     """Don't decorate Kupu specific areas
     """
@@ -98,7 +95,7 @@ def fixKupuSupport(setuptool):
 # Misc
 ###
 
-@safety_belt
+
 def applyCssStep(setuptool):
     """Apply our cssregistry.xml.
     """
@@ -112,7 +109,6 @@ def runImportStep(setuptool, step_id):
     return
 
 
-@safety_belt
 def recatalog_definition_descriptions(setuptool):
     portal_catalog = getToolByName(setuptool, 'portal_catalog')
     brains = portal_catalog.unrestrictedSearchResults(
