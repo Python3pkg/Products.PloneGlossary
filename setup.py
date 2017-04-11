@@ -9,10 +9,15 @@ setup(
     name='Products.PloneGlossary',
     version=version,
     long_description=long_description,
-    description="Highlight Plone content terms, mouseover shows the term definition as tooltip.",
-    # Get more strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    description="Highlight Plone content terms, mouseover shows the "
+                "term definition as tooltip.",
+    # Get more strings from
+    # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2.4",
+        "Programming Language :: Python :: 2.6",
+        "Programming Language :: Python :: 2.7",
         "Framework :: Plone",
         "Framework :: Plone :: 3.2",
         "Framework :: Plone :: 3.3",
@@ -21,7 +26,7 @@ setup(
         "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        ],
+    ],
     keywords='plone glossary',
     author='Ingeniweb',
     author_email='support@ingeniweb.com',
@@ -34,11 +39,8 @@ setup(
     install_requires=[
         'setuptools',
         'wicked',
-        ],
+    ],
     extras_require={
         'test': ['Products.PloneTestCase'],
-        },
-    entry_points="""
-    # -*- Entry points: -*-
-    """,
-    )
+    },
+)
