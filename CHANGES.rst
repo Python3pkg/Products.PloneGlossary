@@ -2,7 +2,7 @@
 Change log
 ==========
 
-1.7.3 (unreleased)
+1.7.3 (2017-04-11)
 ==================
 
 - Remove dangerous escaped characters from definitions.  ``<script>``
