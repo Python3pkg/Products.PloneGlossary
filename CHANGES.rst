@@ -2,8 +2,8 @@
 Change log
 ==========
 
-1.7.4 (unreleased)
-==================
+2.0 (unreleased)
+================
 
 - Plone 5 support.  [delcourt, maurits]
 
