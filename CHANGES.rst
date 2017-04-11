@@ -5,6 +5,17 @@ Change log
 2.0 (unreleased)
 ================
 
+- Removed sys modules alias for old ``types`` module.
+  Removed ``wicked`` support, which seemed unneeded,
+  and only used for the old ``types`` module.
+  If you run into trouble, especially getting an error
+  when loading an instance of an old class, please create an
+  issue in the tracker:
+  https://github.com/collective/Products.PloneGlossary/issues
+  But you should have no trouble when your content is from
+  version 1.4.0 or later (2009).
+  [maurits]
+
 - Plone 5 support.  [delcourt, maurits]
 
 

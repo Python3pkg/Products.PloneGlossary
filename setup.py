@@ -32,7 +32,6 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
-        'wicked',
     ],
     extras_require={
         'test': ['Products.PloneTestCase'],

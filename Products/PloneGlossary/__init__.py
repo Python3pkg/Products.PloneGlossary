@@ -22,7 +22,6 @@ The PloneGlossary package
 
 # Python imports
 import os
-import sys
 
 # CMF imports
 from Products.CMFCore.utils import ContentInit, ToolInit
@@ -34,10 +33,7 @@ from Products.Archetypes.public import process_types, listTypes
 # Products imports
 from Products.PloneGlossary.config import SKINS_DIR, GLOBALS, PROJECTNAME
 from Products.PloneGlossary.PloneGlossaryTool import PloneGlossaryTool
-from Products.PloneGlossary import content as content_module
-
-# BBB: Make migrations easier.
-sys.modules['Products.PloneGlossary.types'] = content_module
+from Products.PloneGlossary import content  # noqa
 
 registerDirectory(SKINS_DIR, GLOBALS)
 

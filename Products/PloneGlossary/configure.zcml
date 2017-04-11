@@ -2,7 +2,6 @@
    xmlns="http://namespaces.zope.org/zope"
    xmlns:five="http://namespaces.zope.org/five"
    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-   xmlns:wicked="http://namespaces.openplans.org/wicked"
    xmlns:zcml="http://namespaces.zope.org/zcml"
    i18n_domain="ploneglossary"
    >
@@ -63,28 +62,5 @@
       class=".examples.exampleglossary.ExampleGlossary" />
   <five:deprecatedManageAddDelete
       class=".examples.exampleglossary.ExampleGlossaryDefinition" />
-  <!-- BBB, see sys.modules hack in init -->
-  <five:deprecatedManageAddDelete
-      class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition" />
-
-
-  <!-- ============
-       Wicked aware
-       ============ -->
-
-  <include package="wicked.at" />
-
-  <!-- BBB, see sys.modules hack in init -->
-  <class class=".types.PloneGlossaryDefinition.PloneGlossaryDefinition">
-    <implements interface="wicked.interfaces.IAmWicked" />
-  </class>
-
-
-  <!-- BBB, see sys.modules hack in init -->
-  <wicked:atschema-fields-implement
-     atclass=".types.PloneGlossaryDefinition.PloneGlossaryDefinition"
-     fields="definition"
-     implements="wicked.at.interfaces.IAmATWickedField"
-     />
 
 </configure>
