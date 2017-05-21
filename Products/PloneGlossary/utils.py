@@ -34,8 +34,8 @@ from zope.i18nmessageid import MessageFactory
 
 # Product imports
 # Python imports
-import config
-import htmlentitydefs
+from . import config
+import html.entities
 import logging
 import re
 import unicodedata
@@ -74,7 +74,7 @@ class HTML2TextParser(SGMLParser):
         case of errors.
         """
         try:
-            ret = unichr(int(code)).encode('utf-8', "replace")
+            ret = chr(int(code)).encode('utf-8', "replace")
             return ret
         except (ConflictError, KeyboardInterrupt):
             raise
@@ -89,7 +89,7 @@ class HTML2TextParser(SGMLParser):
         """ handle the entity reference (e.g. &uuml;) """
         if ref in REFS_TO_REMOVE:
             return
-        ref = htmlentitydefs.name2codepoint.get(ref, None)
+        ref = html.entities.name2codepoint.get(ref, None)
         if ref:
             self.result += self._savedecode(ref)
 

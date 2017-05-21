@@ -52,7 +52,7 @@ def initialize(context):
 
     # used by test framework
     if 'ZOPETESTCASE' in os.environ:
-        import examples
+        from . import examples
         examples  # pyflakes
 
     # Import types

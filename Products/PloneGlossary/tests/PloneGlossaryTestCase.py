@@ -101,19 +101,19 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
     def getFrenchText(self):
         """Returns french text"""
 
-        return self.encodeInSiteCharset(u"""D\xe9finition d'un terme.""")
+        return self.encodeInSiteCharset("""D\xe9finition d'un terme.""")
 
     def getEnglishText(self):
         """Returns french text"""
 
-        return self.encodeInSiteCharset(u"""Term definition.""")
+        return self.encodeInSiteCharset("""Term definition.""")
 
     def addGlossaryDefinition(self, glossary, title, definition=None,
                               variants=()):
         """Add new glossary definition in a glossary"""
 
         if definition is None:
-            definition = self.encodeInSiteCharset(u'Definition of term')
+            definition = self.encodeInSiteCharset('Definition of term')
 
         id = self.buildPrettyId(title)
         glossary.invokeFactory(
@@ -168,7 +168,7 @@ class PloneGlossaryTestCase(PloneTestCase.PloneTestCase):
         """Add new example glossary definition in a glossary"""
 
         if definition is None:
-            definition = self.encodeInSiteCharset(u'Definition of term')
+            definition = self.encodeInSiteCharset('Definition of term')
 
         id = self.buildPrettyId(title)
         glossary.invokeFactory(

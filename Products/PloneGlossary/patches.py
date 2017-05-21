@@ -23,8 +23,8 @@ Patch to ZCTextIndex such it searches for term and synonyms
 
 from Products.CMFCore.utils import getToolByName
 
-from config import PATCH_ZCTextIndex, INDEX_SEARCH_GLOSSARY
-from config import PLONEGLOSSARY_TOOL
+from .config import PATCH_ZCTextIndex, INDEX_SEARCH_GLOSSARY
+from .config import PLONEGLOSSARY_TOOL
 
 from Products.ZCTextIndex.ZCTextIndex import ZCTextIndex
 
@@ -41,7 +41,7 @@ def __getNOTWords(tree):
     """
     exclude_words = []
     for subnode in tree.getValue():
-        if isinstance(subnode, basestring):
+        if isinstance(subnode, str):
             continue
         if subnode.nodeType() in ('OR', 'AND'):
             exclude_words.extend(__getNOTWords(subnode))

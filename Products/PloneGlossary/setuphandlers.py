@@ -20,8 +20,8 @@
 Handlers for GS
 """
 import os
-from content.PloneGlossary import PloneGlossary
-from utils import registerGlossary, LOG
+from .content.PloneGlossary import PloneGlossary
+from .utils import registerGlossary, LOG
 
 
 def registerGlossaries(context):

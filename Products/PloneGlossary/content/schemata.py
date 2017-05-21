@@ -52,9 +52,9 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         default='',
         accessor='Title',
         widget=StringWidget(
-            label=_(u'label_glossary_term', default=u"Term"),
-            description=_(u'help_glossary_term',
-                          default=u"Enter the term to be defined."),
+            label=_('label_glossary_term', default="Term"),
+            description=_('help_glossary_term',
+                          default="Enter the term to be defined."),
             visible={'view': 'invisible'}),
     ),
     LinesField(
@@ -63,10 +63,10 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         searchable=True,
         default=(),
         widget=LinesWidget(
-            label=_(u'label_glossary_variants', default=u"Variants"),
+            label=_('label_glossary_variants', default="Variants"),
             description=_(
-                u'help_glossary_variants',
-                default=u"Enter the variants of the term, one per line."),
+                'help_glossary_variants',
+                default="Enter the variants of the term, one per line."),
             visible={'view': 'invisible'}),
     ),
     TextField(
@@ -77,9 +77,9 @@ PloneGlossaryDefinitionSchema = ATContentTypeSchema.copy() + Schema((
         default_output_type='text/x-html-safe',
         allowable_content_types=zconf.ATDocument.allowed_content_types,
         widget=RichWidget(
-            label=_(u'label_glossary_definition_text', default=u"Body text"),
-            description=_(u'help_glossary_definition_text',
-                          default=u"Enter the body text."),
+            label=_('label_glossary_definition_text', default="Body text"),
+            description=_('help_glossary_definition_text',
+                          default="Enter the body text."),
             rows=25),
     ),
 

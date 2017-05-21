@@ -44,7 +44,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u"Glossary")
+        return _("Glossary")
 
 
 class Renderer(base.Renderer):
@@ -85,9 +85,9 @@ class AddForm(base.NullAddForm):
     """No add form, directly adds the portlet"""
 
     form_fields = form.Fields(IGlossaryPortlet)
-    label = _(u"Add Glossary Portlet")
+    label = _("Add Glossary Portlet")
     description = _(
-        u"This portlet shows the definitions of terms of the current page.")
+        "This portlet shows the definitions of terms of the current page.")
 
     def create(self):
         return Assignment()

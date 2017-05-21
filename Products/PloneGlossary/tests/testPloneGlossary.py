@@ -34,14 +34,14 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         self.loginAsPortalOwner()
         self.glossary = self.addGlossary(
             self.portal,
-            u'General',
-            (u'Sport', u'Tennis \t\n', u'Open source'))
+            'General',
+            ('Sport', 'Tennis \t\n', 'Open source'))
         self.logout()
 
     def testGetGlossaries(self):
         self.loginAsPortalOwner()
         medical_glossary = self.addGlossary(
-            self.portal, u'Medical', (u'ADN', u'Bone', u'Heart'))
+            self.portal, 'Medical', ('ADN', 'Bone', 'Heart'))
         uids = []
         uids.append(self.glossary.UID())
         uids.append(medical_glossary.UID())
@@ -80,7 +80,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         exampleglossary = self.addExampleGlossary(
             self.portal,
             'Example',
-            (u'Sport', u'Tennis', u'Open source'))
+            ('Sport', 'Tennis', 'Open source'))
         exampleuid = exampleglossary.UID()
 
         # test :
@@ -99,8 +99,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
 
     def testGetGeneralGlossaryUIDs(self):
         self.loginAsPortalOwner()
-        medical_glossary = self.addGlossary(self.portal, u'Medical',
-                                            (u'ADN', u'Bone', u'Heart'))
+        medical_glossary = self.addGlossary(self.portal, 'Medical',
+                                            ('ADN', 'Bone', 'Heart'))
         all_uids = []
         all_uids.append(self.glossary.UID())
         all_uids.append(medical_glossary.UID())
@@ -123,7 +123,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         terms = sorted(self.glossary_tool._getTextRelatedTermItems(
             "Le tennis est un sport", glossary_term_items))
         terms = [t['title'] for t in terms]
-        self.assertEquals(terms, ['Sport', u'Tennis \t\n'])
+        self.assertEquals(terms, ['Sport', 'Tennis \t\n'])
 
         terms = list(self.glossary_tool._getTextRelatedTermItems(
             "Le tennis est un sport", glossary_term_items,
@@ -138,7 +138,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add french document
         doc = self.addFrenchDocument(
             self.portal,
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+            self.encodeInSiteCharset('Sport fran\xe7ais'))
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = sorted(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
@@ -149,8 +149,8 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         doc = self.addDocument(
             self.portal,
             self.encodeInSiteCharset(
-                u'English documentation'),
-            self.encodeInSiteCharset(u'This is an open source'),)
+                'English documentation'),
+            self.encodeInSiteCharset('This is an open source'),)
         terms = list(self.glossary_tool.getObjectRelatedTerms(
             doc, glossary_uids))
         terms.sort()
@@ -164,7 +164,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add french document
         doc = self.addFrenchDocument(
             self.portal,
-            self.encodeInSiteCharset(u'Sport fran\xe7ais'))
+            self.encodeInSiteCharset('Sport fran\xe7ais'))
 
         # no glossary_uid
         result = self.glossary_tool.getObjectRelatedDefinitions(doc, ())
@@ -178,17 +178,17 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         definition = definitions[0]
         self.assertEquals(definition['url'],
                           'http://nohost/plone/general/sport')
-        self.assertEquals(definition['description'], u'Definition of term')
+        self.assertEquals(definition['description'], 'Definition of term')
         self.assertEquals(definition['variants'], ())
         self.assertEquals(definition['id'], 'sport')
-        self.assertEquals(definition['title'], u'Sport')
+        self.assertEquals(definition['title'], 'Sport')
         self.logout()
 
     def testGlossaryTerms(self):
         self.loginAsPortalOwner()
         glossary_uids = self.glossary_tool.getGlossaryUIDs()
         terms = sorted(self.glossary_tool.getGlossaryTerms(glossary_uids))
-        result = ['Open source', 'Sport', u'Tennis \t\n']
+        result = ['Open source', 'Sport', 'Tennis \t\n']
         self.assertEquals(terms, result)
         self.logout()
 
@@ -237,32 +237,32 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add glossary
         self.glossary = self.addGlossary(
             self.portal,
-            u'Produits laitiers',
-            (u'Lait',
-             u'Beurre',
-             u'Fromage',
-             u'Crème',
-             u'Desserts lactés'))
+            'Produits laitiers',
+            ('Lait',
+             'Beurre',
+             'Fromage',
+             'Crème',
+             'Desserts lactés'))
         # Variants of yaourt are yoghourt and yogourt
         self.addGlossaryDefinition(
             self.glossary,
-            title=u'Yaourt',
-            definition=u'Lait caillé ayant subi une fermentation acide.',
-            variants=(u'Yaourts',
-                      u'Yoghourt',
-                      u'Yoghourts \t',
-                      u'yogourt',
-                      u'yogourts'))
+            title='Yaourt',
+            definition='Lait caillé ayant subi une fermentation acide.',
+            variants=('Yaourts',
+                      'Yoghourt',
+                      'Yoghourts \t',
+                      'yogourt',
+                      'yogourts'))
         # Variants of fruits, to test white space in variants.  But
         # white space is stripped on save there.  So not much
         # interesting happens.
         self.addGlossaryDefinition(
             self.glossary,
-            title=u'Fruits',
-            definition=u'Commes des légumes, mais un peut autre.',
-            variants=(u'Apples',
-                      u'Fraises \t',
-                      u'Framboises'))
+            title='Fruits',
+            definition='Commes des légumes, mais un peut autre.',
+            variants=('Apples',
+                      'Fraises \t',
+                      'Framboises'))
 
         doc = self.addDocument(
             self.portal,
@@ -296,18 +296,18 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         # Add glossary
         self.glossary = self.addGlossary(
             self.portal,
-            u'Parfums Femme Chanel',
-            (u'Lancôme : Ô Oui',
-             u"Dior : J´Adore",
-             u'Cerruti 1881 pour Femme',
+            'Parfums Femme Chanel',
+            ('Lancôme : Ô Oui',
+             "Dior : J´Adore",
+             'Cerruti 1881 pour Femme',
              ))
         # Variants of yaourt are yoghourt and yogourt
         self.addGlossaryDefinition(
             self.glossary,
-            title=u'Chanel N° 5',
-            definition=(u"Un bouquet de fleurs abstraites d'une "
-                        u"indéfinissable féminité."),
-            variants=(u'N° 5', ))
+            title='Chanel N° 5',
+            definition=("Un bouquet de fleurs abstraites d'une "
+                        "indéfinissable féminité."),
+            variants=('N° 5', ))
         doc = self.addDocument(
             self.portal,
             "Le parfum de ma mère!",
@@ -328,7 +328,7 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
     def testEncodeAscii(self):
         """Test encode_ascii function from utils modules"""
 
-        utext = u'Ellipsis\u2026'
+        utext = 'Ellipsis\u2026'
         atext = encode_ascii(utext)
         self.assertEquals(len(utext), len(atext))
         self.assertEquals(atext, "ellipsis.")
@@ -344,14 +344,14 @@ class TestPloneGlossary(PloneGlossaryTestCase.PloneGlossaryTestCase):
         text = html2text("<div>line1 \r \n line2</div>")
         self.assertEquals(text, "line1 line2")
         text = html2text("<div><ul><li>Seleção campeã!</li></ul></div>")
-        self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+        self.assertEquals(text, "- Seleção campeã!".encode("utf-8"))
         text = html2text(
             "<div><ul><li>Sele&ccedil;&atilde;o campe&atilde;!</li>"
             "</ul></div>")
-        self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+        self.assertEquals(text, "- Seleção campeã!".encode("utf-8"))
         text = html2text(
             "<div><ul><li>Sele&#231;&#227;o campe&#227;!</li></ul></div>")
-        self.assertEquals(text, u"- Seleção campeã!".encode("utf-8"))
+        self.assertEquals(text, "- Seleção campeã!".encode("utf-8"))
 
 
 def test_suite():

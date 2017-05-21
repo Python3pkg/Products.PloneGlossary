@@ -20,5 +20,5 @@
 The PloneGlossary content types package
 """
 
-import PloneGlossary  # noqa
-import PloneGlossaryDefinition  # noqa
+from . import PloneGlossary  # noqa
+from . import PloneGlossaryDefinition  # noqa

@@ -21,5 +21,5 @@ Used to import as module
 
 import os
 if 'ZOPETESTCASE' in os.environ:
-    import exampleglossary
+    from . import exampleglossary
     exampleglossary  # pyflakes

@@ -33,6 +33,7 @@ from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
 from Products.PluginIndexes.common import safe_callable
 from Acquisition import aq_base
+import collections
 
 try:
     from zope.component.hooks import getSite
@@ -55,7 +56,7 @@ from Products.CMFPlone.utils import safe_unicode
 from Products.PloneGlossary.config import PLONEGLOSSARY_TOOL
 from Products.PloneGlossary.utils import (
     text2words, find_word, escape_special_chars, encode_ascii)
-from interfaces import IGlossaryTool, IOptionalHighLight
+from .interfaces import IGlossaryTool, IOptionalHighLight
 
 logger = logging.getLogger('Products.PloneGlossary')
 
@@ -467,7 +468,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
 
         # Get obj properties
         ptype = obj.portal_type
-        if callable(obj.title_or_id):
+        if isinstance(obj.title_or_id, collections.Callable):
             title = obj.title_or_id()
         else:
             title = obj.title_or_id
@@ -719,7 +720,7 @@ class PloneGlossaryTool(PropertyManager, UniqueObject, SimpleItem):
         Should we include PloneGlossary javascripts
         """
         context_state = getMultiAdapter((context, request),
-                                        name=u'plone_context_state')
+                                        name='plone_context_state')
         if not context_state.is_view_template():
             return False
         return self.showPortlet(context) or self.highlightContent(context)
